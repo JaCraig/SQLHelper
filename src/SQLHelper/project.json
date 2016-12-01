@@ -1,0 +1,29 @@
+{
+  "title": "SQLHelper",
+  "version": "1.0.0",
+  "authors": [ "James Craig" ],
+  "description": "SQLHelper is a simple class to help with databases.",
+  "packOptions": {
+    "owners": [ "James Craig" ],
+    "summary": "SQLHelper is a simple class to help with databases.",
+    "projectUrl": "https://github.com/JaCraig/SQLHelper",
+    "licenseUrl": "https://github.com/JaCraig/SQLHelper/blob/master/LICENSE",
+    "tags": [ "SQL", "Databases" ]
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "System.Data.Common": "4.1.0",
+    "System.Data.SqlClient": "4.1.0",
+    "System.Dynamic.Runtime": "4.0.11",
+    "BigBook": "1.0.3",
+    "Microsoft.Extensions.Configuration": "1.0.0"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+  "buildOptions": {
+    "xmlDoc": true
+  }
+}

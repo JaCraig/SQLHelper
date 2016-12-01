@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>SQLHelper</id>
+    <version>$version$</version>
+    <title>SQLHelper</title>
+    <authors>James Craig</authors>
+    <owners>James Craig</owners>
+    <licenseUrl>https://github.com/JaCraig/SQLHelper/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/JaCraig/SQLHelper</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>SQL Database</tags>
+    <dependencies>
+      <dependency id="NETStandard.Library" version="1.6.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard1.6\SQLHelper.dll" target="lib\netstandard1.6\SQLHelper.dll" />
+    <file src="bin\Release\netstandard1.6\SQLHelper.xml" target="lib\netstandard1.6\SQLHelper.xml" />
+  </files>
+</package>

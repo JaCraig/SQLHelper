@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E92158B2-82F1-441D-B06A-54EE621AC498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{414A3619-5FF0-4C66-8199-5C1E0A467D40}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SQLHelper", "src\SQLHelper\SQLHelper.xproj", "{337AE3D9-0691-486A-BBE5-BCAA96F68548}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9E153F81-41BF-4B3F-9488-15923085B8B2}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SQLHelper.Tests", "test\SQLHelper.Tests\SQLHelper.Tests.xproj", "{E0A10594-6D81-4890-A7D6-2D04F5D8567F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{337AE3D9-0691-486A-BBE5-BCAA96F68548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337AE3D9-0691-486A-BBE5-BCAA96F68548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337AE3D9-0691-486A-BBE5-BCAA96F68548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337AE3D9-0691-486A-BBE5-BCAA96F68548}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A10594-6D81-4890-A7D6-2D04F5D8567F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A10594-6D81-4890-A7D6-2D04F5D8567F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A10594-6D81-4890-A7D6-2D04F5D8567F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A10594-6D81-4890-A7D6-2D04F5D8567F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{337AE3D9-0691-486A-BBE5-BCAA96F68548} = {E92158B2-82F1-441D-B06A-54EE621AC498}
+		{E0A10594-6D81-4890-A7D6-2D04F5D8567F} = {9E153F81-41BF-4B3F-9488-15923085B8B2}
+	EndGlobalSection
+EndGlobal

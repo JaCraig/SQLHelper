@@ -1,0 +1,42 @@
+﻿{
+  "version": "1.0.0",
+  "title": "SQLHelper.Tests",
+  "description": "Tests for SQLHelper",
+  "authors": [ "James Craig" ],
+  "packOptions": {
+    "projectUrl": "https://github.com/JaCraig/SQLHelper/",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "tags": [
+      "SQL"
+    ]
+  },
+  "buildOptions": {
+    "debugType": "portable"
+  },
+  "dependencies": {
+    "xunit": "2.2.0-*",
+    "SQLHelper": "1.0.*",
+    "dotnet-test-xunit": "2.2.0-*",
+    "FileCurator": "1.0.3"
+  },
+  "runtimes": {
+    "win7-x64": {},
+    "osx.10.10-x64": {},
+    "ubuntu.14.04-x64": {}
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0-*"
+        }
+      },
+      "imports": [
+        "portable-net45+win8",
+        "dnxcore50"
+      ]
+    }
+  },
+  "testRunner": "xunit"
+}
