@@ -3,7 +3,7 @@
   <metadata>
     <id>SQLHelper.DB</id>
     <version>$version$</version>
-    <title>SQLHelper</title>
+    <title>SQLHelper DB</title>
     <authors>James Craig</authors>
     <owners>James Craig</owners>
     <licenseUrl>https://github.com/JaCraig/SQLHelper/blob/master/LICENSE</licenseUrl>
@@ -22,7 +22,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\netstandard1.6\SQLHelper.dll" target="lib\netstandard1.6\SQLHelper.dll" />
-    <file src="bin\Release\netstandard1.6\SQLHelper.xml" target="lib\netstandard1.6\SQLHelper.xml" />
+    <file src="bin\Release\netstandard1.6\SQLHelper.DB.dll" target="lib\netstandard1.6\SQLHelper.DB.dll" />
+    <file src="bin\Release\netstandard1.6\SQLHelper.DB.xml" target="lib\netstandard1.6\SQLHelper.DB.xml" />
   </files>
 </package>
