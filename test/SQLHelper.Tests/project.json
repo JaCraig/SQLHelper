@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "xunit": "2.2.0-*",
-    "SQLHelper": "1.0.*",
+    "SQLHelper.DB": "1.0.*",
     "dotnet-test-xunit": "2.2.0-*",
     "FileCurator": "1.0.3"
   },
