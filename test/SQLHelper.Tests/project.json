@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0",
   "title": "SQLHelper.Tests",
   "description": "Tests for SQLHelper",
@@ -17,7 +17,8 @@
     "xunit": "2.2.0-*",
     "SQLHelper.DB": "1.0.*",
     "dotnet-test-xunit": "2.2.0-*",
-    "FileCurator": "1.0.3"
+    "FileCurator": "1.0.5",
+    "Microsoft.NETCore.App": "1.1.0"
   },
   "runtimes": {
     "win7-x64": {},
@@ -27,10 +28,6 @@
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0-*"
-        }
       },
       "imports": [
         "portable-net45+win8",
