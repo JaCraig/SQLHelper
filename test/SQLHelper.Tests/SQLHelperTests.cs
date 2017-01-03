@@ -94,7 +94,7 @@ namespace SQLHelper.Tests
                 .Build();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Result = Instance.AddQuery(CommandType.Text,
-                "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7)",
+                "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                 "A",
                 "B",
                 10,
@@ -102,14 +102,15 @@ namespace SQLHelper.Tests
                 75.12m,
                 4.53f,
                 new DateTime(2010, 1, 1),
-                Guid.NewGuid())
+                Guid.NewGuid(),
+                new TimeSpan(1, 0, 0))
                 .ExecuteScalar<int>();
             Assert.Equal(1, Result);
             Instance.CreateBatch();
             for (int x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
-                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7)",
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                     "A",
                     "B",
                     10,
@@ -117,7 +118,8 @@ namespace SQLHelper.Tests
                     75.12m,
                     4.53f,
                     new DateTime(2010, 1, 1),
-                    Guid.NewGuid());
+                    Guid.NewGuid(),
+                    new TimeSpan(1, 0, 0));
             }
             Result = Instance.ExecuteScalar<int>();
             Assert.Equal(50, Result);
@@ -134,7 +136,7 @@ namespace SQLHelper.Tests
             for (int x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
-                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7)",
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                     "A",
                     "B",
                     10,
@@ -142,7 +144,8 @@ namespace SQLHelper.Tests
                     75.12m,
                     4.53f,
                     new DateTime(2010, 1, 1),
-                    TempGuid);
+                    TempGuid,
+                    new TimeSpan(1, 0, 0));
             }
             var Result = Instance.ExecuteScalar<int>();
             Assert.Equal(50, Result);
@@ -162,6 +165,7 @@ namespace SQLHelper.Tests
                 Assert.Equal(4.53f, ListResult[0][x].FloatValue);
                 Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][x].DateTimeValue);
                 Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
             }
         }
 
@@ -176,7 +180,7 @@ namespace SQLHelper.Tests
             for (int x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
-                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7)",
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                     "A",
                     "B",
                     10,
@@ -184,7 +188,8 @@ namespace SQLHelper.Tests
                     75.12m,
                     4.53f,
                     new DateTime(2010, 1, 1),
-                    TempGuid);
+                    TempGuid,
+                    new TimeSpan(1, 0, 0));
             }
             var Result = Instance.ExecuteScalar<int>();
             Assert.Equal(50, Result);
@@ -205,6 +210,7 @@ namespace SQLHelper.Tests
                 Assert.Equal(4.53f, ConvertedResult[x].FloatValue);
                 Assert.Equal(new DateTime(2010, 1, 1), ConvertedResult[x].DateTimeValue);
                 Assert.Equal(TempGuid, ConvertedResult[x].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ConvertedResult[x].TimeSpanValue);
             }
         }
 
@@ -218,7 +224,7 @@ namespace SQLHelper.Tests
             for (int x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
-                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7)",
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                     "A",
                     "B",
                     10,
@@ -226,7 +232,8 @@ namespace SQLHelper.Tests
                     75.12m,
                     4.53f,
                     new DateTime(2010, 1, 1),
-                    Guid.NewGuid());
+                    Guid.NewGuid(),
+                    new TimeSpan(1, 0, 0));
             }
             var Result = Instance.ExecuteScalar<int>();
             Assert.Equal(50, Result);

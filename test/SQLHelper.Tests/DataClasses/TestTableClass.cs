@@ -13,5 +13,7 @@ namespace SQLHelper.Tests.DataClasses
         public string StringValue1 { get; set; }
 
         public string StringValue2 { get; set; }
+
+        public TimeSpan TimeSpanValue { get; set; }
     }
 }

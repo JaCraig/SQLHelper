@@ -116,7 +116,7 @@ namespace SQLHelper.ExtensionMethods
             DbParameter Parameter = command.GetOrCreateParameter(id);
             Parameter.IsNullable = value == null || DBNull.Value == value;
             Parameter.Value = Parameter.IsNullable ? DBNull.Value : value;
-            if (type != default(DbType))
+            if (type != default(DbType) && type != DbType.Time)
                 Parameter.DbType = type;
             Parameter.Direction = direction;
             return command;
