@@ -58,6 +58,12 @@ namespace SQLHelper.HelperClasses.Interfaces
         object InternalValue { get; }
 
         /// <summary>
+        /// Gets the parameter starter.
+        /// </summary>
+        /// <value>The parameter starter.</value>
+        string ParameterStarter { get; }
+
+        /// <summary>
         /// Adds this parameter to the SQLHelper
         /// </summary>
         /// <param name="helper">SQLHelper</param>

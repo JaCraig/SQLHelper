@@ -242,18 +242,15 @@ namespace SQLHelper.HelperClasses
                                 Finalizable |= Commands[y].Finalizable;
                                 if (Command.CommandType == CommandType.Text)
                                 {
-                                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
-                                                        "" :
-                                                        ParameterRegex.Replace(Command.SQLCommand, x =>
-                                                        {
-                                                            if (!x.Value.StartsWith("@@", StringComparison.Ordinal))
-                                                                return x.Value + "Command" + Count.ToString(CultureInfo.InvariantCulture);
-                                                            return x.Value;
-                                                        }) + Environment.NewLine;
+                                    var TempCommandText = Command.SQLCommand ?? "";
+                                    string Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
                                     foreach (IParameter TempParameter in Command.Parameters)
                                     {
-                                        FinalParameters.Add(TempParameter.CreateCopy("Command" + Count.ToString(CultureInfo.InvariantCulture)));
+                                        TempCommandText = TempCommandText.Replace(TempParameter.ParameterStarter + TempParameter.ID,
+                                                                                    TempParameter.ParameterStarter + TempParameter.ID + Suffix);
+                                        FinalParameters.Add(TempParameter.CreateCopy(Suffix));
                                     }
+                                    FinalSQLCommand += TempCommandText + Environment.NewLine;
                                 }
                                 else
                                 {

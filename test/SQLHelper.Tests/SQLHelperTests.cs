@@ -87,37 +87,6 @@ namespace SQLHelper.Tests
         }
 
         [Fact]
-        public void ExectureScalar()
-        {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
-            var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
-            {
-                Instance.AddQuery(CommandType.Text,
-                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
-                    "A",
-                    "B",
-                    10,
-                    true,
-                    75.12m,
-                    4.53f,
-                    new DateTime(2010, 1, 1),
-                    TempGuid,
-                    new TimeSpan(1, 0, 0));
-            }
-            var Result = Instance.ExecuteScalar<int>();
-            Assert.Equal(50, Result);
-            Instance.CreateBatch();
-            var ListResult = Instance.AddQuery(CommandType.Text,
-                "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteScalar<int>();
-            Assert.Equal(50, ListResult);
-        }
-
-        [Fact]
         public void ExecuteInsert()
         {
             var Configuration = new ConfigurationBuilder()
@@ -192,6 +161,37 @@ namespace SQLHelper.Tests
                 new TimeSpan(1, 0, 0))
                 .ExecuteScalar<int>();
             Assert.True(Result1 < Result2);
+        }
+
+        [Fact]
+        public void ExecuteScalar()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var TempGuid = Guid.NewGuid();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            for (int x = 0; x < 50; ++x)
+            {
+                Instance.AddQuery(CommandType.Text,
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
+                    "A",
+                    "B",
+                    10,
+                    true,
+                    75.12m,
+                    4.53f,
+                    new DateTime(2010, 1, 1),
+                    TempGuid,
+                    new TimeSpan(1, 0, 0));
+            }
+            var Result = Instance.ExecuteScalar<int>();
+            Assert.Equal(50, Result);
+            Instance.CreateBatch();
+            var ListResult = Instance.AddQuery(CommandType.Text,
+                "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
+                .ExecuteScalar<int>();
+            Assert.Equal(50, ListResult);
         }
 
         [Fact]
@@ -312,6 +312,49 @@ namespace SQLHelper.Tests
                 "C")
                 .ExecuteScalar<int>();
             Assert.Equal(50, Result);
+        }
+
+        [Fact]
+        public void InsertWithAtSymbol()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var TempGuid = Guid.NewGuid();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            for (int x = 0; x < 50; ++x)
+            {
+                Instance.AddQuery(CommandType.Text,
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES('email@address.com',@0,@1,@2,@3,@4,@5,@6,@7)",
+                    "email@address.com",
+                    10,
+                    true,
+                    75.12m,
+                    4.53f,
+                    new DateTime(2010, 1, 1),
+                    TempGuid,
+                    new TimeSpan(1, 0, 0));
+            }
+            var Result = Instance.ExecuteScalar<int>();
+            Assert.Equal(50, Result);
+            Instance.CreateBatch();
+            var ListResult = Instance.AddQuery(CommandType.Text,
+                "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
+                .Execute();
+            Assert.Equal(1, ListResult.Count);
+            Assert.Equal(50, ListResult[0].Count);
+            for (int x = 0; x < 50; ++x)
+            {
+                Assert.Equal("email@address.com", ListResult[0][x].StringValue1);
+                Assert.Equal("email@address.com", ListResult[0][x].StringValue2);
+                Assert.Equal(10, ListResult[0][x].BigIntValue);
+                Assert.Equal(true, ListResult[0][x].BitValue);
+                Assert.Equal(75.12m, ListResult[0][x].DecimalValue);
+                Assert.Equal(4.53f, ListResult[0][x].FloatValue);
+                Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][x].DateTimeValue);
+                Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
+            }
         }
 
         [Fact]
