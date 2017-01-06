@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 
 namespace SQLHelper
 {
@@ -147,7 +148,11 @@ namespace SQLHelper
         /// <returns>The first value of the batch</returns>
         public TData ExecuteScalar<TData>()
         {
-            return ((object)Batch.Execute()[0][0]).To<object, TData>();
+            var BatchResults = Batch.Execute();
+            IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
+            if (Value == null)
+                return ((object)BatchResults[0][0]).To<object, TData>();
+            return Value[Value.Keys.First()].To<object, TData>();
         }
 
         /// <summary>

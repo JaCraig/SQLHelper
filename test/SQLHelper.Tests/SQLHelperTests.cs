@@ -87,6 +87,37 @@ namespace SQLHelper.Tests
         }
 
         [Fact]
+        public void ExectureScalar()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var TempGuid = Guid.NewGuid();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            for (int x = 0; x < 50; ++x)
+            {
+                Instance.AddQuery(CommandType.Text,
+                    "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
+                    "A",
+                    "B",
+                    10,
+                    true,
+                    75.12m,
+                    4.53f,
+                    new DateTime(2010, 1, 1),
+                    TempGuid,
+                    new TimeSpan(1, 0, 0));
+            }
+            var Result = Instance.ExecuteScalar<int>();
+            Assert.Equal(50, Result);
+            Instance.CreateBatch();
+            var ListResult = Instance.AddQuery(CommandType.Text,
+                "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
+                .ExecuteScalar<int>();
+            Assert.Equal(50, ListResult);
+        }
+
+        [Fact]
         public void ExecuteInsert()
         {
             var Configuration = new ConfigurationBuilder()
@@ -123,6 +154,44 @@ namespace SQLHelper.Tests
             }
             Result = Instance.ExecuteScalar<int>();
             Assert.Equal(50, Result);
+        }
+
+        [Fact]
+        public void ExecuteInsertAndGetBackId()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            var Result1 = Instance.AddQuery(CommandType.Text,
+                @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
+                SELECT scope_identity() as [ID]",
+                "A",
+                "B",
+                10,
+                true,
+                75.12m,
+                4.53f,
+                new DateTime(2010, 1, 1),
+                Guid.NewGuid(),
+                new TimeSpan(1, 0, 0))
+                .ExecuteScalar<int>();
+            Assert.True(Result1 > 0);
+            Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            var Result2 = Instance.AddQuery(CommandType.Text,
+                @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
+                SELECT scope_identity() as [ID]",
+                "A",
+                "B",
+                10,
+                true,
+                75.12m,
+                4.53f,
+                new DateTime(2010, 1, 1),
+                Guid.NewGuid(),
+                new TimeSpan(1, 0, 0))
+                .ExecuteScalar<int>();
+            Assert.True(Result1 < Result2);
         }
 
         [Fact]

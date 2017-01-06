@@ -19,6 +19,7 @@
       <dependency id="System.Dynamic.Runtime" version="4.3.0" />
       <dependency id="BigBook" version="1.0.5" />
       <dependency id="Microsoft.Extensions.Configuration" version="1.1.0" />
+      <dependency id="Microsoft.CSharp" version="4.0.1" />
     </dependencies>
   </metadata>
   <files>
