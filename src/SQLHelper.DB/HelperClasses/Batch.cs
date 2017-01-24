@@ -244,13 +244,20 @@ namespace SQLHelper.HelperClasses
                                 {
                                     var TempCommandText = Command.SQLCommand ?? "";
                                     string Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
+                                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
+                                                        "" :
+                                                        ParameterRegex.Replace(Command.SQLCommand, x =>
+                                                        {
+                                                            var Param = Command.Parameters.FirstOrDefault(z => z.ID == x.Groups["ParamName"].Value);
+                                                            if (Param != null)
+                                                                return x.Value + Suffix;
+                                                            return x.Value;
+                                                        }) + Environment.NewLine;
+
                                     foreach (IParameter TempParameter in Command.Parameters)
                                     {
-                                        TempCommandText = TempCommandText.Replace(TempParameter.ParameterStarter + TempParameter.ID,
-                                                                                    TempParameter.ParameterStarter + TempParameter.ID + Suffix);
                                         FinalParameters.Add(TempParameter.CreateCopy(Suffix));
                                     }
-                                    FinalSQLCommand += TempCommandText + Environment.NewLine;
                                 }
                                 else
                                 {

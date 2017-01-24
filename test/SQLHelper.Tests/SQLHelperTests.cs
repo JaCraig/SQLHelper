@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using Xunit;
 
 namespace SQLHelper.Tests
@@ -236,6 +237,28 @@ namespace SQLHelper.Tests
                 Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
                 Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
             }
+        }
+
+        [Fact]
+        public void ExecuteSelectHundredsOfParamters()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var TempGuid = Guid.NewGuid();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            StringBuilder Builder = new StringBuilder();
+            string Splitter = "";
+            for (int x = 0; x < 200; ++x)
+            {
+                Builder.AppendFormat("{1}@{0}", x, Splitter);
+                Splitter = ",";
+            }
+            var ListResult = Instance.AddQuery(CommandType.Text,
+                string.Format("SELECT {0} FROM [TestDatabase].[dbo].[TestTable]", Builder.ToString()),
+                new object[200])
+                .Execute();
+            Assert.Equal(1, ListResult.Count);
         }
 
         [Fact]
