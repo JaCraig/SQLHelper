@@ -15,7 +15,7 @@
     "System.Data.Common": "4.3.0",
     "System.Data.SqlClient": "4.3.0",
     "System.Dynamic.Runtime": "4.3.0",
-    "BigBook": "1.0.5",
+    "BigBook": "1.0.7",
     "Microsoft.Extensions.Configuration": "1.1.0",
     "Microsoft.CSharp": "4.0.1"
   },

@@ -1,7 +1,10 @@
 ﻿using BigBook;
+using BigBook.Registration;
 using FileCurator;
+using FileCurator.Registration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelper.ExtensionMethods;
+using SQLHelper.Registration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,12 +18,12 @@ namespace SQLHelper.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            Canister.Builder.CreateContainer(new List<ServiceDescriptor>(),
-                typeof(TestingDirectoryFixture).GetTypeInfo().Assembly,
-                typeof(Dynamo).GetTypeInfo().Assembly,
-                typeof(SQLHelper).GetTypeInfo().Assembly,
-                typeof(FileInfo).GetTypeInfo().Assembly,
-                typeof(Aspectus.Aspectus).GetTypeInfo().Assembly);
+            if (Canister.Builder.Bootstrapper == null)
+                Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
+                    .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                    .RegisterSQLHelper()
+                    .RegisterFileCurator()
+                    .Build();
 
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {
