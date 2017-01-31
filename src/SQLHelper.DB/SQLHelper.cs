@@ -44,6 +44,12 @@ namespace SQLHelper
         }
 
         /// <summary>
+        /// Gets the number of commands currently in the batch.
+        /// </summary>
+        /// <value>The number of commands currently in the batch</value>
+        public int Count { get { return Batch.CommandCount; } }
+
+        /// <summary>
         /// Gets the batch.
         /// </summary>
         /// <value>The batch.</value>
