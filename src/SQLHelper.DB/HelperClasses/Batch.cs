@@ -44,6 +44,11 @@ namespace SQLHelper.HelperClasses
         }
 
         /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
+
+        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount { get { return Commands.Count; } }
@@ -57,11 +62,6 @@ namespace SQLHelper.HelperClasses
         /// Connection string
         /// </summary>
         protected ISource Source { get; set; }
-
-        /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -285,8 +285,10 @@ namespace SQLHelper.HelperClasses
                             }
                             else
                             {
-                                var TempValue = new List<dynamic>();
-                                TempValue.Add(ExecutableCommand.ExecuteNonQuery());
+                                var TempValue = new List<dynamic>
+                                {
+                                    ExecutableCommand.ExecuteNonQuery()
+                                };
                                 ReturnValue.Add(TempValue);
                             }
                             if (Count >= CommandCount)
