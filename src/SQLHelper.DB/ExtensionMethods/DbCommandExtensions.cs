@@ -19,6 +19,7 @@ using BigBook.Comparison;
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Threading.Tasks;
 
 namespace SQLHelper.ExtensionMethods
 {
@@ -186,6 +187,21 @@ namespace SQLHelper.ExtensionMethods
                 return defaultValue;
             command.Open();
             return command.ExecuteScalar().To(defaultValue);
+        }
+
+        /// <summary>
+        /// Executes the stored procedure as a scalar query async
+        /// </summary>
+        /// <param name="command">Command object</param>
+        /// <param name="defaultValue">Default value if there is an issue</param>
+        /// <returns>The object of the first row and first column</returns>
+        public static async Task<DataType> ExecuteScalarAsync<DataType>(this DbCommand command, DataType defaultValue = default(DataType))
+        {
+            if (command == null)
+                return defaultValue;
+            command.Open();
+            var ReturnValue = await command.ExecuteScalarAsync();
+            return ReturnValue.To(defaultValue);
         }
 
         /// <summary>

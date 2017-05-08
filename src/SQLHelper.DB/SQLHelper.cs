@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SQLHelper
 {
@@ -141,10 +142,19 @@ namespace SQLHelper
         /// <summary>
         /// Executes this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The results of the batched queries.</returns>
         public IList<IList<dynamic>> Execute()
         {
             return Batch.Execute();
+        }
+
+        /// <summary>
+        /// Executes the queries asynchronously.
+        /// </summary>
+        /// <returns>The result of the queries</returns>
+        public async Task<IList<IList<dynamic>>> ExecuteAsync()
+        {
+            return await Batch.ExecuteAsync();
         }
 
         /// <summary>
@@ -155,6 +165,20 @@ namespace SQLHelper
         public TData ExecuteScalar<TData>()
         {
             var BatchResults = Batch.Execute();
+            IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
+            if (Value == null)
+                return ((object)BatchResults[0][0]).To<object, TData>();
+            return Value[Value.Keys.First()].To<object, TData>();
+        }
+
+        /// <summary>
+        /// Executes the batched commands and returns the first value, ignoring the rest (async).
+        /// </summary>
+        /// <typeparam name="TData">The type of the data to return.</typeparam>
+        /// <returns>The first value of the batch</returns>
+        public async Task<TData> ExecuteScalarAsync<TData>()
+        {
+            var BatchResults = await Batch.ExecuteAsync();
             IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
             if (Value == null)
                 return ((object)BatchResults[0][0]).To<object, TData>();

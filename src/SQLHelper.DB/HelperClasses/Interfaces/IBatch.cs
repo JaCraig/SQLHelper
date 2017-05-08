@@ -17,6 +17,7 @@ limitations under the License.
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace SQLHelper.HelperClasses.Interfaces
 {
@@ -77,6 +78,12 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// </summary>
         /// <returns>The results of the batched commands</returns>
         IList<IList<dynamic>> Execute();
+
+        /// <summary>
+        /// Executes the commands and returns the results (async)
+        /// </summary>
+        /// <returns>The results of the batched commands</returns>
+        Task<IList<IList<dynamic>>> ExecuteAsync();
 
         /// <summary>
         /// Removes duplicate commands from the batch

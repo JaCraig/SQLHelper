@@ -24,6 +24,7 @@ using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace SQLHelper.HelperClasses
 {
@@ -134,6 +135,15 @@ namespace SQLHelper.HelperClasses
         }
 
         /// <summary>
+        /// Executes the commands and returns the results (async)
+        /// </summary>
+        /// <returns>The results of the batched commands</returns>
+        public async Task<IList<IList<dynamic>>> ExecuteAsync()
+        {
+            return await ExecuteCommandsAsync();
+        }
+
+        /// <summary>
         /// Removes duplicate commands from the batch
         /// </summary>
         /// <returns>This</returns>
@@ -177,6 +187,61 @@ namespace SQLHelper.HelperClasses
                               });
         }
 
+        private static void GetResults(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
+        {
+            ExecutableCommand.CommandText = FinalSQLCommand;
+            FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
+            if (Finalizable)
+            {
+                using (DbDataReader TempReader = ExecutableCommand.ExecuteReader())
+                {
+                    ReturnValue.Add(GetValues(TempReader));
+                    while (TempReader.NextResult())
+                    {
+                        ReturnValue.Add(GetValues(TempReader));
+                    }
+                }
+            }
+            else
+            {
+                var TempValue = new List<dynamic>
+                                {
+                                    ExecutableCommand.ExecuteNonQuery()
+                                };
+                ReturnValue.Add(TempValue);
+            }
+        }
+
+        private static async Task GetResultsAsync(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
+        {
+            ExecutableCommand.CommandText = FinalSQLCommand;
+            FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
+            if (Finalizable)
+            {
+                using (DbDataReader TempReader = await ExecutableCommand.ExecuteReaderAsync())
+                {
+                    ReturnValue.Add(GetValues(TempReader));
+                    while (TempReader.NextResult())
+                    {
+                        ReturnValue.Add(GetValues(TempReader));
+                    }
+                }
+            }
+            else
+            {
+                var TempValue = new List<dynamic>
+                                {
+                                    await ExecutableCommand.ExecuteNonQueryAsync()
+                                };
+                ReturnValue.Add(TempValue);
+            }
+        }
+
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <param name="tempReader">The temporary reader.</param>
+        /// <returns>The resulting values</returns>
         private static IList<dynamic> GetValues(DbDataReader tempReader)
         {
             if (tempReader == null)
@@ -199,6 +264,10 @@ namespace SQLHelper.HelperClasses
             return ReturnValue;
         }
 
+        /// <summary>
+        /// Executes the commands.
+        /// </summary>
+        /// <returns>The list of results</returns>
         private IList<IList<dynamic>> ExecuteCommands()
         {
             if (Source == null)
@@ -217,11 +286,7 @@ namespace SQLHelper.HelperClasses
                 Connection.ConnectionString = Source.Connection;
                 using (DbCommand ExecutableCommand = Factory.CreateCommand())
                 {
-                    ExecutableCommand.Connection = Connection;
-                    ExecutableCommand.CommandType = CommandType.Text;
-                    if (CheckTransaction())
-                        ExecutableCommand.BeginTransaction();
-                    ExecutableCommand.Open();
+                    SetupCommand(Connection, ExecutableCommand);
 
                     try
                     {
@@ -233,64 +298,8 @@ namespace SQLHelper.HelperClasses
                             string FinalSQLCommand = "";
                             int ParameterTotal = 0;
                             ExecutableCommand.Parameters.Clear();
-                            for (int y = Count; y < Commands.Count; ++y)
-                            {
-                                ICommand Command = Commands[y];
-                                if (ParameterTotal + Command.Parameters.Count > 2100)
-                                    break;
-                                ParameterTotal += Command.Parameters.Count;
-                                Finalizable |= Commands[y].Finalizable;
-                                if (Command.CommandType == CommandType.Text)
-                                {
-                                    var TempCommandText = Command.SQLCommand ?? "";
-                                    string Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
-                                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
-                                                        "" :
-                                                        ParameterRegex.Replace(Command.SQLCommand, x =>
-                                                        {
-                                                            var Param = Command.Parameters.FirstOrDefault(z => z.ID == x.Groups["ParamName"].Value);
-                                                            if (Param != null)
-                                                                return x.Value + Suffix;
-                                                            return x.Value;
-                                                        }) + Environment.NewLine;
-
-                                    foreach (IParameter TempParameter in Command.Parameters)
-                                    {
-                                        FinalParameters.Add(TempParameter.CreateCopy(Suffix));
-                                    }
-                                }
-                                else
-                                {
-                                    FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
-                                    foreach (IParameter TempParameter in Command.Parameters)
-                                    {
-                                        FinalParameters.Add(TempParameter.CreateCopy(""));
-                                    }
-                                }
-                                ++Count;
-                            }
-
-                            ExecutableCommand.CommandText = FinalSQLCommand;
-                            FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
-                            if (Finalizable)
-                            {
-                                using (DbDataReader TempReader = ExecutableCommand.ExecuteReader())
-                                {
-                                    ReturnValue.Add(GetValues(TempReader));
-                                    while (TempReader.NextResult())
-                                    {
-                                        ReturnValue.Add(GetValues(TempReader));
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                var TempValue = new List<dynamic>
-                                {
-                                    ExecutableCommand.ExecuteNonQuery()
-                                };
-                                ReturnValue.Add(TempValue);
-                            }
+                            SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
+                            GetResults(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand);
                             if (Count >= CommandCount)
                                 break;
                         }
@@ -300,6 +309,61 @@ namespace SQLHelper.HelperClasses
                     finally { ExecutableCommand.Close(); }
                 }
             }
+            FinalizeCommands(ReturnValue);
+            return ReturnValue;
+        }
+
+        /// <summary>
+        /// Executes the commands asynchronously.
+        /// </summary>
+        /// <returns>The list of results</returns>
+        private async Task<IList<IList<dynamic>>> ExecuteCommandsAsync()
+        {
+            if (Source == null)
+                return new List<IList<dynamic>>();
+            if (Commands == null)
+                return new List<IList<dynamic>>();
+            var ReturnValue = new List<IList<dynamic>>();
+            if (Commands.Count == 0)
+            {
+                ReturnValue.Add(new List<dynamic>());
+                return ReturnValue;
+            }
+            var Factory = Source.Factory;
+            using (DbConnection Connection = Factory.CreateConnection())
+            {
+                Connection.ConnectionString = Source.Connection;
+                using (DbCommand ExecutableCommand = Factory.CreateCommand())
+                {
+                    SetupCommand(Connection, ExecutableCommand);
+
+                    try
+                    {
+                        int Count = 0;
+                        while (true)
+                        {
+                            var FinalParameters = new List<IParameter>();
+                            bool Finalizable = false;
+                            string FinalSQLCommand = "";
+                            int ParameterTotal = 0;
+                            ExecutableCommand.Parameters.Clear();
+                            SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
+                            await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand);
+                            if (Count >= CommandCount)
+                                break;
+                        }
+                        ExecutableCommand.Commit();
+                    }
+                    catch { ExecutableCommand.Rollback(); throw; }
+                    finally { ExecutableCommand.Close(); }
+                }
+            }
+            FinalizeCommands(ReturnValue);
+            return ReturnValue;
+        }
+
+        private void FinalizeCommands(List<IList<dynamic>> ReturnValue)
+        {
             for (int x = 0, y = 0; x < Commands.Count(); ++x)
             {
                 if (Commands[x].Finalizable)
@@ -310,7 +374,55 @@ namespace SQLHelper.HelperClasses
                 else
                     Commands[x].Finalize(new List<dynamic>());
             }
-            return ReturnValue;
+        }
+
+        private void SetupCommand(DbConnection Connection, DbCommand ExecutableCommand)
+        {
+            ExecutableCommand.Connection = Connection;
+            ExecutableCommand.CommandType = CommandType.Text;
+            if (CheckTransaction())
+                ExecutableCommand.BeginTransaction();
+            ExecutableCommand.Open();
+        }
+
+        private void SetupParameters(ref int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand, ref int ParameterTotal)
+        {
+            for (int y = Count; y < Commands.Count; ++y)
+            {
+                ICommand Command = Commands[y];
+                if (ParameterTotal + Command.Parameters.Count > 2100)
+                    break;
+                ParameterTotal += Command.Parameters.Count;
+                Finalizable |= Commands[y].Finalizable;
+                if (Command.CommandType == CommandType.Text)
+                {
+                    var TempCommandText = Command.SQLCommand ?? "";
+                    string Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
+                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
+                                        "" :
+                                        ParameterRegex.Replace(Command.SQLCommand, x =>
+                                        {
+                                            var Param = Command.Parameters.FirstOrDefault(z => z.ID == x.Groups["ParamName"].Value);
+                                            if (Param != null)
+                                                return x.Value + Suffix;
+                                            return x.Value;
+                                        }) + Environment.NewLine;
+
+                    foreach (IParameter TempParameter in Command.Parameters)
+                    {
+                        FinalParameters.Add(TempParameter.CreateCopy(Suffix));
+                    }
+                }
+                else
+                {
+                    FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
+                    foreach (IParameter TempParameter in Command.Parameters)
+                    {
+                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                    }
+                }
+                ++Count;
+            }
         }
     }
 }
