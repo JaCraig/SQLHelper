@@ -39,6 +39,7 @@ namespace SQLHelper.HelperClasses
         public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string sourceType = "System.Data.SqlClient",
                         string parameterPrefix = "@")
         {
+            Configuration = configuration ?? throw new System.ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
             SourceType = string.IsNullOrEmpty(sourceType) ? "System.Data.SqlClient" : sourceType;
             Factory = factory;
@@ -72,6 +73,12 @@ namespace SQLHelper.HelperClasses
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the configuration information.
+        /// </summary>
+        /// <value>Gets the configuration information.</value>
+        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Connection string

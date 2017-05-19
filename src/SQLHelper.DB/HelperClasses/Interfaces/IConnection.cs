@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 
 namespace SQLHelper.HelperClasses.Interfaces
@@ -23,6 +24,12 @@ namespace SQLHelper.HelperClasses.Interfaces
     /// </summary>
     public interface IConnection
     {
+        /// <summary>
+        /// Gets the configuration information.
+        /// </summary>
+        /// <value>Gets the configuration information.</value>
+        IConfiguration Configuration { get; }
+
         /// <summary>
         /// Connection string
         /// </summary>
