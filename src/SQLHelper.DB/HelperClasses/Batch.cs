@@ -38,7 +38,7 @@ namespace SQLHelper.HelperClasses
         /// Constructor
         /// </summary>
         /// <param name="source">Source info</param>
-        public Batch(ISource source)
+        public Batch(IConnection source)
         {
             Commands = new List<ICommand>();
             Source = source;
@@ -62,7 +62,7 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Connection string
         /// </summary>
-        protected ISource Source { get; set; }
+        protected IConnection Source { get; set; }
 
         /// <summary>
         /// Adds a command to be batched
@@ -283,7 +283,7 @@ namespace SQLHelper.HelperClasses
             var Factory = Source.Factory;
             using (DbConnection Connection = Factory.CreateConnection())
             {
-                Connection.ConnectionString = Source.Connection;
+                Connection.ConnectionString = Source.ConnectionString;
                 using (DbCommand ExecutableCommand = Factory.CreateCommand())
                 {
                     SetupCommand(Connection, ExecutableCommand);
@@ -332,7 +332,7 @@ namespace SQLHelper.HelperClasses
             var Factory = Source.Factory;
             using (DbConnection Connection = Factory.CreateConnection())
             {
-                Connection.ConnectionString = Source.Connection;
+                Connection.ConnectionString = Source.ConnectionString;
                 using (DbCommand ExecutableCommand = Factory.CreateCommand())
                 {
                     SetupCommand(Connection, ExecutableCommand);
@@ -376,9 +376,9 @@ namespace SQLHelper.HelperClasses
             }
         }
 
-        private void SetupCommand(DbConnection Connection, DbCommand ExecutableCommand)
+        private void SetupCommand(DbConnection DatabaseConnection, DbCommand ExecutableCommand)
         {
-            ExecutableCommand.Connection = Connection;
+            ExecutableCommand.Connection = DatabaseConnection;
             ExecutableCommand.CommandType = CommandType.Text;
             if (CheckTransaction())
                 ExecutableCommand.BeginTransaction();

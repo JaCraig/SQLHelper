@@ -15,7 +15,7 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new Batch(new Source(Configuration,
+            var Instance = new Batch(new Connection(Configuration,
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
@@ -31,7 +31,7 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new Batch(new Source(Configuration,
+            var Instance = new Batch(new Connection(Configuration,
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
@@ -48,7 +48,7 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new Batch(new Source(Configuration,
+            var Instance = new Batch(new Connection(Configuration,
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
@@ -65,7 +65,7 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new Batch(new Source(Configuration,
+            var Instance = new Batch(new Connection(Configuration,
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
@@ -81,7 +81,7 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new Batch(new Source(Configuration,
+            var Instance = new Batch(new Connection(Configuration,
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")

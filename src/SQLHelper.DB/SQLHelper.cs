@@ -40,8 +40,8 @@ namespace SQLHelper
         /// <param name="database">The database.</param>
         public SQLHelper(IConfiguration configuration, DbProviderFactory factory, string database = "Default")
         {
-            DatabaseSource = new Source(configuration, factory, "", database);
-            Batch = new Batch(DatabaseSource);
+            DatabaseConnection = new Connection(configuration, factory, "", database);
+            Batch = new Batch(DatabaseConnection);
         }
 
         /// <summary>
@@ -51,16 +51,16 @@ namespace SQLHelper
         public int Count { get { return Batch.CommandCount; } }
 
         /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>The source.</value>
+        public IConnection DatabaseConnection { get; private set; }
+
+        /// <summary>
         /// Gets the batch.
         /// </summary>
         /// <value>The batch.</value>
         protected IBatch Batch { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>The source.</value>
-        protected ISource DatabaseSource { get; private set; }
 
         /// <summary>
         /// Adds a command.
@@ -135,7 +135,7 @@ namespace SQLHelper
         /// <returns>This</returns>
         public SQLHelper CreateBatch()
         {
-            Batch = new Batch(DatabaseSource);
+            Batch = new Batch(DatabaseConnection);
             return this;
         }
 

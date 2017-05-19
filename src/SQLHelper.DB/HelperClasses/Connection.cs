@@ -24,8 +24,8 @@ namespace SQLHelper.HelperClasses
     /// <summary>
     /// Data source class
     /// </summary>
-    /// <seealso cref="ISource"/>
-    public class Source : ISource
+    /// <seealso cref="IConnection"/>
+    public class Connection : IConnection
     {
         /// <summary>
         /// Constructor
@@ -36,7 +36,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="name">The name.</param>
         /// <param name="sourceType">Type of the source.</param>
         /// <param name="parameterPrefix">The parameter prefix.</param>
-        public Source(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string sourceType = "System.Data.SqlClient",
+        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string sourceType = "System.Data.SqlClient",
                         string parameterPrefix = "@")
         {
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
@@ -45,11 +45,11 @@ namespace SQLHelper.HelperClasses
             var TempConfig = configuration.GetConnectionString(Name);
             if (string.IsNullOrEmpty(connection) && TempConfig != null)
             {
-                Connection = TempConfig;
+                ConnectionString = TempConfig;
             }
             else
             {
-                Connection = string.IsNullOrEmpty(connection) ? name : connection;
+                ConnectionString = string.IsNullOrEmpty(connection) ? name : connection;
             }
             if (string.IsNullOrEmpty(parameterPrefix))
             {
@@ -59,7 +59,7 @@ namespace SQLHelper.HelperClasses
                     ParameterPrefix = ":";
                 else
                 {
-                    DatabaseName = Regex.Match(Connection, @"Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, @"Initial Catalog=([^;]*)").Groups[1].Value;
                     ParameterPrefix = "@";
                 }
             }
@@ -68,7 +68,7 @@ namespace SQLHelper.HelperClasses
                 ParameterPrefix = parameterPrefix;
                 if (sourceType.Contains("SqlClient"))
                 {
-                    DatabaseName = Regex.Match(Connection, @"Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, @"Initial Catalog=([^;]*)").Groups[1].Value;
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Connection string
         /// </summary>
-        public string Connection { get; protected set; }
+        public string ConnectionString { get; protected set; }
 
         /// <summary>
         /// Gets the database.

@@ -14,8 +14,8 @@ namespace SQLHelper.Tests.HelperClasses
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var TestItem = new Source(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", "DATABASE NAME");
-            Assert.Equal("Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", TestItem.Connection);
+            var TestItem = new Connection(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", "DATABASE NAME");
+            Assert.Equal("Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", TestItem.ConnectionString);
             Assert.Equal("TestDatabase", TestItem.DatabaseName);
             Assert.Equal(SqlClientFactory.Instance, TestItem.Factory);
             Assert.Equal("DATABASE NAME", TestItem.Name);

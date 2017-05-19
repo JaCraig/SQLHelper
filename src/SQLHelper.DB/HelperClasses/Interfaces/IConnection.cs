@@ -21,13 +21,13 @@ namespace SQLHelper.HelperClasses.Interfaces
     /// <summary>
     /// Data source interface
     /// </summary>
-    public interface ISource
+    public interface IConnection
     {
         /// <summary>
         /// Connection string
         /// </summary>
         /// <value>The connection.</value>
-        string Connection { get; }
+        string ConnectionString { get; }
 
         /// <summary>
         /// Gets the database.
