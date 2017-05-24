@@ -28,20 +28,30 @@ namespace SQLHelper.HelperClasses
     public class Connection : IConnection
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="factory">The factory.</param>
+        /// <param name="name">The name.</param>
+        public Connection(IConfiguration configuration, DbProviderFactory factory, string name)
+            : this(configuration, factory, "", name)
+        {
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <param name="factory">The factory.</param>
         /// <param name="connection">The connection.</param>
         /// <param name="name">The name.</param>
-        /// <param name="sourceType">Type of the source.</param>
         /// <param name="parameterPrefix">The parameter prefix.</param>
-        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string sourceType = "System.Data.SqlClient",
-                        string parameterPrefix = "@")
+        /// <exception cref="System.ArgumentNullException">configuration</exception>
+        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@")
         {
             Configuration = configuration ?? throw new System.ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            SourceType = string.IsNullOrEmpty(sourceType) ? "System.Data.SqlClient" : sourceType;
+            SourceType = factory.GetType().FullName;
             Factory = factory;
             var TempConfig = configuration.GetConnectionString(Name);
             if (string.IsNullOrEmpty(connection) && TempConfig != null)
@@ -54,9 +64,9 @@ namespace SQLHelper.HelperClasses
             }
             if (string.IsNullOrEmpty(parameterPrefix))
             {
-                if (sourceType.Contains("MySql"))
+                if (SourceType.Contains("MySql"))
                     ParameterPrefix = "?";
-                else if (sourceType.Contains("Oracle"))
+                else if (SourceType.Contains("Oracle"))
                     ParameterPrefix = ":";
                 else
                 {
@@ -67,7 +77,7 @@ namespace SQLHelper.HelperClasses
             else
             {
                 ParameterPrefix = parameterPrefix;
-                if (sourceType.Contains("SqlClient"))
+                if (SourceType.Contains("SqlClient"))
                 {
                     DatabaseName = Regex.Match(ConnectionString, @"Initial Catalog=([^;]*)").Groups[1].Value;
                 }

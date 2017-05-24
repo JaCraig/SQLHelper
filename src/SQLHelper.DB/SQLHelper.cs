@@ -40,8 +40,17 @@ namespace SQLHelper
         /// <param name="database">The database.</param>
         public SQLHelper(IConfiguration configuration, DbProviderFactory factory, string database = "Default")
         {
-            DatabaseConnection = new Connection(configuration, factory, "", database);
+            DatabaseConnection = new Connection(configuration, factory, database);
             Batch = new Batch(DatabaseConnection);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLHelper"/> class.
+        /// </summary>
+        /// <param name="connection">The connection to use.</param>
+        public SQLHelper(IConnection connection)
+            : this(connection.Configuration, connection.Factory, connection.Name)
+        {
         }
 
         /// <summary>
