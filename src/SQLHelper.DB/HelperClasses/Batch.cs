@@ -189,6 +189,8 @@ namespace SQLHelper.HelperClasses
 
         private static void GetResults(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
+            if (string.IsNullOrEmpty(FinalSQLCommand))
+                return;
             ExecutableCommand.CommandText = FinalSQLCommand;
             FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
             if (Finalizable)
@@ -214,6 +216,8 @@ namespace SQLHelper.HelperClasses
 
         private static async Task GetResultsAsync(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
+            if (string.IsNullOrEmpty(FinalSQLCommand))
+                return;
             ExecutableCommand.CommandText = FinalSQLCommand;
             FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
             if (Finalizable)
