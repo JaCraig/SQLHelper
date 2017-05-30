@@ -170,28 +170,34 @@ namespace SQLHelper
         /// Executes the batched commands and returns the first value, ignoring the rest.
         /// </summary>
         /// <typeparam name="TData">The type of the data to return.</typeparam>
+        /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public TData ExecuteScalar<TData>()
+        public TData ExecuteScalar<TData>(TData defaultValue = default(TData))
         {
             var BatchResults = Batch.Execute();
+            if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
+                return defaultValue;
             IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
             if (Value == null)
-                return ((object)BatchResults[0][0]).To<object, TData>();
-            return Value[Value.Keys.First()].To<object, TData>();
+                return ((object)BatchResults[0][0]).To(defaultValue);
+            return Value[Value.Keys.First()].To(defaultValue);
         }
 
         /// <summary>
         /// Executes the batched commands and returns the first value, ignoring the rest (async).
         /// </summary>
         /// <typeparam name="TData">The type of the data to return.</typeparam>
+        /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public async Task<TData> ExecuteScalarAsync<TData>()
+        public async Task<TData> ExecuteScalarAsync<TData>(TData defaultValue = default(TData))
         {
             var BatchResults = await Batch.ExecuteAsync();
+            if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
+                return defaultValue;
             IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
             if (Value == null)
-                return ((object)BatchResults[0][0]).To<object, TData>();
-            return Value[Value.Keys.First()].To<object, TData>();
+                return ((object)BatchResults[0][0]).To(defaultValue);
+            return Value[Value.Keys.First()].To(defaultValue);
         }
 
         /// <summary>
