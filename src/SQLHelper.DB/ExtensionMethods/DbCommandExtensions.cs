@@ -19,6 +19,7 @@ using BigBook.Comparison;
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SQLHelper.ExtensionMethods
@@ -28,6 +29,14 @@ namespace SQLHelper.ExtensionMethods
     /// </summary>
     public static class DbCommandExtensions
     {
+        private static DbType[] BadDbTypes = {
+            DbType.Time,
+            DbType.SByte,
+            DbType.UInt16,
+            DbType.UInt32,
+            DbType.UInt64
+        };
+
         /// <summary>
         /// Adds a parameter to the call (for strings only)
         /// </summary>
@@ -117,7 +126,7 @@ namespace SQLHelper.ExtensionMethods
             DbParameter Parameter = command.GetOrCreateParameter(id);
             Parameter.IsNullable = value == null || DBNull.Value == value;
             Parameter.Value = Parameter.IsNullable ? DBNull.Value : value;
-            if (type != default(DbType) && type != DbType.Time)
+            if (type != default(DbType) && !BadDbTypes.Contains(type))
                 Parameter.DbType = type;
             Parameter.Direction = direction;
             return command;
