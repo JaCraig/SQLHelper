@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SQLHelper.HelperClasses;
 using SQLHelper.Tests.BaseClasses;
 using SQLHelper.Tests.DataClasses;
 using System;
@@ -382,6 +383,27 @@ namespace SQLHelper.Tests
                 Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
                 Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
             }
+        }
+
+        [Fact]
+        public void NotNullInsertParameters()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            Assert.NotNull(Instance);
+            var Result = Instance.CreateBatch().AddQuery(CommandType.Text,
+                "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
+                0)
+                .ExecuteScalar<int>();
+            Assert.Equal(1, Result);
+            Result = Instance.CreateBatch().AddQuery(
+                "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
+                CommandType.Text,
+                new Parameter<object>("0", SqlDbType.SmallInt, 0, ParameterDirection.Input))
+                .ExecuteScalar<int>();
+            Assert.Equal(1, Result);
         }
 
         [Fact]

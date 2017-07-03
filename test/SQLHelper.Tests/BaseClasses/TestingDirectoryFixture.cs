@@ -1,7 +1,4 @@
-﻿using BigBook;
-using BigBook.Registration;
-using FileCurator;
-using FileCurator.Registration;
+﻿using FileCurator.Registration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelper.ExtensionMethods;
 using SQLHelper.Registration;
@@ -48,6 +45,8 @@ namespace SQLHelper.Tests.BaseClasses
                     {
                         TempCommand.CommandText = "Create Table TestTable(ID INT PRIMARY KEY IDENTITY,StringValue1 NVARCHAR(100),StringValue2 NVARCHAR(MAX),BigIntValue BIGINT,BitValue BIT,DecimalValue DECIMAL(12,6),FloatValue FLOAT,DateTimeValue DATETIME,GUIDValue UNIQUEIDENTIFIER,TimeSpanValue TIME(7))";
                         TempCommand.Open();
+                        TempCommand.ExecuteNonQuery();
+                        TempCommand.CommandText = "Create Table TestTableNotNull(ID INT PRIMARY KEY IDENTITY,UShortValue_ SMALLINT NOT NULL)";
                         TempCommand.ExecuteNonQuery();
                     }
                     finally { TempCommand.Close(); }
