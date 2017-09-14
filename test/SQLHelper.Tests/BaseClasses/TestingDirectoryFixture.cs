@@ -33,6 +33,7 @@ namespace SQLHelper.Tests.BaseClasses
                         TempCommand.Open();
                         TempCommand.ExecuteNonQuery();
                     }
+                    catch { }
                     finally { TempCommand.Close(); }
                 }
             }
@@ -49,6 +50,7 @@ namespace SQLHelper.Tests.BaseClasses
                         TempCommand.CommandText = "Create Table TestTableNotNull(ID INT PRIMARY KEY IDENTITY,UShortValue_ SMALLINT NOT NULL)";
                         TempCommand.ExecuteNonQuery();
                     }
+                    catch { }
                     finally { TempCommand.Close(); }
                 }
             }
