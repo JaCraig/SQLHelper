@@ -47,15 +47,15 @@ namespace SQLHelper.HelperClasses
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             Parameters = parameters ?? new IParameter[0];
-            if (Parameters.Any(x => x.ParameterStarter == "@"))
+            if (Parameters.Any(x => x.ParameterStarter != "@"))
+            {
+                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
+            }
+            else
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
                 Finalizable = TempParser.StatementFound;
-            }
-            else
-            {
-                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
             }
         }
 
