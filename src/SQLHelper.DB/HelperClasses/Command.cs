@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using SQLHelper.DB.HelperClasses;
 using SQLHelper.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -41,12 +42,21 @@ namespace SQLHelper.HelperClasses
         /// <param name="callbackObject">Object</param>
         public Command(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
         {
-            SQLCommand = sqlCommand;
+            SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             Parameters = parameters ?? new IParameter[0];
-            Finalizable = (sqlCommand ?? "").ToUpperInvariant().Contains("SELECT");
+            if (Parameters.Any(x => x.ParameterStarter == "@"))
+            {
+                var TempParser = new SelectFinder();
+                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
+                Finalizable = TempParser.StatementFound;
+            }
+            else
+            {
+                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
+            }
         }
 
         /// <summary>
@@ -60,12 +70,21 @@ namespace SQLHelper.HelperClasses
         /// <param name="callbackObject">Object</param>
         public Command(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
         {
-            SQLCommand = sqlCommand;
+            SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
             Parameters = new List<IParameter>();
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
-            Finalizable = (sqlCommand ?? "").ToUpperInvariant().Contains("SELECT");
+            if (parameterStarter == "@")
+            {
+                var TempParser = new SelectFinder();
+                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
+                Finalizable = TempParser.StatementFound;
+            }
+            else
+            {
+                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
+            }
             if (parameters != null)
             {
                 foreach (object CurrentParameter in parameters)

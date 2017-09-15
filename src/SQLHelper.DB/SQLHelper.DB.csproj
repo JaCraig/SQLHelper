@@ -27,10 +27,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SQLParser" Version="1.0.2" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.3.1" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="1.0.21" />
+    <PackageReference Include="BigBook" Version="1.0.24" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
   </ItemGroup>

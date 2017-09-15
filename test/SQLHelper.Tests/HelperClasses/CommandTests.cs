@@ -10,6 +10,15 @@ namespace SQLHelper.Tests.HelperClasses
     public class CommandTests
     {
         [Fact]
+        public void CanFinalizeIfTest()
+        {
+            StringBuilder Builder = new StringBuilder();
+            var TestItem = new Command<int>((x, y, z) => { Builder.Append(z); }, 10, "IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 4 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 4) BEGIN INSERT INTO [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade]([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_],[dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_]) VALUES (4,4) END;", CommandType.Text, "@", new object[] { 1, 2, 3 });
+            Assert.False(TestItem.Finalizable);
+            TestItem = new Command<int>((x, y, z) => { Builder.Append(z); }, 10, "IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 4 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 4) BEGIN SELECT * FROM Users END;", CommandType.Text, "@", new object[] { 1, 2, 3 });
+        }
+
+        [Fact]
         public void Creation()
         {
             var TestItem = new Command<int>((x, y, z) => { }, 10, "SELECT * FROM TestUsers", CommandType.Text, "@", new object[] { 1, 2, 3 });
