@@ -38,7 +38,11 @@ namespace SQLHelper.DB.HelperClasses
         /// <param name="context">The parse tree.</param>
         public override void EnterDml_clause([NotNull] TSqlParser.Dml_clauseContext context)
         {
-            StatementFound |= context.select_statement() != null;
+            var SelectStatement = context.select_statement();
+            if (SelectStatement != null)
+            {
+                StatementFound |= SelectStatement.query_expression().query_specification() != null;
+            }
             base.EnterDml_clause(context);
         }
     }
