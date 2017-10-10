@@ -72,7 +72,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="helper">SQLHelper</param>
         public override void AddParameter(DbCommand helper)
         {
-            helper.AddParameter(ID, Value, Direction);
+            helper.AddParameter(ID, DatabaseType, Value, Direction);
         }
 
         /// <summary>
