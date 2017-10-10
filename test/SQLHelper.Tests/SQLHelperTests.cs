@@ -267,6 +267,21 @@ namespace SQLHelper.Tests
         }
 
         [Fact]
+        public void ExecuteSelectThousandsOfParameters()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            for (int x = 0; x < 4000; ++x)
+            {
+                Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0", x);
+            }
+            var ListResult = Instance.Execute();
+            Assert.Equal(4000, ListResult.Count);
+        }
+
+        [Fact]
         public void ExecuteSelectToObjectType()
         {
             var Configuration = new ConfigurationBuilder()

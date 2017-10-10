@@ -394,7 +394,7 @@ namespace SQLHelper.HelperClasses
             for (int y = Count; y < Commands.Count; ++y)
             {
                 ICommand Command = Commands[y];
-                if (ParameterTotal + Command.Parameters.Count > 2100)
+                if (ParameterTotal + Command.Parameters.Count >= 2000)
                     break;
                 ParameterTotal += Command.Parameters.Count;
                 Finalizable |= Commands[y].Finalizable;
