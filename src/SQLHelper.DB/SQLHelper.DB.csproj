@@ -10,30 +10,28 @@
     <Description>SQLHelper is a simple class to help with databases.</Description>
     <AssemblyTitle>SQLHelper DB</AssemblyTitle>
     <Authors>James Craig</Authors>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>SQLHelper.DB</AssemblyName>
     <PackageId>SQLHelper.DB</PackageId>
     <PackageTags>SQL;Databases</PackageTags>
     <PackageProjectUrl>https://github.com/JaCraig/SQLHelper</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/JaCraig/SQLHelper/blob/master/LICENSE</PackageLicenseUrl>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.$(BuildNumber)</Version>
+    <Version>2.0.$(BuildNumber)</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SQLParser" Version="1.0.3" />
+    <PackageReference Include="SQLParser" Version="2.0.0" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.2" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="1.0.30" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.2" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.4.0" />
+    <PackageReference Include="BigBook" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
   </ItemGroup>
 
 </Project>

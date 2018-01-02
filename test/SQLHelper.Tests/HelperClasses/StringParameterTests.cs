@@ -29,7 +29,7 @@ namespace SQLHelper.Tests.HelperClasses
         }
 
         [Fact]
-        public void Equals()
+        public void EqualsTest()
         {
             var TestItem1 = new StringParameter("0", "This is the value");
             var TestItem2 = new StringParameter("0", "This is the value");
