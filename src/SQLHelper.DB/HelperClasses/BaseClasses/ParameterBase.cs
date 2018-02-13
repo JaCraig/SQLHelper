@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using BigBook.Comparison;
 using SQLHelper.HelperClasses.Interfaces;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 
@@ -186,15 +187,19 @@ namespace SQLHelper.HelperClasses.BaseClasses
         }
 
         /// <summary>
-        /// Gets the hash code for the object
+        /// Returns a hash code for this instance.
         /// </summary>
-        /// <returns>The hash code</returns>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (ID.GetHashCode() * 23 + (new GenericEqualityComparer<DataType>().Equals(Value, default(DataType)) ? 0 : Value.GetHashCode())) * 23 + DatabaseType.GetHashCode();
-            }
+            var hashCode = 2030399226;
+            hashCode = hashCode * -1521134295 + DatabaseType.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ID);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DataType>.Default.GetHashCode(Value);
+            return hashCode;
         }
 
         /// <summary>

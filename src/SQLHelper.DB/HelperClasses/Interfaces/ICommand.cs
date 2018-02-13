@@ -38,7 +38,7 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// <summary>
         /// Parameters associated with the command
         /// </summary>
-        ICollection<IParameter> Parameters { get; }
+        IParameter[] Parameters { get; }
 
         /// <summary>
         /// Actual SQL command
@@ -49,6 +49,6 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// Called after the command is run
         /// </summary>
         /// <param name="result">Result of the command</param>
-        void Finalize(IList<dynamic> result);
+        void Finalize(List<dynamic> result);
     }
 }

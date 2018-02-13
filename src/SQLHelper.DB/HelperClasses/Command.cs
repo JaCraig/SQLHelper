@@ -40,7 +40,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="parameters">Parameters</param>
         /// <param name="callBack">Called when command has been executed</param>
         /// <param name="callbackObject">Object</param>
-        public Command(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
+        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
         {
             SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
@@ -68,11 +68,12 @@ namespace SQLHelper.HelperClasses
         /// <param name="parameterStarter">Parameter starter</param>
         /// <param name="callBack">Called when command has been executed</param>
         /// <param name="callbackObject">Object</param>
-        public Command(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
+        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
         {
             SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
-            Parameters = new List<IParameter>();
+            parameters = parameters ?? new object[0];
+            Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             if (parameterStarter == "@")
@@ -87,15 +88,16 @@ namespace SQLHelper.HelperClasses
             }
             if (parameters != null)
             {
-                foreach (object CurrentParameter in parameters)
+                for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
                 {
+                    object CurrentParameter = parameters[x];
                     var TempParameter = CurrentParameter as string;
                     if (CurrentParameter == null)
-                        Parameters.Add(new Parameter<object>(Parameters.Count().ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter));
+                        Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
                     else if (TempParameter != null)
-                        Parameters.Add(new StringParameter(Parameters.Count().ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter));
+                        Parameters[x] = new StringParameter(x.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
                     else
-                        Parameters.Add(new Parameter<object>(Parameters.Count().ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter));
+                        Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
                 }
             }
         }
@@ -103,7 +105,7 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Call back
         /// </summary>
-        public Action<ICommand, IList<dynamic>, TCallbackData> CallBack { get; private set; }
+        public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; private set; }
 
         /// <summary>
         /// Command type
@@ -123,7 +125,7 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Parameters
         /// </summary>
-        public ICollection<IParameter> Parameters { get; private set; }
+        public IParameter[] Parameters { get; private set; }
 
         /// <summary>
         /// SQL command
@@ -143,16 +145,20 @@ namespace SQLHelper.HelperClasses
 
             if (OtherCommand.SQLCommand != SQLCommand
                 || OtherCommand.CommandType != CommandType
-                || Parameters.Count != OtherCommand.Parameters.Count)
+                || Parameters.Length != OtherCommand.Parameters.Length)
                 return false;
 
-            foreach (IParameter TempParameter in Parameters)
-                if (!OtherCommand.Parameters.Contains(TempParameter))
+            for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+            {
+                if (!OtherCommand.Parameters.Contains(Parameters[x]))
                     return false;
+            }
 
-            foreach (IParameter TempParameter in OtherCommand.Parameters)
-                if (!Parameters.Contains(TempParameter))
+            for (int x = 0, OtherCommandParametersLength = OtherCommand.Parameters.Length; x < OtherCommandParametersLength; ++x)
+            {
+                if (!Parameters.Contains(OtherCommand.Parameters[x]))
                     return false;
+            }
 
             return true;
         }
@@ -161,7 +167,7 @@ namespace SQLHelper.HelperClasses
         /// Called after the command is run
         /// </summary>
         /// <param name="result">Result of the command</param>
-        public void Finalize(IList<dynamic> result)
+        public void Finalize(List<dynamic> result)
         {
             if (CallBack == null)
                 return;
@@ -177,10 +183,11 @@ namespace SQLHelper.HelperClasses
             unchecked
             {
                 int ParameterTotal = 0;
-                foreach (IParameter TempParameter in Parameters)
+                for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
                 {
-                    ParameterTotal += TempParameter.GetHashCode();
+                    ParameterTotal += Parameters[x].GetHashCode();
                 }
+
                 if (ParameterTotal > 0)
                     return (SQLCommand.GetHashCode() * 23 + CommandType.GetHashCode()) * 23 + ParameterTotal;
                 return SQLCommand.GetHashCode() * 23 + CommandType.GetHashCode();
@@ -194,7 +201,11 @@ namespace SQLHelper.HelperClasses
         public override string ToString()
         {
             var TempCommand = SQLCommand.Check("");
-            Parameters.ForEach(x => { TempCommand = x.AddParameter(TempCommand); });
+            for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+            {
+                TempCommand = Parameters[x].AddParameter(TempCommand);
+            }
+
             return TempCommand;
         }
     }

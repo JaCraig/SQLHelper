@@ -57,7 +57,7 @@ IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithC
             Assert.Equal(CommandType.Text, TestItem.CommandType);
             Assert.True(TestItem.Finalizable);
             Assert.Equal(10, TestItem.Object);
-            Assert.Equal(3, TestItem.Parameters.Count);
+            Assert.Equal(3, TestItem.Parameters.Length);
 
             for (int x = 0; x < 3; ++x)
             {

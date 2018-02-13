@@ -104,7 +104,7 @@ namespace SQLHelper
         /// <param name="commandType">Type of the command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
+        public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
             string command, CommandType commandType, params IParameter[] parameters)
         {
             Batch.AddQuery(callback, callbackObject, command, commandType, parameters);
@@ -120,7 +120,7 @@ namespace SQLHelper
         /// <param name="commandType">Type of the command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
+        public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
             CommandType commandType, string command, params object[] parameters)
         {
             Batch.AddQuery(callback, callbackObject, command, commandType, parameters);
@@ -152,7 +152,7 @@ namespace SQLHelper
         /// Executes this instance.
         /// </summary>
         /// <returns>The results of the batched queries.</returns>
-        public IList<IList<dynamic>> Execute()
+        public List<List<dynamic>> Execute()
         {
             return Batch.Execute();
         }
@@ -161,7 +161,7 @@ namespace SQLHelper
         /// Executes the queries asynchronously.
         /// </summary>
         /// <returns>The result of the queries</returns>
-        public async Task<IList<IList<dynamic>>> ExecuteAsync()
+        public async Task<List<List<dynamic>>> ExecuteAsync()
         {
             return await Batch.ExecuteAsync();
         }
@@ -178,9 +178,9 @@ namespace SQLHelper
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
             IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
-            if (Value == null)
-                return ((object)BatchResults[0][0]).To(defaultValue);
-            return Value[Value.Keys.First()].To(defaultValue);
+            return Value == null ?
+                ((object)BatchResults[0][0]).To(defaultValue) :
+                Value[Value.Keys.First()].To(defaultValue);
         }
 
         /// <summary>
@@ -195,9 +195,9 @@ namespace SQLHelper
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
             IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
-            if (Value == null)
-                return ((object)BatchResults[0][0]).To(defaultValue);
-            return Value[Value.Keys.First()].To(defaultValue);
+            return Value == null ?
+                ((object)BatchResults[0][0]).To(defaultValue) :
+                Value[Value.Keys.First()].To(defaultValue);
         }
 
         /// <summary>

@@ -73,7 +73,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="commandType">Command type</param>
         /// <param name="command">Command (SQL or stored procedure) to run</param>
         /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command)
+        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command)
         {
             Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, null));
             return this;
@@ -89,7 +89,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters)
+        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters)
         {
             Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, Source.ParameterPrefix, parameters));
             return this;
@@ -105,7 +105,7 @@ namespace SQLHelper.HelperClasses
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters)
+        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters)
         {
             Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, parameters));
             return this;
@@ -129,7 +129,7 @@ namespace SQLHelper.HelperClasses
         /// Executes the commands and returns the results
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        public IList<IList<dynamic>> Execute()
+        public List<List<dynamic>> Execute()
         {
             return ExecuteCommands();
         }
@@ -138,7 +138,7 @@ namespace SQLHelper.HelperClasses
         /// Executes the commands and returns the results (async)
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        public async Task<IList<IList<dynamic>>> ExecuteAsync()
+        public async Task<List<List<dynamic>>> ExecuteAsync()
         {
             return await ExecuteCommandsAsync();
         }
@@ -187,12 +187,23 @@ namespace SQLHelper.HelperClasses
                               });
         }
 
-        private static void GetResults(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
+        /// <summary>
+        /// Gets the results.
+        /// </summary>
+        /// <param name="ReturnValue">The return value.</param>
+        /// <param name="ExecutableCommand">The executable command.</param>
+        /// <param name="FinalParameters">The final parameters.</param>
+        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="FinalSQLCommand">The final SQL command.</param>
+        private static void GetResults(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
             if (string.IsNullOrEmpty(FinalSQLCommand))
                 return;
             ExecutableCommand.CommandText = FinalSQLCommand;
-            FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
+            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
+            {
+                FinalParameters[x].AddParameter(ExecutableCommand);
+            }
             if (Finalizable)
             {
                 using (DbDataReader TempReader = ExecutableCommand.ExecuteReader())
@@ -214,12 +225,24 @@ namespace SQLHelper.HelperClasses
             }
         }
 
-        private static async Task GetResultsAsync(List<IList<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
+        /// <summary>
+        /// Gets the results asynchronous.
+        /// </summary>
+        /// <param name="ReturnValue">The return value.</param>
+        /// <param name="ExecutableCommand">The executable command.</param>
+        /// <param name="FinalParameters">The final parameters.</param>
+        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="FinalSQLCommand">The final SQL command.</param>
+        /// <returns>The async task.</returns>
+        private static async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
             if (string.IsNullOrEmpty(FinalSQLCommand))
                 return;
             ExecutableCommand.CommandText = FinalSQLCommand;
-            FinalParameters.ForEach(x => x.AddParameter(ExecutableCommand));
+            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
+            {
+                FinalParameters[x].AddParameter(ExecutableCommand);
+            }
             if (Finalizable)
             {
                 using (DbDataReader TempReader = await ExecutableCommand.ExecuteReaderAsync())
@@ -246,7 +269,7 @@ namespace SQLHelper.HelperClasses
         /// </summary>
         /// <param name="tempReader">The temporary reader.</param>
         /// <returns>The resulting values</returns>
-        private static IList<dynamic> GetValues(DbDataReader tempReader)
+        private static List<dynamic> GetValues(DbDataReader tempReader)
         {
             if (tempReader == null)
                 return new List<dynamic>();
@@ -272,13 +295,13 @@ namespace SQLHelper.HelperClasses
         /// Executes the commands.
         /// </summary>
         /// <returns>The list of results</returns>
-        private IList<IList<dynamic>> ExecuteCommands()
+        private List<List<dynamic>> ExecuteCommands()
         {
             if (Source == null)
-                return new List<IList<dynamic>>();
+                return new List<List<dynamic>>();
             if (Commands == null)
-                return new List<IList<dynamic>>();
-            var ReturnValue = new List<IList<dynamic>>();
+                return new List<List<dynamic>>();
+            var ReturnValue = new List<List<dynamic>>();
             if (Commands.Count == 0)
             {
                 ReturnValue.Add(new List<dynamic>());
@@ -321,13 +344,13 @@ namespace SQLHelper.HelperClasses
         /// Executes the commands asynchronously.
         /// </summary>
         /// <returns>The list of results</returns>
-        private async Task<IList<IList<dynamic>>> ExecuteCommandsAsync()
+        private async Task<List<List<dynamic>>> ExecuteCommandsAsync()
         {
             if (Source == null)
-                return new List<IList<dynamic>>();
+                return new List<List<dynamic>>();
             if (Commands == null)
-                return new List<IList<dynamic>>();
-            var ReturnValue = new List<IList<dynamic>>();
+                return new List<List<dynamic>>();
+            var ReturnValue = new List<List<dynamic>>();
             if (Commands.Count == 0)
             {
                 ReturnValue.Add(new List<dynamic>());
@@ -366,9 +389,13 @@ namespace SQLHelper.HelperClasses
             return ReturnValue;
         }
 
-        private void FinalizeCommands(List<IList<dynamic>> ReturnValue)
+        /// <summary>
+        /// Finalizes the commands.
+        /// </summary>
+        /// <param name="ReturnValue">The return value.</param>
+        private void FinalizeCommands(List<List<dynamic>> ReturnValue)
         {
-            for (int x = 0, y = 0; x < Commands.Count(); ++x)
+            for (int x = 0, y = 0; x < Commands.Count; ++x)
             {
                 if (Commands[x].Finalizable)
                 {
@@ -380,6 +407,11 @@ namespace SQLHelper.HelperClasses
             }
         }
 
+        /// <summary>
+        /// Setups the command.
+        /// </summary>
+        /// <param name="DatabaseConnection">The database connection.</param>
+        /// <param name="ExecutableCommand">The executable command.</param>
         private void SetupCommand(DbConnection DatabaseConnection, DbCommand ExecutableCommand)
         {
             ExecutableCommand.Connection = DatabaseConnection;
@@ -389,14 +421,22 @@ namespace SQLHelper.HelperClasses
             ExecutableCommand.Open();
         }
 
+        /// <summary>
+        /// Setups the parameters.
+        /// </summary>
+        /// <param name="Count">The count.</param>
+        /// <param name="FinalParameters">The final parameters.</param>
+        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="FinalSQLCommand">The final SQL command.</param>
+        /// <param name="ParameterTotal">The parameter total.</param>
         private void SetupParameters(ref int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand, ref int ParameterTotal)
         {
             for (int y = Count; y < Commands.Count; ++y)
             {
                 ICommand Command = Commands[y];
-                if (ParameterTotal + Command.Parameters.Count >= 2000)
+                if (ParameterTotal + Command.Parameters.Length >= 2000)
                     break;
-                ParameterTotal += Command.Parameters.Count;
+                ParameterTotal += Command.Parameters.Length;
                 Finalizable |= Commands[y].Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {

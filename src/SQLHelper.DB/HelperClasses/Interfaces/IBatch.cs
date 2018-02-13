@@ -40,7 +40,7 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// <param name="commandType">Command type</param>
         /// <param name="command">Command (SQL or stored procedure) to run</param>
         /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command);
+        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command);
 
         /// <summary>
         /// Adds a command to be batched
@@ -52,7 +52,7 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters);
+        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters);
 
         /// <summary>
         /// Adds a command to be batched
@@ -64,7 +64,7 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, IList<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters);
+        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters);
 
         /// <summary>
         /// Adds a batch's commands to the current batch
@@ -77,13 +77,13 @@ namespace SQLHelper.HelperClasses.Interfaces
         /// Executes the commands and returns the results
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        IList<IList<dynamic>> Execute();
+        List<List<dynamic>> Execute();
 
         /// <summary>
         /// Executes the commands and returns the results (async)
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        Task<IList<IList<dynamic>>> ExecuteAsync();
+        Task<List<List<dynamic>>> ExecuteAsync();
 
         /// <summary>
         /// Removes duplicate commands from the batch

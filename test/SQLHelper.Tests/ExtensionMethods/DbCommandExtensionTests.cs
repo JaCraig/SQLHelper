@@ -44,7 +44,7 @@ namespace SQLHelper.Tests.ExtensionMethods
         };
 
         [Theory]
-        [MemberData("ParameterTypes")]
+        [MemberData(nameof(ParameterTypes))]
         public void AddParameter(object value)
         {
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
@@ -54,7 +54,7 @@ namespace SQLHelper.Tests.ExtensionMethods
                     TempCommand.AddParameter("0", value);
                     Assert.Equal(TempCommand.Parameters[0].Value, value);
                     Assert.Equal(TempCommand.Parameters[0].IsNullable, (value as Nullable) != null);
-                    Assert.Equal(TempCommand.Parameters[0].Direction, ParameterDirection.Input);
+                    Assert.Equal(ParameterDirection.Input, TempCommand.Parameters[0].Direction);
                 }
             }
         }

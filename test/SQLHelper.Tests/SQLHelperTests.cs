@@ -317,7 +317,7 @@ namespace SQLHelper.Tests
                 Assert.Equal("A", ConvertedResult[x].StringValue1);
                 Assert.Equal("B", ConvertedResult[x].StringValue2);
                 Assert.Equal(10, ConvertedResult[x].BigIntValue);
-                Assert.Equal(true, ConvertedResult[x].BitValue);
+                Assert.True(ConvertedResult[x].BitValue);
                 Assert.Equal(75.12m, ConvertedResult[x].DecimalValue);
                 Assert.Equal(4.53f, ConvertedResult[x].FloatValue);
                 Assert.Equal(new DateTime(2010, 1, 1), ConvertedResult[x].DateTimeValue);
