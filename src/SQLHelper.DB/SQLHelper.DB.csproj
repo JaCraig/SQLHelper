@@ -29,7 +29,7 @@
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.2" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="2.0.0" />
+    <PackageReference Include="BigBook" Version="2.0.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
   </ItemGroup>

@@ -47,15 +47,16 @@ namespace SQLHelper.HelperClasses
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             Parameters = parameters ?? new IParameter[0];
-            if (Parameters.Any(x => x.ParameterStarter != "@"))
-            {
-                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
-            }
-            else
+            var ComparisonString = SQLCommand.ToUpperInvariant();
+            if (Parameters.Any(x => x.ParameterStarter == "@") && ComparisonString.Contains("SELECT") && ComparisonString.Contains("IF "))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
                 Finalizable = TempParser.StatementFound;
+            }
+            else
+            {
+                Finalizable = ComparisonString.Contains("SELECT");
             }
         }
 
@@ -76,7 +77,8 @@ namespace SQLHelper.HelperClasses
             Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
-            if (parameterStarter == "@")
+            var ComparisonString = SQLCommand.ToUpperInvariant();
+            if (parameterStarter == "@" && ComparisonString.Contains("SELECT") && ComparisonString.Contains("IF "))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -84,7 +86,7 @@ namespace SQLHelper.HelperClasses
             }
             else
             {
-                Finalizable = SQLCommand.ToUpperInvariant().Contains("SELECT");
+                Finalizable = ComparisonString.Contains("SELECT");
             }
             if (parameters != null)
             {
