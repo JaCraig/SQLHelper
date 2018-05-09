@@ -30,7 +30,7 @@ namespace SQLHelper.Tests.BaseClasses
                     try
                     {
                         TempCommand.CommandText = "Create Database TestDatabase";
-                        TempCommand.Open();
+                        TempCommand.Open(3);
                         TempCommand.ExecuteNonQuery();
                     }
                     catch { }
@@ -45,7 +45,7 @@ namespace SQLHelper.Tests.BaseClasses
                     try
                     {
                         TempCommand.CommandText = "Create Table TestTable(ID INT PRIMARY KEY IDENTITY,StringValue1 NVARCHAR(100),StringValue2 NVARCHAR(MAX),BigIntValue BIGINT,BitValue BIT,DecimalValue DECIMAL(12,6),FloatValue FLOAT,DateTimeValue DATETIME,GUIDValue UNIQUEIDENTIFIER,TimeSpanValue TIME(7))";
-                        TempCommand.Open();
+                        TempCommand.Open(3);
                         TempCommand.ExecuteNonQuery();
                         TempCommand.CommandText = "Create Table TestTableNotNull(ID INT PRIMARY KEY IDENTITY,UShortValue_ SMALLINT NOT NULL)";
                         TempCommand.ExecuteNonQuery();
@@ -66,7 +66,7 @@ namespace SQLHelper.Tests.BaseClasses
                     try
                     {
                         TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
-                        TempCommand.Open();
+                        TempCommand.Open(3);
                         TempCommand.ExecuteNonQuery();
                     }
                     finally { TempCommand.Close(); }

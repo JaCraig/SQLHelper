@@ -39,9 +39,8 @@ namespace SQLHelper
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         public SQLHelper(IConfiguration configuration, DbProviderFactory factory, string database = "Default")
+            : this(new Connection(configuration, factory, database))
         {
-            DatabaseConnection = new Connection(configuration, factory, database);
-            Batch = new Batch(DatabaseConnection);
         }
 
         /// <summary>
@@ -49,8 +48,9 @@ namespace SQLHelper
         /// </summary>
         /// <param name="connection">The connection to use.</param>
         public SQLHelper(IConnection connection)
-            : this(connection.Configuration, connection.Factory, connection.Name)
         {
+            DatabaseConnection = connection;
+            Batch = new Batch(DatabaseConnection);
         }
 
         /// <summary>

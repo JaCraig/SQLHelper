@@ -314,7 +314,6 @@ namespace SQLHelper.HelperClasses
                 using (DbCommand ExecutableCommand = Factory.CreateCommand())
                 {
                     SetupCommand(Connection, ExecutableCommand);
-
                     try
                     {
                         int Count = 0;
@@ -417,8 +416,8 @@ namespace SQLHelper.HelperClasses
             ExecutableCommand.Connection = DatabaseConnection;
             ExecutableCommand.CommandType = CommandType.Text;
             if (CheckTransaction())
-                ExecutableCommand.BeginTransaction();
-            ExecutableCommand.Open();
+                ExecutableCommand.BeginTransaction(Source.Retries);
+            ExecutableCommand.Open(Source.Retries);
         }
 
         /// <summary>

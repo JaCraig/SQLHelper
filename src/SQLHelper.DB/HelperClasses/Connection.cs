@@ -46,9 +46,11 @@ namespace SQLHelper.HelperClasses
         /// <param name="connection">The connection.</param>
         /// <param name="name">The name.</param>
         /// <param name="parameterPrefix">The parameter prefix.</param>
+        /// <param name="retries">The retries.</param>
         /// <exception cref="System.ArgumentNullException">configuration</exception>
-        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@")
+        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@", int retries = 0)
         {
+            Retries = retries;
             Configuration = configuration ?? throw new System.ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
             SourceType = factory.GetType().FullName;
@@ -118,6 +120,12 @@ namespace SQLHelper.HelperClasses
         /// </summary>
         /// <value>The parameter prefix.</value>
         public string ParameterPrefix { get; protected set; }
+
+        /// <summary>
+        /// Gets the number of retries if unable to connect.
+        /// </summary>
+        /// <value>The number of retries if unable to connect.</value>
+        public int Retries { get; protected set; }
 
         /// <summary>
         /// Source type, based on ADO.Net provider name or identifier used by CUL

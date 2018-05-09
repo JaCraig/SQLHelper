@@ -61,6 +61,12 @@ namespace SQLHelper.HelperClasses.Interfaces
         string ParameterPrefix { get; }
 
         /// <summary>
+        /// Gets the number of retries if unable to connect.
+        /// </summary>
+        /// <value>The number of retries if unable to connect.</value>
+        int Retries { get; }
+
+        /// <summary>
         /// Source type, based on ADO.Net provider name
         /// </summary>
         /// <value>The type of the source.</value>

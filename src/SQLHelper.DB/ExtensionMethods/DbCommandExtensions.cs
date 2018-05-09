@@ -136,12 +136,13 @@ namespace SQLHelper.ExtensionMethods
         /// Begins a transaction
         /// </summary>
         /// <param name="command">Command object</param>
+        /// <param name="retries">The retries.</param>
         /// <returns>A transaction object</returns>
-        public static DbTransaction BeginTransaction(this DbCommand command)
+        public static DbTransaction BeginTransaction(this DbCommand command, int retries = 0)
         {
             if (command == null || command.Connection == null)
                 return null;
-            command.Open();
+            command.Open(retries);
             command.Transaction = command.Connection.BeginTransaction();
             return command.Transaction;
         }
@@ -187,28 +188,32 @@ namespace SQLHelper.ExtensionMethods
         /// <summary>
         /// Executes the stored procedure as a scalar query
         /// </summary>
+        /// <typeparam name="DataType">The type of the ata type.</typeparam>
         /// <param name="command">Command object</param>
         /// <param name="defaultValue">Default value if there is an issue</param>
+        /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static DataType ExecuteScalar<DataType>(this DbCommand command, DataType defaultValue = default(DataType))
+        public static DataType ExecuteScalar<DataType>(this DbCommand command, DataType defaultValue = default(DataType), int retries = 0)
         {
             if (command == null)
                 return defaultValue;
-            command.Open();
+            command.Open(retries);
             return command.ExecuteScalar().To(defaultValue);
         }
 
         /// <summary>
         /// Executes the stored procedure as a scalar query async
         /// </summary>
+        /// <typeparam name="DataType">The type of the ata type.</typeparam>
         /// <param name="command">Command object</param>
         /// <param name="defaultValue">Default value if there is an issue</param>
+        /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static async Task<DataType> ExecuteScalarAsync<DataType>(this DbCommand command, DataType defaultValue = default(DataType))
+        public static async Task<DataType> ExecuteScalarAsync<DataType>(this DbCommand command, DataType defaultValue = default(DataType), int retries = 0)
         {
             if (command == null)
                 return defaultValue;
-            command.Open();
+            command.Open(retries);
             var ReturnValue = await command.ExecuteScalarAsync();
             return ReturnValue.To(defaultValue);
         }
@@ -254,14 +259,28 @@ namespace SQLHelper.ExtensionMethods
         /// Opens the connection
         /// </summary>
         /// <param name="command">Command object</param>
+        /// <param name="retries">The retries.</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand Open(this DbCommand command)
+        public static DbCommand Open(this DbCommand command, int retries = 0)
         {
-            if (command != null
-                && command.Connection != null
-                && command.Connection.State != ConnectionState.Open)
-                command.Connection.Open();
-            return command;
+            Exception holder = null;
+            while (retries >= 0)
+            {
+                try
+                {
+                    if (command != null
+                        && command.Connection != null
+                        && command.Connection.State != ConnectionState.Open)
+                        command.Connection.Open();
+                    return command;
+                }
+                catch (Exception e)
+                {
+                    holder = e;
+                }
+                --retries;
+            }
+            throw holder;
         }
 
         /// <summary>
