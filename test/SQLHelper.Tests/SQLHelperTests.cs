@@ -228,7 +228,7 @@ namespace SQLHelper.Tests
             var ListResult = Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
                 .Execute();
-            Assert.Equal(1, ListResult.Count);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (int x = 0; x < 50; ++x)
             {
@@ -263,7 +263,7 @@ namespace SQLHelper.Tests
                 string.Format("SELECT {0} FROM [TestDatabase].[dbo].[TestTable]", Builder.ToString()),
                 new object[200])
                 .Execute();
-            Assert.Equal(1, ListResult.Count);
+            Assert.Single(ListResult);
         }
 
         [Fact]
@@ -309,7 +309,7 @@ namespace SQLHelper.Tests
             var ListResult = Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
                 .Execute();
-            Assert.Equal(1, ListResult.Count);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             var ConvertedResult = ListResult[0].Select(x => (TestTableClass)x).ToList();
             for (int x = 0; x < 50; ++x)
@@ -384,7 +384,7 @@ namespace SQLHelper.Tests
             var ListResult = Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
                 .Execute();
-            Assert.Equal(1, ListResult.Count);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (int x = 0; x < 50; ++x)
             {

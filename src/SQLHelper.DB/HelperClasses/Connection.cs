@@ -67,12 +67,16 @@ namespace SQLHelper.HelperClasses
             if (string.IsNullOrEmpty(parameterPrefix))
             {
                 if (SourceType.Contains("MySql"))
+                {
                     ParameterPrefix = "?";
+                }
                 else if (SourceType.Contains("Oracle"))
+                {
                     ParameterPrefix = ":";
+                }
                 else
                 {
-                    DatabaseName = Regex.Match(ConnectionString, @"Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)").Groups[1].Value;
                     ParameterPrefix = "@";
                 }
             }
@@ -81,7 +85,7 @@ namespace SQLHelper.HelperClasses
                 ParameterPrefix = parameterPrefix;
                 if (SourceType.Contains("SqlClient"))
                 {
-                    DatabaseName = Regex.Match(ConnectionString, @"Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)").Groups[1].Value;
                 }
             }
         }

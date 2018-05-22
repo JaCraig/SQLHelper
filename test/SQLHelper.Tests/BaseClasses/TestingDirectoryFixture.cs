@@ -16,11 +16,13 @@ namespace SQLHelper.Tests.BaseClasses
         public TestingDirectoryFixture()
         {
             if (Canister.Builder.Bootstrapper == null)
+            {
                 Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
-                    .RegisterSQLHelper()
-                    .RegisterFileCurator()
-                    .Build();
+                   .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                   .RegisterSQLHelper()
+                   .RegisterFileCurator()
+                   .Build();
+            }
 
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {

@@ -118,8 +118,7 @@ namespace SQLHelper.HelperClasses
         /// <returns>This</returns>
         public IBatch AddQuery(IBatch batch)
         {
-            var TempValue = batch as Batch;
-            if (TempValue == null)
+            if (!(batch is Batch TempValue))
                 return this;
             Commands.Add(TempValue.Commands);
             return this;
@@ -138,9 +137,9 @@ namespace SQLHelper.HelperClasses
         /// Executes the commands and returns the results (async)
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        public async Task<List<List<dynamic>>> ExecuteAsync()
+        public Task<List<List<dynamic>>> ExecuteAsync()
         {
-            return await ExecuteCommandsAsync();
+            return ExecuteCommandsAsync();
         }
 
         /// <summary>
@@ -245,7 +244,7 @@ namespace SQLHelper.HelperClasses
             }
             if (Finalizable)
             {
-                using (DbDataReader TempReader = await ExecutableCommand.ExecuteReaderAsync())
+                using (DbDataReader TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false))
                 {
                     ReturnValue.Add(GetValues(TempReader));
                     while (TempReader.NextResult())
@@ -258,7 +257,7 @@ namespace SQLHelper.HelperClasses
             {
                 var TempValue = new List<dynamic>
                                 {
-                                    await ExecutableCommand.ExecuteNonQueryAsync()
+                                    await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false)
                                 };
                 ReturnValue.Add(TempValue);
             }
@@ -317,7 +316,7 @@ namespace SQLHelper.HelperClasses
                     try
                     {
                         int Count = 0;
-                        while (true)
+                        do
                         {
                             var FinalParameters = new List<IParameter>();
                             bool Finalizable = false;
@@ -326,9 +325,8 @@ namespace SQLHelper.HelperClasses
                             ExecutableCommand.Parameters.Clear();
                             SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
                             GetResults(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand);
-                            if (Count >= CommandCount)
-                                break;
                         }
+                        while (Count < CommandCount);
                         ExecutableCommand.Commit();
                     }
                     catch { ExecutableCommand.Rollback(); throw; }
@@ -366,7 +364,7 @@ namespace SQLHelper.HelperClasses
                     try
                     {
                         int Count = 0;
-                        while (true)
+                        do
                         {
                             var FinalParameters = new List<IParameter>();
                             bool Finalizable = false;
@@ -374,10 +372,9 @@ namespace SQLHelper.HelperClasses
                             int ParameterTotal = 0;
                             ExecutableCommand.Parameters.Clear();
                             SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
-                            await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand);
-                            if (Count >= CommandCount)
-                                break;
+                            await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand).ConfigureAwait(false);
                         }
+                        while (Count < CommandCount);
                         ExecutableCommand.Commit();
                     }
                     catch { ExecutableCommand.Rollback(); throw; }
@@ -402,7 +399,9 @@ namespace SQLHelper.HelperClasses
                     ++y;
                 }
                 else
+                {
                     Commands[x].Finalize(new List<dynamic>());
+                }
             }
         }
 
@@ -445,7 +444,7 @@ namespace SQLHelper.HelperClasses
                                         "" :
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
-                                            var Param = Command.Parameters.FirstOrDefault(z => z.ID == x.Groups["ParamName"].Value);
+                                            var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
                                             if (Param != null)
                                                 return x.Value + Suffix;
                                             return x.Value;

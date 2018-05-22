@@ -29,7 +29,7 @@ namespace SQLHelper.ExtensionMethods
     /// </summary>
     public static class DbCommandExtensions
     {
-        private static DbType[] BadDbTypes = {
+        private static readonly DbType[] BadDbTypes = {
             DbType.Time,
             DbType.SByte,
             DbType.UInt16,
@@ -57,7 +57,10 @@ namespace SQLHelper.ExtensionMethods
                 || direction == ParameterDirection.InputOutput
                 || Length > 4000
                 || Length < -1)
+            {
                 Length = -1;
+            }
+
             DbParameter Parameter = command.GetOrCreateParameter(id);
             Parameter.Value = string.IsNullOrEmpty(value) ? DBNull.Value : (object)value;
             Parameter.IsNullable = string.IsNullOrEmpty(value);
@@ -154,7 +157,7 @@ namespace SQLHelper.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand ClearParameters(this DbCommand command)
         {
-            if (command != null && command.Parameters != null)
+            if (command?.Parameters != null)
                 command.Parameters.Clear();
             return command;
         }
@@ -166,10 +169,12 @@ namespace SQLHelper.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand Close(this DbCommand command)
         {
-            if (command != null
-                && command.Connection != null
+            if (command?.Connection != null
                 && command.Connection.State != ConnectionState.Closed)
+            {
                 command.Connection.Close();
+            }
+
             return command;
         }
 
@@ -180,7 +185,7 @@ namespace SQLHelper.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand Commit(this DbCommand command)
         {
-            if (command != null && command.Transaction != null)
+            if (command?.Transaction != null)
                 command.Transaction.Commit();
             return command;
         }
@@ -214,7 +219,7 @@ namespace SQLHelper.ExtensionMethods
             if (command == null)
                 return defaultValue;
             command.Open(retries);
-            var ReturnValue = await command.ExecuteScalarAsync();
+            var ReturnValue = await command.ExecuteScalarAsync().ConfigureAwait(false);
             return ReturnValue.To(defaultValue);
         }
 
@@ -227,7 +232,9 @@ namespace SQLHelper.ExtensionMethods
         public static DbParameter GetOrCreateParameter(this DbCommand command, string id)
         {
             if (command.Parameters.Contains(id))
+            {
                 return command.Parameters[id];
+            }
             else
             {
                 DbParameter Parameter = command.CreateParameter();
@@ -250,7 +257,7 @@ namespace SQLHelper.ExtensionMethods
         /// </returns>
         public static DataType GetOutputParameter<DataType>(this DbCommand command, string id, DataType defaultValue = default(DataType))
         {
-            return command != null && command.Parameters[id] != null ?
+            return command?.Parameters[id] != null ?
                 command.Parameters[id].Value.To(defaultValue) :
                 defaultValue;
         }
@@ -268,10 +275,12 @@ namespace SQLHelper.ExtensionMethods
             {
                 try
                 {
-                    if (command != null
-                        && command.Connection != null
+                    if (command?.Connection != null
                         && command.Connection.State != ConnectionState.Open)
+                    {
                         command.Connection.Open();
+                    }
+
                     return command;
                 }
                 catch (Exception e)
@@ -290,7 +299,7 @@ namespace SQLHelper.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand Rollback(this DbCommand command)
         {
-            if (command != null && command.Transaction != null)
+            if (command?.Transaction != null)
                 command.Transaction.Rollback();
             return command;
         }

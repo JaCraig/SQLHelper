@@ -32,7 +32,7 @@ namespace SQLHelper.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>();
+                .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Result2 = await Instance.AddQuery(CommandType.Text,
@@ -47,7 +47,7 @@ namespace SQLHelper.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>();
+                .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 < Result2);
         }
 
@@ -69,7 +69,7 @@ namespace SQLHelper.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>();
+                .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(1, Result);
             Instance.CreateBatch();
             for (int x = 0; x < 50; ++x)
@@ -86,7 +86,7 @@ namespace SQLHelper.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            Result = await Instance.ExecuteScalarAsync<int>();
+            Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
         }
 
@@ -112,12 +112,12 @@ namespace SQLHelper.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>();
+            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteScalarAsync<int>();
+                .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, ListResult);
         }
 
@@ -143,13 +143,13 @@ namespace SQLHelper.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>();
+            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync();
-            Assert.Equal(1, ListResult.Count);
+                .ExecuteAsync().ConfigureAwait(false);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (int x = 0; x < 50; ++x)
             {
@@ -183,8 +183,8 @@ namespace SQLHelper.Tests
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 string.Format("SELECT {0} FROM [TestDatabase].[dbo].[TestTable]", Builder.ToString()),
                 new object[200])
-                .ExecuteAsync();
-            Assert.Equal(1, ListResult.Count);
+                .ExecuteAsync().ConfigureAwait(false);
+            Assert.Single(ListResult);
         }
 
         [Fact]
@@ -209,13 +209,13 @@ namespace SQLHelper.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>();
+            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync();
-            Assert.Equal(1, ListResult.Count);
+                .ExecuteAsync().ConfigureAwait(false);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             var ConvertedResult = ListResult[0].Select(x => (TestTableClass)x).ToList();
             for (int x = 0; x < 50; ++x)
@@ -253,13 +253,13 @@ namespace SQLHelper.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>();
+            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             Result = await Instance.AddQuery(CommandType.Text,
                 "UPDATE [TestDatabase].[dbo].[TestTable] SET StringValue1=@0",
                 "C")
-                .ExecuteScalarAsync<int>();
+                .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
         }
 
@@ -284,13 +284,13 @@ namespace SQLHelper.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>();
+            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync();
-            Assert.Equal(1, ListResult.Count);
+                .ExecuteAsync().ConfigureAwait(false);
+            Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (int x = 0; x < 50; ++x)
             {

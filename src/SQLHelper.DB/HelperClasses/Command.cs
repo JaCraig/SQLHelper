@@ -107,7 +107,7 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Call back
         /// </summary>
-        public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; private set; }
+        public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; }
 
         /// <summary>
         /// Command type
@@ -117,17 +117,17 @@ namespace SQLHelper.HelperClasses
         /// <summary>
         /// Used to determine if Finalize should be called.
         /// </summary>
-        public bool Finalizable { get; private set; }
+        public bool Finalizable { get; }
 
         /// <summary>
         /// Object
         /// </summary>
-        public TCallbackData Object { get; private set; }
+        public TCallbackData Object { get; }
 
         /// <summary>
         /// Parameters
         /// </summary>
-        public IParameter[] Parameters { get; private set; }
+        public IParameter[] Parameters { get; }
 
         /// <summary>
         /// SQL command
@@ -141,14 +141,15 @@ namespace SQLHelper.HelperClasses
         /// <returns>Determines if the commands are equal</returns>
         public override bool Equals(object obj)
         {
-            var OtherCommand = obj as Command<TCallbackData>;
-            if (OtherCommand == null)
+            if (!(obj is Command<TCallbackData> OtherCommand))
                 return false;
 
             if (OtherCommand.SQLCommand != SQLCommand
                 || OtherCommand.CommandType != CommandType
                 || Parameters.Length != OtherCommand.Parameters.Length)
+            {
                 return false;
+            }
 
             for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
             {
@@ -191,8 +192,8 @@ namespace SQLHelper.HelperClasses
                 }
 
                 if (ParameterTotal > 0)
-                    return (SQLCommand.GetHashCode() * 23 + CommandType.GetHashCode()) * 23 + ParameterTotal;
-                return SQLCommand.GetHashCode() * 23 + CommandType.GetHashCode();
+                    return (((SQLCommand.GetHashCode() * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
+                return (SQLCommand.GetHashCode() * 23) + CommandType.GetHashCode();
             }
         }
 

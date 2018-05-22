@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace SQLHelper.SpeedTests
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {

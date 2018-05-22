@@ -179,11 +179,11 @@ namespace SQLHelper.HelperClasses.BaseClasses
         public override bool Equals(object obj)
         {
             var OtherParameter = obj as ParameterBase<DataType>;
-            return (OtherParameter != null
+            return OtherParameter != null
                 && OtherParameter.DatabaseType == DatabaseType
                 && OtherParameter.Direction == Direction
                 && OtherParameter.ID == ID
-                && new GenericEqualityComparer<DataType>().Equals(OtherParameter.Value, Value));
+                && new GenericEqualityComparer<DataType>().Equals(OtherParameter.Value, Value);
         }
 
         /// <summary>
@@ -196,10 +196,9 @@ namespace SQLHelper.HelperClasses.BaseClasses
         public override int GetHashCode()
         {
             var hashCode = 2030399226;
-            hashCode = hashCode * -1521134295 + DatabaseType.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ID);
-            hashCode = hashCode * -1521134295 + EqualityComparer<DataType>.Default.GetHashCode(Value);
-            return hashCode;
+            hashCode = (hashCode * -1521134295) + DatabaseType.GetHashCode();
+            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(ID);
+            return (hashCode * -1521134295) + EqualityComparer<DataType>.Default.GetHashCode(Value);
         }
 
         /// <summary>

@@ -28,6 +28,7 @@ namespace SQLHelper.ExtensionMethods
         /// <summary>
         /// Returns a parameter's value
         /// </summary>
+        /// <typeparam name="DataType">The type of the ata type.</typeparam>
         /// <param name="reader">Reader object</param>
         /// <param name="id">Parameter name</param>
         /// <param name="defaultValue">Default value for the parameter</param>

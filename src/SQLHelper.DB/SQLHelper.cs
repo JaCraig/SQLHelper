@@ -63,7 +63,7 @@ namespace SQLHelper
         /// Gets or sets the source.
         /// </summary>
         /// <value>The source.</value>
-        public IConnection DatabaseConnection { get; private set; }
+        public IConnection DatabaseConnection { get; }
 
         /// <summary>
         /// Gets the batch.
@@ -98,6 +98,7 @@ namespace SQLHelper
         /// <summary>
         /// Adds a command.
         /// </summary>
+        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
         /// <param name="callback">The callback.</param>
         /// <param name="callbackObject">The callback object.</param>
         /// <param name="command">The command.</param>
@@ -161,9 +162,9 @@ namespace SQLHelper
         /// Executes the queries asynchronously.
         /// </summary>
         /// <returns>The result of the queries</returns>
-        public async Task<List<List<dynamic>>> ExecuteAsync()
+        public Task<List<List<dynamic>>> ExecuteAsync()
         {
-            return await Batch.ExecuteAsync();
+            return Batch.ExecuteAsync();
         }
 
         /// <summary>
@@ -177,8 +178,7 @@ namespace SQLHelper
             var BatchResults = Batch.Execute();
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
-            IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
-            return Value == null ?
+            return !(BatchResults[0][0] is IDictionary<string, object> Value) ?
                 ((object)BatchResults[0][0]).To(defaultValue) :
                 Value[Value.Keys.First()].To(defaultValue);
         }
@@ -191,11 +191,10 @@ namespace SQLHelper
         /// <returns>The first value of the batch</returns>
         public async Task<TData> ExecuteScalarAsync<TData>(TData defaultValue = default(TData))
         {
-            var BatchResults = await Batch.ExecuteAsync();
+            var BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
-            IDictionary<string, object> Value = BatchResults[0][0] as IDictionary<string, object>;
-            return Value == null ?
+            return !(BatchResults[0][0] is IDictionary<string, object> Value) ?
                 ((object)BatchResults[0][0]).To(defaultValue) :
                 Value[Value.Keys.First()].To(defaultValue);
         }
