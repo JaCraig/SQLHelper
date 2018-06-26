@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 using BigBook;
-using SQLHelper.DB.HelperClasses;
 using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses;
 using System;
 using System.Collections.Generic;
 using System.Data;

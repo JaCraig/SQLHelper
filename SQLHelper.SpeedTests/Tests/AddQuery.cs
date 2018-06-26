@@ -4,7 +4,7 @@ using Sundial.Core.Interfaces;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SQLHelper.SpeedTests.Tests
+namespace SQLHelperDB.SpeedTests.Tests
 {
     [Series("AddQuery", 100, "Console")]
     public class AddQuery : ITimedTask

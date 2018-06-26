@@ -22,10 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SQLHelper
+namespace SQLHelperDB
 {
     /// <summary>
     /// SQL helper class
@@ -38,8 +39,8 @@ namespace SQLHelper
         /// <param name="configuration">The configuration object.</param>
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
-        public SQLHelper(IConfiguration configuration, DbProviderFactory factory, string database = "Default")
-            : this(new Connection(configuration, factory, database))
+        public SQLHelper(IConfiguration configuration, DbProviderFactory factory = null, string database = "Default")
+            : this(new Connection(configuration, factory ?? SqlClientFactory.Instance, database))
         {
         }
 

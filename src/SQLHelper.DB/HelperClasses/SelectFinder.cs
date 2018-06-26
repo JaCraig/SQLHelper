@@ -17,7 +17,7 @@ limitations under the License.
 using Antlr4.Runtime.Misc;
 using SQLParser.Parsers.TSql;
 
-namespace SQLHelper.DB.HelperClasses
+namespace SQLHelperDB.HelperClasses
 {
     /// <summary>
     /// Finds selects within SQL code.

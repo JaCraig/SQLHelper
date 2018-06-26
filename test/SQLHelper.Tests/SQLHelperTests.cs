@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace SQLHelper.Tests
+namespace SQLHelperDB.Tests
 {
     public class SQLHelperTests : TestingDirectoryFixture
     {
