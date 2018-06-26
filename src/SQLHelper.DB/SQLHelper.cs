@@ -16,8 +16,8 @@ limitations under the License.
 
 using BigBook;
 using Microsoft.Extensions.Configuration;
-using SQLHelper.HelperClasses;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -116,10 +116,11 @@ namespace SQLHelperDB
         /// <summary>
         /// Adds a command which will call the callback function with the object specified when it
         /// </summary>
+        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
         /// <param name="callback">The callback.</param>
         /// <param name="callbackObject">The callback object.</param>
-        /// <param name="command">The command.</param>
         /// <param name="commandType">Type of the command.</param>
+        /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
         public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,

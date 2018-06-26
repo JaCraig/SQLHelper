@@ -17,7 +17,7 @@ limitations under the License.
 using System.Collections.Generic;
 using System.Data;
 
-namespace SQLHelper.HelperClasses.Interfaces
+namespace SQLHelperDB.HelperClasses.Interfaces
 {
     /// <summary>
     /// Command interface

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SQLHelper.Tests.DataClasses
+namespace SQLHelperDB.Tests.DataClasses
 {
     public class TestTableClass
     {

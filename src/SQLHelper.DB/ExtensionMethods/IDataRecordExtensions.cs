@@ -18,7 +18,7 @@ using BigBook;
 using System;
 using System.Data;
 
-namespace SQLHelper.ExtensionMethods
+namespace SQLHelperDB.ExtensionMethods
 {
     /// <summary>
     /// Extension methods for IDataRecord objects
@@ -51,6 +51,7 @@ namespace SQLHelper.ExtensionMethods
         /// <summary>
         /// Returns a parameter's value
         /// </summary>
+        /// <typeparam name="DataType">The type of the data type.</typeparam>
         /// <param name="reader">Reader object</param>
         /// <param name="position">Position in the reader row</param>
         /// <param name="defaultValue">Default value for the parameter</param>

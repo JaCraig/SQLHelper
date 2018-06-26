@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SQLHelper.HelperClasses;
-using SQLHelper.Tests.BaseClasses;
+using SQLHelperDB.HelperClasses;
+using SQLHelperDB.Tests.BaseClasses;
 using System.Data.SqlClient;
 using Xunit;
 
-namespace SQLHelper.Tests.HelperClasses
+namespace SQLHelperDB.Tests.HelperClasses
 {
     public class SourceTests : TestingDirectoryFixture
     {

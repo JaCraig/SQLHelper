@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SQLHelper.HelperClasses;
-using SQLHelper.Tests.BaseClasses;
-using SQLHelper.Tests.DataClasses;
+using SQLHelperDB.HelperClasses;
+using SQLHelperDB.Tests.BaseClasses;
+using SQLHelperDB.Tests.DataClasses;
 using System;
 using System.Data;
 using System.Data.SqlClient;

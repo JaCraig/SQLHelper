@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 using BigBook;
-using SQLHelper.ExtensionMethods;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.ExtensionMethods;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +26,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SQLHelper.HelperClasses
+namespace SQLHelperDB.HelperClasses
 {
     /// <summary>
     /// Holds information for a set of commands

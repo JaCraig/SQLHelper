@@ -22,7 +22,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SQLHelper.ExtensionMethods
+namespace SQLHelperDB.ExtensionMethods
 {
     /// <summary>
     /// Extension methods for DbCommand

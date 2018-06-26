@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace SQLHelper.SpeedTests.Modules
+namespace SQLHelperDB.SpeedTests.Modules
 {
     public class ConfigurationModule : IModule
     {

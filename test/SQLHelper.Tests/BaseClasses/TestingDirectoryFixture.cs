@@ -1,14 +1,14 @@
 ﻿using FileCurator.Registration;
 using Microsoft.Extensions.DependencyInjection;
-using SQLHelper.ExtensionMethods;
-using SQLHelper.Registration;
+using SQLHelperDB.ExtensionMethods;
+using SQLHelperDB.Registration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
 using Xunit;
 
-namespace SQLHelper.Tests.BaseClasses
+namespace SQLHelperDB.Tests.BaseClasses
 {
     [Collection("DirectoryCollection")]
     public class TestingDirectoryFixture : IDisposable

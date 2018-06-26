@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace SQLHelper.SpeedTests.Modules
+namespace SQLHelperDB.SpeedTests.Modules
 {
     /// <summary>
     /// Logging module

@@ -17,7 +17,7 @@ limitations under the License.
 using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 
-namespace SQLHelper.HelperClasses.Interfaces
+namespace SQLHelperDB.HelperClasses.Interfaces
 {
     /// <summary>
     /// Data source interface

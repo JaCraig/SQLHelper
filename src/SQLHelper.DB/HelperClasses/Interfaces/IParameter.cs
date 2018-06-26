@@ -17,7 +17,7 @@ limitations under the License.
 using System.Data;
 using System.Data.Common;
 
-namespace SQLHelper.HelperClasses.Interfaces
+namespace SQLHelperDB.HelperClasses.Interfaces
 {
     /// <summary>
     /// Parameter interface

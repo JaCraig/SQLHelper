@@ -1,10 +1,10 @@
-﻿using SQLHelper.ExtensionMethods;
+﻿using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 using Xunit;
 
-namespace SQLHelper.Tests.ExtensionMethods
+namespace SQLHelperDB.Tests.ExtensionMethods
 {
     public class DbCommandExtensionTests
     {

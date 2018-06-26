@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using SQLHelper.ExtensionMethods;
-using SQLHelper.HelperClasses.BaseClasses;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.ExtensionMethods;
+using SQLHelperDB.HelperClasses.BaseClasses;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Data;
 using System.Data.Common;
 
-namespace SQLHelper.HelperClasses
+namespace SQLHelperDB.HelperClasses
 {
     /// <summary>
     /// Holds parameter information

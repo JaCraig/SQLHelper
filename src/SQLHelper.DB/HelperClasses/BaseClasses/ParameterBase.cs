@@ -16,12 +16,12 @@ limitations under the License.
 
 using BigBook;
 using BigBook.Comparison;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 
-namespace SQLHelper.HelperClasses.BaseClasses
+namespace SQLHelperDB.HelperClasses.BaseClasses
 {
     /// <summary>
     /// Parameter base class

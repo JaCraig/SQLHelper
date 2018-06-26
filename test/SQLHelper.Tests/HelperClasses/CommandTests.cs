@@ -1,10 +1,10 @@
-﻿using SQLHelper.HelperClasses;
+﻿using SQLHelperDB.HelperClasses;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using Xunit;
 
-namespace SQLHelper.Tests.HelperClasses
+namespace SQLHelperDB.Tests.HelperClasses
 {
     public class CommandTests
     {

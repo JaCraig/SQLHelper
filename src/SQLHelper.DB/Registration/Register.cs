@@ -18,7 +18,7 @@ using BigBook.Registration;
 using Canister.Interfaces;
 using System.Reflection;
 
-namespace SQLHelper.Registration
+namespace SQLHelperDB.Registration
 {
     /// <summary>
     /// Registration extension methods

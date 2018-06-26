@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SQLHelper.Registration;
+using SQLHelperDB.Registration;
 using Sundial.Core.Registration;
 using Sundial.Core.Runner;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SQLHelper.SpeedTests
+namespace SQLHelperDB.SpeedTests
 {
     internal static class Program
     {

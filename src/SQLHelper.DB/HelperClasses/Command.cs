@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses.Interfaces;
 using SQLHelperDB.HelperClasses;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 
-namespace SQLHelper.HelperClasses
+namespace SQLHelperDB.HelperClasses
 {
     /// <summary>
     /// Command holder class

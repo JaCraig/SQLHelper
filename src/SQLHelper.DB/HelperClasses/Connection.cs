@@ -15,11 +15,11 @@ limitations under the License.
 */
 
 using Microsoft.Extensions.Configuration;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Data.Common;
 using System.Text.RegularExpressions;
 
-namespace SQLHelper.HelperClasses
+namespace SQLHelperDB.HelperClasses
 {
     /// <summary>
     /// Data source class

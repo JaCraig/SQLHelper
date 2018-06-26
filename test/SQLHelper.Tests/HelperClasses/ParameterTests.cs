@@ -1,8 +1,8 @@
-﻿using SQLHelper.HelperClasses;
+﻿using SQLHelperDB.HelperClasses;
 using System.Data;
 using Xunit;
 
-namespace SQLHelper.Tests.HelperClasses
+namespace SQLHelperDB.Tests.HelperClasses
 {
     public class ParameterTests
     {

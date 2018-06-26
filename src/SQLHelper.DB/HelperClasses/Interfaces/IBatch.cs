@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SQLHelper.HelperClasses.Interfaces
+namespace SQLHelperDB.HelperClasses.Interfaces
 {
     /// <summary>
     /// A batch of commands interface
