@@ -9,6 +9,14 @@ namespace SQLHelperDB.Tests.HelperClasses
     public class CommandTests
     {
         [Fact]
+        public void CanFinalizeAlterTable()
+        {
+            StringBuilder Builder = new StringBuilder();
+            var TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, "ALTER TABLE [dbo].[SelectOption_] ADD FOREIGN KEY ([User_Creator_ID_]) REFERENCES [dbo].[User_]([ID_]);", CommandType.Text, "@", new object[] { });
+            Assert.False(TestItem.Finalizable);
+        }
+
+        [Fact]
         public void CanFinalizeDeleteTestNoParameters()
         {
             StringBuilder Builder = new StringBuilder();
@@ -31,6 +39,16 @@ namespace SQLHelperDB.Tests.HelperClasses
             StringBuilder Builder = new StringBuilder();
             var TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, "IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 4 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 4) BEGIN INSERT INTO [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade]([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_],[dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_]) VALUES (4,4) END;", CommandType.Text, "@", null);
             Assert.False(TestItem.Finalizable);
+        }
+
+        [Fact]
+        public void CanFinalizeMultiLine()
+        {
+            StringBuilder Builder = new StringBuilder();
+            var TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, @"SELECT
+*
+FROM Table", CommandType.Text, "@", new object[] { });
+            Assert.True(TestItem.Finalizable);
         }
 
         //DELETE FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = @ManyToManyPropertiesWithCascade_ID_ AND NOT (([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_0) OR ([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_1));

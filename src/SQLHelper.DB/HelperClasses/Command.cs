@@ -16,12 +16,12 @@ limitations under the License.
 
 using BigBook;
 using SQLHelperDB.HelperClasses.Interfaces;
-using SQLHelperDB.HelperClasses;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SQLHelperDB.HelperClasses
 {
@@ -78,7 +78,7 @@ namespace SQLHelperDB.HelperClasses
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             var ComparisonString = SQLCommand.ToUpperInvariant();
-            if (parameterStarter == "@" && ComparisonString.Contains("SELECT") && ComparisonString.Contains("IF "))
+            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ") && ComparisonString.Contains("IF "))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -86,7 +86,7 @@ namespace SQLHelperDB.HelperClasses
             }
             else
             {
-                Finalizable = ComparisonString.Contains("SELECT");
+                Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
             }
             if (parameters != null)
             {
@@ -103,6 +103,11 @@ namespace SQLHelperDB.HelperClasses
                 }
             }
         }
+
+        /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Call back
