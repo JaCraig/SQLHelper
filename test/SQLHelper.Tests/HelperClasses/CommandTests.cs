@@ -1,4 +1,5 @@
 ﻿using SQLHelperDB.HelperClasses;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -13,6 +14,16 @@ namespace SQLHelperDB.Tests.HelperClasses
         {
             StringBuilder Builder = new StringBuilder();
             var TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, "ALTER TABLE [dbo].[SelectOption_] ADD FOREIGN KEY ([User_Creator_ID_]) REFERENCES [dbo].[User_]([ID_]);", CommandType.Text, "@", new object[] { });
+            Assert.False(TestItem.Finalizable);
+        }
+
+        [Fact]
+        public void CanFinalizeDeclare()
+        {
+            StringBuilder Builder = new StringBuilder();
+            var TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, "@", new object[] { });
+            Assert.False(TestItem.Finalizable);
+            TestItem = new Command<int>((x, y, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, new IParameter[] { });
             Assert.False(TestItem.Finalizable);
         }
 

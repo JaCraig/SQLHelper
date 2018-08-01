@@ -48,16 +48,7 @@ namespace SQLHelperDB.HelperClasses
             Object = callbackObject;
             Parameters = parameters ?? new IParameter[0];
             var ComparisonString = SQLCommand.ToUpperInvariant();
-            if (Parameters.Any(x => x.ParameterStarter == "@") && ComparisonString.Contains("SELECT") && ComparisonString.Contains("IF "))
-            {
-                var TempParser = new SelectFinder();
-                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
-                Finalizable = TempParser.StatementFound;
-            }
-            else
-            {
-                Finalizable = ComparisonString.Contains("SELECT");
-            }
+            DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", ComparisonString);
         }
 
         /// <summary>
@@ -78,16 +69,7 @@ namespace SQLHelperDB.HelperClasses
             CallBack = callBack ?? ((x, y, z) => { });
             Object = callbackObject;
             var ComparisonString = SQLCommand.ToUpperInvariant();
-            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ") && ComparisonString.Contains("IF "))
-            {
-                var TempParser = new SelectFinder();
-                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
-                Finalizable = TempParser.StatementFound;
-            }
-            else
-            {
-                Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
-            }
+            DetermineFinalizable(parameterStarter, ComparisonString);
             if (parameters != null)
             {
                 for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
@@ -122,11 +104,13 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Used to determine if Finalize should be called.
         /// </summary>
-        public bool Finalizable { get; }
+        /// <value><c>true</c> if finalizable; otherwise, <c>false</c>.</value>
+        public bool Finalizable { get; private set; }
 
         /// <summary>
         /// Object
         /// </summary>
+        /// <value>The object.</value>
         public TCallbackData Object { get; }
 
         /// <summary>
@@ -215,6 +199,20 @@ namespace SQLHelperDB.HelperClasses
             }
 
             return TempCommand;
+        }
+
+        private void DetermineFinalizable(string parameterStarter, string ComparisonString)
+        {
+            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ") && ComparisonString.Contains("IF "))
+            {
+                var TempParser = new SelectFinder();
+                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
+                Finalizable = TempParser.StatementFound;
+            }
+            else
+            {
+                Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
+            }
         }
     }
 }
