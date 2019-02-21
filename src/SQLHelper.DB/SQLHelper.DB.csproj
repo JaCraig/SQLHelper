@@ -16,7 +16,7 @@
     <PackageId>SQLHelper.DB</PackageId>
     <PackageTags>SQL;Databases</PackageTags>
     <PackageProjectUrl>https://github.com/JaCraig/SQLHelper</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/JaCraig/SQLHelper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
