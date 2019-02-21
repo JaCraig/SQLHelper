@@ -81,19 +81,19 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(string command, CommandType commandType, params IParameter[] parameters)
         {
-            return AddQuery<object>((x, y, z) => { }, null, command, commandType, parameters);
+            return AddQuery<object>((___, __, _) => { }, null, command, commandType, parameters);
         }
 
         /// <summary>
         /// Adds a command.
         /// </summary>
-        /// <param name="command">The command.</param>
         /// <param name="commandType">Type of the command.</param>
+        /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
         public SQLHelper AddQuery(CommandType commandType, string command, params object[] parameters)
         {
-            return AddQuery<object>((x, y, z) => { }, null, commandType, command, parameters);
+            return AddQuery<object>((___, __, _) => { }, null, commandType, command, parameters);
         }
 
         /// <summary>

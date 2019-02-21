@@ -35,16 +35,16 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="callBack">Called when command has been executed</param>
+        /// <param name="callbackObject">Object</param>
         /// <param name="sqlCommand">SQL Command</param>
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters</param>
-        /// <param name="callBack">Called when command has been executed</param>
-        /// <param name="callbackObject">Object</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
         {
             SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
-            CallBack = callBack ?? ((x, y, z) => { });
+            CallBack = callBack ?? ((___, __, _) => { });
             Object = callbackObject;
             Parameters = parameters ?? new IParameter[0];
             var ComparisonString = SQLCommand.ToUpperInvariant();
@@ -54,19 +54,19 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="sqlCommand">SQL Command</param>
-        /// <param name="commandType">Command type</param>
-        /// <param name="parameters">Parameters</param>
-        /// <param name="parameterStarter">Parameter starter</param>
         /// <param name="callBack">Called when command has been executed</param>
         /// <param name="callbackObject">Object</param>
+        /// <param name="sqlCommand">SQL Command</param>
+        /// <param name="commandType">Command type</param>
+        /// <param name="parameterStarter">Parameter starter</param>
+        /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
         {
             SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
             parameters = parameters ?? new object[0];
             Parameters = new IParameter[parameters.Length];
-            CallBack = callBack ?? ((x, y, z) => { });
+            CallBack = callBack ?? ((___, __, _) => { });
             Object = callbackObject;
             var ComparisonString = SQLCommand.ToUpperInvariant();
             DetermineFinalizable(parameterStarter, ComparisonString);

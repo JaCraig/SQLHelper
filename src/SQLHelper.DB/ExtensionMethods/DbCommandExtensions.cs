@@ -73,12 +73,13 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// Adds a parameter to the call (for all types other than strings)
         /// </summary>
+        /// <param name="command">Command object</param>
         /// <param name="id">Name of the parameter</param>
+        /// <param name="type">SQL type of the parameter</param>
         /// <param name="value">Value to add</param>
         /// <param name="direction">Direction that the parameter goes (in or out)</param>
-        /// <param name="command">Command object</param>
-        /// <param name="type">SQL type of the parameter</param>
         /// <returns>The DbCommand object</returns>
+        /// <exception cref="ArgumentNullException">command or id</exception>
         public static DbCommand AddParameter(this DbCommand command, string id, SqlDbType type,
             object value = null, ParameterDirection direction = ParameterDirection.Input)
         {
@@ -93,11 +94,12 @@ namespace SQLHelperDB.ExtensionMethods
         /// Adds a parameter to the call (for all types other than strings)
         /// </summary>
         /// <typeparam name="DataType">Data type of the parameter</typeparam>
-        /// <param name="id">Name of the parameter</param>
-        /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <param name="command">Command object</param>
+        /// <param name="id">Name of the parameter</param>
         /// <param name="value">Value to add</param>
+        /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <returns>The DbCommand object</returns>
+        /// <exception cref="ArgumentNullException">command or id</exception>
         public static DbCommand AddParameter<DataType>(this DbCommand command, string id, DataType value = default(DataType),
             ParameterDirection direction = ParameterDirection.Input)
         {
@@ -113,12 +115,13 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// Adds a parameter to the call (for all types other than strings)
         /// </summary>
-        /// <param name="id">Name of the parameter</param>
-        /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <param name="command">Command object</param>
-        /// <param name="value">Value to add</param>
+        /// <param name="id">Name of the parameter</param>
         /// <param name="type">SQL type of the parameter</param>
+        /// <param name="value">Value to add</param>
+        /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <returns>The DbCommand object</returns>
+        /// <exception cref="ArgumentNullException">command or id</exception>
         public static DbCommand AddParameter(this DbCommand command, string id, DbType type, object value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
@@ -157,8 +160,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand ClearParameters(this DbCommand command)
         {
-            if (command?.Parameters != null)
-                command.Parameters.Clear();
+            command?.Parameters?.Clear();
             return command;
         }
 
@@ -185,8 +187,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand Commit(this DbCommand command)
         {
-            if (command?.Transaction != null)
-                command.Transaction.Commit();
+            command?.Transaction?.Commit();
             return command;
         }
 
@@ -226,8 +227,8 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// Gets a parameter or creates it, if it is not found
         /// </summary>
-        /// <param name="id">Name of the parameter</param>
         /// <param name="command">Command object</param>
+        /// <param name="id">Name of the parameter</param>
         /// <returns>The DbParameter associated with the ID</returns>
         public static DbParameter GetOrCreateParameter(this DbCommand command, string id)
         {
@@ -248,8 +249,8 @@ namespace SQLHelperDB.ExtensionMethods
         /// Returns an output parameter's value
         /// </summary>
         /// <typeparam name="DataType">Data type of the object</typeparam>
-        /// <param name="id">Parameter name</param>
         /// <param name="command">Command object</param>
+        /// <param name="id">Parameter name</param>
         /// <param name="defaultValue">Default value for the parameter</param>
         /// <returns>
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
@@ -299,8 +300,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand Rollback(this DbCommand command)
         {
-            if (command?.Transaction != null)
-                command.Transaction.Rollback();
+            command?.Transaction?.Rollback();
             return command;
         }
     }
