@@ -76,7 +76,7 @@ namespace SQLHelperDB.HelperClasses
                 }
                 else
                 {
-                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)", RegexOptions.IgnoreCase).Groups[1].Value;
                     ParameterPrefix = "@";
                 }
             }
@@ -85,10 +85,22 @@ namespace SQLHelperDB.HelperClasses
                 ParameterPrefix = parameterPrefix;
                 if (SourceType.Contains("SqlClient"))
                 {
-                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)").Groups[1].Value;
+                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)", RegexOptions.IgnoreCase).Groups[1].Value;
                 }
             }
+            if (Regex.IsMatch(ConnectionString, "Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase))
+            {
+                var TimeoutValue = Regex.Match(ConnectionString, "Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase).Groups[2].Value;
+                CommandTimeout = int.TryParse(TimeoutValue, out int TempCommandTimeout) ? TempCommandTimeout : 30;
+            }
+            CommandTimeout = CommandTimeout <= 0 ? 30 : CommandTimeout;
         }
+
+        /// <summary>
+        /// Gets the command timeout.
+        /// </summary>
+        /// <value>The command timeout.</value>
+        public int CommandTimeout { get; }
 
         /// <summary>
         /// Gets the configuration information.

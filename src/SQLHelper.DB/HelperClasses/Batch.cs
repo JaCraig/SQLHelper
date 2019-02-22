@@ -414,6 +414,7 @@ namespace SQLHelperDB.HelperClasses
         {
             ExecutableCommand.Connection = DatabaseConnection;
             ExecutableCommand.CommandType = CommandType.Text;
+            ExecutableCommand.CommandTimeout = DatabaseConnection.ConnectionTimeout;
             if (CheckTransaction())
                 ExecutableCommand.BeginTransaction(Source.Retries);
             ExecutableCommand.Open(Source.Retries);
