@@ -236,13 +236,10 @@ namespace SQLHelperDB.ExtensionMethods
             {
                 return command.Parameters[id];
             }
-            else
-            {
-                DbParameter Parameter = command.CreateParameter();
-                Parameter.ParameterName = id;
-                command.Parameters.Add(Parameter);
-                return Parameter;
-            }
+            DbParameter Parameter = command.CreateParameter();
+            Parameter.ParameterName = id;
+            command.Parameters.Add(Parameter);
+            return Parameter;
         }
 
         /// <summary>

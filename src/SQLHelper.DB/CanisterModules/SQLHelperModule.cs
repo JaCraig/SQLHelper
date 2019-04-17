@@ -12,7 +12,7 @@ namespace SQLHelperDB.CanisterModules
         /// <summary>
         /// Order to run this in
         /// </summary>
-        public int Order => 1;
+        public int Order { get; } = 1;
 
         /// <summary>
         /// Loads the module using the bootstrapper
