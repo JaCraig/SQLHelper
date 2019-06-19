@@ -139,7 +139,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
             if (ReferenceEquals(first, second))
                 return true;
 
-            if ((object)first == null || (object)second == null)
+            if (first is null || second is null)
                 return false;
 
             return first.GetHashCode() == second.GetHashCode();
