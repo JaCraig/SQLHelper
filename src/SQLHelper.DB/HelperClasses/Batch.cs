@@ -451,16 +451,18 @@ namespace SQLHelperDB.HelperClasses
                                             return x.Value;
                                         }) + Environment.NewLine;
 
-                    foreach (IParameter TempParameter in Command.Parameters)
+                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
+                        IParameter TempParameter = Command.Parameters[i];
                         FinalParameters.Add(TempParameter.CreateCopy(Suffix));
                     }
                 }
                 else
                 {
                     FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
-                    foreach (IParameter TempParameter in Command.Parameters)
+                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
+                        IParameter TempParameter = Command.Parameters[i];
                         FinalParameters.Add(TempParameter.CreateCopy(""));
                     }
                 }
