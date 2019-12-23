@@ -61,7 +61,7 @@ namespace SQLHelperDB.ExtensionMethods
                 Length = -1;
             }
 
-            DbParameter Parameter = command.GetOrCreateParameter(id);
+            var Parameter = command.GetOrCreateParameter(id);
             Parameter.Value = string.IsNullOrEmpty(value) ? DBNull.Value : (object)value;
             Parameter.IsNullable = string.IsNullOrEmpty(value);
             Parameter.DbType = DbType.String;
@@ -81,7 +81,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DbCommand object</returns>
         /// <exception cref="ArgumentNullException">command or id</exception>
         public static DbCommand AddParameter(this DbCommand command, string id, SqlDbType type,
-            object value = null, ParameterDirection direction = ParameterDirection.Input)
+            object? value = null, ParameterDirection direction = ParameterDirection.Input)
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
@@ -100,7 +100,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <returns>The DbCommand object</returns>
         /// <exception cref="ArgumentNullException">command or id</exception>
-        public static DbCommand AddParameter<DataType>(this DbCommand command, string id, DataType value = default(DataType),
+        public static DbCommand AddParameter<DataType>(this DbCommand command, string id, DataType value = default,
             ParameterDirection direction = ParameterDirection.Input)
         {
             if (command == null)
@@ -108,8 +108,8 @@ namespace SQLHelperDB.ExtensionMethods
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
             return command.AddParameter(id,
-                new GenericEqualityComparer<DataType>().Equals(value, default(DataType)) ? typeof(DataType).To(DbType.Int32) : value.GetType().To(DbType.Int32),
-                value, direction);
+                new GenericEqualityComparer<DataType>().Equals(value, default!) ? typeof(DataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
+                value!, direction);
         }
 
         /// <summary>
@@ -122,17 +122,17 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="direction">Direction that the parameter goes (in or out)</param>
         /// <returns>The DbCommand object</returns>
         /// <exception cref="ArgumentNullException">command or id</exception>
-        public static DbCommand AddParameter(this DbCommand command, string id, DbType type, object value = null,
+        public static DbCommand AddParameter(this DbCommand command, string id, DbType type, object? value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
-            DbParameter Parameter = command.GetOrCreateParameter(id);
+            var Parameter = command.GetOrCreateParameter(id);
             Parameter.IsNullable = value == null || DBNull.Value == value;
             Parameter.Value = Parameter.IsNullable ? DBNull.Value : value;
-            if (type != default(DbType) && !BadDbTypes.Contains(type))
+            if (type != default && !BadDbTypes.Contains(type))
                 Parameter.DbType = type;
             Parameter.Direction = direction;
             return command;
@@ -144,7 +144,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="command">Command object</param>
         /// <param name="retries">The retries.</param>
         /// <returns>A transaction object</returns>
-        public static DbTransaction BeginTransaction(this DbCommand command, int retries = 0)
+        public static DbTransaction? BeginTransaction(this DbCommand command, int retries = 0)
         {
             if (command == null || command.Connection == null)
                 return null;
@@ -158,7 +158,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </summary>
         /// <param name="command">Command object</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand ClearParameters(this DbCommand command)
+        public static DbCommand? ClearParameters(this DbCommand command)
         {
             command?.Parameters?.Clear();
             return command;
@@ -169,7 +169,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </summary>
         /// <param name="command">Command object</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand Close(this DbCommand command)
+        public static DbCommand? Close(this DbCommand command)
         {
             if (command?.Connection != null
                 && command.Connection.State != ConnectionState.Closed)
@@ -185,7 +185,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </summary>
         /// <param name="command">Command object</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand Commit(this DbCommand command)
+        public static DbCommand? Commit(this DbCommand command)
         {
             command?.Transaction?.Commit();
             return command;
@@ -199,7 +199,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="defaultValue">Default value if there is an issue</param>
         /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static DataType ExecuteScalar<DataType>(this DbCommand command, DataType defaultValue = default(DataType), int retries = 0)
+        public static DataType ExecuteScalar<DataType>(this DbCommand command, DataType defaultValue = default, int retries = 0)
         {
             if (command == null)
                 return defaultValue;
@@ -215,7 +215,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="defaultValue">Default value if there is an issue</param>
         /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static async Task<DataType> ExecuteScalarAsync<DataType>(this DbCommand command, DataType defaultValue = default(DataType), int retries = 0)
+        public static async Task<DataType> ExecuteScalarAsync<DataType>(this DbCommand command, DataType defaultValue = default, int retries = 0)
         {
             if (command == null)
                 return defaultValue;
@@ -236,7 +236,7 @@ namespace SQLHelperDB.ExtensionMethods
             {
                 return command.Parameters[id];
             }
-            DbParameter Parameter = command.CreateParameter();
+            var Parameter = command.CreateParameter();
             Parameter.ParameterName = id;
             command.Parameters.Add(Parameter);
             return Parameter;
@@ -253,7 +253,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static DataType GetOutputParameter<DataType>(this DbCommand command, string id, DataType defaultValue = default(DataType))
+        public static DataType GetOutputParameter<DataType>(this DbCommand command, string id, DataType defaultValue = default)
         {
             return command?.Parameters[id] != null ?
                 command.Parameters[id].Value.To(defaultValue) :
@@ -266,9 +266,9 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="command">Command object</param>
         /// <param name="retries">The retries.</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand Open(this DbCommand command, int retries = 0)
+        public static DbCommand? Open(this DbCommand command, int retries = 0)
         {
-            Exception holder = null;
+            Exception? holder = null;
             while (retries >= 0)
             {
                 try
@@ -287,7 +287,7 @@ namespace SQLHelperDB.ExtensionMethods
                 }
                 --retries;
             }
-            throw holder;
+            throw holder!;
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </summary>
         /// <param name="command">Command object</param>
         /// <returns>The DBCommand object</returns>
-        public static DbCommand Rollback(this DbCommand command)
+        public static DbCommand? Rollback(this DbCommand command)
         {
             command?.Transaction?.Rollback();
             return command;

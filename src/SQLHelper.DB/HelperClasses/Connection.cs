@@ -117,7 +117,7 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        public string DatabaseName { get; protected set; }
+        public string? DatabaseName { get; protected set; }
 
         /// <summary>
         /// Gets the factory that the system uses to actually do the connection.

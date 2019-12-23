@@ -55,7 +55,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// What the database expects as the parameter starting string ("@" for SQL Server, ":" for
         /// Oracle, etc.)
         /// </param>
-        protected ParameterBase(string id, SqlDbType type, object value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+        protected ParameterBase(string id, SqlDbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
             : this(id, type.To(DbType.Int32), value, direction, parameterStarter)
         {
         }
@@ -71,10 +71,10 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// What the database expects as the parameter starting string ("@" for SQL Server, ":" for
         /// Oracle, etc.)
         /// </param>
-        protected ParameterBase(string id, DbType type, object value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+        protected ParameterBase(string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
         {
             ID = id;
-            Value = (DataType)value;
+            Value = (DataType)value!;
             DatabaseType = type;
             Direction = direction;
             BatchID = id;
@@ -100,7 +100,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Gets the internal value.
         /// </summary>
         /// <value>The internal value.</value>
-        public object InternalValue { get { return Value; } }
+        public object InternalValue { get { return Value!; } }
 
         /// <summary>
         /// Starting string of the parameter
@@ -178,8 +178,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <returns>True if they are equal, false otherwise</returns>
         public override bool Equals(object obj)
         {
-            var OtherParameter = obj as ParameterBase<DataType>;
-            return OtherParameter != null
+            return (obj is ParameterBase<DataType> OtherParameter)
                 && OtherParameter.DatabaseType == DatabaseType
                 && OtherParameter.Direction == Direction
                 && OtherParameter.ID == ID
@@ -190,8 +189,8 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
-        /// like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {

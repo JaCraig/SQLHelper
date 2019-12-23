@@ -48,7 +48,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="value">Value of the parameter</param>
         /// <param name="direction">Direction of the parameter</param>
         /// <param name="parameterStarter">Parameter starter</param>
-        public Parameter(string id, SqlDbType type, object value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+        public Parameter(string id, SqlDbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
             : base(id, type, value, direction, parameterStarter)
         {
         }
@@ -61,7 +61,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="value">Value of the parameter</param>
         /// <param name="direction">Direction of the parameter</param>
         /// <param name="parameterStarter">Parameter starter</param>
-        public Parameter(string id, DbType type, object value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+        public Parameter(string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
             : base(id, type, value, direction, parameterStarter)
         {
         }

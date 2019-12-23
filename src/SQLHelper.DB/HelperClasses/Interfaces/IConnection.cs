@@ -40,7 +40,7 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        string DatabaseName { get; }
+        string? DatabaseName { get; }
 
         /// <summary>
         /// Gets the factory that the system uses to actually do the connection.

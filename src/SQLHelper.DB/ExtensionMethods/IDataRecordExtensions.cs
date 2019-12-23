@@ -36,7 +36,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static DataType GetParameter<DataType>(this IDataRecord reader, string id, DataType defaultValue = default(DataType))
+        public static DataType GetParameter<DataType>(this IDataRecord reader, string id, DataType defaultValue = default)
         {
             if (reader == null)
                 return defaultValue;
@@ -59,7 +59,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static DataType GetParameter<DataType>(this IDataRecord reader, int position, DataType defaultValue = default(DataType))
+        public static DataType GetParameter<DataType>(this IDataRecord reader, int position, DataType defaultValue = default)
         {
             if (reader == null)
                 return defaultValue;

@@ -39,7 +39,7 @@ namespace SQLHelperDB
         /// <param name="configuration">The configuration object.</param>
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
-        public SQLHelper(IConfiguration configuration, DbProviderFactory factory = null, string database = "Default")
+        public SQLHelper(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default")
             : this(new Connection(configuration, factory ?? SqlClientFactory.Instance, database))
         {
         }
@@ -81,7 +81,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(string command, CommandType commandType, params IParameter[] parameters)
         {
-            return AddQuery<object>((___, __, _) => { }, null, command, commandType, parameters);
+            return AddQuery<object>((___, __, _) => { }, null!, command, commandType, parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(CommandType commandType, string command, params object[] parameters)
         {
-            return AddQuery<object>((___, __, _) => { }, null, commandType, command, parameters);
+            return AddQuery<object>((___, __, _) => { }, null!, commandType, command, parameters);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace SQLHelperDB
         /// <typeparam name="TData">The type of the data to return.</typeparam>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public TData ExecuteScalar<TData>(TData defaultValue = default(TData))
+        public TData ExecuteScalar<TData>(TData defaultValue = default)
         {
             var BatchResults = Batch.Execute();
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
@@ -191,7 +191,7 @@ namespace SQLHelperDB
         /// <typeparam name="TData">The type of the data to return.</typeparam>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public async Task<TData> ExecuteScalarAsync<TData>(TData defaultValue = default(TData))
+        public async Task<TData> ExecuteScalarAsync<TData>(TData defaultValue = default)
         {
             var BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
@@ -212,9 +212,9 @@ namespace SQLHelperDB
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
-        /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
+        /// <returns>A <see cref="string"/> that represents this instance.</returns>
         public override string ToString()
         {
             return Batch.ToString();

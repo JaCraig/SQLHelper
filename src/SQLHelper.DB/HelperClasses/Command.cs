@@ -46,7 +46,7 @@ namespace SQLHelperDB.HelperClasses
             CommandType = commandType;
             CallBack = callBack ?? ((___, __, _) => { });
             Object = callbackObject;
-            Parameters = parameters ?? new IParameter[0];
+            Parameters = parameters ?? Array.Empty<IParameter>();
             var ComparisonString = SQLCommand.ToUpperInvariant();
             DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", ComparisonString);
         }
@@ -64,7 +64,7 @@ namespace SQLHelperDB.HelperClasses
         {
             SQLCommand = (sqlCommand ?? "");
             CommandType = commandType;
-            parameters = parameters ?? new object[0];
+            parameters ??= Array.Empty<object>();
             Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? ((___, __, _) => { });
             Object = callbackObject;
@@ -75,10 +75,9 @@ namespace SQLHelperDB.HelperClasses
                 for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
                 {
                     object CurrentParameter = parameters[x];
-                    var TempParameter = CurrentParameter as string;
                     if (CurrentParameter == null)
                         Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
-                    else if (TempParameter != null)
+                    else if (CurrentParameter is string TempParameter)
                         Parameters[x] = new StringParameter(x.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
                     else
                         Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);

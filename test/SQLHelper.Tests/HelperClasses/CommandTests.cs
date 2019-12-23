@@ -13,7 +13,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         public void CanFinalizeAlterTable()
         {
             StringBuilder Builder = new StringBuilder();
-            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "ALTER TABLE [dbo].[SelectOption_] ADD FOREIGN KEY ([User_Creator_ID_]) REFERENCES [dbo].[User_]([ID_]);", CommandType.Text, "@", new object[] { });
+            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "ALTER TABLE [dbo].[SelectOption_] ADD FOREIGN KEY ([User_Creator_ID_]) REFERENCES [dbo].[User_]([ID_]);", CommandType.Text, "@", System.Array.Empty<object>());
             Assert.False(TestItem.Finalizable);
         }
 
@@ -21,9 +21,9 @@ namespace SQLHelperDB.Tests.HelperClasses
         public void CanFinalizeDeclare()
         {
             StringBuilder Builder = new StringBuilder();
-            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, "@", new object[] { });
+            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, "@", System.Array.Empty<object>());
             Assert.False(TestItem.Finalizable);
-            TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, new IParameter[] { });
+            TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DECLARE @SelectOption_ID_Temp AS BIGINT;", CommandType.Text, System.Array.Empty<IParameter>());
             Assert.False(TestItem.Finalizable);
         }
 
@@ -31,7 +31,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         public void CanFinalizeDeleteTestNoParameters()
         {
             StringBuilder Builder = new StringBuilder();
-            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DELETE FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = @ManyToManyPropertiesWithCascade_ID_ AND NOT (([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_0) OR ([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_1));", CommandType.Text, "@", new object[] { });
+            var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, "DELETE FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = @ManyToManyPropertiesWithCascade_ID_ AND NOT (([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_0) OR ([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = @AllReferencesAndID_ID_1));", CommandType.Text, "@", System.Array.Empty<object>());
             Assert.False(TestItem.Finalizable);
         }
 
@@ -58,7 +58,7 @@ namespace SQLHelperDB.Tests.HelperClasses
             StringBuilder Builder = new StringBuilder();
             var TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, @"SELECT
 *
-FROM Table", CommandType.Text, "@", new object[] { });
+FROM Table", CommandType.Text, "@", System.Array.Empty<object>());
             Assert.True(TestItem.Finalizable);
         }
 
