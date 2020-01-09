@@ -131,7 +131,18 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(id));
             var Parameter = command.GetOrCreateParameter(id);
             Parameter.IsNullable = value == null || DBNull.Value == value;
-            Parameter.Value = Parameter.IsNullable ? DBNull.Value : value;
+            if (Parameter.IsNullable)
+            {
+                Parameter.Value = DBNull.Value;
+            }
+            else if (type == DbType.String)
+            {
+                Parameter.Value = value?.ToString();
+            }
+            else
+            {
+                Parameter.Value = value;
+            }
             if (type != default && !BadDbTypes.Contains(type))
                 Parameter.DbType = type;
             Parameter.Direction = direction;
