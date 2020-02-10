@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SQLHelperDB.Registration;
-using Sundial.Core.Registration;
-using Sundial.Core.Runner;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using BenchmarkDotNet.Running;
 
 namespace SQLHelperDB.SpeedTests
 {
@@ -12,14 +6,7 @@ namespace SQLHelperDB.SpeedTests
     {
         private static void Main(string[] args)
         {
-            Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                .AddAssembly(typeof(Program).GetTypeInfo().Assembly)
-                .RegisterSundial()
-                .RegisterSQLHelper()
-                .Build();
-            var Runner = Canister.Builder.Bootstrapper.Resolve<TimedTaskRunner>();
-            Runner.Run();
-            Console.ReadKey();
+            new BenchmarkSwitcher(typeof(Program).Assembly).Run(args);
         }
     }
 }

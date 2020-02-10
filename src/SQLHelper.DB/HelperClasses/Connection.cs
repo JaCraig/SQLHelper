@@ -16,7 +16,9 @@ limitations under the License.
 
 using Microsoft.Extensions.Configuration;
 using SQLHelperDB.HelperClasses.Interfaces;
+using System;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace SQLHelperDB.HelperClasses
@@ -51,8 +53,9 @@ namespace SQLHelperDB.HelperClasses
         public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@", int retries = 0)
         {
             Retries = retries;
-            Configuration = configuration ?? throw new System.ArgumentNullException(nameof(configuration));
+            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
+            factory ??= SqlClientFactory.Instance;
             SourceType = factory.GetType().FullName;
             Factory = factory;
             var TempConfig = configuration.GetConnectionString(Name);
@@ -66,31 +69,31 @@ namespace SQLHelperDB.HelperClasses
             }
             if (string.IsNullOrEmpty(parameterPrefix))
             {
-                if (SourceType.Contains("MySql"))
+                if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
                 {
                     ParameterPrefix = "?";
                 }
-                else if (SourceType.Contains("Oracle"))
+                else if (SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase))
                 {
                     ParameterPrefix = ":";
                 }
                 else
                 {
-                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)", RegexOptions.IgnoreCase).Groups[1].Value;
+                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                     ParameterPrefix = "@";
                 }
             }
             else
             {
                 ParameterPrefix = parameterPrefix;
-                if (SourceType.Contains("SqlClient"))
+                if (SourceType.Contains("SqlClient", StringComparison.OrdinalIgnoreCase))
                 {
-                    DatabaseName = Regex.Match(ConnectionString, "Initial Catalog=([^;]*)", RegexOptions.IgnoreCase).Groups[1].Value;
+                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                 }
             }
-            if (Regex.IsMatch(ConnectionString, "Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase))
+            if (ConnectionTimeoutRegex.IsMatch(ConnectionString))
             {
-                var TimeoutValue = Regex.Match(ConnectionString, "Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase).Groups[2].Value;
+                var TimeoutValue = ConnectionTimeoutRegex.Match(ConnectionString).Groups[2].Value;
                 CommandTimeout = int.TryParse(TimeoutValue, out int TempCommandTimeout) ? TempCommandTimeout : 30;
             }
             CommandTimeout = CommandTimeout <= 0 ? 30 : CommandTimeout;
@@ -148,5 +151,17 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value>The type of the source.</value>
         public string SourceType { get; protected set; }
+
+        /// <summary>
+        /// Gets the connection timeout regex.
+        /// </summary>
+        /// <value>The connection timeout regex.</value>
+        private static Regex ConnectionTimeoutRegex { get; } = new Regex("Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets the database.
+        /// </summary>
+        /// <value>The database.</value>
+        private static Regex DatabaseNameRegex { get; } = new Regex("Initial Catalog=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
     }
 }

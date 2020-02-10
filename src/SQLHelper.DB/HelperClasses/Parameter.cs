@@ -25,8 +25,8 @@ namespace SQLHelperDB.HelperClasses
     /// <summary>
     /// Holds parameter information
     /// </summary>
-    /// <typeparam name="DataType">Data type of the parameter</typeparam>
-    public class Parameter<DataType> : ParameterBase<DataType>
+    /// <typeparam name="TDataType">Data type of the parameter</typeparam>
+    public class Parameter<TDataType> : ParameterBase<TDataType>
     {
         /// <summary>
         /// Constructor
@@ -35,7 +35,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="value">Value of the parameter</param>
         /// <param name="direction">Direction of the parameter</param>
         /// <param name="parameterStarter">Parameter starter</param>
-        public Parameter(string id, DataType value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+        public Parameter(string id, TDataType value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
             : base(id, value, direction, parameterStarter)
         {
         }
@@ -82,7 +82,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>A copy of the parameter</returns>
         public override IParameter CreateCopy(string suffix)
         {
-            return new Parameter<DataType>(ID + suffix, DatabaseType, Value, Direction, ParameterStarter);
+            return new Parameter<TDataType>(ID + suffix, DatabaseType, Value, Direction, ParameterStarter);
         }
     }
 }

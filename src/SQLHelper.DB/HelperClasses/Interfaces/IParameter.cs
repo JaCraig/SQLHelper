@@ -55,7 +55,7 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// Gets the internal value.
         /// </summary>
         /// <value>The internal value.</value>
-        object InternalValue { get; }
+        object? InternalValue { get; }
 
         /// <summary>
         /// Gets the parameter starter.

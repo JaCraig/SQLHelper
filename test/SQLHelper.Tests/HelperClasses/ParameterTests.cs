@@ -1,10 +1,11 @@
 ﻿using SQLHelperDB.HelperClasses;
+using SQLHelperDB.Tests.BaseClasses;
 using System.Data;
 using Xunit;
 
 namespace SQLHelperDB.Tests.HelperClasses
 {
-    public class ParameterTests
+    public class ParameterTests : TestingDirectoryFixture
     {
         [Fact]
         public void Create()

@@ -46,6 +46,12 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         string SQLCommand { get; }
 
         /// <summary>
+        /// Gets the SQL command upper case.
+        /// </summary>
+        /// <value>The SQL command upper case.</value>
+        string SQLCommandUpperCase { get; }
+
+        /// <summary>
         /// Called after the command is run
         /// </summary>
         /// <param name="result">Result of the command</param>

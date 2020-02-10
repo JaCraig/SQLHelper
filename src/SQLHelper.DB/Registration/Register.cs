@@ -16,7 +16,6 @@ limitations under the License.
 
 using BigBook.Registration;
 using Canister.Interfaces;
-using System.Reflection;
 
 namespace SQLHelperDB.Registration
 {
@@ -32,7 +31,7 @@ namespace SQLHelperDB.Registration
         /// <returns>The bootstrapper</returns>
         public static IBootstrapper RegisterSQLHelper(this IBootstrapper bootstrapper)
         {
-            return bootstrapper.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
+            return bootstrapper.AddAssembly(typeof(Registration).Assembly)
                                .RegisterBigBookOfDataTypes();
         }
     }

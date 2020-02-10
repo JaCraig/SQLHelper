@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using BigBook.Comparison;
 using SQLHelperDB.HelperClasses.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -26,8 +27,8 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
     /// <summary>
     /// Parameter base class
     /// </summary>
-    /// <typeparam name="DataType">Data type of the parameter</typeparam>
-    public abstract class ParameterBase<DataType> : IParameter<DataType>
+    /// <typeparam name="TDataType">Data type of the parameter</typeparam>
+    public abstract class ParameterBase<TDataType> : IParameter<TDataType>
     {
         /// <summary>
         /// Constructor
@@ -39,8 +40,8 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// What the database expects as the parameter starting string ("@" for SQL Server, ":" for
         /// Oracle, etc.)
         /// </param>
-        protected ParameterBase(string id, DataType value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-            : this(id, value == null ? typeof(DataType).To(DbType.Int32) : value.GetType().To(DbType.Int32), value, direction, parameterStarter)
+        protected ParameterBase(string id, TDataType value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
+            : this(id, value == null ? typeof(TDataType).To(DbType.Int32) : value.GetType().To(DbType.Int32), value, direction, parameterStarter)
         {
         }
 
@@ -74,7 +75,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         protected ParameterBase(string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
         {
             ID = id;
-            Value = (DataType)value!;
+            Value = (TDataType)value!;
             DatabaseType = type;
             Direction = direction;
             BatchID = id;
@@ -100,7 +101,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Gets the internal value.
         /// </summary>
         /// <value>The internal value.</value>
-        public object InternalValue { get { return Value!; } }
+        public object? InternalValue { get { return Value; } }
 
         /// <summary>
         /// Starting string of the parameter
@@ -110,7 +111,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <summary>
         /// Parameter value
         /// </summary>
-        public DataType Value { get; set; }
+        public TDataType Value { get; set; }
 
         /// <summary>
         /// Batch ID
@@ -123,7 +124,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <param name="first">First item</param>
         /// <param name="second">Second item</param>
         /// <returns>returns true if they are not equal, false otherwise</returns>
-        public static bool operator !=(ParameterBase<DataType> first, ParameterBase<DataType> second)
+        public static bool operator !=(ParameterBase<TDataType> first, ParameterBase<TDataType> second)
         {
             return !(first == second);
         }
@@ -134,15 +135,12 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <param name="first">First item</param>
         /// <param name="second">Second item</param>
         /// <returns>true if the first and second item are the same, false otherwise</returns>
-        public static bool operator ==(ParameterBase<DataType> first, ParameterBase<DataType> second)
+        public static bool operator ==(ParameterBase<TDataType> first, ParameterBase<TDataType> second)
         {
-            if (ReferenceEquals(first, second))
-                return true;
-
-            if (first is null || second is null)
-                return false;
-
-            return first.GetHashCode() == second.GetHashCode();
+            return ReferenceEquals(first, second)
+                || (!(first is null)
+                    && !(second is null)
+                    && first.GetHashCode() == second.GetHashCode());
         }
 
         /// <summary>
@@ -161,7 +159,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
             if (string.IsNullOrEmpty(command))
                 return "";
             string StringValue = Value == null ? "NULL" : Value.ToString();
-            return command.Replace(ParameterStarter + ID, typeof(DataType) == typeof(string) ? "'" + StringValue + "'" : StringValue);
+            return command.Replace(ParameterStarter + ID, typeof(TDataType) == typeof(string) ? "'" + StringValue + "'" : StringValue, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -178,11 +176,11 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <returns>True if they are equal, false otherwise</returns>
         public override bool Equals(object obj)
         {
-            return (obj is ParameterBase<DataType> OtherParameter)
+            return (obj is ParameterBase<TDataType> OtherParameter)
                 && OtherParameter.DatabaseType == DatabaseType
                 && OtherParameter.Direction == Direction
                 && OtherParameter.ID == ID
-                && new GenericEqualityComparer<DataType>().Equals(OtherParameter.Value, Value);
+                && (Canister.Builder.Bootstrapper?.Resolve<GenericEqualityComparer<TDataType>>().Equals(OtherParameter.Value, Value) ?? false);
         }
 
         /// <summary>
@@ -197,7 +195,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
             var hashCode = 2030399226;
             hashCode = (hashCode * -1521134295) + DatabaseType.GetHashCode();
             hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(ID);
-            return (hashCode * -1521134295) + EqualityComparer<DataType>.Default.GetHashCode(Value);
+            return (hashCode * -1521134295) + EqualityComparer<TDataType>.Default.GetHashCode(Value);
         }
 
         /// <summary>

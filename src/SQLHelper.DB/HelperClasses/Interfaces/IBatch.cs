@@ -74,6 +74,12 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         IBatch AddQuery(IBatch batch);
 
         /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        /// <returns>This.</returns>
+        IBatch Clear();
+
+        /// <summary>
         /// Executes the commands and returns the results
         /// </summary>
         /// <returns>The results of the batched commands</returns>

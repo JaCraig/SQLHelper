@@ -107,9 +107,11 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
-            return command.AddParameter(id,
-                new GenericEqualityComparer<DataType>().Equals(value, default!) ? typeof(DataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
-                value!, direction);
+            return command.AddParameter(
+                id,
+                Canister.Builder.Bootstrapper?.Resolve<GenericEqualityComparer<DataType>>().Equals(value, default!) ?? false ? typeof(DataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
+                value,
+                direction);
         }
 
         /// <summary>

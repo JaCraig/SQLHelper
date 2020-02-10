@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -40,7 +41,7 @@ namespace SQLHelperDB
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         public SQLHelper(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default")
-            : this(new Connection(configuration, factory ?? SqlClientFactory.Instance, database))
+            : this(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database))
         {
         }
 
@@ -50,7 +51,9 @@ namespace SQLHelperDB
         /// <param name="connection">The connection to use.</param>
         public SQLHelper(IConnection connection)
         {
-            DatabaseConnection = connection;
+            DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
+            if (!Connections.ContainsKey(connection.Name))
+                Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
             Batch = new Batch(DatabaseConnection);
         }
 
@@ -58,7 +61,7 @@ namespace SQLHelperDB
         /// Gets the number of commands currently in the batch.
         /// </summary>
         /// <value>The number of commands currently in the batch</value>
-        public int Count { get { return Batch.CommandCount; } }
+        public int Count => Batch.CommandCount;
 
         /// <summary>
         /// Gets or sets the source.
@@ -70,7 +73,13 @@ namespace SQLHelperDB
         /// Gets the batch.
         /// </summary>
         /// <value>The batch.</value>
-        protected IBatch Batch { get; private set; }
+        protected IBatch Batch { get; }
+
+        /// <summary>
+        /// Gets the connections.
+        /// </summary>
+        /// <value>The connections.</value>
+        private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
 
         /// <summary>
         /// Adds a command.
@@ -79,10 +88,7 @@ namespace SQLHelperDB
         /// <param name="commandType">Type of the command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery(string command, CommandType commandType, params IParameter[] parameters)
-        {
-            return AddQuery<object>((___, __, _) => { }, null!, command, commandType, parameters);
-        }
+        public SQLHelper AddQuery(string command, CommandType commandType, params IParameter[] parameters) => AddQuery<object>(DefaultAction, null!, command, commandType, parameters);
 
         /// <summary>
         /// Adds a command.
@@ -91,10 +97,7 @@ namespace SQLHelperDB
         /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery(CommandType commandType, string command, params object[] parameters)
-        {
-            return AddQuery<object>((___, __, _) => { }, null!, commandType, command, parameters);
-        }
+        public SQLHelper AddQuery(CommandType commandType, string command, params object[] parameters) => AddQuery<object>(DefaultAction, null!, commandType, command, parameters);
 
         /// <summary>
         /// Adds a command.
@@ -137,7 +140,8 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(SQLHelper helper)
         {
-            Batch.AddQuery(helper.Batch);
+            if (helper != null)
+                Batch.AddQuery(helper.Batch);
             return this;
         }
 
@@ -147,7 +151,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper CreateBatch()
         {
-            Batch = new Batch(DatabaseConnection);
+            Batch.Clear();
             return this;
         }
 
@@ -155,19 +159,13 @@ namespace SQLHelperDB
         /// Executes this instance.
         /// </summary>
         /// <returns>The results of the batched queries.</returns>
-        public List<List<dynamic>> Execute()
-        {
-            return Batch.Execute();
-        }
+        public List<List<dynamic>> Execute() => Batch.Execute();
 
         /// <summary>
         /// Executes the queries asynchronously.
         /// </summary>
         /// <returns>The result of the queries</returns>
-        public Task<List<List<dynamic>>> ExecuteAsync()
-        {
-            return Batch.ExecuteAsync();
-        }
+        public Task<List<List<dynamic>>> ExecuteAsync() => Batch.ExecuteAsync();
 
         /// <summary>
         /// Executes the batched commands and returns the first value, ignoring the rest.
@@ -177,12 +175,7 @@ namespace SQLHelperDB
         /// <returns>The first value of the batch</returns>
         public TData ExecuteScalar<TData>(TData defaultValue = default)
         {
-            var BatchResults = Batch.Execute();
-            if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
-                return defaultValue;
-            return !(BatchResults[0][0] is IDictionary<string, object> Value) ?
-                ((object)BatchResults[0][0]).To(defaultValue) :
-                Value[Value.Keys.First()].To(defaultValue);
+            return ExecuteScalarAsync(defaultValue).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -196,9 +189,9 @@ namespace SQLHelperDB
             var BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
-            return !(BatchResults[0][0] is IDictionary<string, object> Value) ?
-                ((object)BatchResults[0][0]).To(defaultValue) :
-                Value[Value.Keys.First()].To(defaultValue);
+            if (!(BatchResults[0][0] is IDictionary<string, object> Value))
+                return ((object)BatchResults[0][0]).To(defaultValue);
+            return Value[Value.Keys.First()].To(defaultValue);
         }
 
         /// <summary>
@@ -215,9 +208,14 @@ namespace SQLHelperDB
         /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return Batch.ToString();
-        }
+        public override string ToString() => Batch.ToString();
+
+        /// <summary>
+        /// The default action
+        /// </summary>
+        /// <param name="___">Ignored</param>
+        /// <param name="__">Ignored</param>
+        /// <param name="_">Ignored</param>
+        private static void DefaultAction(ICommand ___, List<dynamic> __, object _) { }
     }
 }

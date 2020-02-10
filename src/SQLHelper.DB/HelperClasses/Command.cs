@@ -42,13 +42,13 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
         {
-            SQLCommand = (sqlCommand ?? "");
+            SQLCommand = sqlCommand ?? "";
+            SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
             CommandType = commandType;
-            CallBack = callBack ?? ((___, __, _) => { });
-            Object = callbackObject;
+            CallBack = callBack ?? DefaultAction;
+            CallbackData = callbackObject;
             Parameters = parameters ?? Array.Empty<IParameter>();
-            var ComparisonString = SQLCommand.ToUpperInvariant();
-            DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", ComparisonString);
+            DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", SQLCommand);
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
         {
-            SQLCommand = (sqlCommand ?? "");
+            SQLCommand = sqlCommand ?? "";
+            SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
             CommandType = commandType;
             parameters ??= Array.Empty<object>();
             Parameters = new IParameter[parameters.Length];
-            CallBack = callBack ?? ((___, __, _) => { });
-            Object = callbackObject;
-            var ComparisonString = SQLCommand.ToUpperInvariant();
-            DetermineFinalizable(parameterStarter, ComparisonString);
+            CallBack = callBack ?? DefaultAction;
+            CallbackData = callbackObject;
+            DetermineFinalizable(parameterStarter, SQLCommand);
             if (parameters != null)
             {
                 for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
@@ -88,12 +88,18 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// The simple select regex
         /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase);
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Call back
         /// </summary>
         public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; }
+
+        /// <summary>
+        /// Object
+        /// </summary>
+        /// <value>The object.</value>
+        public TCallbackData CallbackData { get; }
 
         /// <summary>
         /// Command type
@@ -107,12 +113,6 @@ namespace SQLHelperDB.HelperClasses
         public bool Finalizable { get; private set; }
 
         /// <summary>
-        /// Object
-        /// </summary>
-        /// <value>The object.</value>
-        public TCallbackData Object { get; }
-
-        /// <summary>
         /// Parameters
         /// </summary>
         public IParameter[] Parameters { get; }
@@ -121,6 +121,11 @@ namespace SQLHelperDB.HelperClasses
         /// SQL command
         /// </summary>
         public string SQLCommand { get; set; }
+
+        /// <summary>
+        /// SQL command in upper case for comparisons
+        /// </summary>
+        public string SQLCommandUpperCase { get; set; }
 
         /// <summary>
         /// Determines if the objects are equal
@@ -162,7 +167,7 @@ namespace SQLHelperDB.HelperClasses
         {
             if (CallBack == null)
                 return;
-            CallBack(this, result, Object);
+            CallBack(this, result, CallbackData);
         }
 
         /// <summary>
@@ -180,8 +185,8 @@ namespace SQLHelperDB.HelperClasses
                 }
 
                 if (ParameterTotal > 0)
-                    return (((SQLCommand.GetHashCode() * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
-                return (SQLCommand.GetHashCode() * 23) + CommandType.GetHashCode();
+                    return (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
+                return (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
             }
         }
 
@@ -191,7 +196,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The string representation of the command</returns>
         public override string ToString()
         {
-            var TempCommand = SQLCommand.Check("");
+            var TempCommand = SQLCommand ?? "";
             for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
             {
                 TempCommand = Parameters[x].AddParameter(TempCommand);
@@ -200,9 +205,24 @@ namespace SQLHelperDB.HelperClasses
             return TempCommand;
         }
 
+        /// <summary>
+        /// Default action.
+        /// </summary>
+        /// <param name="arg1">The arg1.</param>
+        /// <param name="arg2">The arg2.</param>
+        /// <param name="arg3">The arg3.</param>
+        private void DefaultAction(ICommand arg1, List<dynamic> arg2, TCallbackData arg3)
+        {
+        }
+
+        /// <summary>
+        /// Determines if the query is finalizable.
+        /// </summary>
+        /// <param name="parameterStarter">The parameter starter.</param>
+        /// <param name="ComparisonString">The comparison string.</param>
         private void DetermineFinalizable(string parameterStarter, string ComparisonString)
         {
-            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ") && ComparisonString.Contains("IF "))
+            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ", StringComparison.OrdinalIgnoreCase) && ComparisonString.Contains("IF ", StringComparison.OrdinalIgnoreCase))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);

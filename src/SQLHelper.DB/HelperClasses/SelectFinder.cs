@@ -32,13 +32,13 @@ namespace SQLHelperDB.HelperClasses
         public bool StatementFound { get; set; }
 
         /// <summary>
-        /// Enter a parse tree produced by <see cref="M:SQLParser.Parsers.TSql.TSqlParser.dml_clause"/>.
+        /// Enter a parse tree produced by <see cref="TSqlParser.dml_clause"/>.
         /// <para>The default implementation does nothing.</para>
         /// </summary>
         /// <param name="context">The parse tree.</param>
         public override void EnterDml_clause([NotNull] TSqlParser.Dml_clauseContext context)
         {
-            var SelectStatement = context.select_statement();
+            var SelectStatement = context?.select_statement();
             if (SelectStatement != null)
             {
                 StatementFound |= SelectStatement.query_expression().query_specification() != null;

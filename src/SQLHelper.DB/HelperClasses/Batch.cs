@@ -57,12 +57,12 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Commands to batch
         /// </summary>
-        protected IList<ICommand> Commands { get; private set; }
+        protected List<ICommand> Commands { get; private set; }
 
         /// <summary>
         /// Connection string
         /// </summary>
-        protected IConnection Source { get; set; }
+        protected IConnection Source { get; }
 
         /// <summary>
         /// Adds a command to be batched
@@ -125,6 +125,16 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        /// <returns>This.</returns>
+        public IBatch Clear()
+        {
+            Commands.Clear();
+            return this;
+        }
+
+        /// <summary>
         /// Executes the commands and returns the results
         /// </summary>
         /// <returns>The results of the batched commands</returns>
@@ -168,21 +178,17 @@ namespace SQLHelperDB.HelperClasses
         protected bool CheckTransaction()
         {
             return Commands.Count > 1
-                              && Commands.Any(x =>
+                              && Commands.Any(Command =>
                               {
-                                  var TempCommand = x.SQLCommand.ToUpper();
-                                  return TempCommand.Contains("INSERT")
-                                            || TempCommand.Contains("UPDATE")
-                                            || TempCommand.Contains("DELETE")
-                                            || TempCommand.Contains("CREATE")
-                                            || TempCommand.Contains("ALTER")
-                                            || TempCommand.Contains("INTO")
-                                            || TempCommand.Contains("DROP");
-                              })
-                              && !Commands.Any(x =>
-                              {
-                                  var TempCommand = x.SQLCommand.ToUpper();
-                                  return TempCommand.Contains("ALTER DATABASE") || TempCommand.Contains("CREATE DATABASE");
+                                  return (Command.SQLCommandUpperCase.Contains("INSERT", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("UPDATE", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("DELETE", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("CREATE", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("ALTER", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("INTO", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("DROP", StringComparison.Ordinal))
+                                          && (!(Command.SQLCommandUpperCase.Contains("ALTER DATABASE", StringComparison.Ordinal)
+                                            || Command.SQLCommandUpperCase.Contains("CREATE DATABASE", StringComparison.Ordinal)));
                               });
         }
 
@@ -196,30 +202,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="FinalSQLCommand">The final SQL command.</param>
         private static void GetResults(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
-            if (string.IsNullOrEmpty(FinalSQLCommand))
-                return;
-            ExecutableCommand.CommandText = FinalSQLCommand;
-            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
-            {
-                FinalParameters[x].AddParameter(ExecutableCommand);
-            }
-            if (Finalizable)
-            {
-                using var TempReader = ExecutableCommand.ExecuteReader();
-                ReturnValue.Add(GetValues(TempReader));
-                while (TempReader.NextResult())
-                {
-                    ReturnValue.Add(GetValues(TempReader));
-                }
-            }
-            else
-            {
-                var TempValue = new List<dynamic>
-                                {
-                                    ExecutableCommand.ExecuteNonQuery()
-                                };
-                ReturnValue.Add(TempValue);
-            }
+            GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -251,11 +234,7 @@ namespace SQLHelperDB.HelperClasses
             }
             else
             {
-                var TempValue = new List<dynamic>
-                                {
-                                    await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false)
-                                };
-                ReturnValue.Add(TempValue);
+                ReturnValue.Add(new List<dynamic> { await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false) });
             }
         }
 
@@ -292,43 +271,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The list of results</returns>
         private List<List<dynamic>> ExecuteCommands()
         {
-            if (Source == null)
-                return new List<List<dynamic>>();
-            if (Commands == null)
-                return new List<List<dynamic>>();
-            var ReturnValue = new List<List<dynamic>>();
-            if (Commands.Count == 0)
-            {
-                ReturnValue.Add(new List<dynamic>());
-                return ReturnValue;
-            }
-            var Factory = Source.Factory;
-            using (var Connection = Factory.CreateConnection())
-            {
-                Connection.ConnectionString = Source.ConnectionString;
-                using var ExecutableCommand = Factory.CreateCommand();
-                SetupCommand(Connection, ExecutableCommand);
-                try
-                {
-                    int Count = 0;
-                    do
-                    {
-                        var FinalParameters = new List<IParameter>();
-                        bool Finalizable = false;
-                        string FinalSQLCommand = "";
-                        int ParameterTotal = 0;
-                        ExecutableCommand.Parameters.Clear();
-                        SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
-                        GetResults(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand);
-                    }
-                    while (Count < CommandCount);
-                    ExecutableCommand.Commit();
-                }
-                catch { ExecutableCommand.Rollback(); throw; }
-                finally { ExecutableCommand.Close(); }
-            }
-            FinalizeCommands(ReturnValue);
-            return ReturnValue;
+            return ExecuteCommandsAsync().GetAwaiter().GetResult();
         }
 
         /// <summary>
