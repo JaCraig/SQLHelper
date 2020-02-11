@@ -82,7 +82,8 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>A copy of the parameter</returns>
         public override IParameter CreateCopy(string suffix)
         {
-            return new Parameter<TDataType>(ID + suffix, DatabaseType, Value, Direction, ParameterStarter);
+            ID += suffix;
+            return this;
         }
     }
 }

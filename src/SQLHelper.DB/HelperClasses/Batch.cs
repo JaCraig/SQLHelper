@@ -193,19 +193,6 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
-        /// Gets the results.
-        /// </summary>
-        /// <param name="ReturnValue">The return value.</param>
-        /// <param name="ExecutableCommand">The executable command.</param>
-        /// <param name="FinalParameters">The final parameters.</param>
-        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
-        /// <param name="FinalSQLCommand">The final SQL command.</param>
-        private static void GetResults(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
-        {
-            GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand).GetAwaiter().GetResult();
-        }
-
-        /// <summary>
         /// Gets the results asynchronous.
         /// </summary>
         /// <param name="ReturnValue">The return value.</param>
@@ -280,9 +267,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The list of results</returns>
         private async Task<List<List<dynamic>>> ExecuteCommandsAsync()
         {
-            if (Source == null)
-                return new List<List<dynamic>>();
-            if (Commands == null)
+            if (Source == null || Commands == null)
                 return new List<List<dynamic>>();
             var ReturnValue = new List<List<dynamic>>();
             if (Commands.Count == 0)
@@ -381,9 +366,7 @@ namespace SQLHelperDB.HelperClasses
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
                                             var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
-                                            if (Param != null)
-                                                return x.Value + Suffix;
-                                            return x.Value;
+                                            return Param != null ? x.Value + Suffix : x.Value;
                                         }) + Environment.NewLine;
 
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)

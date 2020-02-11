@@ -55,7 +55,8 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>A copy of the parameter</returns>
         public override IParameter CreateCopy(string suffix)
         {
-            return new StringParameter(ID + suffix, Value, Direction, ParameterStarter);
+            ID += suffix;
+            return this;
         }
     }
 }

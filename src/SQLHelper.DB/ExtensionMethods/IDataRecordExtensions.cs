@@ -28,7 +28,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// Returns a parameter's value
         /// </summary>
-        /// <typeparam name="DataType">The type of the ata type.</typeparam>
+        /// <typeparam name="TDataType">The type of the ata type.</typeparam>
         /// <param name="reader">Reader object</param>
         /// <param name="id">Parameter name</param>
         /// <param name="defaultValue">Default value for the parameter</param>
@@ -36,7 +36,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static DataType GetParameter<DataType>(this IDataRecord reader, string id, DataType defaultValue = default)
+        public static TDataType GetParameter<TDataType>(this IDataRecord reader, string id, TDataType defaultValue = default)
         {
             if (reader == null)
                 return defaultValue;
@@ -51,7 +51,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// Returns a parameter's value
         /// </summary>
-        /// <typeparam name="DataType">The type of the data type.</typeparam>
+        /// <typeparam name="TDataType">The type of the data type.</typeparam>
         /// <param name="reader">Reader object</param>
         /// <param name="position">Position in the reader row</param>
         /// <param name="defaultValue">Default value for the parameter</param>
@@ -59,7 +59,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static DataType GetParameter<DataType>(this IDataRecord reader, int position, DataType defaultValue = default)
+        public static TDataType GetParameter<TDataType>(this IDataRecord reader, int position, TDataType defaultValue = default)
         {
             if (reader == null)
                 return defaultValue;
