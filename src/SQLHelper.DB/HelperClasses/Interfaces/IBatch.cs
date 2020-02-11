@@ -96,5 +96,6 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// </summary>
         /// <returns>This</returns>
         IBatch RemoveDuplicateCommands();
+        void SetConnection(IConnection databaseConnection);
     }
 }

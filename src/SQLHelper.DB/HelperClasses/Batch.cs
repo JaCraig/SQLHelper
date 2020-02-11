@@ -62,7 +62,7 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Connection string
         /// </summary>
-        protected IConnection Source { get; }
+        protected IConnection Source { get; private set; }
 
         /// <summary>
         /// Adds a command to be batched
@@ -160,6 +160,15 @@ namespace SQLHelperDB.HelperClasses
         {
             Commands = Commands.Distinct().ToList();
             return this;
+        }
+
+        /// <summary>
+        /// Sets the connection.
+        /// </summary>
+        /// <param name="databaseConnection">The database connection.</param>
+        public void SetConnection(IConnection databaseConnection)
+        {
+            Source = databaseConnection;
         }
 
         /// <summary>

@@ -481,5 +481,16 @@ namespace SQLHelperDB.Tests
             Assert.Equal("SELECT * FROM TestUsers", Instance.ToString());
             Assert.Equal(1, Instance.Count);
         }
+
+        [Fact]
+        public void SwitchConnection()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase22222;Integrated Security=SSPI;Pooling=false");
+            Instance.CreateBatch(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            Assert.Equal("Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", Instance.DatabaseConnection.ConnectionString);
+        }
     }
 }

@@ -51,10 +51,7 @@ namespace SQLHelperDB
         /// <param name="connection">The connection to use.</param>
         public SQLHelper(IConnection connection)
         {
-            DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
-            if (!Connections.ContainsKey(connection.Name))
-                Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
-            Batch = new Batch(DatabaseConnection);
+            SetConnection(connection);
         }
 
         /// <summary>
@@ -67,13 +64,13 @@ namespace SQLHelperDB
         /// Gets or sets the source.
         /// </summary>
         /// <value>The source.</value>
-        public IConnection DatabaseConnection { get; }
+        public IConnection DatabaseConnection { get; private set; }
 
         /// <summary>
         /// Gets the batch.
         /// </summary>
         /// <value>The batch.</value>
-        protected IBatch Batch { get; }
+        protected IBatch Batch { get; private set; }
 
         /// <summary>
         /// Gets the connections.
@@ -156,6 +153,30 @@ namespace SQLHelperDB
         }
 
         /// <summary>
+        /// Creates the batch using the connection specified.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns>This</returns>
+        public SQLHelper CreateBatch(IConnection connection)
+        {
+            Batch.Clear();
+            SetConnection(connection);
+            return this;
+        }
+
+        /// <summary>
+        /// Creates the batch using the connection info specified.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="factory">The factory.</param>
+        /// <param name="database">The database.</param>
+        /// <returns>This.</returns>
+        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default")
+        {
+            return CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
+        }
+
+        /// <summary>
         /// Executes this instance.
         /// </summary>
         /// <returns>The results of the batched queries.</returns>
@@ -217,5 +238,18 @@ namespace SQLHelperDB
         /// <param name="__">Ignored</param>
         /// <param name="_">Ignored</param>
         private static void DefaultAction(ICommand ___, List<dynamic> __, object _) { }
+
+        /// <summary>
+        /// Sets the connection.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        private void SetConnection(IConnection connection)
+        {
+            DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
+            if (!Connections.ContainsKey(connection.Name))
+                Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
+            Batch ??= new Batch(DatabaseConnection);
+            Batch.SetConnection(DatabaseConnection);
+        }
     }
 }
