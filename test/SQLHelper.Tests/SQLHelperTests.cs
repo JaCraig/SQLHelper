@@ -282,6 +282,23 @@ namespace SQLHelperDB.Tests
         }
 
         [Fact]
+        public void ExecuteSelectThousandsOfParametersWithHeader()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+            Instance.AddHeader(CommandType.Text, "DECLARE @A as nvarchar(100);");
+            Instance.AddHeader(CommandType.Text, "SET @A ='BLAH';");
+            for (int x = 0; x < 4000; ++x)
+            {
+                Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0 AND @A='BLAH'", x);
+            }
+            var ListResult = Instance.Execute();
+            Assert.Equal(4000, ListResult.Count);
+        }
+
+        [Fact]
         public void ExecuteSelectToObjectType()
         {
             var Configuration = new ConfigurationBuilder()
@@ -458,8 +475,8 @@ namespace SQLHelperDB.Tests
                 .ExecuteScalar<int>();
             Assert.Equal(1, Result);
             Result = Instance.CreateBatch().AddQuery(
-                "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
                 CommandType.Text,
+                "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
                 new Parameter<object>("0", SqlDbType.SmallInt, 0, ParameterDirection.Input))
                 .ExecuteScalar<int>();
             Assert.Equal(1, Result);

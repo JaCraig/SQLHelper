@@ -38,7 +38,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </returns>
         public static TDataType GetParameter<TDataType>(this IDataRecord reader, string id, TDataType defaultValue = default)
         {
-            if (reader == null)
+            if (reader is null)
                 return defaultValue;
             for (int x = 0; x < reader.FieldCount; ++x)
             {
@@ -61,10 +61,10 @@ namespace SQLHelperDB.ExtensionMethods
         /// </returns>
         public static TDataType GetParameter<TDataType>(this IDataRecord reader, int position, TDataType defaultValue = default)
         {
-            if (reader == null)
+            if (reader is null)
                 return defaultValue;
             object Value = reader[position];
-            return (Value == null || DBNull.Value == Value) ? defaultValue : Value.To(defaultValue);
+            return (Value is null || DBNull.Value == Value) ? defaultValue : Value.To(defaultValue);
         }
     }
 }

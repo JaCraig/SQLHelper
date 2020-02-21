@@ -20,7 +20,7 @@ namespace SQLHelperDB.CanisterModules
         /// <param name="bootstrapper">The bootstrapper.</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
+            if (bootstrapper is null)
                 return;
             bootstrapper.Register<SQLHelper>(ServiceLifetime.Transient);
         }

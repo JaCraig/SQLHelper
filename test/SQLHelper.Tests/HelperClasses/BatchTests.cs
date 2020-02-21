@@ -20,7 +20,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
                 );
-            Instance.AddQuery((___, __, _) => { }, 10, CommandType.Text, "SELECT * FROM TestUsers");
+            Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text);
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers", Instance.ToString());
         }
@@ -36,8 +36,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
                 );
-            Instance.AddQuery((___, __, _) => { }, 10, CommandType.Text, "SELECT * FROM TestUsers")
-                .AddQuery((___, __, _) => { }, 10, CommandType.Text, "SELECT * FROM TestGroups");
+            Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text)
+                .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups", CommandType.Text);
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers\r\nSELECT * FROM TestGroups", Instance.ToString());
         }
@@ -53,8 +53,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
                 );
-            Instance.AddQuery((___, __, _) => { }, 10, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1)
-                .AddQuery((___, __, _) => { }, 10, "SELECT * FROM TestGroups WHERE GroupID=@0", CommandType.Text, 10);
+            Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1)
+                .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups WHERE GroupID=@0", CommandType.Text, 10);
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1\r\nSELECT * FROM TestGroups WHERE GroupID=10", Instance.ToString());
         }
@@ -70,7 +70,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME")
                 );
-            Instance.AddQuery((___, __, _) => { }, 10, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1);
+            Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1);
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1", Instance.ToString());
         }

@@ -37,10 +37,13 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <param name="callBack">Called when command has been executed</param>
         /// <param name="callbackObject">Object</param>
+        /// <param name="header">
+        /// Determines if this command is a "header" and should be carried across batches.
+        /// </param>
         /// <param name="sqlCommand">SQL Command</param>
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters</param>
-        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, IParameter[] parameters)
+        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, IParameter[]? parameters)
         {
             SQLCommand = sqlCommand ?? "";
             SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
@@ -49,6 +52,7 @@ namespace SQLHelperDB.HelperClasses
             CallbackData = callbackObject;
             Parameters = parameters ?? Array.Empty<IParameter>();
             DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", SQLCommand);
+            Header = header;
         }
 
         /// <summary>
@@ -56,11 +60,14 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <param name="callBack">Called when command has been executed</param>
         /// <param name="callbackObject">Object</param>
+        /// <param name="header">
+        /// Determines if this command is a "header" and should be carried across batches.
+        /// </param>
         /// <param name="sqlCommand">SQL Command</param>
         /// <param name="commandType">Command type</param>
         /// <param name="parameterStarter">Parameter starter</param>
         /// <param name="parameters">Parameters</param>
-        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string sqlCommand, CommandType commandType, string parameterStarter, object[] parameters)
+        public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, string parameterStarter, object[]? parameters)
         {
             SQLCommand = sqlCommand ?? "";
             SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
@@ -70,19 +77,20 @@ namespace SQLHelperDB.HelperClasses
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
             DetermineFinalizable(parameterStarter, SQLCommand);
-            if (parameters != null)
+            for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
             {
-                for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
-                {
-                    object CurrentParameter = parameters[x];
-                    if (CurrentParameter == null)
-                        Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
-                    else if (CurrentParameter is string TempParameter)
-                        Parameters[x] = new StringParameter(x.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
-                    else
-                        Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
-                }
+                object CurrentParameter = parameters[x];
+                if (CurrentParameter is IParameter parameter)
+                    Parameters[x] = parameter;
+                else if (CurrentParameter is null)
+                    Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
+                else if (CurrentParameter is string TempParameter)
+                    Parameters[x] = new StringParameter(x.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
+                else
+                    Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
             }
+
+            Header = header;
         }
 
         /// <summary>
@@ -111,6 +119,12 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value><c>true</c> if finalizable; otherwise, <c>false</c>.</value>
         public bool Finalizable { get; private set; }
+
+        /// <summary>
+        /// Determines if this command is a "header" and should be carried across batches.
+        /// </summary>
+        /// <value><c>true</c> if header; otherwise, <c>false</c>.</value>
+        public bool Header { get; }
 
         /// <summary>
         /// Parameters
@@ -165,7 +179,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="result">Result of the command</param>
         public void Finalize(List<dynamic> result)
         {
-            if (CallBack == null)
+            if (CallBack is null)
                 return;
             CallBack(this, result, CallbackData);
         }

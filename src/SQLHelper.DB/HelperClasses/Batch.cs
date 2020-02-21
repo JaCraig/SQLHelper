@@ -41,6 +41,7 @@ namespace SQLHelperDB.HelperClasses
         public Batch(IConnection source)
         {
             Commands = new List<ICommand>();
+            Headers = new List<ICommand>();
             Source = source;
         }
 
@@ -60,6 +61,12 @@ namespace SQLHelperDB.HelperClasses
         protected List<ICommand> Commands { get; private set; }
 
         /// <summary>
+        /// Gets the headers.
+        /// </summary>
+        /// <value>The headers.</value>
+        protected List<ICommand> Headers { get; private set; }
+
+        /// <summary>
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
@@ -70,44 +77,19 @@ namespace SQLHelperDB.HelperClasses
         /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
         /// <param name="callBack">Callback action</param>
         /// <param name="callbackObject">Object used in the callback action</param>
-        /// <param name="commandType">Command type</param>
-        /// <param name="command">Command (SQL or stored procedure) to run</param>
-        /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command)
-        {
-            Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, Array.Empty<IParameter>()));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a command to be batched
-        /// </summary>
-        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
-        /// <param name="callBack">Callback action</param>
-        /// <param name="callbackObject">Object used in the callback action</param>
+        /// <param name="header">
+        /// Determines if this command is a "header" and should be carried across batches.
+        /// </param>
         /// <param name="command">Command (SQL or stored procedure) to run</param>
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters)
+        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string command, CommandType commandType, params object[]? parameters)
         {
-            Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, Source.ParameterPrefix, parameters));
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a command to be batched
-        /// </summary>
-        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
-        /// <param name="callBack">Callback action</param>
-        /// <param name="callbackObject">Object used in the callback action</param>
-        /// <param name="command">Command (SQL or stored procedure) to run</param>
-        /// <param name="commandType">Command type</param>
-        /// <param name="parameters">Parameters to add</param>
-        /// <returns>This</returns>
-        public IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters)
-        {
-            Commands.Add(new Command<TCallbackData>(callBack, callbackObject, command, commandType, parameters));
+            if (header)
+                Headers.Add(new Command<TCallbackData>(callBack, callbackObject, header, command, commandType, Source.ParameterPrefix, parameters));
+            else
+                Commands.Add(new Command<TCallbackData>(callBack, callbackObject, header, command, commandType, Source.ParameterPrefix, parameters));
             return this;
         }
 
@@ -121,6 +103,7 @@ namespace SQLHelperDB.HelperClasses
             if (!(batch is Batch TempValue))
                 return this;
             Commands.Add(TempValue.Commands);
+            Headers.Add(TempValue.Headers);
             return this;
         }
 
@@ -131,6 +114,7 @@ namespace SQLHelperDB.HelperClasses
         public IBatch Clear()
         {
             Commands.Clear();
+            Headers.Clear();
             return this;
         }
 
@@ -159,6 +143,7 @@ namespace SQLHelperDB.HelperClasses
         public IBatch RemoveDuplicateCommands()
         {
             Commands = Commands.Distinct().ToList();
+            Headers = Headers.Distinct().ToList();
             return this;
         }
 
@@ -177,7 +162,8 @@ namespace SQLHelperDB.HelperClasses
         /// <returns></returns>
         public override string ToString()
         {
-            return Commands.ToString(x => x.ToString(), Environment.NewLine);
+            return Headers.ToString(x => x.ToString(), Environment.NewLine)
+                + Commands.ToString(x => x.ToString(), Environment.NewLine);
         }
 
         /// <summary>
@@ -222,11 +208,11 @@ namespace SQLHelperDB.HelperClasses
             if (Finalizable)
             {
                 using var TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false);
-                ReturnValue.Add(GetValues(TempReader));
-                while (TempReader.NextResult())
+                do
                 {
                     ReturnValue.Add(GetValues(TempReader));
                 }
+                while (TempReader.NextResult());
             }
             else
             {
@@ -241,7 +227,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The resulting values</returns>
         private static List<dynamic> GetValues(DbDataReader tempReader)
         {
-            if (tempReader == null)
+            if (tempReader is null)
                 return new List<dynamic>();
             var ReturnValue = new List<dynamic>();
             string[] FieldNames = new string[tempReader.FieldCount];
@@ -276,7 +262,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The list of results</returns>
         private async Task<List<List<dynamic>>> ExecuteCommandsAsync()
         {
-            if (Source == null || Commands == null)
+            if (Source is null || Commands is null)
                 return new List<List<dynamic>>();
             var ReturnValue = new List<List<dynamic>>();
             if (Commands.Count == 0)
@@ -359,6 +345,36 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="ParameterTotal">The parameter total.</param>
         private void SetupParameters(ref int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand, ref int ParameterTotal)
         {
+            for (int y = 0; y < Headers.Count; ++y)
+            {
+                var Command = Headers[y];
+                if (ParameterTotal + Command.Parameters.Length >= 2000)
+                    break;
+                ParameterTotal += Command.Parameters.Length;
+                Finalizable |= Commands[y].Finalizable;
+                if (Command.CommandType == CommandType.Text)
+                {
+                    var TempCommandText = Command.SQLCommand ?? "";
+                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
+                                        "" :
+                                        Command.SQLCommand + Environment.NewLine;
+
+                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    {
+                        var TempParameter = Command.Parameters[i];
+                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                    }
+                }
+                else
+                {
+                    FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
+                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    {
+                        var TempParameter = Command.Parameters[i];
+                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                    }
+                }
+            }
             for (int y = Count; y < Commands.Count; ++y)
             {
                 var Command = Commands[y];

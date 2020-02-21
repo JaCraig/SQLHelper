@@ -79,39 +79,39 @@ namespace SQLHelperDB
         private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
 
         /// <summary>
-        /// Adds a command.
-        /// </summary>
-        /// <param name="command">The command.</param>
-        /// <param name="commandType">Type of the command.</param>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns>This</returns>
-        public SQLHelper AddQuery(string command, CommandType commandType, params IParameter[] parameters) => AddQuery<object>(DefaultAction, null!, command, commandType, parameters);
-
-        /// <summary>
-        /// Adds a command.
+        /// Adds a query that gets carried across in internal batches.
         /// </summary>
         /// <param name="commandType">Type of the command.</param>
         /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery(CommandType commandType, string command, params object[] parameters) => AddQuery<object>(DefaultAction, null!, commandType, command, parameters);
+        public SQLHelper AddHeader(CommandType commandType, string command, params object[]? parameters) => AddHeader<object>(DefaultAction, null!, commandType, command, parameters);
 
         /// <summary>
-        /// Adds a command.
+        /// Adds a query that gets carried across in internal batches.
         /// </summary>
         /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
         /// <param name="callback">The callback.</param>
         /// <param name="callbackObject">The callback object.</param>
-        /// <param name="command">The command.</param>
         /// <param name="commandType">Type of the command.</param>
+        /// <param name="command">The command.</param>
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
-        public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
-            string command, CommandType commandType, params IParameter[] parameters)
+        public SQLHelper AddHeader<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
+                    CommandType commandType, string command, params object[]? parameters)
         {
-            Batch.AddQuery(callback, callbackObject, command, commandType, parameters);
+            Batch.AddQuery(callback, callbackObject, true, command, commandType, parameters);
             return this;
         }
+
+        /// <summary>
+        /// Adds a command.
+        /// </summary>
+        /// <param name="commandType">Type of the command.</param>
+        /// <param name="command">The command.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>This</returns>
+        public SQLHelper AddQuery(CommandType commandType, string command, params object[]? parameters) => AddQuery<object>(DefaultAction, null!, commandType, command, parameters);
 
         /// <summary>
         /// Adds a command which will call the callback function with the object specified when it
@@ -124,9 +124,9 @@ namespace SQLHelperDB
         /// <param name="parameters">The parameters.</param>
         /// <returns>This</returns>
         public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
-            CommandType commandType, string command, params object[] parameters)
+            CommandType commandType, string command, params object[]? parameters)
         {
-            Batch.AddQuery(callback, callbackObject, command, commandType, parameters);
+            Batch.AddQuery(callback, callbackObject, false, command, commandType, parameters);
             return this;
         }
 

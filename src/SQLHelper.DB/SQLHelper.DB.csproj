@@ -21,21 +21,21 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>3.0.$(BuildNumber)</Version>
+    <Version>3.1.$(BuildNumber)</Version>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="SQLParser" Version="2.0.9" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="3.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.1" />
+    <PackageReference Include="BigBook" Version="3.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
 

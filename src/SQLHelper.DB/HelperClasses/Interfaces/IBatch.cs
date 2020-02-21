@@ -37,34 +37,14 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
         /// <param name="callBack">Callback action</param>
         /// <param name="callbackObject">Object used in the callback action</param>
-        /// <param name="commandType">Command type</param>
-        /// <param name="command">Command (SQL or stored procedure) to run</param>
-        /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, CommandType commandType, string command);
-
-        /// <summary>
-        /// Adds a command to be batched
-        /// </summary>
-        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
-        /// <param name="callBack">Callback action</param>
-        /// <param name="callbackObject">Object used in the callback action</param>
+        /// <param name="header">
+        /// Determines if this command is a "header" and should be carried across batches.
+        /// </param>
         /// <param name="command">Command (SQL or stored procedure) to run</param>
         /// <param name="commandType">Command type</param>
         /// <param name="parameters">Parameters to add</param>
         /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params object[] parameters);
-
-        /// <summary>
-        /// Adds a command to be batched
-        /// </summary>
-        /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
-        /// <param name="callBack">Callback action</param>
-        /// <param name="callbackObject">Object used in the callback action</param>
-        /// <param name="command">Command (SQL or stored procedure) to run</param>
-        /// <param name="commandType">Command type</param>
-        /// <param name="parameters">Parameters to add</param>
-        /// <returns>This</returns>
-        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, string command, CommandType commandType, params IParameter[] parameters);
+        IBatch AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string command, CommandType commandType, params object[]? parameters);
 
         /// <summary>
         /// Adds a batch's commands to the current batch
@@ -96,6 +76,11 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// </summary>
         /// <returns>This</returns>
         IBatch RemoveDuplicateCommands();
+
+        /// <summary>
+        /// Sets the connection.
+        /// </summary>
+        /// <param name="databaseConnection">The database connection.</param>
         void SetConnection(IConnection databaseConnection);
     }
 }

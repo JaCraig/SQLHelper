@@ -54,7 +54,7 @@ namespace SQLHelperDB.ExtensionMethods
             string value = "",
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command == null)
+            if (command is null)
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
@@ -93,7 +93,7 @@ namespace SQLHelperDB.ExtensionMethods
             object? value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command == null)
+            if (command is null)
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
@@ -116,7 +116,7 @@ namespace SQLHelperDB.ExtensionMethods
             TDataType value = default,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command == null)
+            if (command is null)
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
@@ -144,12 +144,12 @@ namespace SQLHelperDB.ExtensionMethods
             object? value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command == null)
+            if (command is null)
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
             var Parameter = command.GetOrCreateParameter(id);
-            Parameter.IsNullable = value == null || DBNull.Value == value;
+            Parameter.IsNullable = value is null || DBNull.Value == value;
             if (Parameter.IsNullable)
             {
                 Parameter.Value = DBNull.Value;
@@ -176,7 +176,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>A transaction object</returns>
         public static DbTransaction? BeginTransaction(this DbCommand command, int retries = 0)
         {
-            if (command == null || command.Connection == null)
+            if (command?.Connection is null)
                 return null;
             command.Open(retries);
             command.Transaction = command.Connection.BeginTransaction();
@@ -231,7 +231,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The object of the first row and first column</returns>
         public static TDataType ExecuteScalar<TDataType>(this DbCommand command, TDataType defaultValue = default, int retries = 0)
         {
-            if (command == null)
+            if (command is null)
                 return defaultValue;
             command.Open(retries);
             return command.ExecuteScalar().To(defaultValue);
@@ -247,7 +247,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The object of the first row and first column</returns>
         public static async Task<TDataType> ExecuteScalarAsync<TDataType>(this DbCommand command, TDataType defaultValue = default, int retries = 0)
         {
-            if (command == null)
+            if (command is null)
                 return defaultValue;
             command.Open(retries);
             var ReturnValue = await command.ExecuteScalarAsync().ConfigureAwait(false);
@@ -262,7 +262,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DbParameter associated with the ID</returns>
         public static DbParameter GetOrCreateParameter(this DbCommand command, string id)
         {
-            if (command == null)
+            if (command is null)
                 throw new ArgumentNullException(nameof(command));
             if (command.Parameters.Contains(id))
             {
