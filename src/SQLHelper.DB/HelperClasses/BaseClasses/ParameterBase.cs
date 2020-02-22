@@ -46,6 +46,15 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ParameterBase{TDataType}"/> class.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        protected ParameterBase(ParameterBase<TDataType> parameter)
+            : this(parameter.ID, parameter.DatabaseType, parameter.Value, parameter.Direction, parameter.ParameterStarter)
+        {
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="id">ID of the parameter</param>

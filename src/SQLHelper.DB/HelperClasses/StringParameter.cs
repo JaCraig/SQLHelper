@@ -35,7 +35,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="direction">Direction of the parameter</param>
         /// <param name="parameterStarter">Parameter starter</param>
         public StringParameter(string id, string value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-            : base(id, value, direction, parameterStarter)
+            : base(id, DbType.String, value, direction, parameterStarter)
         {
         }
 
@@ -55,8 +55,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>A copy of the parameter</returns>
         public override IParameter CreateCopy(string suffix)
         {
-            ID += suffix;
-            return this;
+            return new StringParameter(ID + suffix, Value, Direction, ParameterStarter);
         }
     }
 }
