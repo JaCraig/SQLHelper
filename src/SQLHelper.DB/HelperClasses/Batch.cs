@@ -46,11 +46,6 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
-
-        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount { get { return Commands.Count; } }
@@ -70,6 +65,11 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
+
+        /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -351,7 +351,7 @@ namespace SQLHelperDB.HelperClasses
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
                     break;
                 ParameterTotal += Command.Parameters.Length;
-                Finalizable |= Commands[y].Finalizable;
+                Finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
                     var TempCommandText = Command.SQLCommand ?? "";
@@ -381,7 +381,7 @@ namespace SQLHelperDB.HelperClasses
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
                     break;
                 ParameterTotal += Command.Parameters.Length;
-                Finalizable |= Commands[y].Finalizable;
+                Finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
                     var TempCommandText = Command.SQLCommand ?? "";
