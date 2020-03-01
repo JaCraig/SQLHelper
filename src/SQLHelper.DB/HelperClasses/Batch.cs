@@ -18,6 +18,7 @@ using BigBook;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -46,6 +47,11 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
+
+        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount { get { return Commands.Count; } }
@@ -65,11 +71,6 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
-
-        /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -230,7 +231,7 @@ namespace SQLHelperDB.HelperClasses
             if (tempReader is null)
                 return new List<dynamic>();
             var ReturnValue = new List<dynamic>();
-            string[] FieldNames = new string[tempReader.FieldCount];
+            var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
             for (int x = 0; x < tempReader.FieldCount; ++x)
             {
                 FieldNames[x] = tempReader.GetName(x);
@@ -244,6 +245,7 @@ namespace SQLHelperDB.HelperClasses
                 }
                 ReturnValue.Add(Value);
             }
+            ArrayPool<string>.Shared.Return(FieldNames);
             return ReturnValue;
         }
 
