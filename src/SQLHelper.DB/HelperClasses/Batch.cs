@@ -173,19 +173,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>True if it is, false otherwise</returns>
         protected bool CheckTransaction()
         {
-            return Commands.Count > 1
-                              && Commands.Any(Command =>
-                              {
-                                  return (Command.SQLCommandUpperCase.Contains("INSERT", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("UPDATE", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("DELETE", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("CREATE", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("ALTER", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("INTO", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("DROP", StringComparison.Ordinal))
-                                          && (!(Command.SQLCommandUpperCase.Contains("ALTER DATABASE", StringComparison.Ordinal)
-                                            || Command.SQLCommandUpperCase.Contains("CREATE DATABASE", StringComparison.Ordinal)));
-                              });
+            return Commands.Count > 1 && Commands.Any(Command => Command.TransactionNeeded);
         }
 
         /// <summary>
@@ -393,7 +381,7 @@ namespace SQLHelperDB.HelperClasses
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
                                             var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
-                                            return Param != null ? x.Value + Suffix : x.Value;
+                                            return !(Param is null) ? x.Value + Suffix : x.Value;
                                         }) + Environment.NewLine;
 
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)

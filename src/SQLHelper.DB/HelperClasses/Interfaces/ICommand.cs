@@ -46,10 +46,10 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         string SQLCommand { get; }
 
         /// <summary>
-        /// Gets the SQL command upper case.
+        /// Gets a value indicating whether [transaction needed].
         /// </summary>
-        /// <value>The SQL command upper case.</value>
-        string SQLCommandUpperCase { get; }
+        /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
+        bool TransactionNeeded { get; }
 
         /// <summary>
         /// Called after the command is run

@@ -21,7 +21,7 @@ namespace SQLHelperDB.SpeedTests.Modules
         /// <param name="bootstrapper">The bootstrapper.</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
+            if (bootstrapper is null)
                 return;
             Log.Logger = new LoggerConfiguration()
                                             .WriteTo

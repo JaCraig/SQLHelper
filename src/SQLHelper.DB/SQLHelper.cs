@@ -137,7 +137,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(SQLHelper helper)
         {
-            if (helper != null)
+            if (!(helper is null))
                 Batch.AddQuery(helper.Batch);
             return this;
         }

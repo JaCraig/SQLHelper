@@ -59,7 +59,7 @@ namespace SQLHelperDB.HelperClasses
             SourceType = factory.GetType().FullName;
             Factory = factory;
             var TempConfig = configuration.GetConnectionString(Name);
-            if (string.IsNullOrEmpty(connection) && TempConfig != null)
+            if (string.IsNullOrEmpty(connection) && !(TempConfig is null))
             {
                 ConnectionString = TempConfig;
             }

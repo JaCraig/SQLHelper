@@ -201,7 +201,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand? Close(this DbCommand command)
         {
-            if (command?.Connection != null
+            if (!(command?.Connection is null)
                 && command.Connection.State != ConnectionState.Closed)
             {
                 command.Connection.Close();
@@ -287,7 +287,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// </returns>
         public static TDataType GetOutputParameter<TDataType>(this DbCommand command, string id, TDataType defaultValue = default)
         {
-            return command?.Parameters[id] != null ?
+            return !(command?.Parameters[id] is null) ?
                 command.Parameters[id].Value.To(defaultValue) :
                 defaultValue;
         }
@@ -305,7 +305,7 @@ namespace SQLHelperDB.ExtensionMethods
             {
                 try
                 {
-                    if (command?.Connection != null
+                    if (!(command?.Connection is null)
                         && command.Connection.State != ConnectionState.Open)
                     {
                         command.Connection.Open();

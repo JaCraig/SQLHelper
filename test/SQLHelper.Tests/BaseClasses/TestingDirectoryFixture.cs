@@ -15,7 +15,7 @@ namespace SQLHelperDB.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            if (Canister.Builder.Bootstrapper == null)
+            if (Canister.Builder.Bootstrapper is null)
             {
                 Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
                    .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)

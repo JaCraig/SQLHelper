@@ -46,12 +46,11 @@ namespace SQLHelperDB.HelperClasses
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, IParameter[]? parameters)
         {
             SQLCommand = sqlCommand ?? "";
-            SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
             CommandType = commandType;
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
             Parameters = parameters ?? Array.Empty<IParameter>();
-            DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", SQLCommand);
+            DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", SQLCommand.ToUpperInvariant());
             Header = header;
         }
 
@@ -70,13 +69,12 @@ namespace SQLHelperDB.HelperClasses
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, string parameterStarter, object[]? parameters)
         {
             SQLCommand = sqlCommand ?? "";
-            SQLCommandUpperCase = SQLCommand.ToUpperInvariant();
             CommandType = commandType;
             parameters ??= Array.Empty<object>();
             Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
-            DetermineFinalizable(parameterStarter, SQLCommand);
+            DetermineFinalizable(parameterStarter, SQLCommand.ToUpperInvariant());
             for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
             {
                 object CurrentParameter = parameters[x];
@@ -137,16 +135,17 @@ namespace SQLHelperDB.HelperClasses
         public string SQLCommand { get; set; }
 
         /// <summary>
-        /// SQL command in upper case for comparisons
+        /// Gets a value indicating whether [transaction needed].
         /// </summary>
-        public string SQLCommandUpperCase { get; set; }
+        /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
+        public bool TransactionNeeded { get; set; }
 
         /// <summary>
         /// Determines if the objects are equal
         /// </summary>
         /// <param name="obj">Object to compare to</param>
         /// <returns>Determines if the commands are equal</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (!(obj is Command<TCallbackData> OtherCommand))
                 return false;
@@ -236,7 +235,35 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="ComparisonString">The comparison string.</param>
         private void DetermineFinalizable(string parameterStarter, string ComparisonString)
         {
-            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ", StringComparison.OrdinalIgnoreCase) && ComparisonString.Contains("IF ", StringComparison.OrdinalIgnoreCase))
+            var ComparisonSpan = ComparisonString.AsSpan();
+
+            bool FinalizableFound = false;
+
+            if (parameterStarter == "@")
+            {
+                for (int x = 0; x < ComparisonSpan.Length - 7; ++x)
+                {
+                    if (ComparisonSpan[x] == 'S'
+                        && ComparisonSpan[x + 1] == 'E'
+                        && ComparisonSpan[x + 2] == 'L'
+                        && ComparisonSpan[x + 3] == 'E'
+                        && ComparisonSpan[x + 4] == 'C'
+                        && ComparisonSpan[x + 5] == 'T'
+                        && ComparisonSpan[x + 6] == ' ')
+                    {
+                        FinalizableFound = true;
+                        break;
+                    }
+                    if (ComparisonSpan[x] == 'I'
+                        && ComparisonSpan[x + 1] == 'F'
+                        && ComparisonSpan[x + 2] == ' ')
+                    {
+                        FinalizableFound = true;
+                        break;
+                    }
+                }
+            }
+            if (FinalizableFound)//parameterStarter == "@" && ComparisonSpan.Contains("SELECT ", StringComparison.Ordinal) && ComparisonSpan.Contains("IF ", StringComparison.Ordinal))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -245,6 +272,19 @@ namespace SQLHelperDB.HelperClasses
             else
             {
                 Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
+            }
+
+            if ((ComparisonSpan.Contains("INSERT", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("UPDATE", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("DELETE", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("CREATE", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("ALTER", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("INTO", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("DROP", StringComparison.Ordinal))
+                                          && (!(ComparisonSpan.Contains("ALTER DATABASE", StringComparison.Ordinal)
+                                            || ComparisonSpan.Contains("CREATE DATABASE", StringComparison.Ordinal))))
+            {
+                TransactionNeeded = true;
             }
         }
     }

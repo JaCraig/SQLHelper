@@ -13,7 +13,7 @@ namespace SQLHelperDB.SpeedTests.Modules
 
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
+            if (bootstrapper is null)
                 return;
             var dict = new Dictionary<string, string>
                 {
