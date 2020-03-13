@@ -92,11 +92,6 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        /// <summary>
         /// Call back
         /// </summary>
         public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; }
@@ -139,6 +134,11 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
         public bool TransactionNeeded { get; set; }
+
+        /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Determines if the objects are equal
@@ -236,34 +236,7 @@ namespace SQLHelperDB.HelperClasses
         private void DetermineFinalizable(string parameterStarter, string ComparisonString)
         {
             var ComparisonSpan = ComparisonString.AsSpan();
-
-            bool FinalizableFound = false;
-
-            if (parameterStarter == "@")
-            {
-                for (int x = 0; x < ComparisonSpan.Length - 7; ++x)
-                {
-                    if (ComparisonSpan[x] == 'S'
-                        && ComparisonSpan[x + 1] == 'E'
-                        && ComparisonSpan[x + 2] == 'L'
-                        && ComparisonSpan[x + 3] == 'E'
-                        && ComparisonSpan[x + 4] == 'C'
-                        && ComparisonSpan[x + 5] == 'T'
-                        && ComparisonSpan[x + 6] == ' ')
-                    {
-                        FinalizableFound = true;
-                        break;
-                    }
-                    if (ComparisonSpan[x] == 'I'
-                        && ComparisonSpan[x + 1] == 'F'
-                        && ComparisonSpan[x + 2] == ' ')
-                    {
-                        FinalizableFound = true;
-                        break;
-                    }
-                }
-            }
-            if (FinalizableFound)//parameterStarter == "@" && ComparisonSpan.Contains("SELECT ", StringComparison.Ordinal) && ComparisonSpan.Contains("IF ", StringComparison.Ordinal))
+            if (parameterStarter == "@" && ComparisonSpan.Contains("SELECT ", StringComparison.Ordinal) && ComparisonSpan.Contains("IF ", StringComparison.Ordinal))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -274,15 +247,15 @@ namespace SQLHelperDB.HelperClasses
                 Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
             }
 
-            if ((ComparisonSpan.Contains("INSERT", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("UPDATE", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("DELETE", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("CREATE", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("ALTER", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("INTO", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("DROP", StringComparison.Ordinal))
-                                          && (!(ComparisonSpan.Contains("ALTER DATABASE", StringComparison.Ordinal)
-                                            || ComparisonSpan.Contains("CREATE DATABASE", StringComparison.Ordinal))))
+            if (ComparisonSpan.Contains("INSERT", StringComparison.Ordinal)
+                || ComparisonSpan.Contains("UPDATE", StringComparison.Ordinal)
+                || ComparisonSpan.Contains("DELETE", StringComparison.Ordinal)
+                || ComparisonSpan.Contains("INTO", StringComparison.Ordinal)
+                || ComparisonSpan.Contains("DROP", StringComparison.Ordinal)
+                || (ComparisonSpan.Contains("CREATE", StringComparison.Ordinal)
+                    && !ComparisonSpan.Contains("CREATE DATABASE", StringComparison.Ordinal))
+                || (ComparisonSpan.Contains("ALTER", StringComparison.Ordinal)
+                    && !ComparisonSpan.Contains("ALTER DATABASE", StringComparison.Ordinal)))
             {
                 TransactionNeeded = true;
             }
