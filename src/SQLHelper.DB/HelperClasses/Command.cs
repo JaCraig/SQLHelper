@@ -235,8 +235,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="ComparisonString">The comparison string.</param>
         private void DetermineFinalizable(string parameterStarter, string ComparisonString)
         {
-            var ComparisonSpan = ComparisonString.AsSpan();
-            if (parameterStarter == "@" && ComparisonSpan.Contains("SELECT ", StringComparison.Ordinal) && ComparisonSpan.Contains("IF ", StringComparison.Ordinal))
+            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ", StringComparison.Ordinal) && ComparisonString.Contains("IF ", StringComparison.Ordinal))
             {
                 var TempParser = new SelectFinder();
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -247,18 +246,15 @@ namespace SQLHelperDB.HelperClasses
                 Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
             }
 
-            if (ComparisonSpan.Contains("INSERT", StringComparison.Ordinal)
-                || ComparisonSpan.Contains("UPDATE", StringComparison.Ordinal)
-                || ComparisonSpan.Contains("DELETE", StringComparison.Ordinal)
-                || ComparisonSpan.Contains("INTO", StringComparison.Ordinal)
-                || ComparisonSpan.Contains("DROP", StringComparison.Ordinal)
-                || (ComparisonSpan.Contains("CREATE", StringComparison.Ordinal)
-                    && !ComparisonSpan.Contains("CREATE DATABASE", StringComparison.Ordinal))
-                || (ComparisonSpan.Contains("ALTER", StringComparison.Ordinal)
-                    && !ComparisonSpan.Contains("ALTER DATABASE", StringComparison.Ordinal)))
-            {
-                TransactionNeeded = true;
-            }
+            TransactionNeeded = (ComparisonString.Contains("INSERT", StringComparison.Ordinal)
+                || ComparisonString.Contains("UPDATE", StringComparison.Ordinal)
+                || ComparisonString.Contains("DELETE", StringComparison.Ordinal)
+                || ComparisonString.Contains("INTO", StringComparison.Ordinal)
+                || ComparisonString.Contains("DROP", StringComparison.Ordinal)
+                || ComparisonString.Contains("CREATE", StringComparison.Ordinal)
+                || ComparisonString.Contains("ALTER", StringComparison.Ordinal))
+                && !ComparisonString.Contains("CREATE DATABASE", StringComparison.Ordinal)
+                && !ComparisonString.Contains("ALTER DATABASE", StringComparison.Ordinal);
         }
     }
 }
