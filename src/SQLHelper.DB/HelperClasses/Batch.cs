@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
@@ -24,6 +25,7 @@ using System.Data;
 using System.Data.Common;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -39,11 +41,13 @@ namespace SQLHelperDB.HelperClasses
         /// Constructor
         /// </summary>
         /// <param name="source">Source info</param>
-        public Batch(IConnection source)
+        /// <param name="stringBuilderPool">The string builder pool.</param>
+        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
             Source = source;
+            StringBuilderPool = stringBuilderPool;
         }
 
         /// <summary>
@@ -54,7 +58,13 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Command count
         /// </summary>
-        public int CommandCount { get { return Commands.Count; } }
+        public int CommandCount => Commands.Count;
+
+        /// <summary>
+        /// Gets the string builder pool.
+        /// </summary>
+        /// <value>The string builder pool.</value>
+        public ObjectPool<StringBuilder> StringBuilderPool { get; }
 
         /// <summary>
         /// Commands to batch
@@ -123,19 +133,13 @@ namespace SQLHelperDB.HelperClasses
         /// Executes the commands and returns the results
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        public List<List<dynamic>> Execute()
-        {
-            return ExecuteCommands();
-        }
+        public List<List<dynamic>> Execute() => ExecuteCommands();
 
         /// <summary>
         /// Executes the commands and returns the results (async)
         /// </summary>
         /// <returns>The results of the batched commands</returns>
-        public Task<List<List<dynamic>>> ExecuteAsync()
-        {
-            return ExecuteCommandsAsync();
-        }
+        public Task<List<List<dynamic>>> ExecuteAsync() => ExecuteCommandsAsync();
 
         /// <summary>
         /// Removes duplicate commands from the batch
@@ -152,10 +156,7 @@ namespace SQLHelperDB.HelperClasses
         /// Sets the connection.
         /// </summary>
         /// <param name="databaseConnection">The database connection.</param>
-        public void SetConnection(IConnection databaseConnection)
-        {
-            Source = databaseConnection;
-        }
+        public void SetConnection(IConnection databaseConnection) => Source = databaseConnection;
 
         /// <summary>
         /// Converts the batch to a string
@@ -171,10 +172,7 @@ namespace SQLHelperDB.HelperClasses
         /// Checks whether a transaction is needed.
         /// </summary>
         /// <returns>True if it is, false otherwise</returns>
-        protected bool CheckTransaction()
-        {
-            return Commands.Count > 1 && Commands.Any(Command => Command.TransactionNeeded);
-        }
+        protected bool CheckTransaction() => Commands.Count > 1 && Commands.Any(Command => Command.TransactionNeeded);
 
         /// <summary>
         /// Gets the results asynchronous.
@@ -220,14 +218,14 @@ namespace SQLHelperDB.HelperClasses
                 return new List<dynamic>();
             var ReturnValue = new List<dynamic>();
             var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
-            for (int x = 0; x < tempReader.FieldCount; ++x)
+            for (var x = 0; x < tempReader.FieldCount; ++x)
             {
                 FieldNames[x] = tempReader.GetName(x);
             }
             while (tempReader.Read())
             {
                 var Value = new Dynamo();
-                for (int x = 0; x < tempReader.FieldCount; ++x)
+                for (var x = 0; x < tempReader.FieldCount; ++x)
                 {
                     Value.Add(FieldNames[x], tempReader[x]);
                 }
@@ -241,10 +239,7 @@ namespace SQLHelperDB.HelperClasses
         /// Executes the commands.
         /// </summary>
         /// <returns>The list of results</returns>
-        private List<List<dynamic>> ExecuteCommands()
-        {
-            return ExecuteCommandsAsync().GetAwaiter().GetResult();
-        }
+        private List<List<dynamic>> ExecuteCommands() => ExecuteCommandsAsync().GetAwaiter().GetResult();
 
         /// <summary>
         /// Executes the commands asynchronously.
@@ -269,13 +264,13 @@ namespace SQLHelperDB.HelperClasses
 
                 try
                 {
-                    int Count = 0;
+                    var Count = 0;
                     do
                     {
                         var FinalParameters = new List<IParameter>();
-                        bool Finalizable = false;
-                        string FinalSQLCommand = "";
-                        int ParameterTotal = 0;
+                        var Finalizable = false;
+                        var FinalSQLCommand = string.Empty;
+                        var ParameterTotal = 0;
                         ExecutableCommand.Parameters.Clear();
                         SetupParameters(ref Count, FinalParameters, ref Finalizable, ref FinalSQLCommand, ref ParameterTotal);
                         await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand).ConfigureAwait(false);
@@ -335,7 +330,9 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="ParameterTotal">The parameter total.</param>
         private void SetupParameters(ref int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand, ref int ParameterTotal)
         {
-            for (int y = 0; y < Headers.Count; ++y)
+            var Builder = StringBuilderPool.Get();
+            Builder.Append(FinalSQLCommand);
+            for (var y = 0; y < Headers.Count; ++y)
             {
                 var Command = Headers[y];
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
@@ -344,28 +341,26 @@ namespace SQLHelperDB.HelperClasses
                 Finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
-                    var TempCommandText = Command.SQLCommand ?? "";
-                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
-                                        "" :
-                                        Command.SQLCommand + Environment.NewLine;
+                    var TempCommandText = Command.SQLCommand ?? string.Empty;
+                    Builder.Append(Command.SQLCommand ?? string.Empty).Append(Environment.NewLine);
 
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
                         var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
                 else
                 {
-                    FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
+                    Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
                         var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
             }
-            for (int y = Count; y < Commands.Count; ++y)
+            for (var y = Count; y < Commands.Count; ++y)
             {
                 var Command = Commands[y];
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
@@ -374,15 +369,15 @@ namespace SQLHelperDB.HelperClasses
                 Finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
-                    var TempCommandText = Command.SQLCommand ?? "";
-                    string Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
-                    FinalSQLCommand += string.IsNullOrEmpty(Command.SQLCommand) ?
-                                        "" :
+                    var TempCommandText = Command.SQLCommand ?? string.Empty;
+                    var Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
+                    Builder.Append(string.IsNullOrEmpty(Command.SQLCommand) ?
+                                        string.Empty :
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
                                             var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
                                             return !(Param is null) ? x.Value + Suffix : x.Value;
-                                        }) + Environment.NewLine;
+                                        })).Append(Environment.NewLine);
 
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
@@ -392,15 +387,17 @@ namespace SQLHelperDB.HelperClasses
                 }
                 else
                 {
-                    FinalSQLCommand += Command.SQLCommand + Environment.NewLine;
+                    Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
                     {
                         var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(""));
+                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
                 ++Count;
             }
+            FinalSQLCommand = Builder.ToString();
+            StringBuilderPool.Return(Builder);
         }
     }
 }

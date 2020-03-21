@@ -40,7 +40,7 @@ namespace SQLHelperDB.ExtensionMethods
         {
             if (reader is null)
                 return defaultValue;
-            for (int x = 0; x < reader.FieldCount; ++x)
+            for (var x = 0; x < reader.FieldCount; ++x)
             {
                 if (reader.GetName(x) == id)
                     return reader.GetParameter(x, defaultValue);
@@ -63,7 +63,7 @@ namespace SQLHelperDB.ExtensionMethods
         {
             if (reader is null)
                 return defaultValue;
-            object Value = reader[position];
+            var Value = reader[position];
             return (Value is null || DBNull.Value == Value) ? defaultValue : Value.To(defaultValue);
         }
     }

@@ -43,19 +43,13 @@ namespace SQLHelperDBTests.HelperClasses
         /// Adds this parameter to the SQLHelper
         /// </summary>
         /// <param name="helper">SQLHelper</param>
-        public override void AddParameter(DbCommand helper)
-        {
-            helper.AddParameter(ID, Value, Direction);
-        }
+        public override void AddParameter(DbCommand helper) => helper.AddParameter(ID, Value, Direction);
 
         /// <summary>
         /// Creates a copy of the parameter
         /// </summary>
         /// <param name="suffix">Suffix to add to the parameter (for batching purposes)</param>
         /// <returns>A copy of the parameter</returns>
-        public override IParameter CreateCopy(string suffix)
-        {
-            return new StringParameter(ID + suffix, Value, Direction, ParameterStarter);
-        }
+        public override IParameter CreateCopy(string suffix) => new StringParameter(ID + suffix, Value, Direction, ParameterStarter);
     }
 }

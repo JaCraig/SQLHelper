@@ -113,7 +113,7 @@ namespace SQLHelperDB.Tests
                 .ExecuteScalar<int>();
             Assert.Equal(1, Result);
             Instance.CreateBatch();
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -177,7 +177,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -208,7 +208,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -230,7 +230,7 @@ namespace SQLHelperDB.Tests
                 .Execute();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Assert.Equal("A", ListResult[0][x].StringValue1);
                 Assert.Equal("B", ListResult[0][x].StringValue2);
@@ -252,9 +252,9 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            StringBuilder Builder = new StringBuilder();
-            string Splitter = "";
-            for (int x = 0; x < 200; ++x)
+            var Builder = new StringBuilder();
+            var Splitter = "";
+            for (var x = 0; x < 200; ++x)
             {
                 Builder.AppendFormat("{1}@{0}", x, Splitter);
                 Splitter = ",";
@@ -273,7 +273,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 4000; ++x)
+            for (var x = 0; x < 4000; ++x)
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0", x);
             }
@@ -290,7 +290,7 @@ namespace SQLHelperDB.Tests
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             Instance.AddHeader(CommandType.Text, "DECLARE @A as nvarchar(100);");
             Instance.AddHeader(CommandType.Text, "SET @A ='BLAH';");
-            for (int x = 0; x < 4000; ++x)
+            for (var x = 0; x < 4000; ++x)
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0 AND @A='BLAH'", x);
             }
@@ -306,7 +306,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -329,7 +329,7 @@ namespace SQLHelperDB.Tests
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             var ConvertedResult = ListResult[0].Select(x => (TestTableClass)x).ToList();
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Assert.Equal("A", ConvertedResult[x].StringValue1);
                 Assert.Equal("B", ConvertedResult[x].StringValue2);
@@ -351,7 +351,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -373,7 +373,7 @@ namespace SQLHelperDB.Tests
                 .Execute();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Assert.Equal("http://a/", ListResult[0][x].StringValue1);
                 Assert.Equal("B", ListResult[0][x].StringValue2);
@@ -394,7 +394,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -426,7 +426,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES('email@address.com',@0,@1,@2,@3,@4,@5,@6,@7)",
@@ -447,7 +447,7 @@ namespace SQLHelperDB.Tests
                 .Execute();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            for (int x = 0; x < 50; ++x)
+            for (var x = 0; x < 50; ++x)
             {
                 Assert.Equal("email@address.com", ListResult[0][x].StringValue1);
                 Assert.Equal("email@address.com", ListResult[0][x].StringValue2);

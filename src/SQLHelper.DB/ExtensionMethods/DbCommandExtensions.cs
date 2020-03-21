@@ -58,7 +58,7 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
-            int Length = string.IsNullOrEmpty(value) ? 1 : value.Length;
+            var Length = string.IsNullOrEmpty(value) ? 1 : value.Length;
             if (direction == ParameterDirection.Output
                 || direction == ParameterDirection.InputOutput
                 || Length > 4000

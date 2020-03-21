@@ -171,10 +171,7 @@ namespace SQLHelperDBTests
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         /// <returns>This.</returns>
-        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default")
-        {
-            return CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
-        }
+        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
 
         /// <summary>
         /// Executes this instance.
@@ -194,10 +191,7 @@ namespace SQLHelperDBTests
         /// <typeparam name="TData">The type of the data to return.</typeparam>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public TData ExecuteScalar<TData>(TData defaultValue = default)
-        {
-            return ExecuteScalarAsync(defaultValue).GetAwaiter().GetResult();
-        }
+        public TData ExecuteScalar<TData>(TData defaultValue = default) => ExecuteScalarAsync(defaultValue).GetAwaiter().GetResult();
 
         /// <summary>
         /// Executes the batched commands and returns the first value, ignoring the rest (async).
@@ -229,7 +223,7 @@ namespace SQLHelperDBTests
         /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString() => Batch.ToString() ?? "";
+        public override string ToString() => Batch.ToString() ?? string.Empty;
 
         /// <summary>
         /// The default action

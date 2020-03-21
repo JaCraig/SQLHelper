@@ -20,7 +20,6 @@ namespace SQLHelperDB.Tests.HelperClasses
             Assert.Equal(SqlClientFactory.Instance, TestItem.Factory);
             Assert.Equal("DATABASE NAME", TestItem.Name);
             Assert.Equal("@", TestItem.ParameterPrefix);
-            Assert.Equal("System.Data.SqlClient.SqlClientFactory", TestItem.SourceType);
         }
     }
 }

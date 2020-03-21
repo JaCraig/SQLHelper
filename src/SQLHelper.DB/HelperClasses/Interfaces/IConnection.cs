@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 
 namespace SQLHelperDB.HelperClasses.Interfaces
@@ -24,12 +23,6 @@ namespace SQLHelperDB.HelperClasses.Interfaces
     /// </summary>
     public interface IConnection
     {
-        /// <summary>
-        /// Gets the configuration information.
-        /// </summary>
-        /// <value>Gets the configuration information.</value>
-        IConfiguration Configuration { get; }
-
         /// <summary>
         /// Connection string
         /// </summary>
@@ -65,11 +58,5 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         /// </summary>
         /// <value>The number of retries if unable to connect.</value>
         int Retries { get; }
-
-        /// <summary>
-        /// Source type, based on ADO.Net provider name
-        /// </summary>
-        /// <value>The type of the source.</value>
-        string SourceType { get; }
     }
 }

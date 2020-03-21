@@ -45,7 +45,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, IParameter[]? parameters)
         {
-            SQLCommand = sqlCommand ?? "";
+            SQLCommand = sqlCommand ?? string.Empty;
             CommandType = commandType;
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
@@ -68,16 +68,18 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, string parameterStarter, object[]? parameters)
         {
-            SQLCommand = sqlCommand ?? "";
+            SQLCommand = sqlCommand ?? string.Empty;
             CommandType = commandType;
             parameters ??= Array.Empty<object>();
             Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
             DetermineFinalizable(parameterStarter, SQLCommand.ToUpperInvariant());
+            Header = header;
+
             for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
             {
-                object CurrentParameter = parameters[x];
+                var CurrentParameter = parameters[x];
                 if (CurrentParameter is IParameter parameter)
                     Parameters[x] = parameter;
                 else if (CurrentParameter is null)
@@ -87,9 +89,22 @@ namespace SQLHelperDB.HelperClasses
                 else
                     Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
             }
-
-            Header = header;
         }
+
+        /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
+        /// The internal hash code value.
+        /// </summary>
+        private int InternalHashCode;
+
+        /// <summary>
+        /// The internal to string value.
+        /// </summary>
+        private string InternalToString = string.Empty;
 
         /// <summary>
         /// Call back
@@ -136,17 +151,15 @@ namespace SQLHelperDB.HelperClasses
         public bool TransactionNeeded { get; set; }
 
         /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        /// <summary>
         /// Determines if the objects are equal
         /// </summary>
         /// <param name="obj">Object to compare to</param>
         /// <returns>Determines if the commands are equal</returns>
         public override bool Equals(object? obj)
         {
+            if (ReferenceEquals(this, obj))
+                return true;
+
             if (!(obj is Command<TCallbackData> OtherCommand))
                 return false;
 
@@ -189,18 +202,22 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The hash code for the object</returns>
         public override int GetHashCode()
         {
-            unchecked
+            if (InternalHashCode == 0)
             {
-                int ParameterTotal = 0;
-                for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+                unchecked
                 {
-                    ParameterTotal += Parameters[x].GetHashCode();
-                }
+                    var ParameterTotal = 0;
+                    for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+                    {
+                        ParameterTotal += Parameters[x].GetHashCode();
+                    }
 
-                if (ParameterTotal > 0)
-                    return (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
-                return (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
+                    if (ParameterTotal > 0)
+                        InternalHashCode = (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
+                    InternalHashCode = (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
+                }
             }
+            return InternalHashCode;
         }
 
         /// <summary>
@@ -209,13 +226,15 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The string representation of the command</returns>
         public override string ToString()
         {
-            var TempCommand = SQLCommand ?? "";
-            for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+            if (string.IsNullOrEmpty(InternalToString))
             {
-                TempCommand = Parameters[x].AddParameter(TempCommand);
+                InternalToString = SQLCommand ?? string.Empty;
+                for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+                {
+                    InternalToString = Parameters[x].AddParameter(InternalToString);
+                }
             }
-
-            return TempCommand;
+            return InternalToString;
         }
 
         /// <summary>

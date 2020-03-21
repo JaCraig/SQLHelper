@@ -36,7 +36,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <param name="factory">The factory.</param>
         /// <param name="name">The name.</param>
         public Connection(IConfiguration configuration, DbProviderFactory factory, string name)
-            : this(configuration, factory, "", name)
+            : this(configuration, factory, string.Empty, name)
         {
         }
 
@@ -55,21 +55,18 @@ namespace SQLHelperDBTests.HelperClasses
             Retries = retries;
             Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            factory ??= SqlClientFactory.Instance;
-            SourceType = factory.GetType().FullName ?? "";
-            Factory = factory;
+            Factory = factory ?? SqlClientFactory.Instance;
+            SourceType = Factory.GetType().FullName ?? string.Empty;
             var TempConfig = configuration.GetConnectionString(Name);
-            if (string.IsNullOrEmpty(connection) && !(TempConfig is null))
-            {
-                ConnectionString = TempConfig;
-            }
-            else
-            {
-                ConnectionString = string.IsNullOrEmpty(connection) ? name : connection;
-            }
+            ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (TempConfig ?? Name);
             if (string.IsNullOrEmpty(parameterPrefix))
             {
-                if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
+                if (Factory is SqlClientFactory)
+                {
+                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
+                    ParameterPrefix = "@";
+                }
+                else if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
                 {
                     ParameterPrefix = "?";
                 }
@@ -77,16 +74,11 @@ namespace SQLHelperDBTests.HelperClasses
                 {
                     ParameterPrefix = ":";
                 }
-                else
-                {
-                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
-                    ParameterPrefix = "@";
-                }
             }
             else
             {
                 ParameterPrefix = parameterPrefix;
-                if (SourceType.Contains("SqlClient", StringComparison.OrdinalIgnoreCase))
+                if (Factory is SqlClientFactory)
                 {
                     DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                 }
@@ -94,7 +86,7 @@ namespace SQLHelperDBTests.HelperClasses
             if (ConnectionTimeoutRegex.IsMatch(ConnectionString))
             {
                 var TimeoutValue = ConnectionTimeoutRegex.Match(ConnectionString).Groups[2].Value;
-                CommandTimeout = int.TryParse(TimeoutValue, out int TempCommandTimeout) ? TempCommandTimeout : 30;
+                CommandTimeout = int.TryParse(TimeoutValue, out var TempCommandTimeout) ? TempCommandTimeout : 30;
             }
             CommandTimeout = CommandTimeout <= 0 ? 30 : CommandTimeout;
         }

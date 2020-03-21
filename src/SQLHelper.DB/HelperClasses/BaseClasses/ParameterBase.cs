@@ -110,7 +110,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Gets the internal value.
         /// </summary>
         /// <value>The internal value.</value>
-        public object? InternalValue { get { return Value; } }
+        public object? InternalValue => Value;
 
         /// <summary>
         /// Starting string of the parameter
@@ -166,8 +166,8 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         public string AddParameter(string command)
         {
             if (string.IsNullOrEmpty(command))
-                return "";
-            string StringValue = Value is null ? "NULL" : Value.ToString();
+                return string.Empty;
+            var StringValue = Value is null ? "NULL" : Value.ToString();
             return command.Replace(ParameterStarter + ID, typeof(TDataType) == typeof(string) ? "'" + StringValue + "'" : StringValue, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -211,9 +211,6 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Returns the string version of the parameter
         /// </summary>
         /// <returns>The string representation of the parameter</returns>
-        public override string ToString()
-        {
-            return ParameterStarter + ID;
-        }
+        public override string ToString() => ParameterStarter + ID;
     }
 }

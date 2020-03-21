@@ -36,7 +36,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="factory">The factory.</param>
         /// <param name="name">The name.</param>
         public Connection(IConfiguration configuration, DbProviderFactory factory, string name)
-            : this(configuration, factory, "", name)
+            : this(configuration, factory, string.Empty, name)
         {
         }
 
@@ -52,51 +52,16 @@ namespace SQLHelperDB.HelperClasses
         /// <exception cref="System.ArgumentNullException">configuration</exception>
         public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@", int retries = 0)
         {
+            if (configuration is null)
+                throw new ArgumentNullException(nameof(configuration));
             Retries = retries;
-            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            factory ??= SqlClientFactory.Instance;
-            SourceType = factory.GetType().FullName;
-            Factory = factory;
-            var TempConfig = configuration.GetConnectionString(Name);
-            if (string.IsNullOrEmpty(connection) && !(TempConfig is null))
-            {
-                ConnectionString = TempConfig;
-            }
-            else
-            {
-                ConnectionString = string.IsNullOrEmpty(connection) ? name : connection;
-            }
-            if (string.IsNullOrEmpty(parameterPrefix))
-            {
-                if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
-                {
-                    ParameterPrefix = "?";
-                }
-                else if (SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase))
-                {
-                    ParameterPrefix = ":";
-                }
-                else
-                {
-                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
-                    ParameterPrefix = "@";
-                }
-            }
-            else
-            {
-                ParameterPrefix = parameterPrefix;
-                if (SourceType.Contains("SqlClient", StringComparison.OrdinalIgnoreCase))
-                {
-                    DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
-                }
-            }
-            if (ConnectionTimeoutRegex.IsMatch(ConnectionString))
-            {
-                var TimeoutValue = ConnectionTimeoutRegex.Match(ConnectionString).Groups[2].Value;
-                CommandTimeout = int.TryParse(TimeoutValue, out int TempCommandTimeout) ? TempCommandTimeout : 30;
-            }
-            CommandTimeout = CommandTimeout <= 0 ? 30 : CommandTimeout;
+            Factory = factory ?? SqlClientFactory.Instance;
+            ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (configuration.GetConnectionString(Name) ?? Name);
+            if (Factory is SqlClientFactory)
+                DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
+            ParameterPrefix = !string.IsNullOrEmpty(parameterPrefix) ? parameterPrefix : GetParameterPrefix(Factory);
+            CommandTimeout = GetCommandTimeout(ConnectionString);
         }
 
         /// <summary>
@@ -104,12 +69,6 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value>The command timeout.</value>
         public int CommandTimeout { get; }
-
-        /// <summary>
-        /// Gets the configuration information.
-        /// </summary>
-        /// <value>Gets the configuration information.</value>
-        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Connection string
@@ -147,12 +106,6 @@ namespace SQLHelperDB.HelperClasses
         public int Retries { get; protected set; }
 
         /// <summary>
-        /// Source type, based on ADO.Net provider name or identifier used by CUL
-        /// </summary>
-        /// <value>The type of the source.</value>
-        public string SourceType { get; protected set; }
-
-        /// <summary>
         /// Gets the connection timeout regex.
         /// </summary>
         /// <value>The connection timeout regex.</value>
@@ -163,5 +116,36 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value>The database.</value>
         private static Regex DatabaseNameRegex { get; } = new Regex("Initial Catalog=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets the command timeout.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns>The command timeout.</returns>
+        private static int GetCommandTimeout(string connectionString)
+        {
+            var TimeoutMatch = ConnectionTimeoutRegex.Match(connectionString);
+            return TimeoutMatch.Success
+                && int.TryParse(TimeoutMatch.Groups[2].Value, out var TempCommandTimeout)
+                && TempCommandTimeout > 0
+                ? TempCommandTimeout
+                : 30;
+        }
+
+        /// <summary>
+        /// Gets the parameter prefix.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <returns>The parameter prefix.</returns>
+        private static string GetParameterPrefix(DbProviderFactory factory)
+        {
+            var SourceType = factory.GetType().FullName ?? string.Empty;
+            if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
+                return "?";
+            else if (SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase))
+                return ":";
+            else
+                return "@";
+        }
     }
 }

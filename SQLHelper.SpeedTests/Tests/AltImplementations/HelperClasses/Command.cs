@@ -45,7 +45,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, IParameter[]? parameters)
         {
-            SQLCommand = sqlCommand ?? "";
+            SQLCommand = sqlCommand ?? string.Empty;
             CommandType = commandType;
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
@@ -68,7 +68,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <param name="parameters">Parameters</param>
         public Command(Action<ICommand, List<dynamic>, TCallbackData> callBack, TCallbackData callbackObject, bool header, string sqlCommand, CommandType commandType, string parameterStarter, object[]? parameters)
         {
-            SQLCommand = sqlCommand ?? "";
+            SQLCommand = sqlCommand ?? string.Empty;
             CommandType = commandType;
             parameters ??= Array.Empty<object>();
             Parameters = new IParameter[parameters.Length];
@@ -77,7 +77,7 @@ namespace SQLHelperDBTests.HelperClasses
             DetermineFinalizable(parameterStarter, SQLCommand.ToUpperInvariant());
             for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
             {
-                object CurrentParameter = parameters[x];
+                var CurrentParameter = parameters[x];
                 if (CurrentParameter is IParameter parameter)
                     Parameters[x] = parameter;
                 else if (CurrentParameter is null)
@@ -90,6 +90,11 @@ namespace SQLHelperDBTests.HelperClasses
 
             Header = header;
         }
+
+        /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Call back
@@ -134,11 +139,6 @@ namespace SQLHelperDBTests.HelperClasses
         /// </summary>
         /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
         public bool TransactionNeeded { get; set; }
-
-        /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Determines if the objects are equal
@@ -191,7 +191,7 @@ namespace SQLHelperDBTests.HelperClasses
         {
             unchecked
             {
-                int ParameterTotal = 0;
+                var ParameterTotal = 0;
                 for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
                 {
                     ParameterTotal += Parameters[x].GetHashCode();
@@ -209,7 +209,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <returns>The string representation of the command</returns>
         public override string ToString()
         {
-            var TempCommand = SQLCommand ?? "";
+            var TempCommand = SQLCommand ?? string.Empty;
             for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
             {
                 TempCommand = Parameters[x].AddParameter(TempCommand);
