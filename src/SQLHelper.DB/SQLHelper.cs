@@ -176,24 +176,10 @@ namespace SQLHelperDB
         public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
 
         /// <summary>
-        /// Executes this instance.
-        /// </summary>
-        /// <returns>The results of the batched queries.</returns>
-        public List<List<dynamic>> Execute() => Batch.Execute();
-
-        /// <summary>
         /// Executes the queries asynchronously.
         /// </summary>
         /// <returns>The result of the queries</returns>
         public Task<List<List<dynamic>>> ExecuteAsync() => Batch.ExecuteAsync();
-
-        /// <summary>
-        /// Executes the batched commands and returns the first value, ignoring the rest.
-        /// </summary>
-        /// <typeparam name="TData">The type of the data to return.</typeparam>
-        /// <param name="defaultValue">The default value.</param>
-        /// <returns>The first value of the batch</returns>
-        public TData ExecuteScalar<TData>(TData defaultValue = default) => ExecuteScalarAsync(defaultValue).GetAwaiter().GetResult();
 
         /// <summary>
         /// Executes the batched commands and returns the first value, ignoring the rest (async).

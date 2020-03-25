@@ -5,16 +5,17 @@ using SQLHelperDB.Registration;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace TestApp
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             Canister.Builder.CreateContainer(null).AddAssembly(typeof(Program).Assembly).RegisterSQLHelper().Build();
 
-            var Results = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), SqlClientFactory.Instance)
+            var Results = await new SQLHelper(Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), SqlClientFactory.Instance)
                 .AddQuery(CommandType.Text, @";WITH MyDuplicate AS (SELECT
 Sch.[name] AS SchemaName,
 Obj.[name] AS TableName,
@@ -137,7 +138,7 @@ AND i.is_primary_key = 0
 AND i.is_unique_constraint = 0
 AND(dm_ius.user_scans + dm_ius.user_lookups) > dm_ius.user_seeks
 ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC")
-                .Execute();
+                .ExecuteAsync().ConfigureAwait(false);
 
             Console.WriteLine("These are the most expensive queries by total CPU time found.");
             Console.WriteLine(Results[3].ToString(x => x.ToString()));

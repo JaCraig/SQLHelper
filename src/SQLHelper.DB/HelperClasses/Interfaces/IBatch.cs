@@ -60,12 +60,6 @@ namespace SQLHelperDB.HelperClasses.Interfaces
         IBatch Clear();
 
         /// <summary>
-        /// Executes the commands and returns the results
-        /// </summary>
-        /// <returns>The results of the batched commands</returns>
-        List<List<dynamic>> Execute();
-
-        /// <summary>
         /// Executes the commands and returns the results (async)
         /// </summary>
         /// <returns>The results of the batched commands</returns>

@@ -103,30 +103,6 @@ namespace SQLHelperDB.SpeedTests.Tests
         }
 
         /// <summary>
-        /// Runs the current.
-        /// </summary>
-        [Benchmark]
-        public void RunCurrentExecute()
-        {
-            Helper.CreateBatch();
-            for (var x = 0; x < Count; ++x)
-            {
-                Helper.AddQuery(CommandType.Text,
-                    "INSERT INTO [SpeedTestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
-                    "A",
-                    "B",
-                    10,
-                    true,
-                    75.12m,
-                    4.53f,
-                    new DateTime(2010, 1, 1),
-                    Guid.NewGuid(),
-                    new TimeSpan(1, 0, 0));
-            }
-            Helper.ExecuteScalar<int>();
-        }
-
-        /// <summary>
         /// Setups this instance.
         /// </summary>
         [GlobalSetup]

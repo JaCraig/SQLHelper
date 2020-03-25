@@ -51,11 +51,6 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
-
-        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount => Commands.Count;
@@ -81,6 +76,11 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
+
+        /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -128,12 +128,6 @@ namespace SQLHelperDB.HelperClasses
             Headers.Clear();
             return this;
         }
-
-        /// <summary>
-        /// Executes the commands and returns the results
-        /// </summary>
-        /// <returns>The results of the batched commands</returns>
-        public List<List<dynamic>> Execute() => ExecuteCommands();
 
         /// <summary>
         /// Executes the commands and returns the results (async)
@@ -234,12 +228,6 @@ namespace SQLHelperDB.HelperClasses
             ArrayPool<string>.Shared.Return(FieldNames);
             return ReturnValue;
         }
-
-        /// <summary>
-        /// Executes the commands.
-        /// </summary>
-        /// <returns>The list of results</returns>
-        private List<List<dynamic>> ExecuteCommands() => ExecuteCommandsAsync().GetAwaiter().GetResult();
 
         /// <summary>
         /// Executes the commands asynchronously.
