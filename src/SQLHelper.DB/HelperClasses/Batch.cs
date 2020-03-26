@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using BigBook.DataMapper;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -42,12 +43,16 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <param name="source">Source info</param>
         /// <param name="stringBuilderPool">The string builder pool.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool)
+        /// <param name="aopManager">The aop manager.</param>
+        /// <param name="dataMapper">The data mapper.</param>
+        public Batch(IConnection source, ObjectPool<StringBuilder>? stringBuilderPool, Aspectus.Aspectus? aopManager, Manager? dataMapper)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
             Source = source;
             StringBuilderPool = stringBuilderPool;
+            AOPManager = aopManager;
+            DataMapper = dataMapper;
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the string builder pool.
         /// </summary>
         /// <value>The string builder pool.</value>
-        public ObjectPool<StringBuilder> StringBuilderPool { get; }
+        public ObjectPool<StringBuilder>? StringBuilderPool { get; }
 
         /// <summary>
         /// Commands to batch
@@ -76,6 +81,18 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
+
+        /// <summary>
+        /// Gets the aop manager.
+        /// </summary>
+        /// <value>The aop manager.</value>
+        private Aspectus.Aspectus? AOPManager { get; }
+
+        /// <summary>
+        /// Gets the data mapper.
+        /// </summary>
+        /// <value>The data mapper.</value>
+        private Manager? DataMapper { get; }
 
         /// <summary>
         /// Used to parse SQL commands to find parameters (when batching)
@@ -169,67 +186,6 @@ namespace SQLHelperDB.HelperClasses
         protected bool CheckTransaction() => Commands.Count > 1 && Commands.Any(Command => Command.TransactionNeeded);
 
         /// <summary>
-        /// Gets the results asynchronous.
-        /// </summary>
-        /// <param name="ReturnValue">The return value.</param>
-        /// <param name="ExecutableCommand">The executable command.</param>
-        /// <param name="FinalParameters">The final parameters.</param>
-        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
-        /// <param name="FinalSQLCommand">The final SQL command.</param>
-        /// <returns>The async task.</returns>
-        private static async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
-        {
-            if (string.IsNullOrEmpty(FinalSQLCommand))
-                return;
-            ExecutableCommand.CommandText = FinalSQLCommand;
-            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
-            {
-                FinalParameters[x].AddParameter(ExecutableCommand);
-            }
-            if (Finalizable)
-            {
-                using var TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false);
-                do
-                {
-                    ReturnValue.Add(GetValues(TempReader));
-                }
-                while (TempReader.NextResult());
-            }
-            else
-            {
-                ReturnValue.Add(new List<dynamic> { await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false) });
-            }
-        }
-
-        /// <summary>
-        /// Gets the values.
-        /// </summary>
-        /// <param name="tempReader">The temporary reader.</param>
-        /// <returns>The resulting values</returns>
-        private static List<dynamic> GetValues(DbDataReader tempReader)
-        {
-            if (tempReader is null)
-                return new List<dynamic>();
-            var ReturnValue = new List<dynamic>();
-            var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
-            for (var x = 0; x < tempReader.FieldCount; ++x)
-            {
-                FieldNames[x] = tempReader.GetName(x);
-            }
-            while (tempReader.Read())
-            {
-                var Value = new Dynamo();
-                for (var x = 0; x < tempReader.FieldCount; ++x)
-                {
-                    Value.Add(FieldNames[x], tempReader[x]);
-                }
-                ReturnValue.Add(Value);
-            }
-            ArrayPool<string>.Shared.Return(FieldNames);
-            return ReturnValue;
-        }
-
-        /// <summary>
         /// Executes the commands asynchronously.
         /// </summary>
         /// <returns>The list of results</returns>
@@ -294,6 +250,67 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
+        /// Gets the results asynchronous.
+        /// </summary>
+        /// <param name="ReturnValue">The return value.</param>
+        /// <param name="ExecutableCommand">The executable command.</param>
+        /// <param name="FinalParameters">The final parameters.</param>
+        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="FinalSQLCommand">The final SQL command.</param>
+        /// <returns>The async task.</returns>
+        private async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
+        {
+            if (string.IsNullOrEmpty(FinalSQLCommand))
+                return;
+            ExecutableCommand.CommandText = FinalSQLCommand;
+            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
+            {
+                FinalParameters[x].AddParameter(ExecutableCommand);
+            }
+            if (Finalizable)
+            {
+                using var TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false);
+                do
+                {
+                    ReturnValue.Add(GetValues(TempReader));
+                }
+                while (TempReader.NextResult());
+            }
+            else
+            {
+                ReturnValue.Add(new List<dynamic> { await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false) });
+            }
+        }
+
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <param name="tempReader">The temporary reader.</param>
+        /// <returns>The resulting values</returns>
+        private List<dynamic> GetValues(DbDataReader tempReader)
+        {
+            if (tempReader is null)
+                return new List<dynamic>();
+            var ReturnValue = new List<dynamic>();
+            var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
+            for (var x = 0; x < tempReader.FieldCount; ++x)
+            {
+                FieldNames[x] = tempReader.GetName(x);
+            }
+            while (tempReader.Read())
+            {
+                var Value = new Dynamo(false, AOPManager, StringBuilderPool, DataMapper);
+                for (var x = 0; x < tempReader.FieldCount; ++x)
+                {
+                    Value.Add(FieldNames[x], tempReader[x]);
+                }
+                ReturnValue.Add(Value);
+            }
+            ArrayPool<string>.Shared.Return(FieldNames);
+            return ReturnValue;
+        }
+
+        /// <summary>
         /// Setups the command.
         /// </summary>
         /// <param name="DatabaseConnection">The database connection.</param>
@@ -318,7 +335,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="ParameterTotal">The parameter total.</param>
         private void SetupParameters(ref int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand, ref int ParameterTotal)
         {
-            var Builder = StringBuilderPool.Get();
+            var Builder = StringBuilderPool?.Get() ?? new StringBuilder();
             Builder.Append(FinalSQLCommand);
             for (var y = 0; y < Headers.Count; ++y)
             {
@@ -385,7 +402,7 @@ namespace SQLHelperDB.HelperClasses
                 ++Count;
             }
             FinalSQLCommand = Builder.ToString();
-            StringBuilderPool.Return(Builder);
+            StringBuilderPool?.Return(Builder);
         }
     }
 }

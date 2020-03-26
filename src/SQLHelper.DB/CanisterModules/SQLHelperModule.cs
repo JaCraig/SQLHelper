@@ -1,6 +1,5 @@
 ﻿using Canister.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.ObjectPool;
 
 namespace SQLHelperDB.CanisterModules
 {
@@ -24,8 +23,6 @@ namespace SQLHelperDB.CanisterModules
             if (bootstrapper is null)
                 return;
             bootstrapper.Register<SQLHelper>(ServiceLifetime.Transient);
-            var objectPoolProvider = new DefaultObjectPoolProvider();
-            bootstrapper.Register(objectPoolProvider.CreateStringBuilderPool(), ServiceLifetime.Singleton);
         }
     }
 }

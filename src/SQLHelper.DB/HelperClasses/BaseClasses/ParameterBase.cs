@@ -189,7 +189,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
                 && OtherParameter.DatabaseType == DatabaseType
                 && OtherParameter.Direction == Direction
                 && OtherParameter.ID == ID
-                && (Canister.Builder.Bootstrapper?.Resolve<GenericEqualityComparer<TDataType>>().Equals(OtherParameter.Value, Value) ?? false);
+                && GenericEqualityComparer<TDataType>.Comparer.Equals(OtherParameter.Value, Value);
         }
 
         /// <summary>

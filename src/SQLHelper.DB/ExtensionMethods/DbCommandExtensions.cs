@@ -122,7 +122,7 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(id));
             return command.AddParameter(
                 id,
-                Canister.Builder.Bootstrapper?.Resolve<GenericEqualityComparer<TDataType>>().Equals(value, default!) ?? false ? typeof(TDataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
+                GenericEqualityComparer<TDataType>.Comparer.Equals(value, default!) ? typeof(TDataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
                 value,
                 direction);
         }
