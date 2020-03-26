@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 using BigBook;
-using BigBook.DataMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
@@ -40,46 +39,15 @@ namespace SQLHelperDB
         /// <summary>
         /// Initializes a new instance of the <see cref="SQLHelper"/> class.
         /// </summary>
-        /// <param name="configuration">The configuration object.</param>
-        /// <param name="factory">The factory.</param>
-        /// <param name="database">The database.</param>
-        /// <param name="stringBuilderPool">
-        /// The string builder pool (if passed in, this will be used to generate any StringBuilders
-        /// the system needs).
-        /// </param>
-        /// <param name="aopManager">
-        /// The aop manager (if passed in, this will be used to create new objects).
-        /// </param>
-        /// <param name="dataMapper">
-        /// The data mapper (if passed in the data mapper is used to allow mapping between the
-        /// dynamic objects that are returned and the class specified)
-        /// </param>
-        public SQLHelper(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default", ObjectPool<StringBuilder>? stringBuilderPool = null, Aspectus.Aspectus? aopManager = null, Manager? dataMapper = null)
-            : this(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database), stringBuilderPool, aopManager, dataMapper)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SQLHelper"/> class.
-        /// </summary>
-        /// <param name="connection">The connection to use.</param>
-        /// <param name="stringBuilderPool">
-        /// The string builder pool (if passed in, this will be used to generate any StringBuilders
-        /// the system needs).
-        /// </param>
-        /// <param name="aopManager">
-        /// The aop manager (if passed in, this will be used to create new objects).
-        /// </param>
-        /// <param name="dataMapper">
-        /// The data mapper (if passed in the data mapper is used to allow mapping between the
-        /// dynamic objects that are returned and the class specified)
-        /// </param>
-        public SQLHelper(IConnection connection, ObjectPool<StringBuilder>? stringBuilderPool = null, Aspectus.Aspectus? aopManager = null, Manager? dataMapper = null)
+        /// <param name="stringBuilderPool">The string builder pool.</param>
+        /// <param name="dynamoFactory">The dynamo factory.</param>
+        /// <param name="configuration">The configuration.</param>
+        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, IConfiguration configuration)
         {
             StringBuilderPool = stringBuilderPool;
-            AopManager = aopManager;
-            DataMapper = dataMapper;
-            SetConnection(connection);
+            DynamoFactory = dynamoFactory;
+            Configuration = configuration;
+            SetConnection(new Connection(configuration, SqlClientFactory.Instance, "Default"));
         }
 
         /// <summary>
@@ -92,7 +60,7 @@ namespace SQLHelperDB
         /// Gets or sets the source.
         /// </summary>
         /// <value>The source.</value>
-        public IConnection DatabaseConnection { get; private set; }
+        public IConnection? DatabaseConnection { get; private set; }
 
         /// <summary>
         /// Gets the batch.
@@ -101,28 +69,28 @@ namespace SQLHelperDB
         protected IBatch Batch { get; private set; }
 
         /// <summary>
-        /// Gets the connections.
+        /// Gets the configuration.
         /// </summary>
-        /// <value>The connections.</value>
-        private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
+        /// <value>The configuration.</value>
+        protected IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Gets the aop manager.
+        /// Gets the dynamo factory.
         /// </summary>
-        /// <value>The aop manager.</value>
-        private Aspectus.Aspectus? AopManager { get; }
-
-        /// <summary>
-        /// Gets the data mapper.
-        /// </summary>
-        /// <value>The data mapper.</value>
-        private Manager? DataMapper { get; }
+        /// <value>The dynamo factory.</value>
+        protected DynamoFactory DynamoFactory { get; }
 
         /// <summary>
         /// Gets the string builder pool.
         /// </summary>
         /// <value>The string builder pool.</value>
-        private ObjectPool<StringBuilder>? StringBuilderPool { get; }
+        protected ObjectPool<StringBuilder> StringBuilderPool { get; }
+
+        /// <summary>
+        /// Gets the connections.
+        /// </summary>
+        /// <value>The connections.</value>
+        private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
 
         /// <summary>
         /// Adds a query that gets carried across in internal batches.
@@ -213,11 +181,10 @@ namespace SQLHelperDB
         /// <summary>
         /// Creates the batch using the connection info specified.
         /// </summary>
-        /// <param name="configuration">The configuration.</param>
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         /// <returns>This.</returns>
-        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
+        public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(Configuration, factory ?? SqlClientFactory.Instance, database));
 
         /// <summary>
         /// Executes the queries asynchronously.
@@ -274,7 +241,7 @@ namespace SQLHelperDB
             DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
             if (!Connections.ContainsKey(connection.Name))
                 Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
-            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, AopManager, DataMapper);
+            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, DynamoFactory);
             Batch.SetConnection(DatabaseConnection);
         }
     }

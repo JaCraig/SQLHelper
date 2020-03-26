@@ -1,11 +1,13 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BigBook;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.Registration;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 
 namespace SQLHelperDB.SpeedTests.Tests
 {
@@ -26,7 +28,7 @@ namespace SQLHelperDB.SpeedTests.Tests
                 .AddAssembly(typeof(Program).GetTypeInfo().Assembly)
                 .RegisterSQLHelper()
                 .Build();
-            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), SqlClientFactory.Instance);
+            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>());
         }
     }
 }

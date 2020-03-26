@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 using BigBook;
-using BigBook.DataMapper;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -43,16 +42,14 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <param name="source">Source info</param>
         /// <param name="stringBuilderPool">The string builder pool.</param>
-        /// <param name="aopManager">The aop manager.</param>
-        /// <param name="dataMapper">The data mapper.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder>? stringBuilderPool, Aspectus.Aspectus? aopManager, Manager? dataMapper)
+        /// <param name="dynamoFactory">The dynamo factory.</param>
+        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
             Source = source;
             StringBuilderPool = stringBuilderPool;
-            AOPManager = aopManager;
-            DataMapper = dataMapper;
+            DynamoFactory = dynamoFactory;
         }
 
         /// <summary>
@@ -61,10 +58,16 @@ namespace SQLHelperDB.HelperClasses
         public int CommandCount => Commands.Count;
 
         /// <summary>
+        /// Gets the dynamo factory.
+        /// </summary>
+        /// <value>The dynamo factory.</value>
+        public DynamoFactory DynamoFactory { get; }
+
+        /// <summary>
         /// Gets the string builder pool.
         /// </summary>
         /// <value>The string builder pool.</value>
-        public ObjectPool<StringBuilder>? StringBuilderPool { get; }
+        public ObjectPool<StringBuilder> StringBuilderPool { get; }
 
         /// <summary>
         /// Commands to batch
@@ -81,18 +84,6 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
-
-        /// <summary>
-        /// Gets the aop manager.
-        /// </summary>
-        /// <value>The aop manager.</value>
-        private Aspectus.Aspectus? AOPManager { get; }
-
-        /// <summary>
-        /// Gets the data mapper.
-        /// </summary>
-        /// <value>The data mapper.</value>
-        private Manager? DataMapper { get; }
 
         /// <summary>
         /// Used to parse SQL commands to find parameters (when batching)
@@ -299,7 +290,7 @@ namespace SQLHelperDB.HelperClasses
             }
             while (tempReader.Read())
             {
-                var Value = new Dynamo(false, AOPManager, StringBuilderPool, DataMapper);
+                var Value = DynamoFactory.Create(false);
                 for (var x = 0; x < tempReader.FieldCount; ++x)
                 {
                     Value.Add(FieldNames[x], tempReader[x]);

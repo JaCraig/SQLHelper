@@ -1,5 +1,4 @@
 ﻿using BigBook;
-using Microsoft.Extensions.Configuration;
 using SQLHelperDB;
 using SQLHelperDB.Registration;
 using System;
@@ -14,8 +13,9 @@ namespace TestApp
         private static async Task Main(string[] args)
         {
             Canister.Builder.CreateContainer(null).AddAssembly(typeof(Program).Assembly).RegisterSQLHelper().Build();
+            var Helper = Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
 
-            var Results = await new SQLHelper(Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), SqlClientFactory.Instance)
+            var Results = await Helper.CreateBatch(SqlClientFactory.Instance)
                 .AddQuery(CommandType.Text, @";WITH MyDuplicate AS (SELECT
 Sch.[name] AS SchemaName,
 Obj.[name] AS TableName,
