@@ -286,7 +286,8 @@ namespace SQLHelperDB.HelperClasses
             var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
             for (var x = 0; x < tempReader.FieldCount; ++x)
             {
-                FieldNames[x] = tempReader.GetName(x);
+                var FieldName = tempReader.GetName(x);
+                FieldNames[x] = !string.IsNullOrWhiteSpace(FieldName) ? FieldName : $"(No column name #{x})";
             }
             while (tempReader.Read())
             {
