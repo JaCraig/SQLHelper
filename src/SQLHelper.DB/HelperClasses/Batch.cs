@@ -269,7 +269,7 @@ namespace SQLHelperDB.HelperClasses
             }
             else
             {
-                ReturnValue.Add(new List<dynamic> { await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false) });
+                ReturnValue.Add(new List<dynamic> { DynamoFactory.Create(await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false), false) });
             }
         }
 
