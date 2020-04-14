@@ -53,6 +53,11 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
+
+        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount => Commands.Count;
@@ -84,11 +89,6 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
-
-        /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -207,7 +207,7 @@ namespace SQLHelperDB.HelperClasses
                         var FinalSQLCommand = string.Empty;
                         ExecutableCommand.Parameters.Clear();
                         var EndCount = SetupParameters(Count, FinalParameters, ref Finalizable, ref FinalSQLCommand);
-                        await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand, Count).ConfigureAwait(false);
+                        await GetResultsAsync(ReturnValue, ExecutableCommand, FinalParameters, Finalizable, FinalSQLCommand).ConfigureAwait(false);
                         Count = EndCount;
                     }
                     while (Count < CommandCount);
@@ -216,6 +216,7 @@ namespace SQLHelperDB.HelperClasses
                 catch { ExecutableCommand.Rollback(); throw; }
                 finally { ExecutableCommand.Close(); }
             }
+            FinalizeCommands(ReturnValue);
             return ReturnValue;
         }
 
@@ -223,17 +224,19 @@ namespace SQLHelperDB.HelperClasses
         /// Finalizes the commands.
         /// </summary>
         /// <param name="ReturnValue">The return value.</param>
-        /// <param name="index">The index.</param>
-        private void FinalizeCommands(List<dynamic> ReturnValue, int index)
+        private void FinalizeCommands(List<List<dynamic>> ReturnValue)
         {
-            var Command = Commands[index];
-            if (Command.Finalizable)
+            for (int x = 0, y = 0; x < Commands.Count; ++x)
             {
-                Command.Finalize(ReturnValue);
-            }
-            else
-            {
-                Command.Finalize(new List<dynamic>());
+                if (Commands[x].Finalizable)
+                {
+                    Commands[x].Finalize(ReturnValue[y]);
+                    ++y;
+                }
+                else
+                {
+                    Commands[x].Finalize(new List<dynamic>());
+                }
             }
         }
 
@@ -245,8 +248,8 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="FinalParameters">The final parameters.</param>
         /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
         /// <param name="FinalSQLCommand">The final SQL command.</param>
-        /// <param name="startCount">The start count.</param>
-        private async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand, int startCount)
+        /// <returns>The async task.</returns>
+        private async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
         {
             if (string.IsNullOrEmpty(FinalSQLCommand))
                 return;
@@ -258,13 +261,9 @@ namespace SQLHelperDB.HelperClasses
             if (Finalizable)
             {
                 using var TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false);
-                int Count = startCount;
                 do
                 {
-                    var Values = GetValues(TempReader);
-                    FinalizeCommands(Values, Count);
-                    ++Count;
-                    ReturnValue.Add(Values);
+                    ReturnValue.Add(GetValues(TempReader));
                 }
                 while (TempReader.NextResult());
             }
@@ -321,12 +320,11 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Setups the parameters.
         /// </summary>
-        /// <param name="startCount">The start count.</param>
+        /// <param name="Count">The count.</param>
         /// <param name="FinalParameters">The final parameters.</param>
         /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
         /// <param name="FinalSQLCommand">The final SQL command.</param>
-        /// <returns>The end count</returns>
-        private int SetupParameters(int startCount, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand)
+        private int SetupParameters(int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand)
         {
             var ParameterTotal = 0;
             var Builder = StringBuilderPool?.Get() ?? new StringBuilder();
@@ -359,7 +357,7 @@ namespace SQLHelperDB.HelperClasses
                     }
                 }
             }
-            for (var y = startCount; y < Commands.Count; ++y)
+            for (var y = Count; y < Commands.Count; ++y)
             {
                 var Command = Commands[y];
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
@@ -369,7 +367,7 @@ namespace SQLHelperDB.HelperClasses
                 if (Command.CommandType == CommandType.Text)
                 {
                     var TempCommandText = Command.SQLCommand ?? string.Empty;
-                    var Suffix = "Command" + startCount.ToString(CultureInfo.InvariantCulture);
+                    var Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
                     Builder.Append(string.IsNullOrEmpty(Command.SQLCommand) ?
                                         string.Empty :
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
@@ -393,11 +391,11 @@ namespace SQLHelperDB.HelperClasses
                         FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
-                ++startCount;
+                ++Count;
             }
             FinalSQLCommand = Builder.ToString();
             StringBuilderPool?.Return(Builder);
-            return startCount;
+            return Count;
         }
     }
 }
