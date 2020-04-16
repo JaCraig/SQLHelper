@@ -66,10 +66,6 @@ namespace SQLHelperDBTests.HelperClasses
                     DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                     ParameterPrefix = "@";
                 }
-                else if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
-                {
-                    ParameterPrefix = "?";
-                }
                 else if (SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase))
                 {
                     ParameterPrefix = ":";

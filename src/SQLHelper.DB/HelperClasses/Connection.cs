@@ -58,8 +58,9 @@ namespace SQLHelperDB.HelperClasses
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
             Factory = factory ?? SqlClientFactory.Instance;
             ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (configuration.GetConnectionString(Name) ?? Name);
-            if (Factory is SqlClientFactory)
-                DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
+            var DatabaseRegexResult = DatabaseNameRegex.Match(ConnectionString);
+            if (DatabaseRegexResult.Success)
+                DatabaseName = DatabaseRegexResult.Groups["name"].Value;
             ParameterPrefix = !string.IsNullOrEmpty(parameterPrefix) ? parameterPrefix : GetParameterPrefix(Factory);
             CommandTimeout = GetCommandTimeout(ConnectionString);
         }
@@ -115,7 +116,7 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        private static Regex DatabaseNameRegex { get; } = new Regex("Initial Catalog=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static Regex DatabaseNameRegex { get; } = new Regex("(Initial Catalog|Database|Data Source)=(?<name>[^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Gets the command timeout.
@@ -140,12 +141,7 @@ namespace SQLHelperDB.HelperClasses
         private static string GetParameterPrefix(DbProviderFactory factory)
         {
             var SourceType = factory.GetType().FullName ?? string.Empty;
-            if (SourceType.Contains("MySql", StringComparison.OrdinalIgnoreCase))
-                return "?";
-            else if (SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase))
-                return ":";
-            else
-                return "@";
+            return SourceType.Contains("Oracle", StringComparison.OrdinalIgnoreCase) ? ":" : "@";
         }
     }
 }
