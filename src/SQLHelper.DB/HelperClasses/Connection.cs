@@ -116,7 +116,7 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        private static Regex DatabaseNameRegex { get; } = new Regex("(Initial Catalog|Database|Data Source)=(?<name>[^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static Regex DatabaseNameRegex { get; } = new Regex("(Initial Catalog|Database)=(?<name>[^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Gets the command timeout.
