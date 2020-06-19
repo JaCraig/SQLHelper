@@ -53,11 +53,6 @@ namespace SQLHelperDB.HelperClasses
         }
 
         /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
-
-        /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount => Commands.Count;
@@ -89,6 +84,11 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
+
+        /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -213,7 +213,12 @@ namespace SQLHelperDB.HelperClasses
                     while (Count < CommandCount);
                     ExecutableCommand.Commit();
                 }
-                catch { ExecutableCommand.Rollback(); throw; }
+                catch
+                {
+                    Serilog.Log.Logger.Error(ExecutableCommand.CommandText);
+                    ExecutableCommand.Rollback();
+                    throw;
+                }
                 finally { ExecutableCommand.Close(); }
             }
             FinalizeCommands(ReturnValue);
