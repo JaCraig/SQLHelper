@@ -229,7 +229,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// Executes the commands.
         /// </summary>
         /// <returns>The list of results</returns>
-        private List<List<dynamic>> ExecuteCommands() => ExecuteCommandsAsync().GetAwaiter().GetResult();
+        private List<List<dynamic>> ExecuteCommands() => AsyncHelper.RunSync(ExecuteCommandsAsync);
 
         /// <summary>
         /// Executes the commands asynchronously.

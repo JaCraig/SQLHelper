@@ -191,7 +191,7 @@ namespace SQLHelperDBTests
         /// <typeparam name="TData">The type of the data to return.</typeparam>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public TData ExecuteScalar<TData>(TData defaultValue = default) => ExecuteScalarAsync(defaultValue).GetAwaiter().GetResult();
+        public TData ExecuteScalar<TData>(TData defaultValue = default) => AsyncHelper.RunSync(() => ExecuteScalarAsync(defaultValue));
 
         /// <summary>
         /// Executes the batched commands and returns the first value, ignoring the rest (async).
