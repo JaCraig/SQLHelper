@@ -23,7 +23,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
                     Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
-                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>()
+                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text);
             Assert.NotNull(Instance);
@@ -41,7 +41,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
                     Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
-                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>()
+                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text)
                 .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups", CommandType.Text);
@@ -60,7 +60,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
                     Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
-                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>()
+                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1)
                 .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups WHERE GroupID=@0", CommandType.Text, 10);
@@ -79,7 +79,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
                     Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
-                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>()
+                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1);
             Assert.NotNull(Instance);
@@ -97,7 +97,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
                     Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
-                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>()
+                    Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), null
                 );
             Assert.NotNull(Instance);
             Assert.Equal("", Instance.ToString());

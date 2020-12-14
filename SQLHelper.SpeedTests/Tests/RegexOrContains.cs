@@ -9,12 +9,12 @@ namespace SQLHelper.SpeedTests.Tests
     {
         private static Regex FirstPass { get; } = new Regex("(INSERT)|(UPDATE)|(DELETE)|(CREATE)|(ALTER)|(INTO)|(DROP)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static Regex SecondPass { get; } = new Regex("(ALTER DATABASE)|(CREATE DATABASE)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        private string QueryText { get; set; } = "IF NOT EXISTS (SELECT TOP 1 ID_ FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 6701 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 1341) BEGIN INSERT INTO [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade]([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_],[dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_]) VALUES (6701,1341) END;";
+        private string QueryText { get; } = "IF NOT EXISTS (SELECT TOP 1 ID_ FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 6701 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 1341) BEGIN INSERT INTO [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade]([dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_],[dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_]) VALUES (6701,1341) END;";
 
         [Benchmark]
         public void Contains()
         {
-            var Value = (QueryText.Contains("INSERT", StringComparison.Ordinal)
+            _ = (QueryText.Contains("INSERT", StringComparison.Ordinal)
                                             || QueryText.Contains("UPDATE", StringComparison.Ordinal)
                                             || QueryText.Contains("DELETE", StringComparison.Ordinal)
                                             || QueryText.Contains("CREATE", StringComparison.Ordinal)
@@ -28,7 +28,7 @@ namespace SQLHelper.SpeedTests.Tests
         [Benchmark(Baseline = true)]
         public void ContainsIgnoreCase()
         {
-            var Value = (QueryText.Contains("INSERT", StringComparison.OrdinalIgnoreCase)
+            _ = (QueryText.Contains("INSERT", StringComparison.OrdinalIgnoreCase)
                                             || QueryText.Contains("UPDATE", StringComparison.OrdinalIgnoreCase)
                                             || QueryText.Contains("DELETE", StringComparison.OrdinalIgnoreCase)
                                             || QueryText.Contains("CREATE", StringComparison.OrdinalIgnoreCase)
@@ -42,7 +42,7 @@ namespace SQLHelper.SpeedTests.Tests
         [Benchmark]
         public void RegexCall()
         {
-            var Value = FirstPass.IsMatch(QueryText) && !SecondPass.IsMatch(QueryText);
+            _ = FirstPass.IsMatch(QueryText) && !SecondPass.IsMatch(QueryText);
         }
     }
 }

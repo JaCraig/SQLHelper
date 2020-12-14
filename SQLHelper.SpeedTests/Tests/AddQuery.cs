@@ -28,7 +28,7 @@ namespace SQLHelperDB.SpeedTests.Tests
                 .AddAssembly(typeof(Program).GetTypeInfo().Assembly)
                 .RegisterSQLHelper()
                 .Build();
-            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>());
+            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), null);
         }
     }
 }

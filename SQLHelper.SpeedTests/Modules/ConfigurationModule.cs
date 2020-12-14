@@ -11,7 +11,7 @@ namespace SQLHelperDB.SpeedTests.Modules
 
         protected string ConnectionString => "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false";
 
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IBootstrapper? bootstrapper)
         {
             if (bootstrapper is null)
                 return;

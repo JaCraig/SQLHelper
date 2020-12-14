@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -42,12 +43,14 @@ namespace SQLHelperDB
         /// <param name="stringBuilderPool">The string builder pool.</param>
         /// <param name="dynamoFactory">The dynamo factory.</param>
         /// <param name="configuration">The configuration.</param>
-        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, IConfiguration configuration)
+        /// <param name="logger">The logger.</param>
+        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, IConfiguration configuration, ILogger<SQLHelper>? logger)
         {
             StringBuilderPool = stringBuilderPool;
             DynamoFactory = dynamoFactory;
             Configuration = configuration;
             SetConnection(new Connection(configuration, SqlClientFactory.Instance, "Default"));
+            Logger = logger;
         }
 
         /// <summary>
@@ -91,6 +94,12 @@ namespace SQLHelperDB
         /// </summary>
         /// <value>The connections.</value>
         private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
+
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
+        private ILogger<SQLHelper>? Logger { get; }
 
         /// <summary>
         /// Adds a query that gets carried across in internal batches.
@@ -241,7 +250,7 @@ namespace SQLHelperDB
             DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
             if (!Connections.ContainsKey(connection.Name))
                 Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
-            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, DynamoFactory);
+            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, DynamoFactory, Logger);
             Batch.SetConnection(DatabaseConnection);
         }
     }

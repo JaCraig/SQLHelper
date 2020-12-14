@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -43,13 +44,15 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="source">Source info</param>
         /// <param name="stringBuilderPool">The string builder pool.</param>
         /// <param name="dynamoFactory">The dynamo factory.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory)
+        /// <param name="logger">The logger.</param>
+        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, ILogger? logger)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
             Source = source;
             StringBuilderPool = stringBuilderPool;
             DynamoFactory = dynamoFactory;
+            Logger = logger;
         }
 
         /// <summary>
@@ -84,6 +87,12 @@ namespace SQLHelperDB.HelperClasses
         /// Connection string
         /// </summary>
         protected IConnection Source { get; private set; }
+
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
+        private ILogger? Logger { get; }
 
         /// <summary>
         /// Used to parse SQL commands to find parameters (when batching)
@@ -215,7 +224,7 @@ namespace SQLHelperDB.HelperClasses
                 }
                 catch
                 {
-                    Serilog.Log.Logger.Error(ExecutableCommand.CommandText);
+                    Logger?.LogError(ExecutableCommand.CommandText);
                     ExecutableCommand.Rollback();
                     throw;
                 }
