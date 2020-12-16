@@ -1,4 +1,5 @@
 ﻿using BigBook;
+using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB;
 using SQLHelperDB.Registration;
 using System;
@@ -12,7 +13,9 @@ namespace TestApp
     {
         private static async Task Main(string[] args)
         {
-            Canister.Builder.CreateContainer(null).AddAssembly(typeof(Program).Assembly).RegisterSQLHelper().Build();
+            var Services = new ServiceCollection();
+            Services.AddLogging();
+            Canister.Builder.CreateContainer(Services).AddAssembly(typeof(Program).Assembly).RegisterSQLHelper().Build();
             var Helper = Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
 
             var Results = await Helper.CreateBatch(SqlClientFactory.Instance)
