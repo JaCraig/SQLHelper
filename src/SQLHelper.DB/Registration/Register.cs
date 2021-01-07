@@ -14,10 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook.Registration;
 using Canister.Interfaces;
 
-namespace SQLHelperDB.Registration
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Registration extension methods
@@ -29,12 +28,10 @@ namespace SQLHelperDB.Registration
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper? RegisterSQLHelper(this IBootstrapper? bootstrapper)
+        public static ICanisterConfiguration? RegisterSQLHelper(this ICanisterConfiguration? bootstrapper)
         {
-            if (bootstrapper is null)
-                return bootstrapper;
-            return bootstrapper.AddAssembly(typeof(RegistrationExtensions).Assembly)
-                               .RegisterBigBookOfDataTypes();
+            return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
+                                .RegisterBigBookOfDataTypes();
         }
     }
 }

@@ -4,9 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
-using SQLHelperDB.Registration;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -111,10 +109,8 @@ namespace SQLHelperDB.SpeedTests.Tests
         [GlobalSetup]
         public void Setup()
         {
-            Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                .AddAssembly(typeof(Program).Assembly)
-                .RegisterSQLHelper()
-                .Build();
+            new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly)
+                .RegisterSQLHelper());
             Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), null);
             Helper2 = new SQLHelperDBTests.SQLHelper(Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), SqlClientFactory.Instance);
 

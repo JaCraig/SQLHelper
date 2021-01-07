@@ -1,11 +1,7 @@
-﻿using FileCurator.Registration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.ExtensionMethods;
-using SQLHelperDB.Registration;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Reflection;
 using Xunit;
 
 namespace SQLHelperDB.Tests.BaseClasses
@@ -17,11 +13,9 @@ namespace SQLHelperDB.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper is null)
             {
-                Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                   .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
+                new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(TestingDirectoryFixture).Assembly)
                    .RegisterSQLHelper()
-                   .RegisterFileCurator()
-                   .Build();
+                   .RegisterFileCurator());
             }
 
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
