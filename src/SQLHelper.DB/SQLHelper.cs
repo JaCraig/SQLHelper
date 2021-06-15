@@ -18,6 +18,7 @@ using BigBook;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
+using ObjectCartographer;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
@@ -41,13 +42,11 @@ namespace SQLHelperDB
         /// Initializes a new instance of the <see cref="SQLHelper"/> class.
         /// </summary>
         /// <param name="stringBuilderPool">The string builder pool.</param>
-        /// <param name="dynamoFactory">The dynamo factory.</param>
         /// <param name="configuration">The configuration.</param>
         /// <param name="logger">The logger.</param>
-        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, IConfiguration configuration, ILogger<SQLHelper>? logger)
+        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, IConfiguration configuration, ILogger<SQLHelper>? logger)
         {
             StringBuilderPool = stringBuilderPool;
-            DynamoFactory = dynamoFactory;
             Configuration = configuration;
             SetConnection(new Connection(configuration, SqlClientFactory.Instance, "Default"));
             Logger = logger;
@@ -76,12 +75,6 @@ namespace SQLHelperDB
         /// </summary>
         /// <value>The configuration.</value>
         protected IConfiguration Configuration { get; }
-
-        /// <summary>
-        /// Gets the dynamo factory.
-        /// </summary>
-        /// <value>The dynamo factory.</value>
-        protected DynamoFactory DynamoFactory { get; }
 
         /// <summary>
         /// Gets the string builder pool.
@@ -250,7 +243,7 @@ namespace SQLHelperDB
             DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
             if (!Connections.ContainsKey(connection.Name))
                 Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
-            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, DynamoFactory, Logger);
+            Batch ??= new Batch(DatabaseConnection, StringBuilderPool, Logger);
             Batch.SetConnection(DatabaseConnection);
         }
     }

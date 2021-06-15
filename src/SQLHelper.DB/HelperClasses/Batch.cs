@@ -43,28 +43,25 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <param name="source">Source info</param>
         /// <param name="stringBuilderPool">The string builder pool.</param>
-        /// <param name="dynamoFactory">The dynamo factory.</param>
         /// <param name="logger">The logger.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, DynamoFactory dynamoFactory, ILogger? logger)
+        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, ILogger? logger)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
             Source = source;
             StringBuilderPool = stringBuilderPool;
-            DynamoFactory = dynamoFactory;
             Logger = logger;
         }
+
+        /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Command count
         /// </summary>
         public int CommandCount => Commands.Count;
-
-        /// <summary>
-        /// Gets the dynamo factory.
-        /// </summary>
-        /// <value>The dynamo factory.</value>
-        public DynamoFactory DynamoFactory { get; }
 
         /// <summary>
         /// Gets the string builder pool.
@@ -93,11 +90,6 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value>The logger.</value>
         private ILogger? Logger { get; }
-
-        /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -283,7 +275,7 @@ namespace SQLHelperDB.HelperClasses
             }
             else
             {
-                ReturnValue.Add(new List<dynamic> { DynamoFactory.Create(await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false), false) });
+                ReturnValue.Add(new List<dynamic> { new Dynamo(await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false), false) });
             }
         }
 
@@ -305,7 +297,7 @@ namespace SQLHelperDB.HelperClasses
             }
             while (tempReader.Read())
             {
-                var Value = DynamoFactory.Create(false);
+                var Value = new Dynamo(false);
                 for (var x = 0; x < tempReader.FieldCount; ++x)
                 {
                     Value.Add(FieldNames[x], tempReader[x]);

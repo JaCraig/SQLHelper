@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Microsoft.Extensions.Configuration;
+using ObjectCartographer;
 using SQLHelperDBTests.HelperClasses;
 using SQLHelperDBTests.HelperClasses.Interfaces;
 using System;

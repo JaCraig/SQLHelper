@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using ObjectCartographer;
 using System;
 using System.Data;
 

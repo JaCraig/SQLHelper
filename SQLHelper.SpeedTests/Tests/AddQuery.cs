@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BigBook;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
@@ -23,7 +22,7 @@ namespace SQLHelperDB.SpeedTests.Tests
         {
             new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly)
                 .RegisterSQLHelper());
-            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<DynamoFactory>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), null);
+            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), null);
         }
     }
 }

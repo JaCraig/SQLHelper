@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using BigBook.Comparison;
+using ObjectCartographer;
 using SQLHelperDBTests.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
