@@ -42,7 +42,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Oracle, etc.)
         /// </param>
         protected ParameterBase(string id, TDataType value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-            : this(id, value is null ? typeof(TDataType).To(DbType.Int32) : value.GetType().To(DbType.Int32), value, direction, parameterStarter)
+            : this(id, value is null ? typeof(TDataType).To<DbType>() : value.GetType().To<DbType>(), value, direction, parameterStarter)
         {
         }
 

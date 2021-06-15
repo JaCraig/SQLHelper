@@ -13,9 +13,7 @@ namespace SQLHelperDB.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper is null)
             {
-                new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(TestingDirectoryFixture).Assembly)
-                   .RegisterSQLHelper()
-                   .RegisterFileCurator());
+                new ServiceCollection().AddCanisterModules();
             }
 
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
