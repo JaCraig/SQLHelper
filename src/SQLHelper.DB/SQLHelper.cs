@@ -44,7 +44,7 @@ namespace SQLHelperDB
         /// <param name="stringBuilderPool">The string builder pool.</param>
         /// <param name="configuration">The configuration.</param>
         /// <param name="logger">The logger.</param>
-        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, IConfiguration configuration, ILogger<SQLHelper>? logger)
+        public SQLHelper(ObjectPool<StringBuilder> stringBuilderPool, IConfiguration configuration, ILogger<SQLHelper>? logger = null)
         {
             StringBuilderPool = stringBuilderPool;
             Configuration = configuration;

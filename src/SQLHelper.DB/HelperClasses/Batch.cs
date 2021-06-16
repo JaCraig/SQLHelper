@@ -44,7 +44,7 @@ namespace SQLHelperDB.HelperClasses
         /// <param name="source">Source info</param>
         /// <param name="stringBuilderPool">The string builder pool.</param>
         /// <param name="logger">The logger.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, ILogger? logger)
+        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, ILogger? logger = null)
         {
             Commands = new List<ICommand>();
             Headers = new List<ICommand>();
@@ -52,11 +52,6 @@ namespace SQLHelperDB.HelperClasses
             StringBuilderPool = stringBuilderPool;
             Logger = logger;
         }
-
-        /// <summary>
-        /// Used to parse SQL commands to find parameters (when batching)
-        /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Command count
@@ -90,6 +85,11 @@ namespace SQLHelperDB.HelperClasses
         /// </summary>
         /// <value>The logger.</value>
         private ILogger? Logger { get; }
+
+        /// <summary>
+        /// Used to parse SQL commands to find parameters (when batching)
+        /// </summary>
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
