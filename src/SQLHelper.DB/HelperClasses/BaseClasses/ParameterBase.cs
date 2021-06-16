@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using BigBook.Comparison;
 using ObjectCartographer;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -67,7 +66,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// Oracle, etc.)
         /// </param>
         protected ParameterBase(string id, SqlDbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-            : this(id, type.To(DbType.Int32), value, direction, parameterStarter)
+            : this(id, type.To<DbType>(), value, direction, parameterStarter)
         {
         }
 

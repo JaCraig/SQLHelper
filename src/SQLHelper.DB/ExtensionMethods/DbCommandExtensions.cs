@@ -98,7 +98,7 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(command));
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
-            return command.AddParameter(id, type.To(DbType.Int32), value, direction);
+            return command.AddParameter(id, type.To<DbType>(), value, direction);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SQLHelperDB.ExtensionMethods
                 throw new ArgumentNullException(nameof(id));
             return command.AddParameter(
                 id,
-                GenericEqualityComparer<TDataType>.Comparer.Equals(value, default!) ? typeof(TDataType).To(DbType.Int32) : value?.GetType().To(DbType.Int32) ?? DbType.Int32,
+                GenericEqualityComparer<TDataType>.Comparer.Equals(value, default!) ? typeof(TDataType).To<DbType>() : value?.GetType().To<DbType>() ?? DbType.Int32,
                 value,
                 direction);
         }
