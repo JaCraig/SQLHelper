@@ -53,15 +53,6 @@ namespace SQLHelperDB
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SQLHelper"/> class.
-        /// </summary>
-        /// <param name="helper">The helper.</param>
-        public SQLHelper(SQLHelper helper)
-            : this(helper.StringBuilderPool, helper.Configuration, helper.Logger)
-        {
-        }
-
-        /// <summary>
         /// Gets the number of commands currently in the batch.
         /// </summary>
         /// <value>The number of commands currently in the batch</value>
@@ -165,6 +156,15 @@ namespace SQLHelperDB
             if (!(helper is null))
                 Batch.AddQuery(helper.Batch);
             return this;
+        }
+
+        /// <summary>
+        /// Creates a copy of this instance.
+        /// </summary>
+        /// <returns>A new SQLHelper based on this instance.</returns>
+        public SQLHelper Copy()
+        {
+            return new SQLHelper(StringBuilderPool, Configuration, Logger);
         }
 
         /// <summary>
