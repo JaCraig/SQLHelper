@@ -20,9 +20,9 @@ namespace SQLHelper.SpeedTests.Tests
                                             || QueryText.Contains("CREATE", StringComparison.Ordinal)
                                             || QueryText.Contains("ALTER", StringComparison.Ordinal)
                                             || QueryText.Contains("INTO", StringComparison.Ordinal)
-                                            || QueryText.Contains("DROP", StringComparison.Ordinal)
+                                            || QueryText.Contains("DROP", StringComparison.Ordinal))
                                           && (!(QueryText.Contains("ALTER DATABASE", StringComparison.Ordinal)
-                                            || QueryText.Contains("CREATE DATABASE", StringComparison.Ordinal))));
+                                            || QueryText.Contains("CREATE DATABASE", StringComparison.Ordinal)));
         }
 
         [Benchmark(Baseline = true)]

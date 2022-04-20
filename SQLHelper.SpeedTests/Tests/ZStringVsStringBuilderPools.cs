@@ -47,16 +47,14 @@ namespace SQLHelper.SpeedTests.Tests
         [Benchmark]
         public void ZStringUse()
         {
-            using (var Builder = ZString.CreateUtf8StringBuilder())
+            using var Builder = ZString.CreateUtf8StringBuilder();
+            for (var x = 0; x < Count; ++x)
             {
-                for (var x = 0; x < Count; ++x)
-                {
-                    Builder.Append("Testing this");
-                    Builder.AppendFormat(" out {0}", 12);
-                    Builder.AppendLine("Blah");
-                }
-                _ = Builder.ToString();
+                Builder.Append("Testing this");
+                Builder.AppendFormat(" out {0}", 12);
+                Builder.AppendLine("Blah");
             }
+            _ = Builder.ToString();
         }
     }
 }

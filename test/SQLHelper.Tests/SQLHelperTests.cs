@@ -1,5 +1,4 @@
-﻿using BigBook;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
@@ -7,7 +6,6 @@ using SQLHelperDB.Tests.DataClasses;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -346,7 +344,7 @@ namespace SQLHelperDB.Tests
                 .ExecuteAsync().ConfigureAwait(false);
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            var ConvertedResult = ListResult[0].Select(x => (TestTableClass)x).ToList();
+            var ConvertedResult = ListResult[0].ConvertAll(x => (TestTableClass)x);
             for (var x = 0; x < 50; ++x)
             {
                 Assert.Equal("A", ConvertedResult[x].StringValue1);

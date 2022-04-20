@@ -92,11 +92,6 @@ namespace SQLHelperDBTests.HelperClasses
         }
 
         /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        /// <summary>
         /// Call back
         /// </summary>
         public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; }
@@ -141,13 +136,18 @@ namespace SQLHelperDBTests.HelperClasses
         public bool TransactionNeeded { get; set; }
 
         /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
         /// Determines if the objects are equal
         /// </summary>
         /// <param name="obj">Object to compare to</param>
         /// <returns>Determines if the commands are equal</returns>
         public override bool Equals(object? obj)
         {
-            if (!(obj is Command<TCallbackData> OtherCommand))
+            if (obj is not Command<TCallbackData> OtherCommand)
                 return false;
 
             if (OtherCommand.SQLCommand != SQLCommand

@@ -148,8 +148,8 @@ namespace SQLHelperDBTests.HelperClasses.BaseClasses
         public static bool operator ==(ParameterBase<TDataType> first, ParameterBase<TDataType> second)
         {
             return ReferenceEquals(first, second)
-                || (!(first is null)
-                    && !(second is null)
+                || (first is not null
+                    && second is not null
                     && first.GetHashCode() == second.GetHashCode());
         }
 

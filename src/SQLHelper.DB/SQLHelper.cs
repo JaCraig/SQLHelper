@@ -241,7 +241,8 @@ namespace SQLHelperDB
         /// <param name="___">Ignored</param>
         /// <param name="__">Ignored</param>
         /// <param name="_">Ignored</param>
-        private static void DefaultAction(ICommand ___, List<dynamic> __, object _) { }
+        private static void DefaultAction(ICommand ___, List<dynamic> __, object _)
+        { }
 
         /// <summary>
         /// Sets the connection.
