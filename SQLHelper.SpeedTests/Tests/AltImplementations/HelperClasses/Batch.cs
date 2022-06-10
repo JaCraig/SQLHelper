@@ -70,7 +70,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <summary>
         /// Used to parse SQL commands to find parameters (when batching)
         /// </summary>
-        private static readonly Regex ParameterRegex = new(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
+        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
 
         /// <summary>
         /// Adds a command to be batched
@@ -101,7 +101,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <returns>This</returns>
         public IBatch AddQuery(IBatch batch)
         {
-            if (batch is not Batch TempValue)
+            if (!(batch is Batch TempValue))
                 return this;
             Commands.Add(TempValue.Commands);
             Headers.Add(TempValue.Headers);
@@ -366,7 +366,7 @@ namespace SQLHelperDBTests.HelperClasses
                                         ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
                                             var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
-                                            return Param is not null ? x.Value + Suffix : x.Value;
+                                            return !(Param is null) ? x.Value + Suffix : x.Value;
                                         }) + Environment.NewLine;
 
                     for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)

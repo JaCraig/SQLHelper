@@ -138,7 +138,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <summary>
         /// The simple select regex
         /// </summary>
-        private static readonly Regex SimpleSelectRegex = new(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Determines if the objects are equal
@@ -147,7 +147,7 @@ namespace SQLHelperDBTests.HelperClasses
         /// <returns>Determines if the commands are equal</returns>
         public override bool Equals(object? obj)
         {
-            if (obj is not Command<TCallbackData> OtherCommand)
+            if (!(obj is Command<TCallbackData> OtherCommand))
                 return false;
 
             if (OtherCommand.SQLCommand != SQLCommand

@@ -138,7 +138,7 @@ namespace SQLHelperDBTests
         /// <returns>This</returns>
         public SQLHelper AddQuery(SQLHelper helper)
         {
-            if (helper is not null)
+            if (!(helper is null))
                 Batch.AddQuery(helper.Batch);
             return this;
         }
@@ -205,7 +205,7 @@ namespace SQLHelperDBTests
             var BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
-            if (BatchResults[0][0] is not IDictionary<string, object> Value)
+            if (!(BatchResults[0][0] is IDictionary<string, object> Value))
                 return ((object)BatchResults[0][0]).To(defaultValue);
             return Value[Value.Keys.First()].To(defaultValue);
         }
@@ -232,7 +232,8 @@ namespace SQLHelperDBTests
         /// <param name="___">Ignored</param>
         /// <param name="__">Ignored</param>
         /// <param name="_">Ignored</param>
-        private static void DefaultAction(ICommand ___, List<dynamic> __, object _) { }
+        private static void DefaultAction(ICommand ___, List<dynamic> __, object _)
+        { }
 
         /// <summary>
         /// Sets the connection.
