@@ -20,9 +20,9 @@ namespace SQLHelperDB.SpeedTests.Tests
         [GlobalSetup]
         public void Setup()
         {
-            new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly)
-                .RegisterSQLHelper());
-            Helper = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Canister.Builder.Bootstrapper.Resolve<IConfiguration>(), null);
+            var Services = new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly)
+                .RegisterSQLHelper()).BuildServiceProvider();
+            Helper = new SQLHelper(Services.GetService<ObjectPool<StringBuilder>>(), Services.GetService<IConfiguration>(), null);
         }
     }
 }

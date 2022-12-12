@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
@@ -21,7 +22,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
-                    Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
+                    GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text);
@@ -39,7 +40,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
-                    Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
+                    GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text)
@@ -58,7 +59,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
-                    Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
+                    GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1)
@@ -77,7 +78,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
-                    Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
+                    GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
                 );
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1);
@@ -95,7 +96,7 @@ namespace SQLHelperDB.Tests.HelperClasses
                     SqlClientFactory.Instance,
                     "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
                     "DATABASE NAME"),
-                    Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(),
+                    GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
                 );
             Assert.NotNull(Instance);

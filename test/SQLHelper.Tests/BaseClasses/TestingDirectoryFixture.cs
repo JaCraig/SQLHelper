@@ -11,11 +11,6 @@ namespace SQLHelperDB.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            if (Canister.Builder.Bootstrapper is null)
-            {
-                new ServiceCollection().AddCanisterModules();
-            }
-
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {
                 TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
@@ -46,6 +41,16 @@ namespace SQLHelperDB.Tests.BaseClasses
             }
         }
 
+        /// <summary>
+        /// The service provider lock
+        /// </summary>
+        private static readonly object ServiceProviderLock = new object();
+
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        private static IServiceProvider ServiceProvider;
+
         public void Dispose()
         {
             using var TempConnection = SqlClientFactory.Instance.CreateConnection();
@@ -60,6 +65,23 @@ namespace SQLHelperDB.Tests.BaseClasses
             finally { TempCommand.Close(); }
 
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Gets the service provider.
+        /// </summary>
+        /// <returns></returns>
+        protected static IServiceProvider GetServiceProvider()
+        {
+            if (ServiceProvider is not null)
+                return ServiceProvider;
+            lock (ServiceProviderLock)
+            {
+                if (ServiceProvider is not null)
+                    return ServiceProvider;
+                ServiceProvider = new ServiceCollection().AddCanisterModules()?.BuildServiceProvider();
+            }
+            return ServiceProvider;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SQLHelperDB.SpeedTests.Modules
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IServiceCollection bootstrapper)
         {
             if (bootstrapper is null)
                 return;
@@ -29,8 +29,7 @@ namespace SQLHelperDB.SpeedTests.Modules
                                             .MinimumLevel
                                             .Error()
                                             .CreateLogger();
-            bootstrapper.Register<ILogger>(Log.Logger,
-                                        ServiceLifetime.Singleton);
+            bootstrapper.AddSingleton<ILogger>(_ => Log.Logger);
         }
     }
 }

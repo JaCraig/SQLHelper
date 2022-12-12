@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
@@ -20,7 +21,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Assert.NotNull(Instance);
@@ -33,9 +34,9 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var CopyInstance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var CopyInstance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             CopyInstance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Instance.AddQuery(CopyInstance);
@@ -50,7 +51,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups");
@@ -65,7 +66,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers WHERE UserID=@0", 1)
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups WHERE GroupID=@0", 10);
@@ -80,7 +81,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers WHERE UserID=@0", 1);
             Assert.NotNull(Instance);
@@ -94,7 +95,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Assert.NotNull(Instance);
             Assert.Equal("", Instance.ToString());
@@ -106,7 +107,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Result = await Instance.AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -146,7 +147,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Result1 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
@@ -162,7 +163,7 @@ namespace SQLHelperDB.Tests
                 new TimeSpan(1, 0, 0))
                 .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 > 0);
-            Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Result2 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
@@ -187,7 +188,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -219,7 +220,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -263,7 +264,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             var Builder = new StringBuilder();
             var Splitter = "";
@@ -285,7 +286,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 4000; ++x)
             {
@@ -301,7 +302,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             Instance.AddHeader(CommandType.Text, "DECLARE @A as nvarchar(100);");
             Instance.AddHeader(CommandType.Text, "SET @A ='BLAH';");
@@ -320,7 +321,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -366,7 +367,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -410,7 +411,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -443,7 +444,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var TempGuid = Guid.NewGuid();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             for (var x = 0; x < 50; ++x)
             {
@@ -486,7 +487,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             Assert.NotNull(Instance);
             var Result = await Instance.CreateBatch().AddQuery(CommandType.Text,
@@ -508,7 +509,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                     .AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
@@ -526,7 +527,7 @@ namespace SQLHelperDB.Tests
             var Configuration = new ConfigurationBuilder()
                 .AddInMemoryCollection()
                 .Build();
-            var Instance = new SQLHelper(Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>(), Configuration, null)
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase22222;Integrated Security=SSPI;Pooling=false");
             Instance.CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
             Assert.Equal("Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", Instance.DatabaseConnection.ConnectionString);

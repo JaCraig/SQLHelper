@@ -11,7 +11,7 @@ namespace SQLHelperDB.SpeedTests.Modules
 
         protected string ConnectionString => "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false";
 
-        public void Load(IBootstrapper? bootstrapper)
+        public void Load(IServiceCollection? bootstrapper)
         {
             if (bootstrapper is null)
                 return;
@@ -22,8 +22,8 @@ namespace SQLHelperDB.SpeedTests.Modules
             var Configuration = new ConfigurationBuilder()
                              .AddInMemoryCollection(dict)
                              .Build();
-            bootstrapper.Register<IConfiguration>(Configuration, ServiceLifetime.Singleton);
-            bootstrapper.Register<IConfigurationRoot>(Configuration, ServiceLifetime.Singleton);
+            bootstrapper.AddSingleton<IConfiguration>(_ => Configuration);
+            bootstrapper.AddSingleton<IConfigurationRoot>(_ => Configuration);
         }
     }
 }

@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using BigBook.Comparison;
+using Microsoft.Extensions.DependencyInjection;
 using ObjectCartographer;
 using SQLHelperDBTests.HelperClasses.Interfaces;
 using System;
@@ -190,7 +191,7 @@ namespace SQLHelperDBTests.HelperClasses.BaseClasses
                 && OtherParameter.DatabaseType == DatabaseType
                 && OtherParameter.Direction == Direction
                 && OtherParameter.ID == ID
-                && (Canister.Builder.Bootstrapper?.Resolve<GenericEqualityComparer<TDataType>>().Equals(OtherParameter.Value, Value) ?? false);
+                && (new ServiceCollection().AddCanisterModules().BuildServiceProvider().GetService<GenericEqualityComparer<TDataType>>().Equals(OtherParameter.Value, Value));
         }
 
         /// <summary>
