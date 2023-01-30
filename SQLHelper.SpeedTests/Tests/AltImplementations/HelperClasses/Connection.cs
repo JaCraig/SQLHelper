@@ -55,13 +55,13 @@ namespace SQLHelperDBTests.HelperClasses
             Retries = retries;
             Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            Factory = factory ?? SqlClientFactory.Instance;
+            Factory = factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance;
             SourceType = Factory.GetType().FullName ?? string.Empty;
             var TempConfig = configuration.GetConnectionString(Name);
             ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (TempConfig ?? Name);
             if (string.IsNullOrEmpty(parameterPrefix))
             {
-                if (Factory is SqlClientFactory)
+                if (Factory is Microsoft.Data.SqlClient.SqlClientFactory || Factory is SqlClientFactory)
                 {
                     DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                     ParameterPrefix = "@";
@@ -74,7 +74,7 @@ namespace SQLHelperDBTests.HelperClasses
             else
             {
                 ParameterPrefix = parameterPrefix;
-                if (Factory is SqlClientFactory)
+                if (Factory is Microsoft.Data.SqlClient.SqlClientFactory || Factory is SqlClientFactory)
                 {
                     DatabaseName = DatabaseNameRegex.Match(ConnectionString).Groups[1].Value;
                 }

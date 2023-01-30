@@ -1,7 +1,6 @@
 ﻿using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using Xunit;
 
 namespace SQLHelperDB.Tests.ExtensionMethods
@@ -47,7 +46,7 @@ namespace SQLHelperDB.Tests.ExtensionMethods
         [MemberData(nameof(ParameterTypes))]
         public void AddParameter(object value)
         {
-            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
+            using var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection();
             using var TempCommand = TempConnection.CreateCommand();
             TempCommand.AddParameter("0", value);
             Assert.Equal(TempCommand.Parameters[0].Value, value);

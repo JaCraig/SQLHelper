@@ -5,7 +5,6 @@ using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,8 +41,8 @@ namespace SQLHelperDB.SpeedTests.Tests
         [GlobalCleanup]
         public void Cleanup()
         {
-            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+            using var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection();
+            TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
             using var TempCommand = TempConnection.CreateCommand();
             try
             {
@@ -111,11 +110,11 @@ namespace SQLHelperDB.SpeedTests.Tests
             var Services = new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly)
                 .RegisterSQLHelper()).BuildServiceProvider();
             Helper = new SQLHelper(Services.GetService<ObjectPool<StringBuilder>>(), Services.GetService<IConfiguration>(), null);
-            Helper2 = new SQLHelperDBTests.SQLHelper(Services.GetService<IConfiguration>(), SqlClientFactory.Instance);
+            Helper2 = new SQLHelperDBTests.SQLHelper(Services.GetService<IConfiguration>(), Microsoft.Data.SqlClient.SqlClientFactory.Instance);
 
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -127,9 +126,9 @@ namespace SQLHelperDB.SpeedTests.Tests
                 finally { TempCommand.Close(); }
             }
 
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false";
+                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {

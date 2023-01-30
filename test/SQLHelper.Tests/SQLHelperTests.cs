@@ -6,7 +6,6 @@ using SQLHelperDB.Tests.BaseClasses;
 using SQLHelperDB.Tests.DataClasses;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -15,6 +14,8 @@ namespace SQLHelperDB.Tests
 {
     public class SQLHelperTests : TestingDirectoryFixture
     {
+        private const string DefaultConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+
         [Fact]
         public void AddQuery()
         {
@@ -22,7 +23,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers", Instance.ToString());
@@ -35,9 +36,9 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var CopyInstance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             CopyInstance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Instance.AddQuery(CopyInstance);
             Assert.NotNull(Instance);
@@ -52,7 +53,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups");
             Assert.NotNull(Instance);
@@ -67,7 +68,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers WHERE UserID=@0", 1)
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups WHERE GroupID=@0", 10);
             Assert.NotNull(Instance);
@@ -82,7 +83,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers WHERE UserID=@0", 1);
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1", Instance.ToString());
@@ -96,7 +97,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Assert.NotNull(Instance);
             Assert.Equal("", Instance.ToString());
         }
@@ -108,7 +109,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             var Result = await Instance.AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                 "A",
@@ -148,7 +149,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             var Result1 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -164,7 +165,7 @@ namespace SQLHelperDB.Tests
                 .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             var Result2 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -189,7 +190,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -221,7 +222,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -265,7 +266,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             var Builder = new StringBuilder();
             var Splitter = "";
             for (var x = 0; x < 200; ++x)
@@ -287,7 +288,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 4000; ++x)
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0", x);
@@ -303,7 +304,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             Instance.AddHeader(CommandType.Text, "DECLARE @A as nvarchar(100);");
             Instance.AddHeader(CommandType.Text, "SET @A ='BLAH';");
             for (var x = 0; x < 4000; ++x)
@@ -322,7 +323,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -368,7 +369,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -412,7 +413,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -445,7 +446,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -488,7 +489,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
             Assert.NotNull(Instance);
             var Result = await Instance.CreateBatch().AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
@@ -510,7 +511,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                     .AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Assert.NotNull(Instance);
@@ -528,9 +529,9 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase22222;Integrated Security=SSPI;Pooling=false");
-            Instance.CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
-            Assert.Equal("Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false", Instance.DatabaseConnection.ConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase22222;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True");
+            Instance.CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+            Assert.Equal(DefaultConnectionString, Instance.DatabaseConnection.ConnectionString);
         }
     }
 }

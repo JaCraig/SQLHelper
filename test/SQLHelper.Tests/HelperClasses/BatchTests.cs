@@ -4,7 +4,6 @@ using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using Xunit;
 
@@ -12,6 +11,8 @@ namespace SQLHelperDB.Tests.HelperClasses
 {
     public class BatchTests : TestingDirectoryFixture
     {
+        private const string DefaultConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+
         [Fact]
         public void AddQuery()
         {
@@ -19,8 +20,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new Batch(new Connection(Configuration,
-                    SqlClientFactory.Instance,
-                    "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
+                    Microsoft.Data.SqlClient.SqlClientFactory.Instance,
+                    DefaultConnectionString,
                     "DATABASE NAME"),
                     GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
@@ -37,8 +38,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new Batch(new Connection(Configuration,
-                    SqlClientFactory.Instance,
-                    "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
+                    Microsoft.Data.SqlClient.SqlClientFactory.Instance,
+                    DefaultConnectionString,
                     "DATABASE NAME"),
                     GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
@@ -56,8 +57,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new Batch(new Connection(Configuration,
-                    SqlClientFactory.Instance,
-                    "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
+                    Microsoft.Data.SqlClient.SqlClientFactory.Instance,
+                    DefaultConnectionString,
                     "DATABASE NAME"),
                     GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
@@ -75,8 +76,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new Batch(new Connection(Configuration,
-                    SqlClientFactory.Instance,
-                    "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
+                    Microsoft.Data.SqlClient.SqlClientFactory.Instance,
+                    DefaultConnectionString,
                     "DATABASE NAME"),
                     GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null
@@ -93,8 +94,8 @@ namespace SQLHelperDB.Tests.HelperClasses
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new Batch(new Connection(Configuration,
-                    SqlClientFactory.Instance,
-                    "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false",
+                    Microsoft.Data.SqlClient.SqlClientFactory.Instance,
+                    DefaultConnectionString,
                     "DATABASE NAME"),
                     GetServiceProvider().GetService<ObjectPool<StringBuilder>>(),
                      null

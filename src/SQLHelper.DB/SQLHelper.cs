@@ -26,7 +26,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +47,7 @@ namespace SQLHelperDB
         {
             StringBuilderPool = stringBuilderPool;
             Configuration = configuration;
-            SetConnection(new Connection(configuration, SqlClientFactory.Instance, "Default"));
+            SetConnection(new Connection(configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, "Default"));
             Logger = logger;
         }
 
@@ -195,7 +194,7 @@ namespace SQLHelperDB
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         /// <returns>This.</returns>
-        public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(Configuration, factory ?? SqlClientFactory.Instance, database));
+        public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(Configuration, factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance, database));
 
         /// <summary>
         /// Executes the queries asynchronously.

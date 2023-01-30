@@ -9,7 +9,7 @@ namespace SQLHelperDB.SpeedTests.Modules
     {
         public int Order => 1;
 
-        protected string ConnectionString => "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false";
+        protected string ConnectionString => "Data Source=localhost;Initial Catalog=SpeedTestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
 
         public void Load(IServiceCollection? bootstrapper)
         {

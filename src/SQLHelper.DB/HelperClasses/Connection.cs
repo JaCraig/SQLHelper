@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
@@ -56,7 +55,7 @@ namespace SQLHelperDB.HelperClasses
                 throw new ArgumentNullException(nameof(configuration));
             Retries = retries;
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            Factory = factory ?? SqlClientFactory.Instance;
+            Factory = factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance;
             ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (configuration.GetConnectionString(Name) ?? Name);
             var DatabaseRegexResult = DatabaseNameRegex.Match(ConnectionString);
             if (DatabaseRegexResult.Success)

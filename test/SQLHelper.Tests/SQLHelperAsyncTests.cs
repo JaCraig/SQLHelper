@@ -14,6 +14,8 @@ namespace SQLHelperDB.Tests
 {
     public class SQLHelperAsyncTests : TestingDirectoryFixture
     {
+        private const string DefaultConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+
         [Fact]
         public async Task ExecuteInsertAndGetBackIdAsync()
         {
@@ -21,7 +23,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             var Result1 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -37,7 +39,7 @@ namespace SQLHelperDB.Tests
                 .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             var Result2 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -61,7 +63,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             var Result = await Instance.AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                 "A",
@@ -102,7 +104,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -134,7 +136,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -178,7 +180,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             var Builder = new StringBuilder();
             var Splitter = "";
             for (var x = 0; x < 200; ++x)
@@ -201,7 +203,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -246,7 +248,7 @@ namespace SQLHelperDB.Tests
                 .AddInMemoryCollection()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -279,7 +281,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false");
+                .CreateBatch(SqlClientFactory.Instance, DefaultConnectionString);
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,

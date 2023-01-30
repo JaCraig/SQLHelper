@@ -24,7 +24,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,7 +41,7 @@ namespace SQLHelperDBTests
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         public SQLHelper(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default")
-            : this(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database))
+            : this(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance, database))
         {
         }
 
@@ -172,7 +171,7 @@ namespace SQLHelperDBTests
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         /// <returns>This.</returns>
-        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? SqlClientFactory.Instance, database));
+        public SQLHelper CreateBatch(IConfiguration configuration, DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(configuration, factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance, database));
 
         /// <summary>
         /// Executes this instance.

@@ -1,10 +1,11 @@
 ﻿using BigBook;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
+using TestApp.EventListeners;
 
 namespace TestApp
 {
@@ -12,14 +13,16 @@ namespace TestApp
     {
         private static async Task Main(string[] args)
         {
-            var Services = new ServiceCollection();
-            Services.AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly).RegisterSQLHelper());
-            Services.AddLogging();
-            var ServiceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(Services);
-            var Helper = ServiceProvider.GetRequiredService<SQLHelper>();
+            using (var listener = new SqlClientListener())
+            {
+                var Services = new ServiceCollection();
+                Services.AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly).RegisterSQLHelper());
+                Services.AddLogging();
+                var ServiceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(Services);
+                var Helper = ServiceProvider.GetRequiredService<SQLHelper>();
 
-            var Results = await Helper.CreateBatch(SqlClientFactory.Instance)
-                .AddQuery(CommandType.Text, @";WITH MyDuplicate AS (SELECT
+                var Results = await Helper.CreateBatch(SqlClientFactory.Instance)
+                    .AddQuery(CommandType.Text, @";WITH MyDuplicate AS (SELECT
 Sch.[name] AS SchemaName,
 Obj.[name] AS TableName,
 Idx.[name] AS IndexName,
@@ -67,7 +70,7 @@ AND (MD1.Col14 IS NULL OR MD2.Col14 IS NULL OR MD1.Col14 = MD2.Col14)
 AND (MD1.Col15 IS NULL OR MD2.Col15 IS NULL OR MD1.Col15 = MD2.Col15)
 AND (MD1.Col16 IS NULL OR MD2.Col16 IS NULL OR MD1.Col16 = MD2.Col16)
 ORDER BY MD1.SchemaName,MD1.TableName,MD1.IndexName")
-                .AddQuery(CommandType.Text, @"SELECT TOP 25
+                    .AddQuery(CommandType.Text, @"SELECT TOP 25
 dm_mid.database_id AS DatabaseID,
 dm_migs.avg_user_impact*(dm_migs.user_seeks+dm_migs.user_scans) Avg_Estimated_Impact,
 dm_migs.last_user_seek AS Last_User_Seek,
@@ -96,7 +99,7 @@ INNER JOIN sys.dm_db_missing_index_details dm_mid
 ON dm_mig.index_handle = dm_mid.index_handle
 WHERE dm_mid.database_ID = DB_ID()
 ORDER BY Avg_Estimated_Impact DESC")
-                .AddQuery(CommandType.Text, @"SELECT TOP 25 SUBSTRING(qt.TEXT, (qs.statement_start_offset/2)+1,
+                    .AddQuery(CommandType.Text, @"SELECT TOP 25 SUBSTRING(qt.TEXT, (qs.statement_start_offset/2)+1,
 ((CASE qs.statement_end_offset
 WHEN -1 THEN DATALENGTH(qt.TEXT)
 ELSE qs.statement_end_offset
@@ -114,7 +117,7 @@ CROSS APPLY sys.dm_exec_sql_text(qs.sql_handle) qt
 CROSS APPLY sys.dm_exec_query_plan(qs.plan_handle) qp
 where DB_NAME(st.dbid)=DB_NAME()
 ORDER BY qs.total_worker_time DESC")
-                .AddQuery(CommandType.Text, @"SELECT TOP 25
+                    .AddQuery(CommandType.Text, @"SELECT TOP 25
 o.name AS ObjectName
 , i.name AS IndexName
 , i.index_id AS IndexID
@@ -141,10 +144,63 @@ AND i.is_primary_key = 0
 AND i.is_unique_constraint = 0
 AND(dm_ius.user_scans + dm_ius.user_lookups) > dm_ius.user_seeks
 ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC")
-                .ExecuteAsync().ConfigureAwait(false);
+                    .ExecuteAsync().ConfigureAwait(false);
 
-            Console.WriteLine("These are the most expensive queries by total CPU time found.");
-            Console.WriteLine(Results[3].ToString(x => x.ToString()));
+                Console.WriteLine("These are the most expensive queries by total CPU time found.");
+                Console.WriteLine(Results[3].ToString(x => x.ToString()));
+            }
+
+            using (var listener = new SqlClientListener())
+            {
+                string connectionString = "Data Source=localhost;Initial Catalog=SereneCMS;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+
+                // Open a connection to the AdventureWorks database.
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string sql = @"SELECT TOP 25
+o.name AS ObjectName
+, i.name AS IndexName
+, i.index_id AS IndexID
+, dm_ius.user_seeks AS UserSeek
+, dm_ius.user_scans AS UserScans
+, dm_ius.user_lookups AS UserLookups
+, dm_ius.user_updates AS UserUpdates
+, p.TableRows
+, 'DROP INDEX ' + QUOTENAME(i.name)
++ ' ON ' + QUOTENAME(s.name) + '.'
++ QUOTENAME(OBJECT_NAME(dm_ius.OBJECT_ID)) AS 'drop statement'
+FROM sys.dm_db_index_usage_stats dm_ius
+INNER JOIN sys.indexes i ON i.index_id = dm_ius.index_id
+AND dm_ius.OBJECT_ID = i.OBJECT_ID
+INNER JOIN sys.objects o ON dm_ius.OBJECT_ID = o.OBJECT_ID
+INNER JOIN sys.schemas s ON o.schema_id = s.schema_id
+INNER JOIN(SELECT SUM(p.rows) TableRows, p.index_id, p.OBJECT_ID
+FROM sys.partitions p GROUP BY p.index_id, p.OBJECT_ID) p
+ON p.index_id = dm_ius.index_id AND dm_ius.OBJECT_ID = p.OBJECT_ID
+WHERE OBJECTPROPERTY(dm_ius.OBJECT_ID, 'IsUserTable') = 1
+AND dm_ius.database_id = DB_ID()
+AND i.type_desc = 'nonclustered'
+AND i.is_primary_key = 0
+AND i.is_unique_constraint = 0
+AND(dm_ius.user_scans + dm_ius.user_lookups) > dm_ius.user_seeks
+ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC";
+                    SqlCommand command = new SqlCommand(sql, connection);
+
+                    // Perform a data operation on the server.
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            // Read the data.
+                        }
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                    reader.Close();
+                }
+            }
         }
     }
 }

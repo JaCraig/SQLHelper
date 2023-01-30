@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.ExtensionMethods;
 using System;
-using System.Data.SqlClient;
 using Xunit;
 
 namespace SQLHelperDB.Tests.BaseClasses
@@ -11,9 +10,9 @@ namespace SQLHelperDB.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -24,9 +23,9 @@ namespace SQLHelperDB.Tests.BaseClasses
                 catch { }
                 finally { TempCommand.Close(); }
             }
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
+                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -53,8 +52,8 @@ namespace SQLHelperDB.Tests.BaseClasses
 
         public void Dispose()
         {
-            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+            using var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection();
+            TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
             using var TempCommand = TempConnection.CreateCommand();
             try
             {
