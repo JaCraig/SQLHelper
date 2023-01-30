@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace SQLHelperDB.HelperClasses
