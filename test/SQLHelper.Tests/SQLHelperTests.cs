@@ -6,6 +6,7 @@ using SQLHelperDB.Tests.BaseClasses;
 using SQLHelperDB.Tests.DataClasses;
 using System;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -88,6 +89,21 @@ namespace SQLHelperDB.Tests
             Assert.NotNull(Instance);
             Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1", Instance.ToString());
             Assert.Equal(1, Instance.Count);
+        }
+
+        [Fact]
+        public async Task CallStoredProcedure()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection()
+                .Build();
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+            var Result = (await Instance.AddQuery(CommandType.StoredProcedure, "TestSP @Value = @0", "Test String")
+                                 .ExecuteAsync().ConfigureAwait(false))
+                        .FirstOrDefault()[0];
+            Assert.NotNull(Result);
+            Assert.Equal("Test String", Result.Value);
         }
 
         [Fact]

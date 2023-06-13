@@ -34,6 +34,13 @@ namespace SQLHelperDB.Tests.BaseClasses
                     TempCommand.ExecuteNonQuery();
                     TempCommand.CommandText = "Create Table TestTableNotNull(ID INT PRIMARY KEY IDENTITY,UShortValue_ SMALLINT NOT NULL)";
                     TempCommand.ExecuteNonQuery();
+                    TempCommand.CommandText = @"Create PROCEDURE TestSP
+@Value nvarchar(100)
+AS
+BEGIN
+SELECT @Value as [Value]
+END";
+                    TempCommand.ExecuteNonQuery();
                 }
                 catch { }
                 finally { TempCommand.Close(); }

@@ -260,9 +260,13 @@ namespace SQLHelperDB.HelperClasses
                 SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
                 Finalizable = TempParser.StatementFound;
             }
-            else
+            else if (CommandType == CommandType.Text)
             {
                 Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
+            }
+            else
+            {
+                Finalizable = true;
             }
 
             TransactionNeeded = (ComparisonString.Contains("INSERT", StringComparison.Ordinal)
