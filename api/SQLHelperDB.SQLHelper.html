@@ -1,0 +1,1063 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class SQLHelper
+ | SQLHelper API Reference </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class SQLHelper
+ | SQLHelper API Reference ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
+              <span class="brand-title">SQLHelper.DB</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
+                          <span class="brand-title">SQLHelper.DB</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <strong><a href='https://github.com/JaCraig/SQLHelper'>Open in Github</a></strong>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="SQLHelperDB.SQLHelper">
+
+
+
+  <h1 id="SQLHelperDB_SQLHelper" data-uid="SQLHelperDB.SQLHelper" class="text-break">Class SQLHelper
+</h1>
+  <div class="markdown level0 summary"><p>SQL helper class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">SQLHelper</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SQLHelperDB.html">SQLHelperDB</a></h6>
+  <h6><strong>Assembly</strong>: SQLHelper.DB.dll</h6>
+  <h5 id="SQLHelperDB_SQLHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SQLHelper</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper__ctor_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Configuration_IConfiguration_Microsoft_Extensions_Logging_ILogger_SQLHelperDB_SQLHelper__.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.%23ctor(Microsoft.Extensions.ObjectPool.ObjectPool%7BSystem.Text.StringBuilder%7D%2CMicrosoft.Extensions.Configuration.IConfiguration%2CMicrosoft.Extensions.Logging.ILogger%7BSQLHelperDB.SQLHelper%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L46">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper__ctor_" data-uid="SQLHelperDB.SQLHelper.#ctor*"></a>
+  <h4 id="SQLHelperDB_SQLHelper__ctor_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Configuration_IConfiguration_Microsoft_Extensions_Logging_ILogger_SQLHelperDB_SQLHelper__" data-uid="SQLHelperDB.SQLHelper.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{SQLHelperDB.SQLHelper})">SQLHelper(ObjectPool&lt;StringBuilder&gt;, IConfiguration, ILogger&lt;SQLHelper&gt;?)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper(ObjectPool&lt;StringBuilder&gt; stringBuilderPool, IConfiguration configuration, ILogger&lt;SQLHelper&gt;? logger = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</td>
+        <td><span class="parametername">stringBuilderPool</span></td>
+        <td><p>The string builder pool.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration.iconfiguration">IConfiguration</a></td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a>&gt;</td>
+        <td><span class="parametername">logger</span></td>
+        <td><p>The logger.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_Batch.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.Batch%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L70">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_Batch_" data-uid="SQLHelperDB.SQLHelper.Batch*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_Batch" data-uid="SQLHelperDB.SQLHelper.Batch">Batch</h4>
+  <div class="markdown level1 summary"><p>Gets the batch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IBatch Batch { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
+        <td><p>The batch.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_Configuration.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.Configuration%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L76">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_Configuration_" data-uid="SQLHelperDB.SQLHelper.Configuration*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_Configuration" data-uid="SQLHelperDB.SQLHelper.Configuration">Configuration</h4>
+  <div class="markdown level1 summary"><p>Gets the configuration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IConfiguration Configuration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration.iconfiguration">IConfiguration</a></td>
+        <td><p>The configuration.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_Count.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L58">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_Count_" data-uid="SQLHelperDB.SQLHelper.Count*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_Count" data-uid="SQLHelperDB.SQLHelper.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Gets the number of commands currently in the batch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>The number of commands currently in the batch</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_DatabaseConnection.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.DatabaseConnection%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L64">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_DatabaseConnection_" data-uid="SQLHelperDB.SQLHelper.DatabaseConnection*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_DatabaseConnection" data-uid="SQLHelperDB.SQLHelper.DatabaseConnection">DatabaseConnection</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the source.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IConnection? DatabaseConnection { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></td>
+        <td><p>The source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_StringBuilderPool.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.StringBuilderPool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L82">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_StringBuilderPool_" data-uid="SQLHelperDB.SQLHelper.StringBuilderPool*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_StringBuilderPool" data-uid="SQLHelperDB.SQLHelper.StringBuilderPool">StringBuilderPool</h4>
+  <div class="markdown level1 summary"><p>Gets the string builder pool.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ObjectPool&lt;StringBuilder&gt; StringBuilderPool { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</td>
+        <td><p>The string builder pool.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_AddHeader_System_Data_CommandType_System_String_System_Object___.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L103">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_AddHeader_" data-uid="SQLHelperDB.SQLHelper.AddHeader*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_AddHeader_System_Data_CommandType_System_String_System_Object___" data-uid="SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType,System.String,System.Object[])">AddHeader(CommandType, string, params object[]?)</h4>
+  <div class="markdown level1 summary"><p>Adds a query that gets carried across in internal batches.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper AddHeader(CommandType commandType, string command, params object[]? parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></td>
+        <td><span class="parametername">commandType</span></td>
+        <td><p>Type of the command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">command</span></td>
+        <td><p>The command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_AddHeader__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.AddHeader%60%601(System.Action%7BSQLHelperDB.HelperClasses.Interfaces.ICommand%2CSystem.Collections.Generic.List%7BSystem.Object%7D%2C%60%600%7D%2C%60%600%2CSystem.Data.CommandType%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L115">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_AddHeader_" data-uid="SQLHelperDB.SQLHelper.AddHeader*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_AddHeader__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___" data-uid="SQLHelperDB.SQLHelper.AddHeader``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])">AddHeader&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt;, TCallbackData, CommandType, string, params object[]?)</h4>
+  <div class="markdown level1 summary"><p>Adds a query that gets carried across in internal batches.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper AddHeader&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt; callback, TCallbackData callbackObject, CommandType commandType, string command, params object[]? parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;, TCallbackData&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TCallbackData</span></td>
+        <td><span class="parametername">callbackObject</span></td>
+        <td><p>The callback object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></td>
+        <td><span class="parametername">commandType</span></td>
+        <td><p>Type of the command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">command</span></td>
+        <td><p>The command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCallbackData</span></td>
+        <td><p>The type of the callback data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_AddQuery_SQLHelperDB_SQLHelper_.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.AddQuery(SQLHelperDB.SQLHelper)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L153">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_AddQuery_" data-uid="SQLHelperDB.SQLHelper.AddQuery*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_AddQuery_SQLHelperDB_SQLHelper_" data-uid="SQLHelperDB.SQLHelper.AddQuery(SQLHelperDB.SQLHelper)">AddQuery(SQLHelper)</h4>
+  <div class="markdown level1 summary"><p>Adds an SQLHelper's commands to this instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper AddQuery(SQLHelper helper)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><span class="parametername">helper</span></td>
+        <td><p>The helper to copy the commands from</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_AddQuery_System_Data_CommandType_System_String_System_Object___.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L129">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_AddQuery_" data-uid="SQLHelperDB.SQLHelper.AddQuery*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_AddQuery_System_Data_CommandType_System_String_System_Object___" data-uid="SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType,System.String,System.Object[])">AddQuery(CommandType, string, params object[]?)</h4>
+  <div class="markdown level1 summary"><p>Adds a command.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper AddQuery(CommandType commandType, string command, params object[]? parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></td>
+        <td><span class="parametername">commandType</span></td>
+        <td><p>Type of the command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">command</span></td>
+        <td><p>The command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.AddQuery%60%601(System.Action%7BSQLHelperDB.HelperClasses.Interfaces.ICommand%2CSystem.Collections.Generic.List%7BSystem.Object%7D%2C%60%600%7D%2C%60%600%2CSystem.Data.CommandType%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L141">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_AddQuery_" data-uid="SQLHelperDB.SQLHelper.AddQuery*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___" data-uid="SQLHelperDB.SQLHelper.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])">AddQuery&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt;, TCallbackData, CommandType, string, params object[]?)</h4>
+  <div class="markdown level1 summary"><p>Adds a command which will call the callback function with the object specified when it</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper AddQuery&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt; callback, TCallbackData callbackObject, CommandType commandType, string command, params object[]? parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;, TCallbackData&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TCallbackData</span></td>
+        <td><span class="parametername">callbackObject</span></td>
+        <td><p>The callback object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></td>
+        <td><span class="parametername">commandType</span></td>
+        <td><p>Type of the command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">command</span></td>
+        <td><p>The command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TCallbackData</span></td>
+        <td><p>The type of the callback data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_Copy.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.Copy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L164">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_Copy_" data-uid="SQLHelperDB.SQLHelper.Copy*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_Copy" data-uid="SQLHelperDB.SQLHelper.Copy">Copy()</h4>
+  <div class="markdown level1 summary"><p>Creates a copy of this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper Copy()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>A new SQLHelper based on this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_CreateBatch.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.CreateBatch%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L173">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_CreateBatch_" data-uid="SQLHelperDB.SQLHelper.CreateBatch*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_CreateBatch" data-uid="SQLHelperDB.SQLHelper.CreateBatch">CreateBatch()</h4>
+  <div class="markdown level1 summary"><p>Clears the system and creates a new batch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper CreateBatch()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_CreateBatch_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.CreateBatch(SQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L184">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_CreateBatch_" data-uid="SQLHelperDB.SQLHelper.CreateBatch*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_CreateBatch_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="SQLHelperDB.SQLHelper.CreateBatch(SQLHelperDB.HelperClasses.Interfaces.IConnection)">CreateBatch(IConnection)</h4>
+  <div class="markdown level1 summary"><p>Creates the batch using the connection specified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper CreateBatch(IConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_CreateBatch_System_Data_Common_DbProviderFactory_System_String_.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L197">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_CreateBatch_" data-uid="SQLHelperDB.SQLHelper.CreateBatch*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_CreateBatch_System_Data_Common_DbProviderFactory_System_String_" data-uid="SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory,System.String)">CreateBatch(DbProviderFactory?, string)</h4>
+  <div class="markdown level1 summary"><p>Creates the batch using the connection info specified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = &quot;Default&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbproviderfactory">DbProviderFactory</a></td>
+        <td><span class="parametername">factory</span></td>
+        <td><p>The factory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">database</span></td>
+        <td><p>The database.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_ExecuteAsync.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.ExecuteAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L203">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_ExecuteAsync_" data-uid="SQLHelperDB.SQLHelper.ExecuteAsync*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_ExecuteAsync" data-uid="SQLHelperDB.SQLHelper.ExecuteAsync">ExecuteAsync()</h4>
+  <div class="markdown level1 summary"><p>Executes the queries asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;List&lt;List&lt;dynamic&gt;&gt;&gt; ExecuteAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;&gt;&gt;</td>
+        <td><p>The result of the queries</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_ExecuteScalarAsync__1___0_.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.ExecuteScalarAsync%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L211">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_ExecuteScalarAsync_" data-uid="SQLHelperDB.SQLHelper.ExecuteScalarAsync*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_ExecuteScalarAsync__1___0_" data-uid="SQLHelperDB.SQLHelper.ExecuteScalarAsync``1(``0)">ExecuteScalarAsync&lt;TData&gt;(TData)</h4>
+  <div class="markdown level1 summary"><p>Executes the batched commands and returns the first value, ignoring the rest (async).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TData&gt; ExecuteScalarAsync&lt;TData&gt;(TData defaultValue = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TData</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>The default value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TData&gt;</td>
+        <td><p>The first value of the batch</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TData</span></td>
+        <td><p>The type of the data to return.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_RemoveDuplicateCommands.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.RemoveDuplicateCommands%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L225">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_RemoveDuplicateCommands_" data-uid="SQLHelperDB.SQLHelper.RemoveDuplicateCommands*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_RemoveDuplicateCommands" data-uid="SQLHelperDB.SQLHelper.RemoveDuplicateCommands">RemoveDuplicateCommands()</h4>
+  <div class="markdown level1 summary"><p>Removes duplicate queries from the batch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLHelper RemoveDuplicateCommands()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SQLHelperDB.SQLHelper.html">SQLHelper</a></td>
+        <td><p>This</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_SQLHelper_ToString.md&amp;value=---%0Auid%3A%20SQLHelperDB.SQLHelper.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/SQLHelper.cs/#L235">View Source</a>
+  </span>
+  <a id="SQLHelperDB_SQLHelper_ToString_" data-uid="SQLHelperDB.SQLHelper.ToString*"></a>
+  <h4 id="SQLHelperDB_SQLHelper_ToString" data-uid="SQLHelperDB.SQLHelper.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> that represents this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> that represents this instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; James Craig. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

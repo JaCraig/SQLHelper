@@ -1,0 +1,331 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/runner/work/SQLHelper/SQLHelper/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.CanisterModules.SQLHelperModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.CanisterModules.SQLHelperModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.CanisterModules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.CanisterModules.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.ExtensionMethods.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.ExtensionMethods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Batch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Batch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Command-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Command-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Connection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Connection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IBatch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.ICommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.Parameter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.Parameter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.SelectFinder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.SelectFinder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.StringParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.StringParameter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.HelperClasses.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.HelperClasses.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.SQLHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.SQLHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SQLHelperDB.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SQLHelperDB.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

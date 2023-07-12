@@ -1,0 +1,2004 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Microsoft.Extensions.DependencyInjection
+  name: Microsoft.Extensions.DependencyInjection
+  href: api/Microsoft.Extensions.DependencyInjection.html
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions
+  name: RegistrationExtensions
+  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html
+  commentId: T:Microsoft.Extensions.DependencyInjection.RegistrationExtensions
+  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions
+  nameWithType: RegistrationExtensions
+- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration)
+  name: RegisterSQLHelper(ICanisterConfiguration?)
+  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_Canister_Interfaces_ICanisterConfiguration_
+  commentId: M:Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration)
+  name.vb: RegisterSQLHelper(ICanisterConfiguration)
+  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration?)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration)
+  nameWithType: RegistrationExtensions.RegisterSQLHelper(ICanisterConfiguration?)
+  nameWithType.vb: RegistrationExtensions.RegisterSQLHelper(ICanisterConfiguration)
+- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper*
+  name: RegisterSQLHelper
+  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_
+  commentId: Overload:Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper
+  isSpec: "True"
+  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper
+  nameWithType: RegistrationExtensions.RegisterSQLHelper
+- uid: SQLHelperDB
+  name: SQLHelperDB
+  href: api/SQLHelperDB.html
+  commentId: N:SQLHelperDB
+  fullName: SQLHelperDB
+  nameWithType: SQLHelperDB
+- uid: SQLHelperDB.CanisterModules
+  name: SQLHelperDB.CanisterModules
+  href: api/SQLHelperDB.CanisterModules.html
+  commentId: N:SQLHelperDB.CanisterModules
+  fullName: SQLHelperDB.CanisterModules
+  nameWithType: SQLHelperDB.CanisterModules
+- uid: SQLHelperDB.CanisterModules.SQLHelperModule
+  name: SQLHelperModule
+  href: api/SQLHelperDB.CanisterModules.SQLHelperModule.html
+  commentId: T:SQLHelperDB.CanisterModules.SQLHelperModule
+  fullName: SQLHelperDB.CanisterModules.SQLHelperModule
+  nameWithType: SQLHelperModule
+- uid: SQLHelperDB.CanisterModules.SQLHelperModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: Load(IServiceCollection?)
+  href: api/SQLHelperDB.CanisterModules.SQLHelperModule.html#SQLHelperDB_CanisterModules_SQLHelperModule_Load_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:SQLHelperDB.CanisterModules.SQLHelperModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: Load(IServiceCollection)
+  fullName: SQLHelperDB.CanisterModules.SQLHelperModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: SQLHelperDB.CanisterModules.SQLHelperModule.Load(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: SQLHelperModule.Load(IServiceCollection?)
+  nameWithType.vb: SQLHelperModule.Load(IServiceCollection)
+- uid: SQLHelperDB.CanisterModules.SQLHelperModule.Load*
+  name: Load
+  href: api/SQLHelperDB.CanisterModules.SQLHelperModule.html#SQLHelperDB_CanisterModules_SQLHelperModule_Load_
+  commentId: Overload:SQLHelperDB.CanisterModules.SQLHelperModule.Load
+  isSpec: "True"
+  fullName: SQLHelperDB.CanisterModules.SQLHelperModule.Load
+  nameWithType: SQLHelperModule.Load
+- uid: SQLHelperDB.CanisterModules.SQLHelperModule.Order
+  name: Order
+  href: api/SQLHelperDB.CanisterModules.SQLHelperModule.html#SQLHelperDB_CanisterModules_SQLHelperModule_Order
+  commentId: P:SQLHelperDB.CanisterModules.SQLHelperModule.Order
+  fullName: SQLHelperDB.CanisterModules.SQLHelperModule.Order
+  nameWithType: SQLHelperModule.Order
+- uid: SQLHelperDB.CanisterModules.SQLHelperModule.Order*
+  name: Order
+  href: api/SQLHelperDB.CanisterModules.SQLHelperModule.html#SQLHelperDB_CanisterModules_SQLHelperModule_Order_
+  commentId: Overload:SQLHelperDB.CanisterModules.SQLHelperModule.Order
+  isSpec: "True"
+  fullName: SQLHelperDB.CanisterModules.SQLHelperModule.Order
+  nameWithType: SQLHelperModule.Order
+- uid: SQLHelperDB.ExtensionMethods
+  name: SQLHelperDB.ExtensionMethods
+  href: api/SQLHelperDB.ExtensionMethods.html
+  commentId: N:SQLHelperDB.ExtensionMethods
+  fullName: SQLHelperDB.ExtensionMethods
+  nameWithType: SQLHelperDB.ExtensionMethods
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions
+  name: DbCommandExtensions
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html
+  commentId: T:SQLHelperDB.ExtensionMethods.DbCommandExtensions
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions
+  nameWithType: DbCommandExtensions
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection)
+  name: AddParameter(DbCommand, string, DbType, object?, ParameterDirection)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection)
+  name.vb: AddParameter(DbCommand, String, DbType, Object, ParameterDirection)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, string, System.Data.DbType, object?, System.Data.ParameterDirection)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, String, System.Data.DbType, Object, System.Data.ParameterDirection)
+  nameWithType: DbCommandExtensions.AddParameter(DbCommand, string, DbType, object?, ParameterDirection)
+  nameWithType.vb: DbCommandExtensions.AddParameter(DbCommand, String, DbType, Object, ParameterDirection)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection)
+  name: AddParameter(DbCommand, string, SqlDbType, object?, ParameterDirection)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection)
+  name.vb: AddParameter(DbCommand, String, SqlDbType, Object, ParameterDirection)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, string, System.Data.SqlDbType, object?, System.Data.ParameterDirection)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, String, System.Data.SqlDbType, Object, System.Data.ParameterDirection)
+  nameWithType: DbCommandExtensions.AddParameter(DbCommand, string, SqlDbType, object?, ParameterDirection)
+  nameWithType.vb: DbCommandExtensions.AddParameter(DbCommand, String, SqlDbType, Object, ParameterDirection)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.String,System.Data.ParameterDirection)
+  name: AddParameter(DbCommand, string, string, ParameterDirection)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_String_System_Data_ParameterDirection_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.String,System.Data.ParameterDirection)
+  name.vb: AddParameter(DbCommand, String, String, ParameterDirection)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, string, string, System.Data.ParameterDirection)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand, String, String, System.Data.ParameterDirection)
+  nameWithType: DbCommandExtensions.AddParameter(DbCommand, string, string, ParameterDirection)
+  nameWithType.vb: DbCommandExtensions.AddParameter(DbCommand, String, String, ParameterDirection)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter*
+  name: AddParameter
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter
+  nameWithType: DbCommandExtensions.AddParameter
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)
+  name: AddParameter<TDataType>(DbCommand, string, TDataType, ParameterDirection)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter__1_System_Data_Common_DbCommand_System_String___0_System_Data_ParameterDirection_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)
+  name.vb: AddParameter(Of TDataType)(DbCommand, String, TDataType, ParameterDirection)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType, System.Data.ParameterDirection)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(Of TDataType)(System.Data.Common.DbCommand, String, TDataType, System.Data.ParameterDirection)
+  nameWithType: DbCommandExtensions.AddParameter<TDataType>(DbCommand, string, TDataType, ParameterDirection)
+  nameWithType.vb: DbCommandExtensions.AddParameter(Of TDataType)(DbCommand, String, TDataType, ParameterDirection)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand,System.Int32)
+  name: BeginTransaction(DbCommand, int)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_System_Data_Common_DbCommand_System_Int32_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand,System.Int32)
+  name.vb: BeginTransaction(DbCommand, Integer)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand, int)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand, Integer)
+  nameWithType: DbCommandExtensions.BeginTransaction(DbCommand, int)
+  nameWithType.vb: DbCommandExtensions.BeginTransaction(DbCommand, Integer)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction*
+  name: BeginTransaction
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction
+  nameWithType: DbCommandExtensions.BeginTransaction
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)
+  name: ClearParameters(DbCommand)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)
+  nameWithType: DbCommandExtensions.ClearParameters(DbCommand)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters*
+  name: ClearParameters
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters
+  nameWithType: DbCommandExtensions.ClearParameters
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)
+  name: Close(DbCommand)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)
+  nameWithType: DbCommandExtensions.Close(DbCommand)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close*
+  name: Close
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close
+  nameWithType: DbCommandExtensions.Close
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)
+  name: Commit(DbCommand)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)
+  nameWithType: DbCommandExtensions.Commit(DbCommand)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit*
+  name: Commit
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit
+  nameWithType: DbCommandExtensions.Commit
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar*
+  name: ExecuteScalar
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar
+  nameWithType: DbCommandExtensions.ExecuteScalar
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name: ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name.vb: ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar<TDataType>(System.Data.Common.DbCommand, TDataType, int)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
+  nameWithType: DbCommandExtensions.ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  nameWithType.vb: DbCommandExtensions.ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync*
+  name: ExecuteScalarAsync
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync
+  nameWithType: DbCommandExtensions.ExecuteScalarAsync
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name: ExecuteScalarAsync<TDataType>(DbCommand, TDataType, int)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync__1_System_Data_Common_DbCommand___0_System_Int32_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name.vb: ExecuteScalarAsync(Of TDataType)(DbCommand, TDataType, Integer)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync<TDataType>(System.Data.Common.DbCommand, TDataType, int)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
+  nameWithType: DbCommandExtensions.ExecuteScalarAsync<TDataType>(DbCommand, TDataType, int)
+  nameWithType.vb: DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(DbCommand, TDataType, Integer)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)
+  name: GetOrCreateParameter(DbCommand, string)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_System_Data_Common_DbCommand_System_String_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)
+  name.vb: GetOrCreateParameter(DbCommand, String)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand, string)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand, String)
+  nameWithType: DbCommandExtensions.GetOrCreateParameter(DbCommand, string)
+  nameWithType.vb: DbCommandExtensions.GetOrCreateParameter(DbCommand, String)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter*
+  name: GetOrCreateParameter
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter
+  nameWithType: DbCommandExtensions.GetOrCreateParameter
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter*
+  name: GetOutputParameter
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter
+  nameWithType: DbCommandExtensions.GetOutputParameter
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)
+  name: GetOutputParameter<TDataType>(DbCommand, string, TDataType)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter__1_System_Data_Common_DbCommand_System_String___0_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)
+  name.vb: GetOutputParameter(Of TDataType)(DbCommand, String, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter(Of TDataType)(System.Data.Common.DbCommand, String, TDataType)
+  nameWithType: DbCommandExtensions.GetOutputParameter<TDataType>(DbCommand, string, TDataType)
+  nameWithType.vb: DbCommandExtensions.GetOutputParameter(Of TDataType)(DbCommand, String, TDataType)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand,System.Int32)
+  name: Open(DbCommand, int)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_System_Data_Common_DbCommand_System_Int32_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand,System.Int32)
+  name.vb: Open(DbCommand, Integer)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand, int)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand, Integer)
+  nameWithType: DbCommandExtensions.Open(DbCommand, int)
+  nameWithType.vb: DbCommandExtensions.Open(DbCommand, Integer)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open*
+  name: Open
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open
+  nameWithType: DbCommandExtensions.Open
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)
+  name: Rollback(DbCommand)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)
+  nameWithType: DbCommandExtensions.Rollback(DbCommand)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback*
+  name: Rollback
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback
+  nameWithType: DbCommandExtensions.Rollback
+- uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions
+  name: IDataRecordExtensions
+  href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html
+  commentId: T:SQLHelperDB.ExtensionMethods.IDataRecordExtensions
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions
+  nameWithType: IDataRecordExtensions
+- uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter*
+  name: GetParameter
+  href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html#SQLHelperDB_ExtensionMethods_IDataRecordExtensions_GetParameter_
+  commentId: Overload:SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter
+  nameWithType: IDataRecordExtensions.GetParameter
+- uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.Int32,``0)
+  name: GetParameter<TDataType>(IDataRecord, int, TDataType)
+  href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html#SQLHelperDB_ExtensionMethods_IDataRecordExtensions_GetParameter__1_System_Data_IDataRecord_System_Int32___0_
+  commentId: M:SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.Int32,``0)
+  name.vb: GetParameter(Of TDataType)(IDataRecord, Integer, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, int, TDataType)
+  fullName.vb: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter(Of TDataType)(System.Data.IDataRecord, Integer, TDataType)
+  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, int, TDataType)
+  nameWithType.vb: IDataRecordExtensions.GetParameter(Of TDataType)(IDataRecord, Integer, TDataType)
+- uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.String,``0)
+  name: GetParameter<TDataType>(IDataRecord, string, TDataType)
+  href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html#SQLHelperDB_ExtensionMethods_IDataRecordExtensions_GetParameter__1_System_Data_IDataRecord_System_String___0_
+  commentId: M:SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.String,``0)
+  name.vb: GetParameter(Of TDataType)(IDataRecord, String, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, string, TDataType)
+  fullName.vb: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter(Of TDataType)(System.Data.IDataRecord, String, TDataType)
+  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, string, TDataType)
+  nameWithType.vb: IDataRecordExtensions.GetParameter(Of TDataType)(IDataRecord, String, TDataType)
+- uid: SQLHelperDB.HelperClasses
+  name: SQLHelperDB.HelperClasses
+  href: api/SQLHelperDB.HelperClasses.html
+  commentId: N:SQLHelperDB.HelperClasses
+  fullName: SQLHelperDB.HelperClasses
+  nameWithType: SQLHelperDB.HelperClasses
+- uid: SQLHelperDB.HelperClasses.BaseClasses
+  name: SQLHelperDB.HelperClasses.BaseClasses
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.html
+  commentId: N:SQLHelperDB.HelperClasses.BaseClasses
+  fullName: SQLHelperDB.HelperClasses.BaseClasses
+  nameWithType: SQLHelperDB.HelperClasses.BaseClasses
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1
+  name: ParameterBase<TDataType>
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html
+  commentId: T:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1
+  name.vb: ParameterBase(Of TDataType)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType)
+  nameWithType: ParameterBase<TDataType>
+  nameWithType.vb: ParameterBase(Of TDataType)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name: ParameterBase(ParameterBase<TDataType>)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name.vb: New(ParameterBase(Of TDataType))
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
+  nameWithType: ParameterBase<TDataType>.ParameterBase(ParameterBase<TDataType>)
+  nameWithType.vb: ParameterBase(Of TDataType).New(ParameterBase(Of TDataType))
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name: ParameterBase(string, TDataType, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, TDataType, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(string, TDataType, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
+  nameWithType: ParameterBase<TDataType>.ParameterBase(string, TDataType, ParameterDirection, string)
+  nameWithType.vb: ParameterBase(Of TDataType).New(String, TDataType, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
+  name: ParameterBase(string, DbType, object?, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, DbType, Object, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(string, System.Data.DbType, object?, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, System.Data.DbType, Object, System.Data.ParameterDirection, String)
+  nameWithType: ParameterBase<TDataType>.ParameterBase(string, DbType, object?, ParameterDirection, string)
+  nameWithType.vb: ParameterBase(Of TDataType).New(String, DbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection,System.String)
+  name: ParameterBase(string, SqlDbType, object?, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, SqlDbType, Object, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(string, System.Data.SqlDbType, object?, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, System.Data.SqlDbType, Object, System.Data.ParameterDirection, String)
+  nameWithType: ParameterBase<TDataType>.ParameterBase(string, SqlDbType, object?, ParameterDirection, string)
+  nameWithType.vb: ParameterBase(Of TDataType).New(String, SqlDbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor*
+  name: ParameterBase
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New
+  nameWithType: ParameterBase<TDataType>.ParameterBase
+  nameWithType.vb: ParameterBase(Of TDataType).New
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter(System.Data.Common.DbCommand)
+  name: AddParameter(DbCommand)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_AddParameter_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.AddParameter(System.Data.Common.DbCommand)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).AddParameter(System.Data.Common.DbCommand)
+  nameWithType: ParameterBase<TDataType>.AddParameter(DbCommand)
+  nameWithType.vb: ParameterBase(Of TDataType).AddParameter(DbCommand)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter(System.String)
+  name: AddParameter(string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_AddParameter_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter(System.String)
+  name.vb: AddParameter(String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.AddParameter(string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).AddParameter(String)
+  nameWithType: ParameterBase<TDataType>.AddParameter(string)
+  nameWithType.vb: ParameterBase(Of TDataType).AddParameter(String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter*
+  name: AddParameter
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_AddParameter_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.AddParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.AddParameter
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).AddParameter
+  nameWithType: ParameterBase<TDataType>.AddParameter
+  nameWithType.vb: ParameterBase(Of TDataType).AddParameter
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.BatchID
+  name: BatchID
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_BatchID
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.BatchID
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.BatchID
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).BatchID
+  nameWithType: ParameterBase<TDataType>.BatchID
+  nameWithType.vb: ParameterBase(Of TDataType).BatchID
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.BatchID*
+  name: BatchID
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_BatchID_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.BatchID
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.BatchID
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).BatchID
+  nameWithType: ParameterBase<TDataType>.BatchID
+  nameWithType.vb: ParameterBase(Of TDataType).BatchID
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.CreateCopy(System.String)
+  name: CreateCopy(string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_CreateCopy_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.CreateCopy(System.String)
+  name.vb: CreateCopy(String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.CreateCopy(string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).CreateCopy(String)
+  nameWithType: ParameterBase<TDataType>.CreateCopy(string)
+  nameWithType.vb: ParameterBase(Of TDataType).CreateCopy(String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.CreateCopy*
+  name: CreateCopy
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_CreateCopy_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.CreateCopy
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.CreateCopy
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).CreateCopy
+  nameWithType: ParameterBase<TDataType>.CreateCopy
+  nameWithType.vb: ParameterBase(Of TDataType).CreateCopy
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.DatabaseType
+  name: DatabaseType
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_DatabaseType
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.DatabaseType
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.DatabaseType
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).DatabaseType
+  nameWithType: ParameterBase<TDataType>.DatabaseType
+  nameWithType.vb: ParameterBase(Of TDataType).DatabaseType
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.DatabaseType*
+  name: DatabaseType
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_DatabaseType_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.DatabaseType
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.DatabaseType
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).DatabaseType
+  nameWithType: ParameterBase<TDataType>.DatabaseType
+  nameWithType.vb: ParameterBase(Of TDataType).DatabaseType
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Direction
+  name: Direction
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Direction
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Direction
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Direction
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Direction
+  nameWithType: ParameterBase<TDataType>.Direction
+  nameWithType.vb: ParameterBase(Of TDataType).Direction
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Direction*
+  name: Direction
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Direction_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Direction
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Direction
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Direction
+  nameWithType: ParameterBase<TDataType>.Direction
+  nameWithType.vb: ParameterBase(Of TDataType).Direction
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals(System.Object)
+  name: Equals(object)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Equals_System_Object_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Equals(object)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Equals(Object)
+  nameWithType: ParameterBase<TDataType>.Equals(object)
+  nameWithType.vb: ParameterBase(Of TDataType).Equals(Object)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals*
+  name: Equals
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Equals_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Equals
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Equals
+  nameWithType: ParameterBase<TDataType>.Equals
+  nameWithType.vb: ParameterBase(Of TDataType).Equals
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.GetHashCode
+  name: GetHashCode()
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_GetHashCode
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.GetHashCode
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.GetHashCode()
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).GetHashCode()
+  nameWithType: ParameterBase<TDataType>.GetHashCode()
+  nameWithType.vb: ParameterBase(Of TDataType).GetHashCode()
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.GetHashCode*
+  name: GetHashCode
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_GetHashCode_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.GetHashCode
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.GetHashCode
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).GetHashCode
+  nameWithType: ParameterBase<TDataType>.GetHashCode
+  nameWithType.vb: ParameterBase(Of TDataType).GetHashCode
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ID
+  name: ID
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ID
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ID
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ID
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ID
+  nameWithType: ParameterBase<TDataType>.ID
+  nameWithType.vb: ParameterBase(Of TDataType).ID
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ID*
+  name: ID
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ID_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ID
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ID
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ID
+  nameWithType: ParameterBase<TDataType>.ID
+  nameWithType.vb: ParameterBase(Of TDataType).ID
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.InternalValue
+  name: InternalValue
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_InternalValue
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.InternalValue
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.InternalValue
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).InternalValue
+  nameWithType: ParameterBase<TDataType>.InternalValue
+  nameWithType.vb: ParameterBase(Of TDataType).InternalValue
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.InternalValue*
+  name: InternalValue
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_InternalValue_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.InternalValue
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.InternalValue
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).InternalValue
+  nameWithType: ParameterBase<TDataType>.InternalValue
+  nameWithType.vb: ParameterBase(Of TDataType).InternalValue
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name: operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name.vb: =(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
+  nameWithType: ParameterBase<TDataType>.operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  nameWithType.vb: ParameterBase(Of TDataType).=(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality*
+  name: operator ==
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=
+  nameWithType: ParameterBase<TDataType>.operator ==
+  nameWithType.vb: ParameterBase(Of TDataType).=
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name: operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name.vb: <>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
+  nameWithType: ParameterBase<TDataType>.operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  nameWithType.vb: ParameterBase(Of TDataType).<>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality*
+  name: operator !=
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>
+  nameWithType: ParameterBase<TDataType>.operator !=
+  nameWithType.vb: ParameterBase(Of TDataType).<>
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ParameterStarter
+  name: ParameterStarter
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ParameterStarter
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ParameterStarter
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterStarter
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ParameterStarter
+  nameWithType: ParameterBase<TDataType>.ParameterStarter
+  nameWithType.vb: ParameterBase(Of TDataType).ParameterStarter
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ParameterStarter*
+  name: ParameterStarter
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ParameterStarter_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ParameterStarter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterStarter
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ParameterStarter
+  nameWithType: ParameterBase<TDataType>.ParameterStarter
+  nameWithType.vb: ParameterBase(Of TDataType).ParameterStarter
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ToString
+  name: ToString()
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ToString
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ToString
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ToString()
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ToString()
+  nameWithType: ParameterBase<TDataType>.ToString()
+  nameWithType.vb: ParameterBase(Of TDataType).ToString()
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ToString*
+  name: ToString
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ToString_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ToString
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ToString
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).ToString
+  nameWithType: ParameterBase<TDataType>.ToString
+  nameWithType.vb: ParameterBase(Of TDataType).ToString
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Value
+  name: Value
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Value
+  commentId: P:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Value
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Value
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Value
+  nameWithType: ParameterBase<TDataType>.Value
+  nameWithType.vb: ParameterBase(Of TDataType).Value
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Value*
+  name: Value
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Value_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Value
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Value
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Value
+  nameWithType: ParameterBase<TDataType>.Value
+  nameWithType.vb: ParameterBase(Of TDataType).Value
+- uid: SQLHelperDB.HelperClasses.Batch
+  name: Batch
+  href: api/SQLHelperDB.HelperClasses.Batch.html
+  commentId: T:SQLHelperDB.HelperClasses.Batch
+  fullName: SQLHelperDB.HelperClasses.Batch
+  nameWithType: Batch
+- uid: SQLHelperDB.HelperClasses.Batch.#ctor(SQLHelperDB.HelperClasses.Interfaces.IConnection,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Logging.ILogger)
+  name: Batch(IConnection, ObjectPool<StringBuilder>, ILogger?)
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch__ctor_SQLHelperDB_HelperClasses_Interfaces_IConnection_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Logging_ILogger_
+  commentId: M:SQLHelperDB.HelperClasses.Batch.#ctor(SQLHelperDB.HelperClasses.Interfaces.IConnection,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Logging.ILogger)
+  name.vb: New(IConnection, ObjectPool(Of StringBuilder), ILogger)
+  fullName: SQLHelperDB.HelperClasses.Batch.Batch(SQLHelperDB.HelperClasses.Interfaces.IConnection, Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>, Microsoft.Extensions.Logging.ILogger?)
+  fullName.vb: SQLHelperDB.HelperClasses.Batch.New(SQLHelperDB.HelperClasses.Interfaces.IConnection, Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder), Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Batch.Batch(IConnection, ObjectPool<StringBuilder>, ILogger?)
+  nameWithType.vb: Batch.New(IConnection, ObjectPool(Of StringBuilder), ILogger)
+- uid: SQLHelperDB.HelperClasses.Batch.#ctor*
+  name: Batch
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.Batch.Batch
+  fullName.vb: SQLHelperDB.HelperClasses.Batch.New
+  nameWithType: Batch.Batch
+  nameWithType.vb: Batch.New
+- uid: SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  name: AddQuery(IBatch)
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch_
+  commentId: M:SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  fullName: SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  nameWithType: Batch.AddQuery(IBatch)
+- uid: SQLHelperDB.HelperClasses.Batch.AddQuery*
+  name: AddQuery
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_AddQuery_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.AddQuery
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.AddQuery
+  nameWithType: Batch.AddQuery
+- uid: SQLHelperDB.HelperClasses.Batch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])
+  name: AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, params object[]?)
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object___
+  commentId: M:SQLHelperDB.HelperClasses.Batch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])
+  name.vb: AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, ParamArray Object())
+  fullName: SQLHelperDB.HelperClasses.Batch.AddQuery<TCallbackData>(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, bool, string, System.Data.CommandType, params object[]?)
+  fullName.vb: SQLHelperDB.HelperClasses.Batch.AddQuery(Of TCallbackData)(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, Boolean, String, System.Data.CommandType, ParamArray Object())
+  nameWithType: Batch.AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, params object[]?)
+  nameWithType.vb: Batch.AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, ParamArray Object())
+- uid: SQLHelperDB.HelperClasses.Batch.CheckTransaction
+  name: CheckTransaction()
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_CheckTransaction
+  commentId: M:SQLHelperDB.HelperClasses.Batch.CheckTransaction
+  fullName: SQLHelperDB.HelperClasses.Batch.CheckTransaction()
+  nameWithType: Batch.CheckTransaction()
+- uid: SQLHelperDB.HelperClasses.Batch.CheckTransaction*
+  name: CheckTransaction
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_CheckTransaction_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.CheckTransaction
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.CheckTransaction
+  nameWithType: Batch.CheckTransaction
+- uid: SQLHelperDB.HelperClasses.Batch.Clear
+  name: Clear()
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Clear
+  commentId: M:SQLHelperDB.HelperClasses.Batch.Clear
+  fullName: SQLHelperDB.HelperClasses.Batch.Clear()
+  nameWithType: Batch.Clear()
+- uid: SQLHelperDB.HelperClasses.Batch.Clear*
+  name: Clear
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Clear_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.Clear
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.Clear
+  nameWithType: Batch.Clear
+- uid: SQLHelperDB.HelperClasses.Batch.CommandCount
+  name: CommandCount
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_CommandCount
+  commentId: P:SQLHelperDB.HelperClasses.Batch.CommandCount
+  fullName: SQLHelperDB.HelperClasses.Batch.CommandCount
+  nameWithType: Batch.CommandCount
+- uid: SQLHelperDB.HelperClasses.Batch.CommandCount*
+  name: CommandCount
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_CommandCount_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.CommandCount
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.CommandCount
+  nameWithType: Batch.CommandCount
+- uid: SQLHelperDB.HelperClasses.Batch.Commands
+  name: Commands
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Commands
+  commentId: P:SQLHelperDB.HelperClasses.Batch.Commands
+  fullName: SQLHelperDB.HelperClasses.Batch.Commands
+  nameWithType: Batch.Commands
+- uid: SQLHelperDB.HelperClasses.Batch.Commands*
+  name: Commands
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Commands_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.Commands
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.Commands
+  nameWithType: Batch.Commands
+- uid: SQLHelperDB.HelperClasses.Batch.ExecuteAsync
+  name: ExecuteAsync()
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_ExecuteAsync
+  commentId: M:SQLHelperDB.HelperClasses.Batch.ExecuteAsync
+  fullName: SQLHelperDB.HelperClasses.Batch.ExecuteAsync()
+  nameWithType: Batch.ExecuteAsync()
+- uid: SQLHelperDB.HelperClasses.Batch.ExecuteAsync*
+  name: ExecuteAsync
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_ExecuteAsync_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.ExecuteAsync
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.ExecuteAsync
+  nameWithType: Batch.ExecuteAsync
+- uid: SQLHelperDB.HelperClasses.Batch.Headers
+  name: Headers
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Headers
+  commentId: P:SQLHelperDB.HelperClasses.Batch.Headers
+  fullName: SQLHelperDB.HelperClasses.Batch.Headers
+  nameWithType: Batch.Headers
+- uid: SQLHelperDB.HelperClasses.Batch.Headers*
+  name: Headers
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Headers_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.Headers
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.Headers
+  nameWithType: Batch.Headers
+- uid: SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands
+  name: RemoveDuplicateCommands()
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands
+  commentId: M:SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands
+  fullName: SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands()
+  nameWithType: Batch.RemoveDuplicateCommands()
+- uid: SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands*
+  name: RemoveDuplicateCommands
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands
+  nameWithType: Batch.RemoveDuplicateCommands
+- uid: SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: SetConnection(IConnection)
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName: SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: Batch.SetConnection(IConnection)
+- uid: SQLHelperDB.HelperClasses.Batch.SetConnection*
+  name: SetConnection
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_SetConnection_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.SetConnection
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.SetConnection
+  nameWithType: Batch.SetConnection
+- uid: SQLHelperDB.HelperClasses.Batch.Source
+  name: Source
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Source
+  commentId: P:SQLHelperDB.HelperClasses.Batch.Source
+  fullName: SQLHelperDB.HelperClasses.Batch.Source
+  nameWithType: Batch.Source
+- uid: SQLHelperDB.HelperClasses.Batch.Source*
+  name: Source
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_Source_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.Source
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.Source
+  nameWithType: Batch.Source
+- uid: SQLHelperDB.HelperClasses.Batch.StringBuilderPool
+  name: StringBuilderPool
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_StringBuilderPool
+  commentId: P:SQLHelperDB.HelperClasses.Batch.StringBuilderPool
+  fullName: SQLHelperDB.HelperClasses.Batch.StringBuilderPool
+  nameWithType: Batch.StringBuilderPool
+- uid: SQLHelperDB.HelperClasses.Batch.StringBuilderPool*
+  name: StringBuilderPool
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_StringBuilderPool_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.StringBuilderPool
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.StringBuilderPool
+  nameWithType: Batch.StringBuilderPool
+- uid: SQLHelperDB.HelperClasses.Batch.ToString
+  name: ToString()
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_ToString
+  commentId: M:SQLHelperDB.HelperClasses.Batch.ToString
+  fullName: SQLHelperDB.HelperClasses.Batch.ToString()
+  nameWithType: Batch.ToString()
+- uid: SQLHelperDB.HelperClasses.Batch.ToString*
+  name: ToString
+  href: api/SQLHelperDB.HelperClasses.Batch.html#SQLHelperDB_HelperClasses_Batch_ToString_
+  commentId: Overload:SQLHelperDB.HelperClasses.Batch.ToString
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Batch.ToString
+  nameWithType: Batch.ToString
+- uid: SQLHelperDB.HelperClasses.Command`1
+  name: Command<TCallbackData>
+  href: api/SQLHelperDB.HelperClasses.Command-1.html
+  commentId: T:SQLHelperDB.HelperClasses.Command`1
+  name.vb: Command(Of TCallbackData)
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData)
+  nameWithType: Command<TCallbackData>
+  nameWithType.vb: Command(Of TCallbackData)
+- uid: SQLHelperDB.HelperClasses.Command`1.#ctor(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},`0},`0,System.Boolean,System.String,System.Data.CommandType,SQLHelperDB.HelperClasses.Interfaces.IParameter[])
+  name: Command(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, IParameter[]?)
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1__ctor_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object___0___0_System_Boolean_System_String_System_Data_CommandType_SQLHelperDB_HelperClasses_Interfaces_IParameter___
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.#ctor(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},`0},`0,System.Boolean,System.String,System.Data.CommandType,SQLHelperDB.HelperClasses.Interfaces.IParameter[])
+  name.vb: New(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, IParameter())
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Command(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, bool, string, System.Data.CommandType, SQLHelperDB.HelperClasses.Interfaces.IParameter[]?)
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).New(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, Boolean, String, System.Data.CommandType, SQLHelperDB.HelperClasses.Interfaces.IParameter())
+  nameWithType: Command<TCallbackData>.Command(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, IParameter[]?)
+  nameWithType.vb: Command(Of TCallbackData).New(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, IParameter())
+- uid: SQLHelperDB.HelperClasses.Command`1.#ctor(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},`0},`0,System.Boolean,System.String,System.Data.CommandType,System.String,System.Object[])
+  name: Command(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, string, object[]?)
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1__ctor_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object___0___0_System_Boolean_System_String_System_Data_CommandType_System_String_System_Object___
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.#ctor(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},`0},`0,System.Boolean,System.String,System.Data.CommandType,System.String,System.Object[])
+  name.vb: New(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, String, Object())
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Command(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, bool, string, System.Data.CommandType, string, object[]?)
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).New(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, Boolean, String, System.Data.CommandType, String, Object())
+  nameWithType: Command<TCallbackData>.Command(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, string, object[]?)
+  nameWithType.vb: Command(Of TCallbackData).New(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, String, Object())
+- uid: SQLHelperDB.HelperClasses.Command`1.#ctor*
+  name: Command
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Command
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).New
+  nameWithType: Command<TCallbackData>.Command
+  nameWithType.vb: Command(Of TCallbackData).New
+- uid: SQLHelperDB.HelperClasses.Command`1.CallBack
+  name: CallBack
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CallBack
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.CallBack
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CallBack
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CallBack
+  nameWithType: Command<TCallbackData>.CallBack
+  nameWithType.vb: Command(Of TCallbackData).CallBack
+- uid: SQLHelperDB.HelperClasses.Command`1.CallBack*
+  name: CallBack
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CallBack_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.CallBack
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CallBack
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CallBack
+  nameWithType: Command<TCallbackData>.CallBack
+  nameWithType.vb: Command(Of TCallbackData).CallBack
+- uid: SQLHelperDB.HelperClasses.Command`1.CallbackData
+  name: CallbackData
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CallbackData
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.CallbackData
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CallbackData
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CallbackData
+  nameWithType: Command<TCallbackData>.CallbackData
+  nameWithType.vb: Command(Of TCallbackData).CallbackData
+- uid: SQLHelperDB.HelperClasses.Command`1.CallbackData*
+  name: CallbackData
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CallbackData_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.CallbackData
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CallbackData
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CallbackData
+  nameWithType: Command<TCallbackData>.CallbackData
+  nameWithType.vb: Command(Of TCallbackData).CallbackData
+- uid: SQLHelperDB.HelperClasses.Command`1.CommandType
+  name: CommandType
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CommandType
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.CommandType
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CommandType
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CommandType
+  nameWithType: Command<TCallbackData>.CommandType
+  nameWithType.vb: Command(Of TCallbackData).CommandType
+- uid: SQLHelperDB.HelperClasses.Command`1.CommandType*
+  name: CommandType
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_CommandType_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.CommandType
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.CommandType
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).CommandType
+  nameWithType: Command<TCallbackData>.CommandType
+  nameWithType.vb: Command(Of TCallbackData).CommandType
+- uid: SQLHelperDB.HelperClasses.Command`1.Equals(System.Object)
+  name: Equals(object?)
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Equals_System_Object_
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Equals(object?)
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Equals(Object)
+  nameWithType: Command<TCallbackData>.Equals(object?)
+  nameWithType.vb: Command(Of TCallbackData).Equals(Object)
+- uid: SQLHelperDB.HelperClasses.Command`1.Equals*
+  name: Equals
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Equals_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.Equals
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Equals
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Equals
+  nameWithType: Command<TCallbackData>.Equals
+  nameWithType.vb: Command(Of TCallbackData).Equals
+- uid: SQLHelperDB.HelperClasses.Command`1.Finalizable
+  name: Finalizable
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Finalizable
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.Finalizable
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Finalizable
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Finalizable
+  nameWithType: Command<TCallbackData>.Finalizable
+  nameWithType.vb: Command(Of TCallbackData).Finalizable
+- uid: SQLHelperDB.HelperClasses.Command`1.Finalizable*
+  name: Finalizable
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Finalizable_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.Finalizable
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Finalizable
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Finalizable
+  nameWithType: Command<TCallbackData>.Finalizable
+  nameWithType.vb: Command(Of TCallbackData).Finalizable
+- uid: SQLHelperDB.HelperClasses.Command`1.Finalize(System.Collections.Generic.List{System.Object})
+  name: Finalize(List<dynamic>)
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Finalize_System_Collections_Generic_List_System_Object__
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.Finalize(System.Collections.Generic.List{System.Object})
+  name.vb: Finalize(List(Of Object))
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Finalize(System.Collections.Generic.List<dynamic>)
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Finalize(System.Collections.Generic.List(Of Object))
+  nameWithType: Command<TCallbackData>.Finalize(List<dynamic>)
+  nameWithType.vb: Command(Of TCallbackData).Finalize(List(Of Object))
+- uid: SQLHelperDB.HelperClasses.Command`1.Finalize*
+  name: Finalize
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Finalize_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.Finalize
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Finalize
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Finalize
+  nameWithType: Command<TCallbackData>.Finalize
+  nameWithType.vb: Command(Of TCallbackData).Finalize
+- uid: SQLHelperDB.HelperClasses.Command`1.GetHashCode
+  name: GetHashCode()
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_GetHashCode
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.GetHashCode
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.GetHashCode()
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).GetHashCode()
+  nameWithType: Command<TCallbackData>.GetHashCode()
+  nameWithType.vb: Command(Of TCallbackData).GetHashCode()
+- uid: SQLHelperDB.HelperClasses.Command`1.GetHashCode*
+  name: GetHashCode
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_GetHashCode_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.GetHashCode
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.GetHashCode
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).GetHashCode
+  nameWithType: Command<TCallbackData>.GetHashCode
+  nameWithType.vb: Command(Of TCallbackData).GetHashCode
+- uid: SQLHelperDB.HelperClasses.Command`1.Header
+  name: Header
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Header
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.Header
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Header
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Header
+  nameWithType: Command<TCallbackData>.Header
+  nameWithType.vb: Command(Of TCallbackData).Header
+- uid: SQLHelperDB.HelperClasses.Command`1.Header*
+  name: Header
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Header_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.Header
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Header
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Header
+  nameWithType: Command<TCallbackData>.Header
+  nameWithType.vb: Command(Of TCallbackData).Header
+- uid: SQLHelperDB.HelperClasses.Command`1.Parameters
+  name: Parameters
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Parameters
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.Parameters
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Parameters
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Parameters
+  nameWithType: Command<TCallbackData>.Parameters
+  nameWithType.vb: Command(Of TCallbackData).Parameters
+- uid: SQLHelperDB.HelperClasses.Command`1.Parameters*
+  name: Parameters
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_Parameters_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.Parameters
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.Parameters
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).Parameters
+  nameWithType: Command<TCallbackData>.Parameters
+  nameWithType.vb: Command(Of TCallbackData).Parameters
+- uid: SQLHelperDB.HelperClasses.Command`1.SQLCommand
+  name: SQLCommand
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_SQLCommand
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.SQLCommand
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.SQLCommand
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).SQLCommand
+  nameWithType: Command<TCallbackData>.SQLCommand
+  nameWithType.vb: Command(Of TCallbackData).SQLCommand
+- uid: SQLHelperDB.HelperClasses.Command`1.SQLCommand*
+  name: SQLCommand
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_SQLCommand_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.SQLCommand
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.SQLCommand
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).SQLCommand
+  nameWithType: Command<TCallbackData>.SQLCommand
+  nameWithType.vb: Command(Of TCallbackData).SQLCommand
+- uid: SQLHelperDB.HelperClasses.Command`1.ToString
+  name: ToString()
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_ToString
+  commentId: M:SQLHelperDB.HelperClasses.Command`1.ToString
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.ToString()
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).ToString()
+  nameWithType: Command<TCallbackData>.ToString()
+  nameWithType.vb: Command(Of TCallbackData).ToString()
+- uid: SQLHelperDB.HelperClasses.Command`1.ToString*
+  name: ToString
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_ToString_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.ToString
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.ToString
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).ToString
+  nameWithType: Command<TCallbackData>.ToString
+  nameWithType.vb: Command(Of TCallbackData).ToString
+- uid: SQLHelperDB.HelperClasses.Command`1.TransactionNeeded
+  name: TransactionNeeded
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_TransactionNeeded
+  commentId: P:SQLHelperDB.HelperClasses.Command`1.TransactionNeeded
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.TransactionNeeded
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).TransactionNeeded
+  nameWithType: Command<TCallbackData>.TransactionNeeded
+  nameWithType.vb: Command(Of TCallbackData).TransactionNeeded
+- uid: SQLHelperDB.HelperClasses.Command`1.TransactionNeeded*
+  name: TransactionNeeded
+  href: api/SQLHelperDB.HelperClasses.Command-1.html#SQLHelperDB_HelperClasses_Command_1_TransactionNeeded_
+  commentId: Overload:SQLHelperDB.HelperClasses.Command`1.TransactionNeeded
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Command<TCallbackData>.TransactionNeeded
+  fullName.vb: SQLHelperDB.HelperClasses.Command(Of TCallbackData).TransactionNeeded
+  nameWithType: Command<TCallbackData>.TransactionNeeded
+  nameWithType.vb: Command(Of TCallbackData).TransactionNeeded
+- uid: SQLHelperDB.HelperClasses.Connection
+  name: Connection
+  href: api/SQLHelperDB.HelperClasses.Connection.html
+  commentId: T:SQLHelperDB.HelperClasses.Connection
+  fullName: SQLHelperDB.HelperClasses.Connection
+  nameWithType: Connection
+- uid: SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
+  name: Connection(IConfiguration, DbProviderFactory, string, string, string, int)
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_Microsoft_Extensions_Configuration_IConfiguration_System_Data_Common_DbProviderFactory_System_String_System_String_System_String_System_Int32_
+  commentId: M:SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
+  name.vb: New(IConfiguration, DbProviderFactory, String, String, String, Integer)
+  fullName: SQLHelperDB.HelperClasses.Connection.Connection(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, string, string, string, int)
+  fullName.vb: SQLHelperDB.HelperClasses.Connection.New(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, String, String, String, Integer)
+  nameWithType: Connection.Connection(IConfiguration, DbProviderFactory, string, string, string, int)
+  nameWithType.vb: Connection.New(IConfiguration, DbProviderFactory, String, String, String, Integer)
+- uid: SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String)
+  name: Connection(IConfiguration, DbProviderFactory, string)
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_Microsoft_Extensions_Configuration_IConfiguration_System_Data_Common_DbProviderFactory_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String)
+  name.vb: New(IConfiguration, DbProviderFactory, String)
+  fullName: SQLHelperDB.HelperClasses.Connection.Connection(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, string)
+  fullName.vb: SQLHelperDB.HelperClasses.Connection.New(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, String)
+  nameWithType: Connection.Connection(IConfiguration, DbProviderFactory, string)
+  nameWithType.vb: Connection.New(IConfiguration, DbProviderFactory, String)
+- uid: SQLHelperDB.HelperClasses.Connection.#ctor*
+  name: Connection
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.Connection.Connection
+  fullName.vb: SQLHelperDB.HelperClasses.Connection.New
+  nameWithType: Connection.Connection
+  nameWithType.vb: Connection.New
+- uid: SQLHelperDB.HelperClasses.Connection.CommandTimeout
+  name: CommandTimeout
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_CommandTimeout
+  commentId: P:SQLHelperDB.HelperClasses.Connection.CommandTimeout
+  fullName: SQLHelperDB.HelperClasses.Connection.CommandTimeout
+  nameWithType: Connection.CommandTimeout
+- uid: SQLHelperDB.HelperClasses.Connection.CommandTimeout*
+  name: CommandTimeout
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_CommandTimeout_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.CommandTimeout
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.CommandTimeout
+  nameWithType: Connection.CommandTimeout
+- uid: SQLHelperDB.HelperClasses.Connection.ConnectionString
+  name: ConnectionString
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_ConnectionString
+  commentId: P:SQLHelperDB.HelperClasses.Connection.ConnectionString
+  fullName: SQLHelperDB.HelperClasses.Connection.ConnectionString
+  nameWithType: Connection.ConnectionString
+- uid: SQLHelperDB.HelperClasses.Connection.ConnectionString*
+  name: ConnectionString
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_ConnectionString_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.ConnectionString
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.ConnectionString
+  nameWithType: Connection.ConnectionString
+- uid: SQLHelperDB.HelperClasses.Connection.DatabaseName
+  name: DatabaseName
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_DatabaseName
+  commentId: P:SQLHelperDB.HelperClasses.Connection.DatabaseName
+  fullName: SQLHelperDB.HelperClasses.Connection.DatabaseName
+  nameWithType: Connection.DatabaseName
+- uid: SQLHelperDB.HelperClasses.Connection.DatabaseName*
+  name: DatabaseName
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_DatabaseName_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.DatabaseName
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.DatabaseName
+  nameWithType: Connection.DatabaseName
+- uid: SQLHelperDB.HelperClasses.Connection.Factory
+  name: Factory
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Factory
+  commentId: P:SQLHelperDB.HelperClasses.Connection.Factory
+  fullName: SQLHelperDB.HelperClasses.Connection.Factory
+  nameWithType: Connection.Factory
+- uid: SQLHelperDB.HelperClasses.Connection.Factory*
+  name: Factory
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Factory_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.Factory
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.Factory
+  nameWithType: Connection.Factory
+- uid: SQLHelperDB.HelperClasses.Connection.Name
+  name: Name
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Name
+  commentId: P:SQLHelperDB.HelperClasses.Connection.Name
+  fullName: SQLHelperDB.HelperClasses.Connection.Name
+  nameWithType: Connection.Name
+- uid: SQLHelperDB.HelperClasses.Connection.Name*
+  name: Name
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Name_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.Name
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.Name
+  nameWithType: Connection.Name
+- uid: SQLHelperDB.HelperClasses.Connection.ParameterPrefix
+  name: ParameterPrefix
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_ParameterPrefix
+  commentId: P:SQLHelperDB.HelperClasses.Connection.ParameterPrefix
+  fullName: SQLHelperDB.HelperClasses.Connection.ParameterPrefix
+  nameWithType: Connection.ParameterPrefix
+- uid: SQLHelperDB.HelperClasses.Connection.ParameterPrefix*
+  name: ParameterPrefix
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_ParameterPrefix_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.ParameterPrefix
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.ParameterPrefix
+  nameWithType: Connection.ParameterPrefix
+- uid: SQLHelperDB.HelperClasses.Connection.Retries
+  name: Retries
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Retries
+  commentId: P:SQLHelperDB.HelperClasses.Connection.Retries
+  fullName: SQLHelperDB.HelperClasses.Connection.Retries
+  nameWithType: Connection.Retries
+- uid: SQLHelperDB.HelperClasses.Connection.Retries*
+  name: Retries
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection_Retries_
+  commentId: Overload:SQLHelperDB.HelperClasses.Connection.Retries
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Connection.Retries
+  nameWithType: Connection.Retries
+- uid: SQLHelperDB.HelperClasses.Interfaces
+  name: SQLHelperDB.HelperClasses.Interfaces
+  href: api/SQLHelperDB.HelperClasses.Interfaces.html
+  commentId: N:SQLHelperDB.HelperClasses.Interfaces
+  fullName: SQLHelperDB.HelperClasses.Interfaces
+  nameWithType: SQLHelperDB.HelperClasses.Interfaces
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch
+  name: IBatch
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html
+  commentId: T:SQLHelperDB.HelperClasses.Interfaces.IBatch
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch
+  nameWithType: IBatch
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  name: AddQuery(IBatch)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch_
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)
+  nameWithType: IBatch.AddQuery(IBatch)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery*
+  name: AddQuery
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_AddQuery_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery
+  nameWithType: IBatch.AddQuery
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])
+  name: AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, params object[]?)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object___
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])
+  name.vb: AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, ParamArray Object())
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery<TCallbackData>(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, bool, string, System.Data.CommandType, params object[]?)
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IBatch.AddQuery(Of TCallbackData)(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, Boolean, String, System.Data.CommandType, ParamArray Object())
+  nameWithType: IBatch.AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, bool, string, CommandType, params object[]?)
+  nameWithType.vb: IBatch.AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, Boolean, String, CommandType, ParamArray Object())
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear
+  name: Clear()
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_Clear
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear()
+  nameWithType: IBatch.Clear()
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear*
+  name: Clear
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_Clear_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.Clear
+  nameWithType: IBatch.Clear
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount
+  name: CommandCount
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_CommandCount
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount
+  nameWithType: IBatch.CommandCount
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount*
+  name: CommandCount
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_CommandCount_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.CommandCount
+  nameWithType: IBatch.CommandCount
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync
+  name: ExecuteAsync()
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_ExecuteAsync
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync()
+  nameWithType: IBatch.ExecuteAsync()
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync*
+  name: ExecuteAsync
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_ExecuteAsync_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.ExecuteAsync
+  nameWithType: IBatch.ExecuteAsync
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands
+  name: RemoveDuplicateCommands()
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_RemoveDuplicateCommands
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands()
+  nameWithType: IBatch.RemoveDuplicateCommands()
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands*
+  name: RemoveDuplicateCommands
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_RemoveDuplicateCommands_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.RemoveDuplicateCommands
+  nameWithType: IBatch.RemoveDuplicateCommands
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: SetConnection(IConnection)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: IBatch.SetConnection(IConnection)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection*
+  name: SetConnection
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html#SQLHelperDB_HelperClasses_Interfaces_IBatch_SetConnection_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IBatch.SetConnection
+  nameWithType: IBatch.SetConnection
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand
+  name: ICommand
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html
+  commentId: T:SQLHelperDB.HelperClasses.Interfaces.ICommand
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand
+  nameWithType: ICommand
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType
+  name: CommandType
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_CommandType
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType
+  nameWithType: ICommand.CommandType
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType*
+  name: CommandType
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_CommandType_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.CommandType
+  nameWithType: ICommand.CommandType
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable
+  name: Finalizable
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Finalizable
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable
+  nameWithType: ICommand.Finalizable
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable*
+  name: Finalizable
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Finalizable_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalizable
+  nameWithType: ICommand.Finalizable
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize(System.Collections.Generic.List{System.Object})
+  name: Finalize(List<dynamic>)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Finalize_System_Collections_Generic_List_System_Object__
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize(System.Collections.Generic.List{System.Object})
+  name.vb: Finalize(List(Of Object))
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize(System.Collections.Generic.List<dynamic>)
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize(System.Collections.Generic.List(Of Object))
+  nameWithType: ICommand.Finalize(List<dynamic>)
+  nameWithType.vb: ICommand.Finalize(List(Of Object))
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize*
+  name: Finalize
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Finalize_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Finalize
+  nameWithType: ICommand.Finalize
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters
+  name: Parameters
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Parameters
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters
+  nameWithType: ICommand.Parameters
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters*
+  name: Parameters
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_Parameters_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.Parameters
+  nameWithType: ICommand.Parameters
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand
+  name: SQLCommand
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_SQLCommand
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand
+  nameWithType: ICommand.SQLCommand
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand*
+  name: SQLCommand
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_SQLCommand_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.SQLCommand
+  nameWithType: ICommand.SQLCommand
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded
+  name: TransactionNeeded
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_TransactionNeeded
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded
+  nameWithType: ICommand.TransactionNeeded
+- uid: SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded*
+  name: TransactionNeeded
+  href: api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html#SQLHelperDB_HelperClasses_Interfaces_ICommand_TransactionNeeded_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.ICommand.TransactionNeeded
+  nameWithType: ICommand.TransactionNeeded
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection
+  name: IConnection
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html
+  commentId: T:SQLHelperDB.HelperClasses.Interfaces.IConnection
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection
+  nameWithType: IConnection
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString
+  name: ConnectionString
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_ConnectionString
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString
+  nameWithType: IConnection.ConnectionString
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString*
+  name: ConnectionString
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_ConnectionString_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.ConnectionString
+  nameWithType: IConnection.ConnectionString
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName
+  name: DatabaseName
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_DatabaseName
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName
+  nameWithType: IConnection.DatabaseName
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName*
+  name: DatabaseName
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_DatabaseName_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.DatabaseName
+  nameWithType: IConnection.DatabaseName
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory
+  name: Factory
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Factory
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory
+  nameWithType: IConnection.Factory
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory*
+  name: Factory
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Factory_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Factory
+  nameWithType: IConnection.Factory
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Name
+  name: Name
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Name
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.Name
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Name
+  nameWithType: IConnection.Name
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Name*
+  name: Name
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Name_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.Name
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Name
+  nameWithType: IConnection.Name
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix
+  name: ParameterPrefix
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_ParameterPrefix
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix
+  nameWithType: IConnection.ParameterPrefix
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix*
+  name: ParameterPrefix
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_ParameterPrefix_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.ParameterPrefix
+  nameWithType: IConnection.ParameterPrefix
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries
+  name: Retries
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Retries
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries
+  nameWithType: IConnection.Retries
+- uid: SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries*
+  name: Retries
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html#SQLHelperDB_HelperClasses_Interfaces_IConnection_Retries_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IConnection.Retries
+  nameWithType: IConnection.Retries
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter
+  name: IParameter
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html
+  commentId: T:SQLHelperDB.HelperClasses.Interfaces.IParameter
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter
+  nameWithType: IParameter
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(System.Data.Common.DbCommand)
+  name: AddParameter(DbCommand)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_AddParameter_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(System.Data.Common.DbCommand)
+  nameWithType: IParameter.AddParameter(DbCommand)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(System.String)
+  name: AddParameter(string)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_AddParameter_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(System.String)
+  name.vb: AddParameter(String)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(string)
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter(String)
+  nameWithType: IParameter.AddParameter(string)
+  nameWithType.vb: IParameter.AddParameter(String)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter*
+  name: AddParameter
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_AddParameter_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.AddParameter
+  nameWithType: IParameter.AddParameter
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy(System.String)
+  name: CreateCopy(string)
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_CreateCopy_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy(System.String)
+  name.vb: CreateCopy(String)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy(string)
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy(String)
+  nameWithType: IParameter.CreateCopy(string)
+  nameWithType.vb: IParameter.CreateCopy(String)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy*
+  name: CreateCopy
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_CreateCopy_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.CreateCopy
+  nameWithType: IParameter.CreateCopy
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType
+  name: DatabaseType
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_DatabaseType
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType
+  nameWithType: IParameter.DatabaseType
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType*
+  name: DatabaseType
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_DatabaseType_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.DatabaseType
+  nameWithType: IParameter.DatabaseType
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction
+  name: Direction
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_Direction
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction
+  nameWithType: IParameter.Direction
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction*
+  name: Direction
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_Direction_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.Direction
+  nameWithType: IParameter.Direction
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.ID
+  name: ID
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_ID
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter.ID
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.ID
+  nameWithType: IParameter.ID
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.ID*
+  name: ID
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_ID_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.ID
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.ID
+  nameWithType: IParameter.ID
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue
+  name: InternalValue
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_InternalValue
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue
+  nameWithType: IParameter.InternalValue
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue*
+  name: InternalValue
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_InternalValue_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.InternalValue
+  nameWithType: IParameter.InternalValue
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter
+  name: ParameterStarter
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_ParameterStarter
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter
+  nameWithType: IParameter.ParameterStarter
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter*
+  name: ParameterStarter
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_ParameterStarter_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter.ParameterStarter
+  nameWithType: IParameter.ParameterStarter
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter`1
+  name: IParameter<T>
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.html
+  commentId: T:SQLHelperDB.HelperClasses.Interfaces.IParameter`1
+  name.vb: IParameter(Of T)
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter<T>
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IParameter(Of T)
+  nameWithType: IParameter<T>
+  nameWithType.vb: IParameter(Of T)
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter`1.Value
+  name: Value
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_1_Value
+  commentId: P:SQLHelperDB.HelperClasses.Interfaces.IParameter`1.Value
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter<T>.Value
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IParameter(Of T).Value
+  nameWithType: IParameter<T>.Value
+  nameWithType.vb: IParameter(Of T).Value
+- uid: SQLHelperDB.HelperClasses.Interfaces.IParameter`1.Value*
+  name: Value
+  href: api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.html#SQLHelperDB_HelperClasses_Interfaces_IParameter_1_Value_
+  commentId: Overload:SQLHelperDB.HelperClasses.Interfaces.IParameter`1.Value
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Interfaces.IParameter<T>.Value
+  fullName.vb: SQLHelperDB.HelperClasses.Interfaces.IParameter(Of T).Value
+  nameWithType: IParameter<T>.Value
+  nameWithType.vb: IParameter(Of T).Value
+- uid: SQLHelperDB.HelperClasses.Parameter`1
+  name: Parameter<TDataType>
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html
+  commentId: T:SQLHelperDB.HelperClasses.Parameter`1
+  name.vb: Parameter(Of TDataType)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType)
+  nameWithType: Parameter<TDataType>
+  nameWithType.vb: Parameter(Of TDataType)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name: Parameter(string, TDataType, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, TDataType, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter(string, TDataType, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
+  nameWithType: Parameter<TDataType>.Parameter(string, TDataType, ParameterDirection, string)
+  nameWithType.vb: Parameter(Of TDataType).New(String, TDataType, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
+  name: Parameter(string, DbType, object?, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, DbType, Object, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter(string, System.Data.DbType, object?, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, System.Data.DbType, Object, System.Data.ParameterDirection, String)
+  nameWithType: Parameter<TDataType>.Parameter(string, DbType, object?, ParameterDirection, string)
+  nameWithType.vb: Parameter(Of TDataType).New(String, DbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection,System.String)
+  name: Parameter(string, SqlDbType, object?, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, SqlDbType, Object, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter(string, System.Data.SqlDbType, object?, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, System.Data.SqlDbType, Object, System.Data.ParameterDirection, String)
+  nameWithType: Parameter<TDataType>.Parameter(string, SqlDbType, object?, ParameterDirection, string)
+  nameWithType.vb: Parameter(Of TDataType).New(String, SqlDbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor*
+  name: Parameter
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.Parameter`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New
+  nameWithType: Parameter<TDataType>.Parameter
+  nameWithType.vb: Parameter(Of TDataType).New
+- uid: SQLHelperDB.HelperClasses.Parameter`1.AddParameter(System.Data.Common.DbCommand)
+  name: AddParameter(DbCommand)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1_AddParameter_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.AddParameter(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.AddParameter(System.Data.Common.DbCommand)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).AddParameter(System.Data.Common.DbCommand)
+  nameWithType: Parameter<TDataType>.AddParameter(DbCommand)
+  nameWithType.vb: Parameter(Of TDataType).AddParameter(DbCommand)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.AddParameter*
+  name: AddParameter
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1_AddParameter_
+  commentId: Overload:SQLHelperDB.HelperClasses.Parameter`1.AddParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.AddParameter
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).AddParameter
+  nameWithType: Parameter<TDataType>.AddParameter
+  nameWithType.vb: Parameter(Of TDataType).AddParameter
+- uid: SQLHelperDB.HelperClasses.Parameter`1.CreateCopy(System.String)
+  name: CreateCopy(string)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1_CreateCopy_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.CreateCopy(System.String)
+  name.vb: CreateCopy(String)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.CreateCopy(string)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).CreateCopy(String)
+  nameWithType: Parameter<TDataType>.CreateCopy(string)
+  nameWithType.vb: Parameter(Of TDataType).CreateCopy(String)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.CreateCopy*
+  name: CreateCopy
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1_CreateCopy_
+  commentId: Overload:SQLHelperDB.HelperClasses.Parameter`1.CreateCopy
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.CreateCopy
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).CreateCopy
+  nameWithType: Parameter<TDataType>.CreateCopy
+  nameWithType.vb: Parameter(Of TDataType).CreateCopy
+- uid: SQLHelperDB.HelperClasses.SelectFinder
+  name: SelectFinder
+  href: api/SQLHelperDB.HelperClasses.SelectFinder.html
+  commentId: T:SQLHelperDB.HelperClasses.SelectFinder
+  fullName: SQLHelperDB.HelperClasses.SelectFinder
+  nameWithType: SelectFinder
+- uid: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
+  name: EnterDml_clause(Dml_clauseContext)
+  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_EnterDml_clause_SQLParser_Parsers_TSql_TSqlParser_Dml_clauseContext_
+  commentId: M:SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
+  fullName: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
+  nameWithType: SelectFinder.EnterDml_clause(TSqlParser.Dml_clauseContext)
+- uid: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause*
+  name: EnterDml_clause
+  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_EnterDml_clause_
+  commentId: Overload:SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause
+  nameWithType: SelectFinder.EnterDml_clause
+- uid: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
+  name: StatementFound
+  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_StatementFound
+  commentId: P:SQLHelperDB.HelperClasses.SelectFinder.StatementFound
+  fullName: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
+  nameWithType: SelectFinder.StatementFound
+- uid: SQLHelperDB.HelperClasses.SelectFinder.StatementFound*
+  name: StatementFound
+  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_StatementFound_
+  commentId: Overload:SQLHelperDB.HelperClasses.SelectFinder.StatementFound
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
+  nameWithType: SelectFinder.StatementFound
+- uid: SQLHelperDB.HelperClasses.StringParameter
+  name: StringParameter
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html
+  commentId: T:SQLHelperDB.HelperClasses.StringParameter
+  fullName: SQLHelperDB.HelperClasses.StringParameter
+  nameWithType: StringParameter
+- uid: SQLHelperDB.HelperClasses.StringParameter.#ctor(System.String,System.String,System.Data.ParameterDirection,System.String)
+  name: StringParameter(string, string, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter__ctor_System_String_System_String_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.StringParameter.#ctor(System.String,System.String,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, String, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.StringParameter.StringParameter(string, string, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.StringParameter.New(String, String, System.Data.ParameterDirection, String)
+  nameWithType: StringParameter.StringParameter(string, string, ParameterDirection, string)
+  nameWithType.vb: StringParameter.New(String, String, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.StringParameter.#ctor*
+  name: StringParameter
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter__ctor_
+  commentId: Overload:SQLHelperDB.HelperClasses.StringParameter.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.HelperClasses.StringParameter.StringParameter
+  fullName.vb: SQLHelperDB.HelperClasses.StringParameter.New
+  nameWithType: StringParameter.StringParameter
+  nameWithType.vb: StringParameter.New
+- uid: SQLHelperDB.HelperClasses.StringParameter.AddParameter(System.Data.Common.DbCommand)
+  name: AddParameter(DbCommand)
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter_AddParameter_System_Data_Common_DbCommand_
+  commentId: M:SQLHelperDB.HelperClasses.StringParameter.AddParameter(System.Data.Common.DbCommand)
+  fullName: SQLHelperDB.HelperClasses.StringParameter.AddParameter(System.Data.Common.DbCommand)
+  nameWithType: StringParameter.AddParameter(DbCommand)
+- uid: SQLHelperDB.HelperClasses.StringParameter.AddParameter*
+  name: AddParameter
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter_AddParameter_
+  commentId: Overload:SQLHelperDB.HelperClasses.StringParameter.AddParameter
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.StringParameter.AddParameter
+  nameWithType: StringParameter.AddParameter
+- uid: SQLHelperDB.HelperClasses.StringParameter.CreateCopy(System.String)
+  name: CreateCopy(string)
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter_CreateCopy_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.StringParameter.CreateCopy(System.String)
+  name.vb: CreateCopy(String)
+  fullName: SQLHelperDB.HelperClasses.StringParameter.CreateCopy(string)
+  fullName.vb: SQLHelperDB.HelperClasses.StringParameter.CreateCopy(String)
+  nameWithType: StringParameter.CreateCopy(string)
+  nameWithType.vb: StringParameter.CreateCopy(String)
+- uid: SQLHelperDB.HelperClasses.StringParameter.CreateCopy*
+  name: CreateCopy
+  href: api/SQLHelperDB.HelperClasses.StringParameter.html#SQLHelperDB_HelperClasses_StringParameter_CreateCopy_
+  commentId: Overload:SQLHelperDB.HelperClasses.StringParameter.CreateCopy
+  isSpec: "True"
+  fullName: SQLHelperDB.HelperClasses.StringParameter.CreateCopy
+  nameWithType: StringParameter.CreateCopy
+- uid: SQLHelperDB.SQLHelper
+  name: SQLHelper
+  href: api/SQLHelperDB.SQLHelper.html
+  commentId: T:SQLHelperDB.SQLHelper
+  fullName: SQLHelperDB.SQLHelper
+  nameWithType: SQLHelper
+- uid: SQLHelperDB.SQLHelper.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{SQLHelperDB.SQLHelper})
+  name: SQLHelper(ObjectPool<StringBuilder>, IConfiguration, ILogger<SQLHelper>?)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper__ctor_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Configuration_IConfiguration_Microsoft_Extensions_Logging_ILogger_SQLHelperDB_SQLHelper__
+  commentId: M:SQLHelperDB.SQLHelper.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{SQLHelperDB.SQLHelper})
+  name.vb: New(ObjectPool(Of StringBuilder), IConfiguration, ILogger(Of SQLHelper))
+  fullName: SQLHelperDB.SQLHelper.SQLHelper(Microsoft.Extensions.ObjectPool.ObjectPool<System.Text.StringBuilder>, Microsoft.Extensions.Configuration.IConfiguration, Microsoft.Extensions.Logging.ILogger<SQLHelperDB.SQLHelper>?)
+  fullName.vb: SQLHelperDB.SQLHelper.New(Microsoft.Extensions.ObjectPool.ObjectPool(Of System.Text.StringBuilder), Microsoft.Extensions.Configuration.IConfiguration, Microsoft.Extensions.Logging.ILogger(Of SQLHelperDB.SQLHelper))
+  nameWithType: SQLHelper.SQLHelper(ObjectPool<StringBuilder>, IConfiguration, ILogger<SQLHelper>?)
+  nameWithType.vb: SQLHelper.New(ObjectPool(Of StringBuilder), IConfiguration, ILogger(Of SQLHelper))
+- uid: SQLHelperDB.SQLHelper.#ctor*
+  name: SQLHelper
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper__ctor_
+  commentId: Overload:SQLHelperDB.SQLHelper.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SQLHelperDB.SQLHelper.SQLHelper
+  fullName.vb: SQLHelperDB.SQLHelper.New
+  nameWithType: SQLHelper.SQLHelper
+  nameWithType.vb: SQLHelper.New
+- uid: SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType,System.String,System.Object[])
+  name: AddHeader(CommandType, string, params object[]?)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddHeader_System_Data_CommandType_System_String_System_Object___
+  commentId: M:SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType,System.String,System.Object[])
+  name.vb: AddHeader(CommandType, String, ParamArray Object())
+  fullName: SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType, string, params object[]?)
+  fullName.vb: SQLHelperDB.SQLHelper.AddHeader(System.Data.CommandType, String, ParamArray Object())
+  nameWithType: SQLHelper.AddHeader(CommandType, string, params object[]?)
+  nameWithType.vb: SQLHelper.AddHeader(CommandType, String, ParamArray Object())
+- uid: SQLHelperDB.SQLHelper.AddHeader*
+  name: AddHeader
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddHeader_
+  commentId: Overload:SQLHelperDB.SQLHelper.AddHeader
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.AddHeader
+  nameWithType: SQLHelper.AddHeader
+- uid: SQLHelperDB.SQLHelper.AddHeader``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])
+  name: AddHeader<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, CommandType, string, params object[]?)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddHeader__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___
+  commentId: M:SQLHelperDB.SQLHelper.AddHeader``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])
+  name.vb: AddHeader(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, CommandType, String, ParamArray Object())
+  fullName: SQLHelperDB.SQLHelper.AddHeader<TCallbackData>(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, System.Data.CommandType, string, params object[]?)
+  fullName.vb: SQLHelperDB.SQLHelper.AddHeader(Of TCallbackData)(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, System.Data.CommandType, String, ParamArray Object())
+  nameWithType: SQLHelper.AddHeader<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, CommandType, string, params object[]?)
+  nameWithType.vb: SQLHelper.AddHeader(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, CommandType, String, ParamArray Object())
+- uid: SQLHelperDB.SQLHelper.AddQuery(SQLHelperDB.SQLHelper)
+  name: AddQuery(SQLHelper)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddQuery_SQLHelperDB_SQLHelper_
+  commentId: M:SQLHelperDB.SQLHelper.AddQuery(SQLHelperDB.SQLHelper)
+  fullName: SQLHelperDB.SQLHelper.AddQuery(SQLHelperDB.SQLHelper)
+  nameWithType: SQLHelper.AddQuery(SQLHelper)
+- uid: SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType,System.String,System.Object[])
+  name: AddQuery(CommandType, string, params object[]?)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddQuery_System_Data_CommandType_System_String_System_Object___
+  commentId: M:SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType,System.String,System.Object[])
+  name.vb: AddQuery(CommandType, String, ParamArray Object())
+  fullName: SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType, string, params object[]?)
+  fullName.vb: SQLHelperDB.SQLHelper.AddQuery(System.Data.CommandType, String, ParamArray Object())
+  nameWithType: SQLHelper.AddQuery(CommandType, string, params object[]?)
+  nameWithType.vb: SQLHelper.AddQuery(CommandType, String, ParamArray Object())
+- uid: SQLHelperDB.SQLHelper.AddQuery*
+  name: AddQuery
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddQuery_
+  commentId: Overload:SQLHelperDB.SQLHelper.AddQuery
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.AddQuery
+  nameWithType: SQLHelper.AddQuery
+- uid: SQLHelperDB.SQLHelper.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])
+  name: AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, CommandType, string, params object[]?)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Data_CommandType_System_String_System_Object___
+  commentId: M:SQLHelperDB.SQLHelper.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Data.CommandType,System.String,System.Object[])
+  name.vb: AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, CommandType, String, ParamArray Object())
+  fullName: SQLHelperDB.SQLHelper.AddQuery<TCallbackData>(System.Action<SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List<dynamic>, TCallbackData>, TCallbackData, System.Data.CommandType, string, params object[]?)
+  fullName.vb: SQLHelperDB.SQLHelper.AddQuery(Of TCallbackData)(System.Action(Of SQLHelperDB.HelperClasses.Interfaces.ICommand, System.Collections.Generic.List(Of Object), TCallbackData), TCallbackData, System.Data.CommandType, String, ParamArray Object())
+  nameWithType: SQLHelper.AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData>, TCallbackData, CommandType, string, params object[]?)
+  nameWithType.vb: SQLHelper.AddQuery(Of TCallbackData)(Action(Of ICommand, List(Of Object), TCallbackData), TCallbackData, CommandType, String, ParamArray Object())
+- uid: SQLHelperDB.SQLHelper.Batch
+  name: Batch
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Batch
+  commentId: P:SQLHelperDB.SQLHelper.Batch
+  fullName: SQLHelperDB.SQLHelper.Batch
+  nameWithType: SQLHelper.Batch
+- uid: SQLHelperDB.SQLHelper.Batch*
+  name: Batch
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Batch_
+  commentId: Overload:SQLHelperDB.SQLHelper.Batch
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.Batch
+  nameWithType: SQLHelper.Batch
+- uid: SQLHelperDB.SQLHelper.Configuration
+  name: Configuration
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Configuration
+  commentId: P:SQLHelperDB.SQLHelper.Configuration
+  fullName: SQLHelperDB.SQLHelper.Configuration
+  nameWithType: SQLHelper.Configuration
+- uid: SQLHelperDB.SQLHelper.Configuration*
+  name: Configuration
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Configuration_
+  commentId: Overload:SQLHelperDB.SQLHelper.Configuration
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.Configuration
+  nameWithType: SQLHelper.Configuration
+- uid: SQLHelperDB.SQLHelper.Copy
+  name: Copy()
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Copy
+  commentId: M:SQLHelperDB.SQLHelper.Copy
+  fullName: SQLHelperDB.SQLHelper.Copy()
+  nameWithType: SQLHelper.Copy()
+- uid: SQLHelperDB.SQLHelper.Copy*
+  name: Copy
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Copy_
+  commentId: Overload:SQLHelperDB.SQLHelper.Copy
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.Copy
+  nameWithType: SQLHelper.Copy
+- uid: SQLHelperDB.SQLHelper.Count
+  name: Count
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Count
+  commentId: P:SQLHelperDB.SQLHelper.Count
+  fullName: SQLHelperDB.SQLHelper.Count
+  nameWithType: SQLHelper.Count
+- uid: SQLHelperDB.SQLHelper.Count*
+  name: Count
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_Count_
+  commentId: Overload:SQLHelperDB.SQLHelper.Count
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.Count
+  nameWithType: SQLHelper.Count
+- uid: SQLHelperDB.SQLHelper.CreateBatch
+  name: CreateBatch()
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_CreateBatch
+  commentId: M:SQLHelperDB.SQLHelper.CreateBatch
+  fullName: SQLHelperDB.SQLHelper.CreateBatch()
+  nameWithType: SQLHelper.CreateBatch()
+- uid: SQLHelperDB.SQLHelper.CreateBatch(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: CreateBatch(IConnection)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_CreateBatch_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:SQLHelperDB.SQLHelper.CreateBatch(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName: SQLHelperDB.SQLHelper.CreateBatch(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLHelper.CreateBatch(IConnection)
+- uid: SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory,System.String)
+  name: CreateBatch(DbProviderFactory?, string)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_CreateBatch_System_Data_Common_DbProviderFactory_System_String_
+  commentId: M:SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory,System.String)
+  name.vb: CreateBatch(DbProviderFactory, String)
+  fullName: SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory?, string)
+  fullName.vb: SQLHelperDB.SQLHelper.CreateBatch(System.Data.Common.DbProviderFactory, String)
+  nameWithType: SQLHelper.CreateBatch(DbProviderFactory?, string)
+  nameWithType.vb: SQLHelper.CreateBatch(DbProviderFactory, String)
+- uid: SQLHelperDB.SQLHelper.CreateBatch*
+  name: CreateBatch
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_CreateBatch_
+  commentId: Overload:SQLHelperDB.SQLHelper.CreateBatch
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.CreateBatch
+  nameWithType: SQLHelper.CreateBatch
+- uid: SQLHelperDB.SQLHelper.DatabaseConnection
+  name: DatabaseConnection
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_DatabaseConnection
+  commentId: P:SQLHelperDB.SQLHelper.DatabaseConnection
+  fullName: SQLHelperDB.SQLHelper.DatabaseConnection
+  nameWithType: SQLHelper.DatabaseConnection
+- uid: SQLHelperDB.SQLHelper.DatabaseConnection*
+  name: DatabaseConnection
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_DatabaseConnection_
+  commentId: Overload:SQLHelperDB.SQLHelper.DatabaseConnection
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.DatabaseConnection
+  nameWithType: SQLHelper.DatabaseConnection
+- uid: SQLHelperDB.SQLHelper.ExecuteAsync
+  name: ExecuteAsync()
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ExecuteAsync
+  commentId: M:SQLHelperDB.SQLHelper.ExecuteAsync
+  fullName: SQLHelperDB.SQLHelper.ExecuteAsync()
+  nameWithType: SQLHelper.ExecuteAsync()
+- uid: SQLHelperDB.SQLHelper.ExecuteAsync*
+  name: ExecuteAsync
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ExecuteAsync_
+  commentId: Overload:SQLHelperDB.SQLHelper.ExecuteAsync
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.ExecuteAsync
+  nameWithType: SQLHelper.ExecuteAsync
+- uid: SQLHelperDB.SQLHelper.ExecuteScalarAsync*
+  name: ExecuteScalarAsync
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ExecuteScalarAsync_
+  commentId: Overload:SQLHelperDB.SQLHelper.ExecuteScalarAsync
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.ExecuteScalarAsync
+  nameWithType: SQLHelper.ExecuteScalarAsync
+- uid: SQLHelperDB.SQLHelper.ExecuteScalarAsync``1(``0)
+  name: ExecuteScalarAsync<TData>(TData)
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ExecuteScalarAsync__1___0_
+  commentId: M:SQLHelperDB.SQLHelper.ExecuteScalarAsync``1(``0)
+  name.vb: ExecuteScalarAsync(Of TData)(TData)
+  fullName: SQLHelperDB.SQLHelper.ExecuteScalarAsync<TData>(TData)
+  fullName.vb: SQLHelperDB.SQLHelper.ExecuteScalarAsync(Of TData)(TData)
+  nameWithType: SQLHelper.ExecuteScalarAsync<TData>(TData)
+  nameWithType.vb: SQLHelper.ExecuteScalarAsync(Of TData)(TData)
+- uid: SQLHelperDB.SQLHelper.RemoveDuplicateCommands
+  name: RemoveDuplicateCommands()
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_RemoveDuplicateCommands
+  commentId: M:SQLHelperDB.SQLHelper.RemoveDuplicateCommands
+  fullName: SQLHelperDB.SQLHelper.RemoveDuplicateCommands()
+  nameWithType: SQLHelper.RemoveDuplicateCommands()
+- uid: SQLHelperDB.SQLHelper.RemoveDuplicateCommands*
+  name: RemoveDuplicateCommands
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_RemoveDuplicateCommands_
+  commentId: Overload:SQLHelperDB.SQLHelper.RemoveDuplicateCommands
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.RemoveDuplicateCommands
+  nameWithType: SQLHelper.RemoveDuplicateCommands
+- uid: SQLHelperDB.SQLHelper.StringBuilderPool
+  name: StringBuilderPool
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_StringBuilderPool
+  commentId: P:SQLHelperDB.SQLHelper.StringBuilderPool
+  fullName: SQLHelperDB.SQLHelper.StringBuilderPool
+  nameWithType: SQLHelper.StringBuilderPool
+- uid: SQLHelperDB.SQLHelper.StringBuilderPool*
+  name: StringBuilderPool
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_StringBuilderPool_
+  commentId: Overload:SQLHelperDB.SQLHelper.StringBuilderPool
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.StringBuilderPool
+  nameWithType: SQLHelper.StringBuilderPool
+- uid: SQLHelperDB.SQLHelper.ToString
+  name: ToString()
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ToString
+  commentId: M:SQLHelperDB.SQLHelper.ToString
+  fullName: SQLHelperDB.SQLHelper.ToString()
+  nameWithType: SQLHelper.ToString()
+- uid: SQLHelperDB.SQLHelper.ToString*
+  name: ToString
+  href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ToString_
+  commentId: Overload:SQLHelperDB.SQLHelper.ToString
+  isSpec: "True"
+  fullName: SQLHelperDB.SQLHelper.ToString
+  nameWithType: SQLHelper.ToString
