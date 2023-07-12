@@ -15,13 +15,11 @@ namespace SQLHelperDB.Tests
 {
     public class SQLHelperTests : TestingDirectoryFixture
     {
-        private const string DefaultConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
-
         [Fact]
         public void AddQuery()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -34,7 +32,7 @@ namespace SQLHelperDB.Tests
         public void AddQueryFromCopy()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var CopyInstance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -51,7 +49,7 @@ namespace SQLHelperDB.Tests
         public void AddQuerys()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -66,7 +64,7 @@ namespace SQLHelperDB.Tests
         public void AddQuerysWithParameters()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -81,7 +79,7 @@ namespace SQLHelperDB.Tests
         public void AddQueryWithParameters()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -92,25 +90,10 @@ namespace SQLHelperDB.Tests
         }
 
         [Fact]
-        public async Task CallStoredProcedure()
-        {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
-            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
-            var Result = (await Instance.AddQuery(CommandType.StoredProcedure, "TestSP @Value = @0", "Test String")
-                                 .ExecuteAsync().ConfigureAwait(false))
-                        .FirstOrDefault()[0];
-            Assert.NotNull(Result);
-            Assert.Equal("Test String", Result.Value);
-        }
-
-        [Fact]
         public void Create()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -122,10 +105,10 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteInsert()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result = await Instance.AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
                 "A",
@@ -162,10 +145,10 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteInsertAndGetBackId()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result1 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -181,7 +164,7 @@ namespace SQLHelperDB.Tests
                 .ExecuteScalarAsync<int>().ConfigureAwait(false);
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result2 = await Instance.AddQuery(CommandType.Text,
                 @"INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)
                 SELECT scope_identity() as [ID]",
@@ -202,11 +185,11 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteScalar()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -234,11 +217,11 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelect()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -279,10 +262,10 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelectHundredsOfParamters()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Builder = new StringBuilder();
             var Splitter = "";
             for (var x = 0; x < 200; ++x)
@@ -301,10 +284,10 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelectThousandsOfParameters()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 4000; ++x)
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0", x);
@@ -317,10 +300,10 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelectThousandsOfParametersWithHeader()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             Instance.AddHeader(CommandType.Text, "DECLARE @A as nvarchar(100);");
             Instance.AddHeader(CommandType.Text, "SET @A ='BLAH';");
             for (var x = 0; x < 4000; ++x)
@@ -335,11 +318,11 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelectToObjectType()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -381,11 +364,11 @@ namespace SQLHelperDB.Tests
         public async Task ExecuteSelectUri()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -423,13 +406,28 @@ namespace SQLHelperDB.Tests
         }
 
         [Fact]
+        public async Task ExecuteStoredProcedure()
+        {
+            var Configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
+                .Build();
+            var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
+            var Result = (await Instance.AddQuery(CommandType.StoredProcedure, "TestSP @Value = @0", "Test String")
+                                 .ExecuteAsync().ConfigureAwait(false))
+                        .FirstOrDefault()[0];
+            Assert.NotNull(Result);
+            Assert.Equal("Test String", Result.Value);
+        }
+
+        [Fact]
         public async Task ExecuteUpdate()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -458,11 +456,11 @@ namespace SQLHelperDB.Tests
         public async Task InsertWithAtSymbol()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var x = 0; x < 50; ++x)
             {
                 Instance.AddQuery(CommandType.Text,
@@ -502,10 +500,10 @@ namespace SQLHelperDB.Tests
         public async Task NotNullInsertParameters()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
-                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
+                .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             Assert.NotNull(Instance);
             var Result = await Instance.CreateBatch().AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
@@ -524,7 +522,7 @@ namespace SQLHelperDB.Tests
         public void RemoveDuplicateCommands()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance);
@@ -542,12 +540,12 @@ namespace SQLHelperDB.Tests
         public void SwitchConnection()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, "Data Source=localhost;Initial Catalog=TestDatabase22222;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True");
-            Instance.CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, DefaultConnectionString);
-            Assert.Equal(DefaultConnectionString, Instance.DatabaseConnection.ConnectionString);
+            Instance.CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
+            Assert.Equal(Configuration.GetConnectionString("Default"), Instance.DatabaseConnection.ConnectionString);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SQLHelperDB.ExtensionMethods;
 using System;
 using Xunit;
@@ -10,9 +11,12 @@ namespace SQLHelperDB.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
+            Configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
+                .Build();
             using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+                TempConnection.ConnectionString = Configuration.GetConnectionString("Master");
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -25,7 +29,7 @@ namespace SQLHelperDB.Tests.BaseClasses
             }
             using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+                TempConnection.ConnectionString = Configuration.GetConnectionString("Default");
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -57,10 +61,12 @@ END";
         /// </summary>
         private static IServiceProvider ServiceProvider;
 
+        protected IConfiguration Configuration { get; }
+
         public void Dispose()
         {
             using var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+            TempConnection.ConnectionString = Configuration.GetConnectionString("Master");
             using var TempCommand = TempConnection.CreateCommand();
             try
             {

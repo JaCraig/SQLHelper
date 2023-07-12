@@ -5,19 +5,15 @@ namespace SQLHelper.Tests.HelperClasses
 {
     public class ConnectionTests
     {
-        private static string ConnectionString = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
-        private static string ConnectionStringWithTimeout = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;connection timeout=100;TrustServerCertificate=True;";
-        private static string ConnectionStringWithTimeout2 = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;connect timeout=100;TrustServerCertificate=True;";
-
         [Fact]
         public void Initialization()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
-            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, ConnectionString);
+            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             Assert.Equal(30, TestConnection.CommandTimeout);
-            Assert.Equal(ConnectionString, TestConnection.ConnectionString);
+            Assert.Equal(Configuration.GetConnectionString("Default"), TestConnection.ConnectionString);
             Assert.Equal("TestDatabase", TestConnection.DatabaseName);
             Assert.Same(Microsoft.Data.SqlClient.SqlClientFactory.Instance, TestConnection.Factory);
             Assert.Equal("@", TestConnection.ParameterPrefix);
@@ -28,11 +24,11 @@ namespace SQLHelper.Tests.HelperClasses
         public void InitializationWithTimeout()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
-            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, ConnectionStringWithTimeout);
+            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("DefaultWithTimeout"));
             Assert.Equal(100, TestConnection.CommandTimeout);
-            Assert.Equal(ConnectionStringWithTimeout, TestConnection.ConnectionString);
+            Assert.Equal(Configuration.GetConnectionString("DefaultWithTimeout"), TestConnection.ConnectionString);
             Assert.Equal("TestDatabase", TestConnection.DatabaseName);
             Assert.Same(Microsoft.Data.SqlClient.SqlClientFactory.Instance, TestConnection.Factory);
             Assert.Equal("@", TestConnection.ParameterPrefix);
@@ -43,11 +39,11 @@ namespace SQLHelper.Tests.HelperClasses
         public void InitializationWithTimeout2()
         {
             var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
+                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
                 .Build();
-            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, ConnectionStringWithTimeout2);
+            var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("DefaultWithTimeout2"));
             Assert.Equal(100, TestConnection.CommandTimeout);
-            Assert.Equal(ConnectionStringWithTimeout2, TestConnection.ConnectionString);
+            Assert.Equal(Configuration.GetConnectionString("DefaultWithTimeout2"), TestConnection.ConnectionString);
             Assert.Equal("TestDatabase", TestConnection.DatabaseName);
             Assert.Same(Microsoft.Data.SqlClient.SqlClientFactory.Instance, TestConnection.Factory);
             Assert.Equal("@", TestConnection.ParameterPrefix);

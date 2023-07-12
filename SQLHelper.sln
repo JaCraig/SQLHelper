@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E92158B2-82F1-441D-B06A-54EE621AC498}"
 EndProject
@@ -19,6 +19,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQLHelper.SpeedTests", "SQLHelper.SpeedTests\SQLHelper.SpeedTests.csproj", "{54157F1F-9C1B-49ED-881D-FCCB38248A7F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{6463FFD0-3528-4DCD-8333-909775AEC7B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLHelper.Example", "SQLHelper.Example\SQLHelper.Example.csproj", "{C957DF62-B9CC-4ADD-8289-71BC3C95370F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{6463FFD0-3528-4DCD-8333-909775AEC7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6463FFD0-3528-4DCD-8333-909775AEC7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6463FFD0-3528-4DCD-8333-909775AEC7B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C957DF62-B9CC-4ADD-8289-71BC3C95370F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C957DF62-B9CC-4ADD-8289-71BC3C95370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C957DF62-B9CC-4ADD-8289-71BC3C95370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C957DF62-B9CC-4ADD-8289-71BC3C95370F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

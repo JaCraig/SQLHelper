@@ -6,11 +6,9 @@ SQLHelper is a simple class to help with running queries against a database.
 
 ## Basic Usage
 
-The system relies on an IoC wrapper called [Canister](https://github.com/JaCraig/Canister). While Canister has a built in IoC container, it's purpose is to actually wrap your container of choice in a way that simplifies setup and usage for other libraries that don't want to be tied to a specific IoC container. SQLHelper uses it to detect and pull in various info. As such you must set up Canister in order to use SQLHelper:
+In order to use the system, you do need register it with your ServiceCollection:
 
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterSQLHelper()
-                    .Build();
+    serviceCollection.AddCanisterModules();
 					
 This is required prior to using the SQLHelper class for the first time. Once Canister is set up, you can use the SQLHelper class:
 
@@ -18,6 +16,10 @@ This is required prior to using the SQLHelper class for the first time. Once Can
                 .AddInMemoryCollection()
                 .Build();
     var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, "ConnectionString");
+
+Or simply ask for an instance using dependency injection:
+
+    public MyClass(SQLHelper helper) { ... }
 	
 The SQLHelper class takes in a IConfiguration class, a DbProviderFactory class, and the connection string. The connection string can just be the name of a connection string in your configuration object. Once an instance is set up, you can create a batch, add queries, and then execute them.
 
@@ -53,7 +55,6 @@ Install-Package SQLHelper.DB
 
 In order to build the library you will require the following as a minimum:
 
-1. Visual Studio 2015 with Update 3
-2. .Net Core 1.0 SDK
+1. Visual Studio 2022
 
 Other than that, just clone the project and you should be able to load the solution and build without too much effort.
