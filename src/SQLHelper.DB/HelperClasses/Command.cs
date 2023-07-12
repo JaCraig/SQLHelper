@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using Microsoft.SqlServer.Management.SqlParser.Parser;
 using SQLHelperDB.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -256,8 +257,11 @@ namespace SQLHelperDB.HelperClasses
         {
             if (parameterStarter == "@" && ComparisonString.Contains("SELECT ", StringComparison.Ordinal) && ComparisonString.Contains("IF ", StringComparison.Ordinal))
             {
-                var TempParser = new SelectFinder();
-                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
+                var TempParser = new SimpleSelectFinder();//new SelectFinder();
+                var Results = Parser.Parse(SQLCommand);
+                Results.Script.Accept(TempParser);
+                //Finalizable = Results
+                //SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
                 Finalizable = TempParser.StatementFound;
             }
             else if (CommandType == CommandType.Text)

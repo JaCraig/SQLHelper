@@ -47,6 +47,8 @@ namespace SQLHelperDB.Tests.HelperClasses
             Assert.False(TestItem.Finalizable);
             Assert.True(TestItem.TransactionNeeded);
             TestItem = new Command<int>((__, _, z) => Builder.Append(z), 10, false, "IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade] WHERE [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[AllReferencesAndID_ID_] = 4 AND [dbo].[AllReferencesAndID_ManyToManyPropertiesWithCascade].[ManyToManyPropertiesWithCascade_ID_] = 4) BEGIN SELECT * FROM Users END;", CommandType.Text, "@", new object[] { 1, 2, 3 });
+            Assert.True(TestItem.Finalizable);
+            Assert.False(TestItem.TransactionNeeded);
         }
 
         [Fact]
