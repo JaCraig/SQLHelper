@@ -193,15 +193,6 @@ references:
   isSpec: "True"
   fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar
   nameWithType: DbCommandExtensions.ExecuteScalar
-- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
-  name: ExecuteScalar<TDataType>(DbCommand, TDataType, int)
-  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_
-  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
-  name.vb: ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
-  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar<TDataType>(System.Data.Common.DbCommand, TDataType, int)
-  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
-  nameWithType: DbCommandExtensions.ExecuteScalar<TDataType>(DbCommand, TDataType, int)
-  nameWithType.vb: DbCommandExtensions.ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync*
   name: ExecuteScalarAsync
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync_
@@ -218,6 +209,15 @@ references:
   fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
   nameWithType: DbCommandExtensions.ExecuteScalarAsync<TDataType>(DbCommand, TDataType, int)
   nameWithType.vb: DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(DbCommand, TDataType, Integer)
+- uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name: ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_
+  commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
+  name.vb: ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar<TDataType>(System.Data.Common.DbCommand, TDataType, int)
+  fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
+  nameWithType: DbCommandExtensions.ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  nameWithType.vb: DbCommandExtensions.ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)
   name: GetOrCreateParameter(DbCommand, string)
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_System_Data_Common_DbCommand_System_String_
@@ -340,15 +340,6 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
   nameWithType: ParameterBase<TDataType>.ParameterBase(ParameterBase<TDataType>)
   nameWithType.vb: ParameterBase(Of TDataType).New(ParameterBase(Of TDataType))
-- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
-  name: ParameterBase(string, TDataType, ParameterDirection, string)
-  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
-  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
-  name.vb: New(String, TDataType, ParameterDirection, String)
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(string, TDataType, System.Data.ParameterDirection, string)
-  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
-  nameWithType: ParameterBase<TDataType>.ParameterBase(string, TDataType, ParameterDirection, string)
-  nameWithType.vb: ParameterBase(Of TDataType).New(String, TDataType, ParameterDirection, String)
 - uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
   name: ParameterBase(string, DbType, object?, ParameterDirection, string)
   href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_System_String_
@@ -367,6 +358,15 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, System.Data.SqlDbType, Object, System.Data.ParameterDirection, String)
   nameWithType: ParameterBase<TDataType>.ParameterBase(string, SqlDbType, object?, ParameterDirection, string)
   nameWithType.vb: ParameterBase(Of TDataType).New(String, SqlDbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name: ParameterBase(string, TDataType, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, TDataType, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.ParameterBase(string, TDataType, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
+  nameWithType: ParameterBase<TDataType>.ParameterBase(string, TDataType, ParameterDirection, string)
+  nameWithType.vb: ParameterBase(Of TDataType).New(String, TDataType, ParameterDirection, String)
 - uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.#ctor*
   name: ParameterBase
   href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1__ctor_
@@ -541,44 +541,6 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).InternalValue
   nameWithType: ParameterBase<TDataType>.InternalValue
   nameWithType.vb: ParameterBase(Of TDataType).InternalValue
-- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
-  name: operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
-  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
-  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
-  name.vb: =(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
-  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
-  nameWithType: ParameterBase<TDataType>.operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
-  nameWithType.vb: ParameterBase(Of TDataType).=(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
-- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality*
-  name: operator ==
-  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_
-  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality
-  isSpec: "True"
-  name.vb: =
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==
-  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=
-  nameWithType: ParameterBase<TDataType>.operator ==
-  nameWithType.vb: ParameterBase(Of TDataType).=
-- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
-  name: operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
-  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
-  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
-  name.vb: <>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
-  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
-  nameWithType: ParameterBase<TDataType>.operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
-  nameWithType.vb: ParameterBase(Of TDataType).<>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
-- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality*
-  name: operator !=
-  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_
-  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality
-  isSpec: "True"
-  name.vb: <>
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=
-  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>
-  nameWithType: ParameterBase<TDataType>.operator !=
-  nameWithType.vb: ParameterBase(Of TDataType).<>
 - uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.ParameterStarter
   name: ParameterStarter
   href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_ParameterStarter
@@ -630,6 +592,44 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Value
   nameWithType: ParameterBase<TDataType>.Value
   nameWithType.vb: ParameterBase(Of TDataType).Value
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name: operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name.vb: =(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
+  nameWithType: ParameterBase<TDataType>.operator ==(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  nameWithType.vb: ParameterBase(Of TDataType).=(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality*
+  name: operator ==
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Equality_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator ==
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).=
+  nameWithType: ParameterBase<TDataType>.operator ==
+  nameWithType.vb: ParameterBase(Of TDataType).=
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name: operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__SQLHelperDB_HelperClasses_BaseClasses_ParameterBase__0__
+  commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0},SQLHelperDB.HelperClasses.BaseClasses.ParameterBase{`0})
+  name.vb: <>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>, SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>)
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>(SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType), SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType))
+  nameWithType: ParameterBase<TDataType>.operator !=(ParameterBase<TDataType>, ParameterBase<TDataType>)
+  nameWithType.vb: ParameterBase(Of TDataType).<>(ParameterBase(Of TDataType), ParameterBase(Of TDataType))
+- uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality*
+  name: operator !=
+  href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_op_Inequality_
+  commentId: Overload:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.operator !=
+  fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).<>
+  nameWithType: ParameterBase<TDataType>.operator !=
+  nameWithType.vb: ParameterBase(Of TDataType).<>
 - uid: SQLHelperDB.HelperClasses.Batch
   name: Batch
   href: api/SQLHelperDB.HelperClasses.Batch.html
@@ -1069,15 +1069,6 @@ references:
   commentId: T:SQLHelperDB.HelperClasses.Connection
   fullName: SQLHelperDB.HelperClasses.Connection
   nameWithType: Connection
-- uid: SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
-  name: Connection(IConfiguration, DbProviderFactory, string, string, string, int)
-  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_Microsoft_Extensions_Configuration_IConfiguration_System_Data_Common_DbProviderFactory_System_String_System_String_System_String_System_Int32_
-  commentId: M:SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
-  name.vb: New(IConfiguration, DbProviderFactory, String, String, String, Integer)
-  fullName: SQLHelperDB.HelperClasses.Connection.Connection(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, string, string, string, int)
-  fullName.vb: SQLHelperDB.HelperClasses.Connection.New(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, String, String, String, Integer)
-  nameWithType: Connection.Connection(IConfiguration, DbProviderFactory, string, string, string, int)
-  nameWithType.vb: Connection.New(IConfiguration, DbProviderFactory, String, String, String, Integer)
 - uid: SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String)
   name: Connection(IConfiguration, DbProviderFactory, string)
   href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_Microsoft_Extensions_Configuration_IConfiguration_System_Data_Common_DbProviderFactory_System_String_
@@ -1087,6 +1078,15 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.Connection.New(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, String)
   nameWithType: Connection.Connection(IConfiguration, DbProviderFactory, string)
   nameWithType.vb: Connection.New(IConfiguration, DbProviderFactory, String)
+- uid: SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
+  name: Connection(IConfiguration, DbProviderFactory, string, string, string, int)
+  href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_Microsoft_Extensions_Configuration_IConfiguration_System_Data_Common_DbProviderFactory_System_String_System_String_System_String_System_Int32_
+  commentId: M:SQLHelperDB.HelperClasses.Connection.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Data.Common.DbProviderFactory,System.String,System.String,System.String,System.Int32)
+  name.vb: New(IConfiguration, DbProviderFactory, String, String, String, Integer)
+  fullName: SQLHelperDB.HelperClasses.Connection.Connection(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, string, string, string, int)
+  fullName.vb: SQLHelperDB.HelperClasses.Connection.New(Microsoft.Extensions.Configuration.IConfiguration, System.Data.Common.DbProviderFactory, String, String, String, Integer)
+  nameWithType: Connection.Connection(IConfiguration, DbProviderFactory, string, string, string, int)
+  nameWithType.vb: Connection.New(IConfiguration, DbProviderFactory, String, String, String, Integer)
 - uid: SQLHelperDB.HelperClasses.Connection.#ctor*
   name: Connection
   href: api/SQLHelperDB.HelperClasses.Connection.html#SQLHelperDB_HelperClasses_Connection__ctor_
@@ -1602,15 +1602,6 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType)
   nameWithType: Parameter<TDataType>
   nameWithType.vb: Parameter(Of TDataType)
-- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
-  name: Parameter(string, TDataType, ParameterDirection, string)
-  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
-  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
-  name.vb: New(String, TDataType, ParameterDirection, String)
-  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter(string, TDataType, System.Data.ParameterDirection, string)
-  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
-  nameWithType: Parameter<TDataType>.Parameter(string, TDataType, ParameterDirection, string)
-  nameWithType.vb: Parameter(Of TDataType).New(String, TDataType, ParameterDirection, String)
 - uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection,System.String)
   name: Parameter(string, DbType, object?, ParameterDirection, string)
   href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_System_String_
@@ -1629,6 +1620,15 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, System.Data.SqlDbType, Object, System.Data.ParameterDirection, String)
   nameWithType: Parameter<TDataType>.Parameter(string, SqlDbType, object?, ParameterDirection, string)
   nameWithType.vb: Parameter(Of TDataType).New(String, SqlDbType, Object, ParameterDirection, String)
+- uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name: Parameter(string, TDataType, ParameterDirection, string)
+  href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_System_String__0_System_Data_ParameterDirection_System_String_
+  commentId: M:SQLHelperDB.HelperClasses.Parameter`1.#ctor(System.String,`0,System.Data.ParameterDirection,System.String)
+  name.vb: New(String, TDataType, ParameterDirection, String)
+  fullName: SQLHelperDB.HelperClasses.Parameter<TDataType>.Parameter(string, TDataType, System.Data.ParameterDirection, string)
+  fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).New(String, TDataType, System.Data.ParameterDirection, String)
+  nameWithType: Parameter<TDataType>.Parameter(string, TDataType, ParameterDirection, string)
+  nameWithType.vb: Parameter(Of TDataType).New(String, TDataType, ParameterDirection, String)
 - uid: SQLHelperDB.HelperClasses.Parameter`1.#ctor*
   name: Parameter
   href: api/SQLHelperDB.HelperClasses.Parameter-1.html#SQLHelperDB_HelperClasses_Parameter_1__ctor_
