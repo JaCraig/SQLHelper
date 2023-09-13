@@ -56,12 +56,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
-    <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="7.0.10" />
+    <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="7.0.11" />
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="170.9.0" />
     <PackageReference Include="SQLParser" Version="3.0.9" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="5.0.22" />
+    <PackageReference Include="BigBook" Version="5.0.23" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
