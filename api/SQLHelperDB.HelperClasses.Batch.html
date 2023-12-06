@@ -1,122 +1,134 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <meta charset="utf-8">
       <title>Class Batch
  | SQLHelper API Reference </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class Batch
  | SQLHelper API Reference ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.json">
-      <meta property="docfx:tocrel" content="toc.json">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
 
 
-            <a class="brand" href="../index.html">
-              <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
-              <span class="brand-title">SQLHelper.DB</span>
-            </a>        </div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="SQLHelper.DB">
+            SQLHelper.DB
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                    <div>
-                      <div class="mobile-hide">
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
-                          <span class="brand-title">SQLHelper.DB</span>
-                        </a>                      </div>
-
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <strong><a href='https://github.com/JaCraig/SQLHelper'>Open in Github</a></strong>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
- 
-
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                         <div id="contribution">
-                               <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                         </div>
-
-                    <article class="content wrap" id="_content" data-uid="SQLHelperDB.HelperClasses.Batch">
+        <article data-uid="SQLHelperDB.HelperClasses.Batch">
 
 
 
-  <h1 id="SQLHelperDB_HelperClasses_Batch" data-uid="SQLHelperDB.HelperClasses.Batch" class="text-break">Class Batch
-</h1>
-  <div class="markdown level0 summary"><p>Holds information for a set of commands</p>
+  <h1 id="SQLHelperDB_HelperClasses_Batch" data-uid="SQLHelperDB.HelperClasses.Batch" class="text-break">
+    Class Batch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SQLHelperDB.html">SQLHelperDB</a>.<a class="xref" href="SQLHelperDB.HelperClasses.html">HelperClasses</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SQLHelper.DB.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Holds information for a set of commands</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">Batch</span></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Batch : IBatch</code></pre>
   </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Batch</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -135,647 +147,549 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="SQLHelperDB.html">SQLHelperDB</a>.<a class="xref" href="SQLHelperDB.HelperClasses.html">HelperClasses</a></h6>
-  <h6><strong>Assembly</strong>: SQLHelper.DB.dll</h6>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Batch : IBatch</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch__ctor_SQLHelperDB_HelperClasses_Interfaces_IConnection_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.%23ctor(SQLHelperDB.HelperClasses.Interfaces.IConnection%2CMicrosoft.Extensions.ObjectPool.ObjectPool%7BSystem.Text.StringBuilder%7D%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L47">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
   <a id="SQLHelperDB_HelperClasses_Batch__ctor_" data-uid="SQLHelperDB.HelperClasses.Batch.#ctor*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch__ctor_SQLHelperDB_HelperClasses_Interfaces_IConnection_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Logging_ILogger_" data-uid="SQLHelperDB.HelperClasses.Batch.#ctor(SQLHelperDB.HelperClasses.Interfaces.IConnection,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Logging.ILogger)">Batch(IConnection, ObjectPool&lt;StringBuilder&gt;, ILogger?)</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch__ctor_SQLHelperDB_HelperClasses_Interfaces_IConnection_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Logging_ILogger_" data-uid="SQLHelperDB.HelperClasses.Batch.#ctor(SQLHelperDB.HelperClasses.Interfaces.IConnection,Microsoft.Extensions.ObjectPool.ObjectPool{System.Text.StringBuilder},Microsoft.Extensions.Logging.ILogger)">
+  Batch(IConnection, ObjectPool&lt;StringBuilder&gt;, ILogger?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Batch(IConnection source, ObjectPool&lt;StringBuilder&gt; stringBuilderPool, ILogger? logger = null)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>Source info</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</td>
-        <td><span class="parametername">stringBuilderPool</span></td>
-        <td><p>The string builder pool.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger">ILogger</a></td>
-        <td><span class="parametername">logger</span></td>
-        <td><p>The logger.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch__ctor_SQLHelperDB_HelperClasses_Interfaces_IConnection_Microsoft_Extensions_ObjectPool_ObjectPool_System_Text_StringBuilder__Microsoft_Extensions_Logging_ILogger__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_CommandCount.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.CommandCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L59">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></dt>
+    <dd><p>Source info</p>
+</dd>
+    <dt><code>stringBuilderPool</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</dt>
+    <dd><p>The string builder pool.</p>
+</dd>
+    <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger">ILogger</a></dt>
+    <dd><p>The logger.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_CommandCount_" data-uid="SQLHelperDB.HelperClasses.Batch.CommandCount*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_CommandCount" data-uid="SQLHelperDB.HelperClasses.Batch.CommandCount">CommandCount</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_CommandCount" data-uid="SQLHelperDB.HelperClasses.Batch.CommandCount">
+  CommandCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Command count</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public int CommandCount { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_CommandCount_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_Commands.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.Commands%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L70">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_Commands_" data-uid="SQLHelperDB.HelperClasses.Batch.Commands*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_Commands" data-uid="SQLHelperDB.HelperClasses.Batch.Commands">Commands</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_Commands" data-uid="SQLHelperDB.HelperClasses.Batch.Commands">
+  Commands
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Commands to batch</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected List&lt;ICommand&gt; Commands { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_Commands_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_Headers.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.Headers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L76">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_Headers_" data-uid="SQLHelperDB.HelperClasses.Batch.Headers*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_Headers" data-uid="SQLHelperDB.HelperClasses.Batch.Headers">Headers</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_Headers" data-uid="SQLHelperDB.HelperClasses.Batch.Headers">
+  Headers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets the headers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected List&lt;ICommand&gt; Headers { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>&gt;</td>
-        <td><p>The headers.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_Headers_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_Source.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.Source%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L81">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>&gt;</dt>
+    <dd><p>The headers.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_Source_" data-uid="SQLHelperDB.HelperClasses.Batch.Source*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_Source" data-uid="SQLHelperDB.HelperClasses.Batch.Source">Source</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_Source" data-uid="SQLHelperDB.HelperClasses.Batch.Source">
+  Source
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Connection string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected IConnection Source { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_Source_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_StringBuilderPool.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.StringBuilderPool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L65">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_StringBuilderPool_" data-uid="SQLHelperDB.HelperClasses.Batch.StringBuilderPool*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_StringBuilderPool" data-uid="SQLHelperDB.HelperClasses.Batch.StringBuilderPool">StringBuilderPool</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_StringBuilderPool" data-uid="SQLHelperDB.HelperClasses.Batch.StringBuilderPool">
+  StringBuilderPool
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets the string builder pool.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ObjectPool&lt;StringBuilder&gt; StringBuilderPool { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</td>
-        <td><p>The string builder pool.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_StringBuilderPool_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch_.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L121">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1">ObjectPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a>&gt;</dt>
+    <dd><p>The string builder pool.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_AddQuery_" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch_" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)">AddQuery(IBatch)</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch_" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery(SQLHelperDB.HelperClasses.Interfaces.IBatch)">
+  AddQuery(IBatch)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a batch's commands to the current batch</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IBatch AddQuery(IBatch batch)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
-        <td><span class="parametername">batch</span></td>
-        <td><p>Batch to add</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
-        <td><p>This</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_AddQuery_SQLHelperDB_HelperClasses_Interfaces_IBatch__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object___.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.AddQuery%60%601(System.Action%7BSQLHelperDB.HelperClasses.Interfaces.ICommand%2CSystem.Collections.Generic.List%7BSystem.Object%7D%2C%60%600%7D%2C%60%600%2CSystem.Boolean%2CSystem.String%2CSystem.Data.CommandType%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L107">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>batch</code> <a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></dt>
+    <dd><p>Batch to add</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></dt>
+    <dd><p>This</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_AddQuery_" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object___" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])">AddQuery&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt;, TCallbackData, bool, string, CommandType, params object[]?)</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object___" data-uid="SQLHelperDB.HelperClasses.Batch.AddQuery``1(System.Action{SQLHelperDB.HelperClasses.Interfaces.ICommand,System.Collections.Generic.List{System.Object},``0},``0,System.Boolean,System.String,System.Data.CommandType,System.Object[])">
+  AddQuery&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt;, TCallbackData, bool, string, CommandType, params object[]?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a command to be batched</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IBatch AddQuery&lt;TCallbackData&gt;(Action&lt;ICommand, List&lt;dynamic&gt;, TCallbackData&gt; callBack, TCallbackData callbackObject, bool header, string command, CommandType commandType, params object[]? parameters)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;, TCallbackData&gt;</td>
-        <td><span class="parametername">callBack</span></td>
-        <td><p>Callback action</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TCallbackData</span></td>
-        <td><span class="parametername">callbackObject</span></td>
-        <td><p>Object used in the callback action</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">header</span></td>
-        <td><p>Determines if this command is a &quot;header&quot; and should be carried across batches.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command (SQL or stored procedure) to run</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></td>
-        <td><span class="parametername">commandType</span></td>
-        <td><p>Command type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
-        <td><span class="parametername">parameters</span></td>
-        <td><p>Parameters to add</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
-        <td><p>This</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TCallbackData</span></td>
-        <td><p>The type of the callback data.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_AddQuery__1_System_Action_SQLHelperDB_HelperClasses_Interfaces_ICommand_System_Collections_Generic_List_System_Object____0____0_System_Boolean_System_String_System_Data_CommandType_System_Object____seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_CheckTransaction.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.CheckTransaction%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L178">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>callBack</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.ICommand.html">ICommand</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;, TCallbackData&gt;</dt>
+    <dd><p>Callback action</p>
+</dd>
+    <dt><code>callbackObject</code> <span class="xref">TCallbackData</span></dt>
+    <dd><p>Object used in the callback action</p>
+</dd>
+    <dt><code>header</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Determines if this command is a &quot;header&quot; and should be carried across batches.</p>
+</dd>
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Command (SQL or stored procedure) to run</p>
+</dd>
+    <dt><code>commandType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.commandtype">CommandType</a></dt>
+    <dd><p>Command type</p>
+</dd>
+    <dt><code>parameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd><p>Parameters to add</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></dt>
+    <dd><p>This</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TCallbackData</code></dt>
+    <dd><p>The type of the callback data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_CheckTransaction_" data-uid="SQLHelperDB.HelperClasses.Batch.CheckTransaction*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_CheckTransaction" data-uid="SQLHelperDB.HelperClasses.Batch.CheckTransaction">CheckTransaction()</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_CheckTransaction" data-uid="SQLHelperDB.HelperClasses.Batch.CheckTransaction">
+  CheckTransaction()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Checks whether a transaction is needed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected bool CheckTransaction()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>True if it is, false otherwise</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_CheckTransaction_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_Clear.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L134">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if it is, false otherwise</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_Clear_" data-uid="SQLHelperDB.HelperClasses.Batch.Clear*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_Clear" data-uid="SQLHelperDB.HelperClasses.Batch.Clear">Clear()</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_Clear" data-uid="SQLHelperDB.HelperClasses.Batch.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Clears this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IBatch Clear()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
-        <td><p>This.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_Clear_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_ExecuteAsync.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.ExecuteAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L145">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></dt>
+    <dd><p>This.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_ExecuteAsync_" data-uid="SQLHelperDB.HelperClasses.Batch.ExecuteAsync*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_ExecuteAsync" data-uid="SQLHelperDB.HelperClasses.Batch.ExecuteAsync">ExecuteAsync()</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_ExecuteAsync" data-uid="SQLHelperDB.HelperClasses.Batch.ExecuteAsync">
+  ExecuteAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Executes the commands and returns the results (async)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;List&lt;List&lt;dynamic&gt;&gt;&gt; ExecuteAsync()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;&gt;&gt;</td>
-        <td><p>The results of the batched commands</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_ExecuteAsync_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L151">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">dynamic</span>&gt;&gt;&gt;</dt>
+    <dd><p>The results of the batched commands</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands_" data-uid="SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands" data-uid="SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands">RemoveDuplicateCommands()</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands" data-uid="SQLHelperDB.HelperClasses.Batch.RemoveDuplicateCommands">
+  RemoveDuplicateCommands()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Removes duplicate commands from the batch</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IBatch RemoveDuplicateCommands()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></td>
-        <td><p>This</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_RemoveDuplicateCommands_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L162">View Source</a>
-  </span>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></dt>
+    <dd><p>This</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_SetConnection_" data-uid="SQLHelperDB.HelperClasses.Batch.SetConnection*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)">SetConnection(IConnection)</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="SQLHelperDB.HelperClasses.Batch.SetConnection(SQLHelperDB.HelperClasses.Interfaces.IConnection)">
+  SetConnection(IConnection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Sets the connection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetConnection(IConnection databaseConnection)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></td>
-        <td><span class="parametername">databaseConnection</span></td>
-        <td><p>The database connection.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_SetConnection_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_HelperClasses_Batch_ToString.md&amp;value=---%0Auid%3A%20SQLHelperDB.HelperClasses.Batch.ToString%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L168">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>databaseConnection</code> <a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IConnection.html">IConnection</a></dt>
+    <dd><p>The database connection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_HelperClasses_Batch_ToString_" data-uid="SQLHelperDB.HelperClasses.Batch.ToString*"></a>
-  <h4 id="SQLHelperDB_HelperClasses_Batch_ToString" data-uid="SQLHelperDB.HelperClasses.Batch.ToString">ToString()</h4>
+
+  <h3 id="SQLHelperDB_HelperClasses_Batch_ToString" data-uid="SQLHelperDB.HelperClasses.Batch.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Converts the batch to a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a></div>
-  <h5 id="SQLHelperDB_HelperClasses_Batch_ToString_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
-  </div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a>
-  </div>
-  <h3 id="seealso">See Also</h3>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="seealso">See Also</h2>
   <div class="seealso">
       <div><a class="xref" href="SQLHelperDB.HelperClasses.Interfaces.IBatch.html">IBatch</a></div>
   </div>
 
 </article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>&#169; James Craig. All rights reserved.</span>
-                </div>
-            </main>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/HelperClasses/Batch.cs/#L39" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <strong><a href='https://github.com/JaCraig/SQLHelper'>Open in Github</a></strong>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

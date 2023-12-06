@@ -1,118 +1,128 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <meta charset="utf-8">
       <title>Class DbCommandExtensions
  | SQLHelper API Reference </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DbCommandExtensions
  | SQLHelper API Reference ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.json">
-      <meta property="docfx:tocrel" content="toc.json">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
 
 
-            <a class="brand" href="../index.html">
-              <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
-              <span class="brand-title">SQLHelper.DB</span>
-            </a>        </div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="SQLHelper.DB">
+            SQLHelper.DB
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                    <div>
-                      <div class="mobile-hide">
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../images/icon.png" alt="SQLHelper.DB" class="logomark">
-                          <span class="brand-title">SQLHelper.DB</span>
-                        </a>                      </div>
-
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <strong><a href='https://github.com/JaCraig/SQLHelper'>Open in Github</a></strong>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
- 
-
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                         <div id="contribution">
-                               <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                         </div>
-
-                    <article class="content wrap" id="_content" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions">
+        <article data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions">
 
 
 
-  <h1 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions" class="text-break">Class DbCommandExtensions
-</h1>
-  <div class="markdown level0 summary"><p>Extension methods for DbCommand</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">DbCommandExtensions</span></div>
+  <h1 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions" class="text-break">
+    Class DbCommandExtensions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="SQLHelperDB.html">SQLHelperDB</a>.<a class="xref" href="SQLHelperDB.ExtensionMethods.html">ExtensionMethods</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>SQLHelper.DB.dll</dd></dl>
   </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+  <div class="markdown summary"><p>Extension methods for DbCommand</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class DbCommandExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DbCommandExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -134,986 +144,698 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="SQLHelperDB.html">SQLHelperDB</a>.<a class="xref" href="SQLHelperDB.ExtensionMethods.html">ExtensionMethods</a></h6>
-  <h6><strong>Assembly</strong>: SQLHelper.DB.dll</h6>
-  <h5 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class DbCommandExtensions</code></pre>
-  </div>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand%2CSystem.String%2CSystem.Data.DbType%2CSystem.Object%2CSystem.Data.ParameterDirection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L141">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection)">AddParameter(DbCommand, string, DbType, object?, ParameterDirection)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_DbType_System_Object_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Object,System.Data.ParameterDirection)">
+  AddParameter(DbCommand, string, DbType, object?, ParameterDirection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a parameter to the call (for all types other than strings)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand AddParameter(this DbCommand command, string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Name of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.dbtype">DbType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>SQL type of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>Value to add</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></td>
-        <td><span class="parametername">direction</span></td>
-        <td><p>Direction that the parameter goes (in or out)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DbCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>command or id</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.Object%2CSystem.Data.ParameterDirection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L90">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the parameter</p>
+</dd>
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.dbtype">DbType</a></dt>
+    <dd><p>SQL type of the parameter</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Value to add</p>
+</dd>
+    <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></dt>
+    <dd><p>Direction that the parameter goes (in or out)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DbCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>command or id</p>
+</dd>
+  </dl>
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection)">AddParameter(DbCommand, string, SqlDbType, object?, ParameterDirection)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_Data_SqlDbType_System_Object_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.Data.SqlDbType,System.Object,System.Data.ParameterDirection)">
+  AddParameter(DbCommand, string, SqlDbType, object?, ParameterDirection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a parameter to the call (for all types other than strings)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand AddParameter(this DbCommand command, string id, SqlDbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Name of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.sqldbtype">SqlDbType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>SQL type of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>Value to add</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></td>
-        <td><span class="parametername">direction</span></td>
-        <td><p>Direction that the parameter goes (in or out)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DbCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>command or id</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_String_System_Data_ParameterDirection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand%2CSystem.String%2CSystem.String%2CSystem.Data.ParameterDirection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L52">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the parameter</p>
+</dd>
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.sqldbtype">SqlDbType</a></dt>
+    <dd><p>SQL type of the parameter</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>Value to add</p>
+</dd>
+    <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></dt>
+    <dd><p>Direction that the parameter goes (in or out)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DbCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>command or id</p>
+</dd>
+  </dl>
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_String_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.String,System.Data.ParameterDirection)">AddParameter(DbCommand, string, string, ParameterDirection)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_System_Data_Common_DbCommand_System_String_System_String_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(System.Data.Common.DbCommand,System.String,System.String,System.Data.ParameterDirection)">
+  AddParameter(DbCommand, string, string, ParameterDirection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a parameter to the call (for strings only)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand AddParameter(this DbCommand command, string id, string value = &quot;&quot;, ParameterDirection direction = ParameterDirection.Input)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Name of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>Value to add</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></td>
-        <td><span class="parametername">direction</span></td>
-        <td><p>Direction that the parameter goes (in or out)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DbCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter__1_System_Data_Common_DbCommand_System_String___0_System_Data_ParameterDirection_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter%60%601(System.Data.Common.DbCommand%2CSystem.String%2C%60%600%2CSystem.Data.ParameterDirection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L114">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the parameter</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Value to add</p>
+</dd>
+    <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></dt>
+    <dd><p>Direction that the parameter goes (in or out)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DbCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter__1_System_Data_Common_DbCommand_System_String___0_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)">AddParameter&lt;TDataType&gt;(DbCommand, string, TDataType, ParameterDirection)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter__1_System_Data_Common_DbCommand_System_String___0_System_Data_ParameterDirection_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)">
+  AddParameter&lt;TDataType&gt;(DbCommand, string, TDataType, ParameterDirection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a parameter to the call (for all types other than strings)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand AddParameter&lt;TDataType&gt;(this DbCommand command, string id, TDataType value = default, ParameterDirection direction = ParameterDirection.Input)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Name of the parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>Value to add</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></td>
-        <td><span class="parametername">direction</span></td>
-        <td><p>Direction that the parameter goes (in or out)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DbCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TDataType</span></td>
-        <td><p>Data type of the parameter</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>command or id</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_System_Data_Common_DbCommand_System_Int32_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L178">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the parameter</p>
+</dd>
+    <dt><code>value</code> <span class="xref">TDataType</span></dt>
+    <dd><p>Value to add</p>
+</dd>
+    <dt><code>direction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.parameterdirection">ParameterDirection</a></dt>
+    <dd><p>Direction that the parameter goes (in or out)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DbCommand object</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDataType</code></dt>
+    <dd><p>Data type of the parameter</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>command or id</p>
+</dd>
+  </dl>
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_System_Data_Common_DbCommand_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand,System.Int32)">BeginTransaction(DbCommand, int)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_BeginTransaction_System_Data_Common_DbCommand_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand,System.Int32)">
+  BeginTransaction(DbCommand, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L178"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Begins a transaction</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbTransaction? BeginTransaction(this DbCommand command, int retries = 0)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">retries</span></td>
-        <td><p>The retries.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbtransaction">DbTransaction</a></td>
-        <td><p>A transaction object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_System_Data_Common_DbCommand_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L192">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>retries</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The retries.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbtransaction">DbTransaction</a></dt>
+    <dd><p>A transaction object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)">ClearParameters(DbCommand)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ClearParameters_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ClearParameters(System.Data.Common.DbCommand)">
+  ClearParameters(DbCommand)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Clears the parameters</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand? ClearParameters(this DbCommand command)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DBCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_System_Data_Common_DbCommand_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L203">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DBCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)">Close(DbCommand)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Close_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Close(System.Data.Common.DbCommand)">
+  Close(DbCommand)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Closes the connection</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand? Close(this DbCommand command)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DBCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_System_Data_Common_DbCommand_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L219">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DBCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)">Commit(DbCommand)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Commit_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Commit(System.Data.Common.DbCommand)">
+  Commit(DbCommand)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Commits a transaction</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand? Commit(this DbCommand command)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DBCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync__1_System_Data_Common_DbCommand___0_System_Int32_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync%60%601(System.Data.Common.DbCommand%2C%60%600%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L249">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DBCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync__1_System_Data_Common_DbCommand___0_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)">ExecuteScalarAsync&lt;TDataType&gt;(DbCommand, TDataType, int)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync__1_System_Data_Common_DbCommand___0_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)">
+  ExecuteScalarAsync&lt;TDataType&gt;(DbCommand, TDataType, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L249"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Executes the stored procedure as a scalar query async</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static Task&lt;TDataType&gt; ExecuteScalarAsync&lt;TDataType&gt;(this DbCommand command, TDataType defaultValue = default, int retries = 0)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default value if there is an issue</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">retries</span></td>
-        <td><p>The retries.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TDataType&gt;</td>
-        <td><p>The object of the first row and first column</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TDataType</span></td>
-        <td><p>The type of the ata type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar%60%601(System.Data.Common.DbCommand%2C%60%600%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L233">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TDataType</span></dt>
+    <dd><p>Default value if there is an issue</p>
+</dd>
+    <dt><code>retries</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The retries.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TDataType&gt;</dt>
+    <dd><p>The object of the first row and first column</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDataType</code></dt>
+    <dd><p>The type of the ata type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)">ExecuteScalar&lt;TDataType&gt;(DbCommand, TDataType, int)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)">
+  ExecuteScalar&lt;TDataType&gt;(DbCommand, TDataType, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L233"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Executes the stored procedure as a scalar query</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TDataType ExecuteScalar&lt;TDataType&gt;(this DbCommand command, TDataType defaultValue = default, int retries = 0)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default value if there is an issue</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">retries</span></td>
-        <td><p>The retries.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><p>The object of the first row and first column</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TDataType</span></td>
-        <td><p>The type of the ata type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_System_Data_Common_DbCommand_System_String_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L264">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TDataType</span></dt>
+    <dd><p>Default value if there is an issue</p>
+</dd>
+    <dt><code>retries</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The retries.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TDataType</span></dt>
+    <dd><p>The object of the first row and first column</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDataType</code></dt>
+    <dd><p>The type of the ata type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_System_Data_Common_DbCommand_System_String_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)">GetOrCreateParameter(DbCommand, string)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOrCreateParameter_System_Data_Common_DbCommand_System_String_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)">
+  GetOrCreateParameter(DbCommand, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets a parameter or creates it, if it is not found</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameter GetOrCreateParameter(this DbCommand command, string id)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Name of the parameter</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbparameter">DbParameter</a></td>
-        <td><p>The DbParameter associated with the ID</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter__1_System_Data_Common_DbCommand_System_String___0_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter%60%601(System.Data.Common.DbCommand%2CSystem.String%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L289">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the parameter</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbparameter">DbParameter</a></dt>
+    <dd><p>The DbParameter associated with the ID</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter__1_System_Data_Common_DbCommand_System_String___0_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)">GetOutputParameter&lt;TDataType&gt;(DbCommand, string, TDataType)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter__1_System_Data_Common_DbCommand_System_String___0_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)">
+  GetOutputParameter&lt;TDataType&gt;(DbCommand, string, TDataType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L289"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Returns an output parameter's value</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TDataType GetOutputParameter&lt;TDataType&gt;(this DbCommand command, string id, TDataType defaultValue = default)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">id</span></td>
-        <td><p>Parameter name</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default value for the parameter</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TDataType</span></td>
-        <td><p>if the parameter exists (and isn't null or empty), it returns the parameter's value.
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Parameter name</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">TDataType</span></dt>
+    <dd><p>Default value for the parameter</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TDataType</span></dt>
+    <dd><p>if the parameter exists (and isn't null or empty), it returns the parameter's value.
 Otherwise the default value is returned.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TDataType</span></td>
-        <td><p>Data type of the object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_System_Data_Common_DbCommand_System_Int32_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L302">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDataType</code></dt>
+    <dd><p>Data type of the object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_System_Data_Common_DbCommand_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand,System.Int32)">Open(DbCommand, int)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Open_System_Data_Common_DbCommand_System_Int32_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand,System.Int32)">
+  Open(DbCommand, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Opens the connection</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand? Open(this DbCommand command, int retries = 0)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">retries</span></td>
-        <td><p>The retries.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DBCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/SQLHelper/new/master/apiSpec/new?filename=SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_System_Data_Common_DbCommand_.md&amp;value=---%0Auid%3A%20SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L331">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+    <dt><code>retries</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The retries.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DBCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback*"></a>
-  <h4 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)">Rollback(DbCommand)</h4>
+
+  <h3 id="SQLHelperDB_ExtensionMethods_DbCommandExtensions_Rollback_System_Data_Common_DbCommand_" data-uid="SQLHelperDB.ExtensionMethods.DbCommandExtensions.Rollback(System.Data.Common.DbCommand)">
+  Rollback(DbCommand)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L331"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Rolls back a transaction</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbCommand? Rollback(this DbCommand command)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><span class="parametername">command</span></td>
-        <td><p>Command object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></td>
-        <td><p>The DBCommand object</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>command</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>Command object</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbcommand">DbCommand</a></dt>
+    <dd><p>The DBCommand object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>&#169; James Craig. All rights reserved.</span>
-                </div>
-            </main>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/ExtensionMethods/DbCommandExtensions.cs/#L31" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <strong><a href='https://github.com/JaCraig/SQLHelper'>Open in Github</a></strong>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
