@@ -45,7 +45,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit" Version="2.6.4" />
-    <PackageReference Include="FileCurator" Version="4.0.43" />
+    <PackageReference Include="FileCurator" Version="4.0.44" />
   </ItemGroup>
 
   <ItemGroup>
