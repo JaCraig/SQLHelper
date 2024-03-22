@@ -57,7 +57,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.3" />
-    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="171.24.0" />
+    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="172.0.1" />
     <PackageReference Include="SQLParser" Version="3.0.15" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
