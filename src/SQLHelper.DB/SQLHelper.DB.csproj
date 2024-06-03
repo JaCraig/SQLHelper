@@ -55,7 +55,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.6" />
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="172.0.1" />
     <PackageReference Include="SQLParser" Version="3.0.18" />
