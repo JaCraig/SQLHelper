@@ -58,10 +58,10 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.6" />
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="172.0.1" />
-    <PackageReference Include="SQLParser" Version="3.0.18" />
+    <PackageReference Include="SQLParser" Version="3.0.19" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="BigBook" Version="5.1.40" />
+    <PackageReference Include="BigBook" Version="5.1.41" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
