@@ -22,6 +22,15 @@ references:
   fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration)
   nameWithType: RegistrationExtensions.RegisterSQLHelper(ICanisterConfiguration?)
   nameWithType.vb: RegistrationExtensions.RegisterSQLHelper(ICanisterConfiguration)
+- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: RegisterSQLHelper(IServiceCollection?)
+  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: RegisterSQLHelper(IServiceCollection)
+  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: RegistrationExtensions.RegisterSQLHelper(IServiceCollection?)
+  nameWithType.vb: RegistrationExtensions.RegisterSQLHelper(IServiceCollection)
 - uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper*
   name: RegisterSQLHelper
   href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_

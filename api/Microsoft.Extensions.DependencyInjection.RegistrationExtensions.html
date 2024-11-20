@@ -89,7 +89,7 @@
 
 
   <h1 id="Microsoft_Extensions_DependencyInjection_RegistrationExtensions" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtensions" class="text-break">
-Class RegistrationExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L24"><i class="bi bi-code-slash"></i></a>
+Class RegistrationExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ Class RegistrationExtensions  <a class="header-action link-secondary" title="Vie
 
   <h3 id="Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_Canister_Interfaces_ICanisterConfiguration_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Canister.Interfaces.ICanisterConfiguration)">
   RegisterSQLHelper(ICanisterConfiguration?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Registers the library with the bootstrapper.</p>
@@ -170,15 +170,54 @@ Class RegistrationExtensions  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>bootstrapper</code> <a class="xref" href="https://github.com/JaCraig/Canister/blob/master/src/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
+    <dt><code>bootstrapper</code> <a class="xref" href="https://github.com/JaCraig/Canister/blob/master/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
     <dd><p>The bootstrapper.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://github.com/JaCraig/Canister/blob/master/src/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
+    <dt><a class="xref" href="https://github.com/JaCraig/Canister/blob/master/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
     <dd><p>The bootstrapper</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterSQLHelper_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterSQLHelper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  RegisterSQLHelper(IServiceCollection?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers the SQLHelper library with the service collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection? RegisterSQLHelper(this IServiceCollection? services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd><p>The service collection.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd><p>The service collection with SQLHelper registered.</p>
 </dd>
   </dl>
 
@@ -196,7 +235,7 @@ Class RegistrationExtensions  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/JaCraig/SQLHelper/blob/master/src/SQLHelper.DB/Registration/Register.cs/#L26" class="edit-link">Edit this page</a>
         </div>
 
 
