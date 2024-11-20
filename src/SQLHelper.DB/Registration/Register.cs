@@ -14,7 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using BigBook.Registration;
 using Canister.Interfaces;
+using SQLHelperDB;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -32,6 +34,17 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
                                 .RegisterBigBookOfDataTypes();
+        }
+
+        /// <summary>
+        /// Registers the SQLHelper library with the service collection.
+        /// </summary>
+        /// <param name="services">The service collection.</param>
+        /// <returns>The service collection with SQLHelper registered.</returns>
+        public static IServiceCollection? RegisterSQLHelper(this IServiceCollection? services)
+        {
+            return services?.AddTransient<SQLHelper>()
+                           ?.RegisterBigBookOfDataTypes();
         }
     }
 }

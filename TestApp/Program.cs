@@ -16,12 +16,12 @@ namespace TestApp
             using (var listener = new SqlClientListener())
             {
                 var Services = new ServiceCollection();
-                Services.AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly).RegisterSQLHelper());
-                Services.AddLogging();
-                var ServiceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(Services);
-                var Helper = ServiceProvider.GetRequiredService<SQLHelper>();
+                _ = Services.AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly).RegisterSQLHelper());
+                _ = Services.AddLogging();
+                IServiceProvider ServiceProvider = new DefaultServiceProviderFactory().CreateServiceProvider(Services);
+                SQLHelper Helper = ServiceProvider.GetRequiredService<SQLHelper>();
 
-                var Results = await Helper.CreateBatch(SqlClientFactory.Instance)
+                System.Collections.Generic.List<System.Collections.Generic.List<dynamic>> Results = await Helper.CreateBatch(SqlClientFactory.Instance)
                     .AddQuery(CommandType.Text, @";WITH MyDuplicate AS (SELECT
 Sch.[name] AS SchemaName,
 Obj.[name] AS TableName,
@@ -152,14 +152,13 @@ ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC")
 
             using (var listener = new SqlClientListener())
             {
-                string connectionString = "Data Source=localhost;Initial Catalog=SereneCMS;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+                var connectionString = "Data Source=localhost;Initial Catalog=SereneCMS;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
 
                 // Open a connection to the AdventureWorks database.
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
+                using var connection = new SqlConnection(connectionString);
+                connection.Open();
 
-                    string sql = @"SELECT TOP 25
+                var sql = @"SELECT TOP 25
 o.name AS ObjectName
 , i.name AS IndexName
 , i.index_id AS IndexID
@@ -186,20 +185,19 @@ AND i.is_primary_key = 0
 AND i.is_unique_constraint = 0
 AND(dm_ius.user_scans + dm_ius.user_lookups) > dm_ius.user_seeks
 ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC";
-                    SqlCommand command = new SqlCommand(sql, connection);
+                var command = new SqlCommand(sql, connection);
 
-                    // Perform a data operation on the server.
-                    SqlDataReader reader = command.ExecuteReader();
-                    try
+                // Perform a data operation on the server.
+                SqlDataReader reader = command.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            // Read the data.
-                        }
+                        // Read the data.
                     }
-                    catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-                    reader.Close();
                 }
+                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                reader.Close();
             }
         }
     }
