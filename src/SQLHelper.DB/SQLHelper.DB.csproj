@@ -10,7 +10,7 @@
     <Description>SQLHelper is a simple class to help with databases.</Description>
     <AssemblyTitle>SQLHelper DB</AssemblyTitle>
     <Authors>James Craig</Authors>
-	  <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+	  <TargetFrameworks>net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>SQLHelper.DB</AssemblyName>
     <PackageId>SQLHelper.DB</PackageId>
