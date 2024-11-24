@@ -43,6 +43,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>The service collection with SQLHelper registered.</returns>
         public static IServiceCollection? RegisterSQLHelper(this IServiceCollection? services)
         {
+            if (services.Exists<SQLHelper>())
+                return services;
             return services?.AddTransient<SQLHelper>()
                            ?.RegisterBigBookOfDataTypes();
         }
