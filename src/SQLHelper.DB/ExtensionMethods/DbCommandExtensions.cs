@@ -20,6 +20,7 @@ using ObjectCartographer;
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,13 +34,13 @@ namespace SQLHelperDB.ExtensionMethods
         /// <summary>
         /// The bad database types
         /// </summary>
-        private static readonly DbType[] BadDbTypes = {
+        private static readonly DbType[] _BadDbTypes = [
             DbType.Time,
             DbType.SByte,
             DbType.UInt16,
             DbType.UInt32,
             DbType.UInt64
-        };
+        ];
 
         /// <summary>
         /// Adds a parameter to the call (for strings only)
@@ -55,10 +56,8 @@ namespace SQLHelperDB.ExtensionMethods
             string value = "",
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
+            ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
             var Length = string.IsNullOrEmpty(value) ? 1 : value.Length;
             if (direction == ParameterDirection.Output
                 || direction == ParameterDirection.InputOutput
@@ -68,8 +67,8 @@ namespace SQLHelperDB.ExtensionMethods
                 Length = -1;
             }
 
-            var Parameter = command.GetOrCreateParameter(id);
-            Parameter.Value = string.IsNullOrEmpty(value) ? DBNull.Value : (object)value;
+            DbParameter Parameter = command.GetOrCreateParameter(id);
+            Parameter.Value = string.IsNullOrEmpty(value) ? DBNull.Value : value;
             Parameter.IsNullable = string.IsNullOrEmpty(value);
             Parameter.DbType = DbType.String;
             Parameter.Direction = direction;
@@ -94,10 +93,8 @@ namespace SQLHelperDB.ExtensionMethods
             object? value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
+            ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
             return command.AddParameter(id, type.To<DbType>(), value, direction);
         }
 
@@ -114,16 +111,14 @@ namespace SQLHelperDB.ExtensionMethods
         public static DbCommand AddParameter<TDataType>(
             this DbCommand command,
             string id,
-            TDataType value = default,
+            TDataType? value = default,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
+            ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
             return command.AddParameter(
                 id,
-                GenericEqualityComparer<TDataType>.Comparer.Equals(value, default!) ? typeof(TDataType).To<DbType>() : value?.GetType().To<DbType>() ?? DbType.Int32,
+                GenericEqualityComparer<TDataType>.Comparer.Equals(value!, default!) ? typeof(TDataType).To<DbType>() : value?.GetType().To<DbType>() ?? DbType.Int32,
                 value,
                 direction);
         }
@@ -145,11 +140,9 @@ namespace SQLHelperDB.ExtensionMethods
             object? value = null,
             ParameterDirection direction = ParameterDirection.Input)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException(nameof(id));
-            var Parameter = command.GetOrCreateParameter(id);
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
+            ArgumentNullException.ThrowIfNullOrEmpty(id, nameof(id));
+            DbParameter Parameter = command.GetOrCreateParameter(id);
             Parameter.IsNullable = value is null || DBNull.Value == value;
             if (Parameter.IsNullable)
             {
@@ -163,7 +156,7 @@ namespace SQLHelperDB.ExtensionMethods
             {
                 Parameter.Value = value;
             }
-            if (type != default && !BadDbTypes.Contains(type))
+            if (type != default && !_BadDbTypes.Contains(type))
                 Parameter.DbType = type;
             Parameter.Direction = direction;
             return command;
@@ -179,7 +172,7 @@ namespace SQLHelperDB.ExtensionMethods
         {
             if (command?.Connection is null)
                 return null;
-            command.Open(retries);
+            _ = command.Open(retries);
             command.Transaction = command.Connection.BeginTransaction();
             return command.Transaction;
         }
@@ -202,7 +195,7 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand? Close(this DbCommand command)
         {
-            if (!(command?.Connection is null)
+            if (command?.Connection is not null
                 && command.Connection.State != ConnectionState.Closed)
             {
                 command.Connection.Close();
@@ -230,11 +223,12 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="defaultValue">Default value if there is an issue</param>
         /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static TDataType ExecuteScalar<TDataType>(this DbCommand command, TDataType defaultValue = default, int retries = 0)
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public static TDataType? ExecuteScalar<TDataType>(this DbCommand command, TDataType? defaultValue = default, int retries = 0)
         {
             if (command is null)
                 return defaultValue;
-            command.Open(retries);
+            _ = command.Open(retries);
             return command.ExecuteScalar().To(defaultValue);
         }
 
@@ -246,11 +240,12 @@ namespace SQLHelperDB.ExtensionMethods
         /// <param name="defaultValue">Default value if there is an issue</param>
         /// <param name="retries">The retries.</param>
         /// <returns>The object of the first row and first column</returns>
-        public static async Task<TDataType> ExecuteScalarAsync<TDataType>(this DbCommand command, TDataType defaultValue = default, int retries = 0)
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public static async Task<TDataType?> ExecuteScalarAsync<TDataType>(this DbCommand command, TDataType? defaultValue = default, int retries = 0)
         {
             if (command is null)
                 return defaultValue;
-            command.Open(retries);
+            _ = command.Open(retries);
             var ReturnValue = await command.ExecuteScalarAsync().ConfigureAwait(false);
             return ReturnValue.To(defaultValue);
         }
@@ -263,15 +258,14 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DbParameter associated with the ID</returns>
         public static DbParameter GetOrCreateParameter(this DbCommand command, string id)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
             if (command.Parameters.Contains(id))
             {
                 return command.Parameters[id];
             }
-            var Parameter = command.CreateParameter();
+            DbParameter Parameter = command.CreateParameter();
             Parameter.ParameterName = id;
-            command.Parameters.Add(Parameter);
+            _ = command.Parameters.Add(Parameter);
             return Parameter;
         }
 
@@ -286,9 +280,9 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static TDataType GetOutputParameter<TDataType>(this DbCommand command, string id, TDataType defaultValue = default)
+        public static TDataType? GetOutputParameter<TDataType>(this DbCommand command, string id, TDataType? defaultValue = default)
         {
-            return !(command?.Parameters[id] is null) ?
+            return command?.Parameters[id] is not null ?
                 command.Parameters[id].Value.To(defaultValue) :
                 defaultValue;
         }
@@ -301,12 +295,12 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand? Open(this DbCommand command, int retries = 0)
         {
-            Exception? holder = null;
+            Exception? Holder = null;
             while (retries >= 0)
             {
                 try
                 {
-                    if (!(command?.Connection is null)
+                    if (command?.Connection is not null
                         && command.Connection.State != ConnectionState.Open)
                     {
                         command.Connection.Open();
@@ -314,13 +308,15 @@ namespace SQLHelperDB.ExtensionMethods
 
                     return command;
                 }
-                catch (Exception e)
+                catch (Exception E)
                 {
-                    holder = e;
+                    Holder = E;
                 }
                 --retries;
             }
-            throw holder!;
+            if (Holder is not null)
+                throw Holder;
+            return command;
         }
 
         /// <summary>

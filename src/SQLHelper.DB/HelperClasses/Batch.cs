@@ -36,23 +36,12 @@ namespace SQLHelperDB.HelperClasses
     /// Holds information for a set of commands
     /// </summary>
     /// <seealso cref="IBatch"/>
-    public class Batch : IBatch
+    /// <remarks>Constructor</remarks>
+    /// <param name="source">Source info</param>
+    /// <param name="stringBuilderPool">The string builder pool.</param>
+    /// <param name="logger">The logger.</param>
+    public partial class Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, ILogger? logger = null) : IBatch
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="source">Source info</param>
-        /// <param name="stringBuilderPool">The string builder pool.</param>
-        /// <param name="logger">The logger.</param>
-        public Batch(IConnection source, ObjectPool<StringBuilder> stringBuilderPool, ILogger? logger = null)
-        {
-            Commands = new List<ICommand>();
-            Headers = new List<ICommand>();
-            Source = source;
-            StringBuilderPool = stringBuilderPool;
-            Logger = logger;
-        }
-
         /// <summary>
         /// Command count
         /// </summary>
@@ -62,34 +51,34 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the string builder pool.
         /// </summary>
         /// <value>The string builder pool.</value>
-        public ObjectPool<StringBuilder> StringBuilderPool { get; }
+        public ObjectPool<StringBuilder> StringBuilderPool { get; } = stringBuilderPool;
 
         /// <summary>
         /// Commands to batch
         /// </summary>
-        protected List<ICommand> Commands { get; private set; }
+        protected List<ICommand> Commands { get; private set; } = [];
 
         /// <summary>
         /// Gets the headers.
         /// </summary>
         /// <value>The headers.</value>
-        protected List<ICommand> Headers { get; private set; }
+        protected List<ICommand> Headers { get; private set; } = [];
 
         /// <summary>
         /// Connection string
         /// </summary>
-        protected IConnection Source { get; private set; }
+        protected IConnection Source { get; private set; } = source;
 
         /// <summary>
         /// Gets the logger.
         /// </summary>
         /// <value>The logger.</value>
-        private ILogger? Logger { get; }
+        private ILogger? Logger { get; } = logger;
 
         /// <summary>
         /// Used to parse SQL commands to find parameters (when batching)
         /// </summary>
-        private static readonly Regex ParameterRegex = new Regex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled);
+        private static readonly Regex _ParameterRegex = BuildParameterRegex();
 
         /// <summary>
         /// Adds a command to be batched
@@ -120,10 +109,10 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>This</returns>
         public IBatch AddQuery(IBatch batch)
         {
-            if (!(batch is Batch TempValue))
+            if (batch is not Batch TempValue)
                 return this;
-            Commands.Add(TempValue.Commands);
-            Headers.Add(TempValue.Headers);
+            _ = Commands.Add(TempValue.Commands);
+            _ = Headers.Add(TempValue.Headers);
             return this;
         }
 
@@ -167,15 +156,84 @@ namespace SQLHelperDB.HelperClasses
         /// <returns></returns>
         public override string ToString()
         {
-            return Headers.ToString(x => x.ToString(), Environment.NewLine)
-                + Commands.ToString(x => x.ToString(), Environment.NewLine);
+            return Headers.ToString(x => x.ToString() ?? "", Environment.NewLine)
+                + Commands.ToString(x => x.ToString() ?? "", Environment.NewLine);
         }
 
         /// <summary>
         /// Checks whether a transaction is needed.
         /// </summary>
         /// <returns>True if it is, false otherwise</returns>
-        protected bool CheckTransaction() => Commands.Count > 1 && Commands.Any(Command => Command.TransactionNeeded);
+        protected bool CheckTransaction() => Commands.Count > 1 && Commands.Any(command => command.TransactionNeeded);
+
+        /// <summary>
+        /// Builds the parameter regex.
+        /// </summary>
+        /// <returns>The parameter regex</returns>
+        [GeneratedRegex(@"[^@](?<ParamStart>[:@?])(?<ParamName>\w+)", RegexOptions.Compiled)]
+        private static partial Regex BuildParameterRegex();
+
+        /// <summary>
+        /// Gets the results asynchronous.
+        /// </summary>
+        /// <param name="returnValue">The return value.</param>
+        /// <param name="executableCommand">The executable command.</param>
+        /// <param name="finalParameters">The final parameters.</param>
+        /// <param name="finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="finalSQLCommand">The final SQL command.</param>
+        /// <returns>The async task.</returns>
+        private static async Task GetResultsAsync(List<List<dynamic>> returnValue, DbCommand executableCommand, List<IParameter> finalParameters, bool finalizable, string finalSQLCommand)
+        {
+            if (string.IsNullOrEmpty(finalSQLCommand))
+                return;
+            executableCommand.CommandText = finalSQLCommand;
+            for (int X = 0, FinalParametersCount = finalParameters.Count; X < FinalParametersCount; ++X)
+            {
+                finalParameters[X].AddParameter(executableCommand);
+            }
+            if (finalizable)
+            {
+                await using DbDataReader TempReader = await executableCommand.ExecuteReaderAsync().ConfigureAwait(false);
+                do
+                {
+                    returnValue.Add(GetValues(TempReader));
+                }
+                while (TempReader.NextResult());
+            }
+            else
+            {
+                returnValue.Add([new Dynamo(await executableCommand.ExecuteNonQueryAsync().ConfigureAwait(false), false)]);
+            }
+        }
+
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <param name="tempReader">The temporary reader.</param>
+        /// <returns>The resulting values</returns>
+        private static List<dynamic> GetValues(DbDataReader tempReader)
+        {
+            if (tempReader is null)
+                return [];
+            var ReturnValue = new List<dynamic>();
+            var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
+            for (var X = 0; X < tempReader.FieldCount; ++X)
+            {
+                var FieldName = tempReader.GetName(X);
+                FieldNames[X] = !string.IsNullOrWhiteSpace(FieldName) ? FieldName : $"(No column name #{X})";
+            }
+            while (tempReader.Read())
+            {
+                var Value = new Dynamo(false);
+                for (var X = 0; X < tempReader.FieldCount; ++X)
+                {
+                    Value.Add(FieldNames[X], tempReader[X]);
+                }
+                ReturnValue.Add(Value);
+            }
+            ArrayPool<string>.Shared.Return(FieldNames);
+            return ReturnValue;
+        }
 
         /// <summary>
         /// Executes the commands asynchronously.
@@ -184,18 +242,22 @@ namespace SQLHelperDB.HelperClasses
         private async Task<List<List<dynamic>>> ExecuteCommandsAsync()
         {
             if (Source is null || Commands is null)
-                return new List<List<dynamic>>();
+                return [];
             var ReturnValue = new List<List<dynamic>>();
             if (Commands.Count == 0)
             {
-                ReturnValue.Add(new List<dynamic>());
+                ReturnValue.Add([]);
                 return ReturnValue;
             }
-            var Factory = Source.Factory;
-            using (var Connection = Factory.CreateConnection())
+            DbProviderFactory Factory = Source.Factory;
+            await using (DbConnection? Connection = Factory.CreateConnection())
             {
+                if (Connection is null)
+                    return ReturnValue;
                 Connection.ConnectionString = Source.ConnectionString;
-                using var ExecutableCommand = Factory.CreateCommand();
+                await using DbCommand? ExecutableCommand = Factory.CreateCommand();
+                if (ExecutableCommand is null)
+                    return ReturnValue;
                 SetupCommand(Connection, ExecutableCommand);
 
                 try
@@ -212,15 +274,15 @@ namespace SQLHelperDB.HelperClasses
                         Count = EndCount;
                     }
                     while (Count < CommandCount);
-                    ExecutableCommand.Commit();
+                    _ = ExecutableCommand.Commit();
                 }
-                catch
+                catch (Exception Ex)
                 {
-                    Logger?.LogError(ExecutableCommand.CommandText);
-                    ExecutableCommand.Rollback();
+                    Logger?.LogError(Ex, "{commandText}", ExecutableCommand.CommandText);
+                    _ = ExecutableCommand.Rollback();
                     throw;
                 }
-                finally { ExecutableCommand.Close(); }
+                finally { _ = ExecutableCommand.Close(); }
             }
             FinalizeCommands(ReturnValue);
             return ReturnValue;
@@ -229,179 +291,117 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Finalizes the commands.
         /// </summary>
-        /// <param name="ReturnValue">The return value.</param>
-        private void FinalizeCommands(List<List<dynamic>> ReturnValue)
+        /// <param name="returnValue">The return value.</param>
+        private void FinalizeCommands(List<List<dynamic>> returnValue)
         {
-            for (int x = 0, y = 0; x < Commands.Count; ++x)
+            for (int X = 0, Y = 0; X < Commands.Count; ++X)
             {
-                if (Commands[x].Finalizable)
+                if (Commands[X].Finalizable)
                 {
-                    Commands[x].Finalize(ReturnValue[y]);
-                    ++y;
+                    Commands[X].Finalize(returnValue[Y]);
+                    ++Y;
                 }
                 else
                 {
-                    Commands[x].Finalize(new List<dynamic>());
+                    Commands[X].Finalize([]);
                 }
             }
-        }
-
-        /// <summary>
-        /// Gets the results asynchronous.
-        /// </summary>
-        /// <param name="ReturnValue">The return value.</param>
-        /// <param name="ExecutableCommand">The executable command.</param>
-        /// <param name="FinalParameters">The final parameters.</param>
-        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
-        /// <param name="FinalSQLCommand">The final SQL command.</param>
-        /// <returns>The async task.</returns>
-        private async Task GetResultsAsync(List<List<dynamic>> ReturnValue, DbCommand ExecutableCommand, List<IParameter> FinalParameters, bool Finalizable, string FinalSQLCommand)
-        {
-            if (string.IsNullOrEmpty(FinalSQLCommand))
-                return;
-            ExecutableCommand.CommandText = FinalSQLCommand;
-            for (int x = 0, FinalParametersCount = FinalParameters.Count; x < FinalParametersCount; ++x)
-            {
-                FinalParameters[x].AddParameter(ExecutableCommand);
-            }
-            if (Finalizable)
-            {
-                using var TempReader = await ExecutableCommand.ExecuteReaderAsync().ConfigureAwait(false);
-                do
-                {
-                    ReturnValue.Add(GetValues(TempReader));
-                }
-                while (TempReader.NextResult());
-            }
-            else
-            {
-                ReturnValue.Add(new List<dynamic> { new Dynamo(await ExecutableCommand.ExecuteNonQueryAsync().ConfigureAwait(false), false) });
-            }
-        }
-
-        /// <summary>
-        /// Gets the values.
-        /// </summary>
-        /// <param name="tempReader">The temporary reader.</param>
-        /// <returns>The resulting values</returns>
-        private List<dynamic> GetValues(DbDataReader tempReader)
-        {
-            if (tempReader is null)
-                return new List<dynamic>();
-            var ReturnValue = new List<dynamic>();
-            var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
-            for (var x = 0; x < tempReader.FieldCount; ++x)
-            {
-                var FieldName = tempReader.GetName(x);
-                FieldNames[x] = !string.IsNullOrWhiteSpace(FieldName) ? FieldName : $"(No column name #{x})";
-            }
-            while (tempReader.Read())
-            {
-                var Value = new Dynamo(false);
-                for (var x = 0; x < tempReader.FieldCount; ++x)
-                {
-                    Value.Add(FieldNames[x], tempReader[x]);
-                }
-                ReturnValue.Add(Value);
-            }
-            ArrayPool<string>.Shared.Return(FieldNames);
-            return ReturnValue;
         }
 
         /// <summary>
         /// Setups the command.
         /// </summary>
-        /// <param name="DatabaseConnection">The database connection.</param>
-        /// <param name="ExecutableCommand">The executable command.</param>
-        private void SetupCommand(DbConnection DatabaseConnection, DbCommand ExecutableCommand)
+        /// <param name="databaseConnection">The database connection.</param>
+        /// <param name="executableCommand">The executable command.</param>
+        private void SetupCommand(DbConnection databaseConnection, DbCommand executableCommand)
         {
-            ExecutableCommand.Connection = DatabaseConnection;
-            ExecutableCommand.CommandType = CommandType.Text;
-            ExecutableCommand.CommandTimeout = DatabaseConnection.ConnectionTimeout;
+            executableCommand.Connection = databaseConnection;
+            executableCommand.CommandType = CommandType.Text;
+            executableCommand.CommandTimeout = databaseConnection.ConnectionTimeout;
             if (CheckTransaction())
-                ExecutableCommand.BeginTransaction(Source.Retries);
-            ExecutableCommand.Open(Source.Retries);
+                _ = executableCommand.BeginTransaction(Source.Retries);
+            _ = executableCommand.Open(Source.Retries);
         }
 
         /// <summary>
         /// Setups the parameters.
         /// </summary>
-        /// <param name="Count">The count.</param>
-        /// <param name="FinalParameters">The final parameters.</param>
-        /// <param name="Finalizable">if set to <c>true</c> [finalizable].</param>
-        /// <param name="FinalSQLCommand">The final SQL command.</param>
-        private int SetupParameters(int Count, List<IParameter> FinalParameters, ref bool Finalizable, ref string FinalSQLCommand)
+        /// <param name="count">The count.</param>
+        /// <param name="finalParameters">The final parameters.</param>
+        /// <param name="finalizable">if set to <c>true</c> [finalizable].</param>
+        /// <param name="finalSQLCommand">The final SQL command.</param>
+        private int SetupParameters(int count, List<IParameter> finalParameters, ref bool finalizable, ref string finalSQLCommand)
         {
             var ParameterTotal = 0;
-            var Builder = StringBuilderPool?.Get() ?? new StringBuilder();
-            Builder.Append(FinalSQLCommand);
-            for (var y = 0; y < Headers.Count; ++y)
+            StringBuilder Builder = StringBuilderPool?.Get() ?? new StringBuilder();
+            _ = Builder.Append(finalSQLCommand);
+            for (var Y = 0; Y < Headers.Count; ++Y)
             {
-                var Command = Headers[y];
+                ICommand Command = Headers[Y];
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
                     break;
                 ParameterTotal += Command.Parameters.Length;
-                Finalizable |= Command.Finalizable;
+                finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
                     var TempCommandText = Command.SQLCommand ?? string.Empty;
-                    Builder.Append(Command.SQLCommand ?? string.Empty).Append(Environment.NewLine);
+                    _ = Builder.Append(Command.SQLCommand ?? string.Empty).Append(Environment.NewLine);
 
-                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    for (int I = 0, CommandParametersLength = Command.Parameters.Length; I < CommandParametersLength; I++)
                     {
-                        var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
+                        IParameter TempParameter = Command.Parameters[I];
+                        finalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
                 else
                 {
-                    Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
-                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    _ = Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
+                    for (int I = 0, CommandParametersLength = Command.Parameters.Length; I < CommandParametersLength; I++)
                     {
-                        var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
+                        IParameter TempParameter = Command.Parameters[I];
+                        finalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
             }
-            for (var y = Count; y < Commands.Count; ++y)
+            for (var Y = count; Y < Commands.Count; ++Y)
             {
-                var Command = Commands[y];
+                ICommand Command = Commands[Y];
                 if (ParameterTotal + Command.Parameters.Length >= 2000)
                     break;
                 ParameterTotal += Command.Parameters.Length;
-                Finalizable |= Command.Finalizable;
+                finalizable |= Command.Finalizable;
                 if (Command.CommandType == CommandType.Text)
                 {
                     var TempCommandText = Command.SQLCommand ?? string.Empty;
-                    var Suffix = "Command" + Count.ToString(CultureInfo.InvariantCulture);
-                    Builder.Append(string.IsNullOrEmpty(Command.SQLCommand) ?
+                    var Suffix = "Command" + count.ToString(CultureInfo.InvariantCulture);
+                    _ = Builder.Append(string.IsNullOrEmpty(Command.SQLCommand) ?
                                         string.Empty :
-                                        ParameterRegex.Replace(Command.SQLCommand, x =>
+                                        _ParameterRegex.Replace(Command.SQLCommand, x =>
                                         {
-                                            var Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
-                                            return !(Param is null) ? x.Value + Suffix : x.Value;
+                                            IParameter? Param = Array.Find(Command.Parameters, z => z.ID == x.Groups["ParamName"].Value);
+                                            return Param is not null ? x.Value + Suffix : x.Value;
                                         })).Append(Environment.NewLine);
 
-                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    for (int I = 0, CommandParametersLength = Command.Parameters.Length; I < CommandParametersLength; I++)
                     {
-                        var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(Suffix));
+                        IParameter TempParameter = Command.Parameters[I];
+                        finalParameters.Add(TempParameter.CreateCopy(Suffix));
                     }
                 }
                 else
                 {
-                    Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
-                    for (int i = 0, CommandParametersLength = Command.Parameters.Length; i < CommandParametersLength; i++)
+                    _ = Builder.Append(Command.SQLCommand).Append(Environment.NewLine);
+                    for (int I = 0, CommandParametersLength = Command.Parameters.Length; I < CommandParametersLength; I++)
                     {
-                        var TempParameter = Command.Parameters[i];
-                        FinalParameters.Add(TempParameter.CreateCopy(string.Empty));
+                        IParameter TempParameter = Command.Parameters[I];
+                        finalParameters.Add(TempParameter.CreateCopy(string.Empty));
                     }
                 }
-                ++Count;
+                ++count;
             }
-            FinalSQLCommand = Builder.ToString();
+            finalSQLCommand = Builder.ToString();
             StringBuilderPool?.Return(Builder);
-            return Count;
+            return count;
         }
     }
 }

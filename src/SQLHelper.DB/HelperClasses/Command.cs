@@ -31,7 +31,7 @@ namespace SQLHelperDB.HelperClasses
     /// </summary>
     /// <typeparam name="TCallbackData">The type of the callback data.</typeparam>
     /// <seealso cref="ICommand"/>
-    public class Command<TCallbackData> : ICommand
+    public partial class Command<TCallbackData> : ICommand
     {
         /// <summary>
         /// Constructor
@@ -50,7 +50,7 @@ namespace SQLHelperDB.HelperClasses
             CommandType = commandType;
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
-            Parameters = parameters ?? Array.Empty<IParameter>();
+            Parameters = parameters ?? [];
             DetermineFinalizable(Parameters.FirstOrDefault()?.ParameterStarter ?? "@", SQLCommand.ToUpperInvariant());
             Header = header;
         }
@@ -71,41 +71,26 @@ namespace SQLHelperDB.HelperClasses
         {
             SQLCommand = sqlCommand ?? string.Empty;
             CommandType = commandType;
-            parameters ??= Array.Empty<object>();
+            parameters ??= [];
             Parameters = new IParameter[parameters.Length];
             CallBack = callBack ?? DefaultAction;
             CallbackData = callbackObject;
             DetermineFinalizable(parameterStarter, SQLCommand.ToUpperInvariant());
             Header = header;
 
-            for (int x = 0, parametersLength = parameters.Length; x < parametersLength; ++x)
+            for (int X = 0, ParametersLength = parameters.Length; X < ParametersLength; ++X)
             {
-                var CurrentParameter = parameters[x];
-                if (CurrentParameter is IParameter parameter)
-                    Parameters[x] = parameter;
+                var CurrentParameter = parameters[X];
+                if (CurrentParameter is IParameter Parameter)
+                    Parameters[X] = Parameter;
                 else if (CurrentParameter is null)
-                    Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
+                    Parameters[X] = new Parameter<object>(X.ToString(CultureInfo.InvariantCulture), default(DbType), null, ParameterDirection.Input, parameterStarter);
                 else if (CurrentParameter is string TempParameter)
-                    Parameters[x] = new StringParameter(x.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
+                    Parameters[X] = new StringParameter(X.ToString(CultureInfo.InvariantCulture), TempParameter, ParameterDirection.Input, parameterStarter);
                 else
-                    Parameters[x] = new Parameter<object>(x.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
+                    Parameters[X] = new Parameter<object>(X.ToString(CultureInfo.InvariantCulture), CurrentParameter, ParameterDirection.Input, parameterStarter);
             }
         }
-
-        /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-        /// <summary>
-        /// The internal hash code value.
-        /// </summary>
-        private int InternalHashCode;
-
-        /// <summary>
-        /// The internal to string value.
-        /// </summary>
-        private string InternalToString = string.Empty;
 
         /// <summary>
         /// Call back
@@ -152,6 +137,21 @@ namespace SQLHelperDB.HelperClasses
         public bool TransactionNeeded { get; set; }
 
         /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex _SimpleSelectRegex = CreateSimpleSelectRegex();
+
+        /// <summary>
+        /// The internal hash code value.
+        /// </summary>
+        private int _InternalHashCode;
+
+        /// <summary>
+        /// The internal to string value.
+        /// </summary>
+        private string _InternalToString = string.Empty;
+
+        /// <summary>
         /// Determines if the objects are equal
         /// </summary>
         /// <param name="obj">Object to compare to</param>
@@ -161,7 +161,7 @@ namespace SQLHelperDB.HelperClasses
             if (ReferenceEquals(this, obj))
                 return true;
 
-            if (!(obj is Command<TCallbackData> OtherCommand))
+            if (obj is not Command<TCallbackData> OtherCommand)
                 return false;
 
             if (OtherCommand.SQLCommand != SQLCommand
@@ -171,15 +171,15 @@ namespace SQLHelperDB.HelperClasses
                 return false;
             }
 
-            for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+            for (int X = 0, ParametersLength = Parameters.Length; X < ParametersLength; ++X)
             {
-                if (!OtherCommand.Parameters.Contains(Parameters[x]))
+                if (!OtherCommand.Parameters.Contains(Parameters[X]))
                     return false;
             }
 
-            for (int x = 0, OtherCommandParametersLength = OtherCommand.Parameters.Length; x < OtherCommandParametersLength; ++x)
+            for (int X = 0, OtherCommandParametersLength = OtherCommand.Parameters.Length; X < OtherCommandParametersLength; ++X)
             {
-                if (!Parameters.Contains(OtherCommand.Parameters[x]))
+                if (!Parameters.Contains(OtherCommand.Parameters[X]))
                     return false;
             }
 
@@ -203,22 +203,22 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The hash code for the object</returns>
         public override int GetHashCode()
         {
-            if (InternalHashCode == 0)
+            if (_InternalHashCode == 0)
             {
                 unchecked
                 {
                     var ParameterTotal = 0;
-                    for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+                    for (int X = 0, ParametersLength = Parameters.Length; X < ParametersLength; ++X)
                     {
-                        ParameterTotal += Parameters[x].GetHashCode();
+                        ParameterTotal += Parameters[X].GetHashCode();
                     }
 
                     if (ParameterTotal > 0)
-                        InternalHashCode = (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
-                    InternalHashCode = (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
+                        _InternalHashCode = (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
+                    _InternalHashCode = (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
                 }
             }
-            return InternalHashCode;
+            return _InternalHashCode;
         }
 
         /// <summary>
@@ -227,16 +227,23 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The string representation of the command</returns>
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(InternalToString))
+            if (string.IsNullOrEmpty(_InternalToString))
             {
-                InternalToString = SQLCommand ?? string.Empty;
-                for (int x = 0, ParametersLength = Parameters.Length; x < ParametersLength; ++x)
+                _InternalToString = SQLCommand ?? string.Empty;
+                for (int X = 0, ParametersLength = Parameters.Length; X < ParametersLength; ++X)
                 {
-                    InternalToString = Parameters[x].AddParameter(InternalToString);
+                    _InternalToString = Parameters[X].AddParameter(_InternalToString);
                 }
             }
-            return InternalToString;
+            return _InternalToString;
         }
+
+        /// <summary>
+        /// Creates the simple select regex.
+        /// </summary>
+        /// <returns>The simple select regex.</returns>
+        [GeneratedRegex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
+        private static partial Regex CreateSimpleSelectRegex();
 
         /// <summary>
         /// Default action.
@@ -252,13 +259,13 @@ namespace SQLHelperDB.HelperClasses
         /// Determines if the query is finalizable.
         /// </summary>
         /// <param name="parameterStarter">The parameter starter.</param>
-        /// <param name="ComparisonString">The comparison string.</param>
-        private void DetermineFinalizable(string parameterStarter, string ComparisonString)
+        /// <param name="comparisonString">The comparison string.</param>
+        private void DetermineFinalizable(string parameterStarter, string comparisonString)
         {
-            if (parameterStarter == "@" && ComparisonString.Contains("SELECT ", StringComparison.Ordinal) && ComparisonString.Contains("IF ", StringComparison.Ordinal))
+            if (parameterStarter == "@" && comparisonString.Contains("SELECT ", StringComparison.Ordinal) && comparisonString.Contains("IF ", StringComparison.Ordinal))
             {
                 var TempParser = new SimpleSelectFinder();//new SelectFinder();
-                var Results = Parser.Parse(SQLCommand);
+                ParseResult Results = Parser.Parse(SQLCommand);
                 Results.Script.Accept(TempParser);
                 //Finalizable = Results
                 //SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
@@ -266,22 +273,22 @@ namespace SQLHelperDB.HelperClasses
             }
             else if (CommandType == CommandType.Text)
             {
-                Finalizable = SimpleSelectRegex.IsMatch(ComparisonString);
+                Finalizable = _SimpleSelectRegex.IsMatch(comparisonString);
             }
             else
             {
                 Finalizable = true;
             }
 
-            TransactionNeeded = (ComparisonString.Contains("INSERT", StringComparison.Ordinal)
-                || ComparisonString.Contains("UPDATE", StringComparison.Ordinal)
-                || ComparisonString.Contains("DELETE", StringComparison.Ordinal)
-                || ComparisonString.Contains("INTO", StringComparison.Ordinal)
-                || ComparisonString.Contains("DROP", StringComparison.Ordinal)
-                || ComparisonString.Contains("CREATE", StringComparison.Ordinal)
-                || ComparisonString.Contains("ALTER", StringComparison.Ordinal))
-                && !ComparisonString.Contains("CREATE DATABASE", StringComparison.Ordinal)
-                && !ComparisonString.Contains("ALTER DATABASE", StringComparison.Ordinal);
+            TransactionNeeded = (comparisonString.Contains("INSERT", StringComparison.Ordinal)
+                || comparisonString.Contains("UPDATE", StringComparison.Ordinal)
+                || comparisonString.Contains("DELETE", StringComparison.Ordinal)
+                || comparisonString.Contains("INTO", StringComparison.Ordinal)
+                || comparisonString.Contains("DROP", StringComparison.Ordinal)
+                || comparisonString.Contains("CREATE", StringComparison.Ordinal)
+                || comparisonString.Contains("ALTER", StringComparison.Ordinal))
+                && !comparisonString.Contains("CREATE DATABASE", StringComparison.Ordinal)
+                && !comparisonString.Contains("ALTER DATABASE", StringComparison.Ordinal);
         }
     }
 }

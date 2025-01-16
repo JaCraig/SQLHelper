@@ -25,20 +25,13 @@ namespace SQLHelperDB.HelperClasses
     /// <summary>
     /// Holds parameter information
     /// </summary>
-    public class StringParameter : ParameterBase<string>
+    /// <remarks>Constructor</remarks>
+    /// <param name="id">ID of the parameter</param>
+    /// <param name="value">Value of the parameter</param>
+    /// <param name="direction">Direction of the parameter</param>
+    /// <param name="parameterStarter">Parameter starter</param>
+    public class StringParameter(string id, string value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@") : ParameterBase<string>(id, DbType.String, value, direction, parameterStarter)
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="id">ID of the parameter</param>
-        /// <param name="value">Value of the parameter</param>
-        /// <param name="direction">Direction of the parameter</param>
-        /// <param name="parameterStarter">Parameter starter</param>
-        public StringParameter(string id, string value, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-            : base(id, DbType.String, value, direction, parameterStarter)
-        {
-        }
-
         /// <summary>
         /// Adds this parameter to the SQLHelper
         /// </summary>
