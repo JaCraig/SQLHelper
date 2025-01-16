@@ -132,13 +132,13 @@ references:
   fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter
   nameWithType: DbCommandExtensions.AddParameter
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)
-  name: AddParameter<TDataType>(DbCommand, string, TDataType, ParameterDirection)
+  name: AddParameter<TDataType>(DbCommand, string, TDataType?, ParameterDirection)
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_AddParameter__1_System_Data_Common_DbCommand_System_String___0_System_Data_ParameterDirection_
   commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter``1(System.Data.Common.DbCommand,System.String,``0,System.Data.ParameterDirection)
   name.vb: AddParameter(Of TDataType)(DbCommand, String, TDataType, ParameterDirection)
-  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType, System.Data.ParameterDirection)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType?, System.Data.ParameterDirection)
   fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.AddParameter(Of TDataType)(System.Data.Common.DbCommand, String, TDataType, System.Data.ParameterDirection)
-  nameWithType: DbCommandExtensions.AddParameter<TDataType>(DbCommand, string, TDataType, ParameterDirection)
+  nameWithType: DbCommandExtensions.AddParameter<TDataType>(DbCommand, string, TDataType?, ParameterDirection)
   nameWithType.vb: DbCommandExtensions.AddParameter(Of TDataType)(DbCommand, String, TDataType, ParameterDirection)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.BeginTransaction(System.Data.Common.DbCommand,System.Int32)
   name: BeginTransaction(DbCommand, int)
@@ -210,22 +210,22 @@ references:
   fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync
   nameWithType: DbCommandExtensions.ExecuteScalarAsync
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)
-  name: ExecuteScalarAsync<TDataType>(DbCommand, TDataType, int)
+  name: ExecuteScalarAsync<TDataType>(DbCommand, TDataType?, int)
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalarAsync__1_System_Data_Common_DbCommand___0_System_Int32_
   commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync``1(System.Data.Common.DbCommand,``0,System.Int32)
   name.vb: ExecuteScalarAsync(Of TDataType)(DbCommand, TDataType, Integer)
-  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync<TDataType>(System.Data.Common.DbCommand, TDataType, int)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync<TDataType>(System.Data.Common.DbCommand, TDataType?, int)
   fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
-  nameWithType: DbCommandExtensions.ExecuteScalarAsync<TDataType>(DbCommand, TDataType, int)
+  nameWithType: DbCommandExtensions.ExecuteScalarAsync<TDataType>(DbCommand, TDataType?, int)
   nameWithType.vb: DbCommandExtensions.ExecuteScalarAsync(Of TDataType)(DbCommand, TDataType, Integer)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
-  name: ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  name: ExecuteScalar<TDataType>(DbCommand, TDataType?, int)
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_ExecuteScalar__1_System_Data_Common_DbCommand___0_System_Int32_
   commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar``1(System.Data.Common.DbCommand,``0,System.Int32)
   name.vb: ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
-  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar<TDataType>(System.Data.Common.DbCommand, TDataType, int)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar<TDataType>(System.Data.Common.DbCommand, TDataType?, int)
   fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.ExecuteScalar(Of TDataType)(System.Data.Common.DbCommand, TDataType, Integer)
-  nameWithType: DbCommandExtensions.ExecuteScalar<TDataType>(DbCommand, TDataType, int)
+  nameWithType: DbCommandExtensions.ExecuteScalar<TDataType>(DbCommand, TDataType?, int)
   nameWithType.vb: DbCommandExtensions.ExecuteScalar(Of TDataType)(DbCommand, TDataType, Integer)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOrCreateParameter(System.Data.Common.DbCommand,System.String)
   name: GetOrCreateParameter(DbCommand, string)
@@ -251,13 +251,13 @@ references:
   fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter
   nameWithType: DbCommandExtensions.GetOutputParameter
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)
-  name: GetOutputParameter<TDataType>(DbCommand, string, TDataType)
+  name: GetOutputParameter<TDataType>(DbCommand, string, TDataType?)
   href: api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html#SQLHelperDB_ExtensionMethods_DbCommandExtensions_GetOutputParameter__1_System_Data_Common_DbCommand_System_String___0_
   commentId: M:SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter``1(System.Data.Common.DbCommand,System.String,``0)
   name.vb: GetOutputParameter(Of TDataType)(DbCommand, String, TDataType)
-  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter<TDataType>(System.Data.Common.DbCommand, string, TDataType?)
   fullName.vb: SQLHelperDB.ExtensionMethods.DbCommandExtensions.GetOutputParameter(Of TDataType)(System.Data.Common.DbCommand, String, TDataType)
-  nameWithType: DbCommandExtensions.GetOutputParameter<TDataType>(DbCommand, string, TDataType)
+  nameWithType: DbCommandExtensions.GetOutputParameter<TDataType>(DbCommand, string, TDataType?)
   nameWithType.vb: DbCommandExtensions.GetOutputParameter(Of TDataType)(DbCommand, String, TDataType)
 - uid: SQLHelperDB.ExtensionMethods.DbCommandExtensions.Open(System.Data.Common.DbCommand,System.Int32)
   name: Open(DbCommand, int)
@@ -302,22 +302,22 @@ references:
   fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter
   nameWithType: IDataRecordExtensions.GetParameter
 - uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.Int32,``0)
-  name: GetParameter<TDataType>(IDataRecord, int, TDataType)
+  name: GetParameter<TDataType>(IDataRecord, int, TDataType?)
   href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html#SQLHelperDB_ExtensionMethods_IDataRecordExtensions_GetParameter__1_System_Data_IDataRecord_System_Int32___0_
   commentId: M:SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.Int32,``0)
   name.vb: GetParameter(Of TDataType)(IDataRecord, Integer, TDataType)
-  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, int, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, int, TDataType?)
   fullName.vb: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter(Of TDataType)(System.Data.IDataRecord, Integer, TDataType)
-  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, int, TDataType)
+  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, int, TDataType?)
   nameWithType.vb: IDataRecordExtensions.GetParameter(Of TDataType)(IDataRecord, Integer, TDataType)
 - uid: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.String,``0)
-  name: GetParameter<TDataType>(IDataRecord, string, TDataType)
+  name: GetParameter<TDataType>(IDataRecord, string, TDataType?)
   href: api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html#SQLHelperDB_ExtensionMethods_IDataRecordExtensions_GetParameter__1_System_Data_IDataRecord_System_String___0_
   commentId: M:SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter``1(System.Data.IDataRecord,System.String,``0)
   name.vb: GetParameter(Of TDataType)(IDataRecord, String, TDataType)
-  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, string, TDataType)
+  fullName: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter<TDataType>(System.Data.IDataRecord, string, TDataType?)
   fullName.vb: SQLHelperDB.ExtensionMethods.IDataRecordExtensions.GetParameter(Of TDataType)(System.Data.IDataRecord, String, TDataType)
-  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, string, TDataType)
+  nameWithType: IDataRecordExtensions.GetParameter<TDataType>(IDataRecord, string, TDataType?)
   nameWithType.vb: IDataRecordExtensions.GetParameter(Of TDataType)(IDataRecord, String, TDataType)
 - uid: SQLHelperDB.HelperClasses
   name: SQLHelperDB.HelperClasses
@@ -482,13 +482,13 @@ references:
   nameWithType: ParameterBase<TDataType>.Direction
   nameWithType.vb: ParameterBase(Of TDataType).Direction
 - uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals(System.Object)
-  name: Equals(object)
+  name: Equals(object?)
   href: api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html#SQLHelperDB_HelperClasses_BaseClasses_ParameterBase_1_Equals_System_Object_
   commentId: M:SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals(System.Object)
   name.vb: Equals(Object)
-  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Equals(object)
+  fullName: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>.Equals(object?)
   fullName.vb: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase(Of TDataType).Equals(Object)
-  nameWithType: ParameterBase<TDataType>.Equals(object)
+  nameWithType: ParameterBase<TDataType>.Equals(object?)
   nameWithType.vb: ParameterBase(Of TDataType).Equals(Object)
 - uid: SQLHelperDB.HelperClasses.BaseClasses.ParameterBase`1.Equals*
   name: Equals
@@ -1964,13 +1964,13 @@ references:
   fullName: SQLHelperDB.SQLHelper.ExecuteScalarAsync
   nameWithType: SQLHelper.ExecuteScalarAsync
 - uid: SQLHelperDB.SQLHelper.ExecuteScalarAsync``1(``0)
-  name: ExecuteScalarAsync<TData>(TData)
+  name: ExecuteScalarAsync<TData>(TData?)
   href: api/SQLHelperDB.SQLHelper.html#SQLHelperDB_SQLHelper_ExecuteScalarAsync__1___0_
   commentId: M:SQLHelperDB.SQLHelper.ExecuteScalarAsync``1(``0)
   name.vb: ExecuteScalarAsync(Of TData)(TData)
-  fullName: SQLHelperDB.SQLHelper.ExecuteScalarAsync<TData>(TData)
+  fullName: SQLHelperDB.SQLHelper.ExecuteScalarAsync<TData>(TData?)
   fullName.vb: SQLHelperDB.SQLHelper.ExecuteScalarAsync(Of TData)(TData)
-  nameWithType: SQLHelper.ExecuteScalarAsync<TData>(TData)
+  nameWithType: SQLHelper.ExecuteScalarAsync<TData>(TData?)
   nameWithType.vb: SQLHelper.ExecuteScalarAsync(Of TData)(TData)
 - uid: SQLHelperDB.SQLHelper.RemoveDuplicateCommands
   name: RemoveDuplicateCommands()
