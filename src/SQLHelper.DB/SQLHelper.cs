@@ -26,6 +26,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,7 +86,7 @@ namespace SQLHelperDB
         /// Gets the connections.
         /// </summary>
         /// <value>The connections.</value>
-        private static ConcurrentDictionary<string, IConnection> Connections { get; } = new ConcurrentDictionary<string, IConnection>();
+        private static ConcurrentDictionary<string, IConnection> Connections { get; } = [];
 
         /// <summary>
         /// Gets the logger.
@@ -115,7 +116,7 @@ namespace SQLHelperDB
         public SQLHelper AddHeader<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
                     CommandType commandType, string command, params object[]? parameters)
         {
-            Batch.AddQuery(callback, callbackObject, true, command, commandType, parameters);
+            _ = Batch.AddQuery(callback, callbackObject, true, command, commandType, parameters);
             return this;
         }
 
@@ -141,7 +142,7 @@ namespace SQLHelperDB
         public SQLHelper AddQuery<TCallbackData>(Action<ICommand, List<dynamic>, TCallbackData> callback, TCallbackData callbackObject,
             CommandType commandType, string command, params object[]? parameters)
         {
-            Batch.AddQuery(callback, callbackObject, false, command, commandType, parameters);
+            _ = Batch.AddQuery(callback, callbackObject, false, command, commandType, parameters);
             return this;
         }
 
@@ -152,8 +153,8 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper AddQuery(SQLHelper helper)
         {
-            if (!(helper is null))
-                Batch.AddQuery(helper.Batch);
+            if (helper is not null)
+                _ = Batch.AddQuery(helper.Batch);
             return this;
         }
 
@@ -161,10 +162,7 @@ namespace SQLHelperDB
         /// Creates a copy of this instance.
         /// </summary>
         /// <returns>A new SQLHelper based on this instance.</returns>
-        public SQLHelper Copy()
-        {
-            return new SQLHelper(StringBuilderPool, Configuration, Logger);
-        }
+        public SQLHelper Copy() => new(StringBuilderPool, Configuration, Logger);
 
         /// <summary>
         /// Clears the system and creates a new batch.
@@ -172,7 +170,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper CreateBatch()
         {
-            Batch.Clear();
+            _ = Batch.Clear();
             return this;
         }
 
@@ -183,7 +181,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper CreateBatch(IConnection connection)
         {
-            Batch.Clear();
+            _ = Batch.Clear();
             SetConnection(connection);
             return this;
         }
@@ -194,7 +192,7 @@ namespace SQLHelperDB
         /// <param name="factory">The factory.</param>
         /// <param name="database">The database.</param>
         /// <returns>This.</returns>
-        public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.ContainsKey(database) ? Connections[database] : new Connection(Configuration, factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance, database));
+        public SQLHelper CreateBatch(DbProviderFactory? factory = null, string database = "Default") => CreateBatch(Connections.TryGetValue(database, out IConnection? Value) ? Value : new Connection(Configuration, factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance, database));
 
         /// <summary>
         /// Executes the queries asynchronously.
@@ -208,12 +206,13 @@ namespace SQLHelperDB
         /// <typeparam name="TData">The type of the data to return.</typeparam>
         /// <param name="defaultValue">The default value.</param>
         /// <returns>The first value of the batch</returns>
-        public async Task<TData> ExecuteScalarAsync<TData>(TData defaultValue = default)
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public async Task<TData?> ExecuteScalarAsync<TData>(TData? defaultValue = default)
         {
-            var BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
+            List<List<dynamic>> BatchResults = await Batch.ExecuteAsync().ConfigureAwait(false);
             if (BatchResults.Count == 0 || BatchResults[0].Count == 0)
                 return defaultValue;
-            if (!(BatchResults[0][0] is IDictionary<string, object> Value))
+            if (BatchResults[0][0] is not IDictionary<string, object> Value)
                 return ((object)BatchResults[0][0]).To(defaultValue);
             return Value[Value.Keys.First()].To(defaultValue);
         }
@@ -224,7 +223,7 @@ namespace SQLHelperDB
         /// <returns>This</returns>
         public SQLHelper RemoveDuplicateCommands()
         {
-            Batch.RemoveDuplicateCommands();
+            _ = Batch.RemoveDuplicateCommands();
             return this;
         }
 
@@ -232,7 +231,7 @@ namespace SQLHelperDB
         /// Returns a <see cref="string"/> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString() => Batch.ToString();
+        public override string ToString() => Batch.ToString() ?? "";
 
         /// <summary>
         /// The default action
@@ -247,11 +246,12 @@ namespace SQLHelperDB
         /// Sets the connection.
         /// </summary>
         /// <param name="connection">The connection.</param>
+        [MemberNotNull(nameof(Batch))]
         private void SetConnection(IConnection connection)
         {
             DatabaseConnection = connection ?? throw new ArgumentNullException(nameof(connection));
             if (!Connections.ContainsKey(connection.Name))
-                Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
+                _ = Connections.AddOrUpdate(connection.Name, connection, (_, value) => value);
             Batch ??= new Batch(DatabaseConnection, StringBuilderPool, Logger);
             Batch.SetConnection(DatabaseConnection);
         }

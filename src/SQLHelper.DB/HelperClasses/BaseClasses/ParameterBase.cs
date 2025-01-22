@@ -28,7 +28,16 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
     /// Parameter base class
     /// </summary>
     /// <typeparam name="TDataType">Data type of the parameter</typeparam>
-    public abstract class ParameterBase<TDataType> : IParameter<TDataType>
+    /// <remarks>Constructor</remarks>
+    /// <param name="id">ID of the parameter</param>
+    /// <param name="type">Database type</param>
+    /// <param name="value">Value of the parameter</param>
+    /// <param name="direction">Direction of the parameter</param>
+    /// <param name="parameterStarter">
+    /// What the database expects as the parameter starting string ("@" for SQL Server, ":" for
+    /// Oracle, etc.)
+    /// </param>
+    public abstract class ParameterBase<TDataType>(string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@") : IParameter<TDataType>
     {
         /// <summary>
         /// Constructor
@@ -71,40 +80,19 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         }
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="id">ID of the parameter</param>
-        /// <param name="type">Database type</param>
-        /// <param name="value">Value of the parameter</param>
-        /// <param name="direction">Direction of the parameter</param>
-        /// <param name="parameterStarter">
-        /// What the database expects as the parameter starting string ("@" for SQL Server, ":" for
-        /// Oracle, etc.)
-        /// </param>
-        protected ParameterBase(string id, DbType type, object? value = null, ParameterDirection direction = ParameterDirection.Input, string parameterStarter = "@")
-        {
-            ID = id;
-            Value = (TDataType)value!;
-            DatabaseType = type;
-            Direction = direction;
-            BatchID = id;
-            ParameterStarter = parameterStarter;
-        }
-
-        /// <summary>
         /// Database type
         /// </summary>
-        public DbType DatabaseType { get; set; }
+        public DbType DatabaseType { get; set; } = type;
 
         /// <summary>
         /// Direction of the parameter
         /// </summary>
-        public ParameterDirection Direction { get; set; }
+        public ParameterDirection Direction { get; set; } = direction;
 
         /// <summary>
         /// The Name that the parameter goes by
         /// </summary>
-        public string ID { get; set; }
+        public string ID { get; set; } = id;
 
         /// <summary>
         /// Gets the internal value.
@@ -115,17 +103,17 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <summary>
         /// Starting string of the parameter
         /// </summary>
-        public string ParameterStarter { get; set; }
+        public string ParameterStarter { get; set; } = parameterStarter;
 
         /// <summary>
         /// Parameter value
         /// </summary>
-        public TDataType Value { get; set; }
+        public TDataType Value { get; set; } = (TDataType)value!;
 
         /// <summary>
         /// Batch ID
         /// </summary>
-        protected string BatchID { get; set; }
+        protected string BatchID { get; set; } = id;
 
         /// <summary>
         /// != operator
@@ -133,10 +121,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// <param name="first">First item</param>
         /// <param name="second">Second item</param>
         /// <returns>returns true if they are not equal, false otherwise</returns>
-        public static bool operator !=(ParameterBase<TDataType> first, ParameterBase<TDataType> second)
-        {
-            return !(first == second);
-        }
+        public static bool operator !=(ParameterBase<TDataType> first, ParameterBase<TDataType> second) => !(first == second);
 
         /// <summary>
         /// The == operator
@@ -147,8 +132,8 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         public static bool operator ==(ParameterBase<TDataType> first, ParameterBase<TDataType> second)
         {
             return ReferenceEquals(first, second)
-                || (!(first is null)
-                    && !(second is null)
+                || (first is not null
+                    && second is not null
                     && first.GetHashCode() == second.GetHashCode());
         }
 
@@ -183,7 +168,7 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// </summary>
         /// <param name="obj">Object to compare to</param>
         /// <returns>True if they are equal, false otherwise</returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return (obj is ParameterBase<TDataType> OtherParameter)
                 && OtherParameter.DatabaseType == DatabaseType
@@ -201,10 +186,10 @@ namespace SQLHelperDB.HelperClasses.BaseClasses
         /// </returns>
         public override int GetHashCode()
         {
-            var hashCode = 2030399226;
-            hashCode = (hashCode * -1521134295) + DatabaseType.GetHashCode();
-            hashCode = (hashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(ID);
-            return (hashCode * -1521134295) + EqualityComparer<TDataType>.Default.GetHashCode(Value);
+            var HashCode = 2030399226;
+            HashCode = (HashCode * -1521134295) + DatabaseType.GetHashCode();
+            HashCode = (HashCode * -1521134295) + EqualityComparer<string>.Default.GetHashCode(ID);
+            return (HashCode * -1521134295) + EqualityComparer<TDataType>.Default.GetHashCode(Value!);
         }
 
         /// <summary>

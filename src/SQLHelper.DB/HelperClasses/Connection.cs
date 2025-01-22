@@ -26,7 +26,7 @@ namespace SQLHelperDB.HelperClasses
     /// Data source class
     /// </summary>
     /// <seealso cref="IConnection"/>
-    public class Connection : IConnection
+    public partial class Connection : IConnection
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Connection"/> class.
@@ -51,13 +51,12 @@ namespace SQLHelperDB.HelperClasses
         /// <exception cref="System.ArgumentNullException">configuration</exception>
         public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name, string parameterPrefix = "@", int retries = 0)
         {
-            if (configuration is null)
-                throw new ArgumentNullException(nameof(configuration));
+            ArgumentNullException.ThrowIfNull(configuration, nameof(configuration));
             Retries = retries;
             Name = string.IsNullOrEmpty(name) ? "Default" : name;
             Factory = factory ?? Microsoft.Data.SqlClient.SqlClientFactory.Instance;
             ConnectionString = !string.IsNullOrEmpty(connection) ? connection : (configuration.GetConnectionString(Name) ?? Name);
-            var DatabaseRegexResult = DatabaseNameRegex.Match(ConnectionString);
+            Match DatabaseRegexResult = DatabaseNameRegex.Match(ConnectionString);
             if (DatabaseRegexResult.Success)
                 DatabaseName = DatabaseRegexResult.Groups["name"].Value;
             ParameterPrefix = !string.IsNullOrEmpty(parameterPrefix) ? parameterPrefix : GetParameterPrefix(Factory);
@@ -109,13 +108,27 @@ namespace SQLHelperDB.HelperClasses
         /// Gets the connection timeout regex.
         /// </summary>
         /// <value>The connection timeout regex.</value>
-        private static Regex ConnectionTimeoutRegex { get; } = new Regex("Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static Regex ConnectionTimeoutRegex { get; } = CreateConnectionTimeoutRegex();
 
         /// <summary>
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        private static Regex DatabaseNameRegex { get; } = new Regex("(Initial Catalog|Database)=(?<name>[^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        private static Regex DatabaseNameRegex { get; } = CreateDatabaseNameRegex();
+
+        /// <summary>
+        /// Gets the connection timeout regex.
+        /// </summary>
+        /// <returns>The connection timeout regex.</returns>
+        [GeneratedRegex("Connect(ion)? Timeout=([^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
+        private static partial Regex CreateConnectionTimeoutRegex();
+
+        /// <summary>
+        /// Gets the database name regex.
+        /// </summary>
+        /// <returns>The database name regex.</returns>
+        [GeneratedRegex("(Initial Catalog|Database)=(?<name>[^;]*)", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
+        private static partial Regex CreateDatabaseNameRegex();
 
         /// <summary>
         /// Gets the command timeout.
@@ -124,7 +137,7 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>The command timeout.</returns>
         private static int GetCommandTimeout(string connectionString)
         {
-            var TimeoutMatch = ConnectionTimeoutRegex.Match(connectionString);
+            Match TimeoutMatch = ConnectionTimeoutRegex.Match(connectionString);
             return TimeoutMatch.Success
                 && int.TryParse(TimeoutMatch.Groups[2].Value, out var TempCommandTimeout)
                 && TempCommandTimeout > 0

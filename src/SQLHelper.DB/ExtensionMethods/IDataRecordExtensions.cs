@@ -18,6 +18,7 @@ using BigBook;
 using ObjectCartographer;
 using System;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SQLHelperDB.ExtensionMethods
 {
@@ -37,14 +38,15 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static TDataType GetParameter<TDataType>(this IDataRecord reader, string id, TDataType defaultValue = default)
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public static TDataType? GetParameter<TDataType>(this IDataRecord reader, string id, TDataType? defaultValue = default)
         {
             if (reader is null)
                 return defaultValue;
-            for (var x = 0; x < reader.FieldCount; ++x)
+            for (var X = 0; X < reader.FieldCount; ++X)
             {
-                if (reader.GetName(x) == id)
-                    return reader.GetParameter(x, defaultValue);
+                if (reader.GetName(X) == id)
+                    return reader.GetParameter(X, defaultValue);
             }
             return defaultValue;
         }
@@ -60,7 +62,8 @@ namespace SQLHelperDB.ExtensionMethods
         /// if the parameter exists (and isn't null or empty), it returns the parameter's value.
         /// Otherwise the default value is returned.
         /// </returns>
-        public static TDataType GetParameter<TDataType>(this IDataRecord reader, int position, TDataType defaultValue = default)
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public static TDataType? GetParameter<TDataType>(this IDataRecord reader, int position, TDataType? defaultValue = default)
         {
             if (reader is null)
                 return defaultValue;
