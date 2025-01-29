@@ -58,7 +58,7 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="9.0.1" />
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="172.1.1" />
-    <PackageReference Include="SQLParser" Version="4.0.0" />
+    <PackageReference Include="SQLParser" Version="4.0.1" />
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="BigBook" Version="6.0.4" />
