@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SQLHelper.Example
 {
