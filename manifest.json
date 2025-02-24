@@ -18,7 +18,11 @@
           "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection.RegistrationExtensions",
+      "Summary": "<p sourcefile=\"api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.yml\" sourcestartlinenumber=\"1\">Registration extension methods</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/SQLHelperDB.CanisterModules.SQLHelperModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.CanisterModules.SQLHelperModule",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.CanisterModules.SQLHelperModule.yml\" sourcestartlinenumber=\"1\">SQLHelper Canister module.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/SQLHelperDB.CanisterModules.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.CanisterModules",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.ExtensionMethods.DbCommandExtensions",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.ExtensionMethods.DbCommandExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for DbCommand</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.ExtensionMethods.IDataRecordExtensions",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.ExtensionMethods.IDataRecordExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for IDataRecord objects</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "api/SQLHelperDB.ExtensionMethods.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.ExtensionMethods",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.BaseClasses.ParameterBase<TDataType>",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.BaseClasses.ParameterBase-1.yml\" sourcestartlinenumber=\"1\">Parameter base class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.BaseClasses.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.BaseClasses",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Batch.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Batch",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Batch.yml\" sourcestartlinenumber=\"1\">Holds information for a set of commands</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Command-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Command<TCallbackData>",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Command-1.yml\" sourcestartlinenumber=\"1\">Command holder class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Connection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Connection",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Connection.yml\" sourcestartlinenumber=\"1\">Data source class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IBatch.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces.IBatch",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Interfaces.IBatch.yml\" sourcestartlinenumber=\"1\">A batch of commands interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +200,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.ICommand.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces.ICommand",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Interfaces.ICommand.yml\" sourcestartlinenumber=\"1\">Command interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -158,7 +214,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IConnection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces.IConnection",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Interfaces.IConnection.yml\" sourcestartlinenumber=\"1\">Data source interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -168,7 +228,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces.IParameter<T>",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Interfaces.IParameter-1.yml\" sourcestartlinenumber=\"1\">Parameter interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -178,7 +242,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.IParameter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces.IParameter",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Interfaces.IParameter.yml\" sourcestartlinenumber=\"1\">Parameter interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -188,7 +256,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -198,7 +270,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.Parameter-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.Parameter<TDataType>",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.Parameter-1.yml\" sourcestartlinenumber=\"1\">Holds parameter information</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -208,7 +284,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.SelectFinder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.SelectFinder",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.SelectFinder.yml\" sourcestartlinenumber=\"1\">Finds selects within SQL code.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -218,7 +298,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.StringParameter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses.StringParameter",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.StringParameter.yml\" sourcestartlinenumber=\"1\">Holds parameter information</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -228,7 +312,11 @@
           "relative_path": "api/SQLHelperDB.HelperClasses.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.HelperClasses",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -238,7 +326,11 @@
           "relative_path": "api/SQLHelperDB.SQLHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB.SQLHelper",
+      "Summary": "<p sourcefile=\"api/SQLHelperDB.SQLHelper.yml\" sourcestartlinenumber=\"1\">SQL helper class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -248,7 +340,11 @@
           "relative_path": "api/SQLHelperDB.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SQLHelperDB",
+      "Summary": null
     },
     {
       "type": "Conceptual",
@@ -264,11 +360,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
         ".json": {
           "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
         }
       },
       "version": ""
@@ -287,11 +383,11 @@
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "articles/toc.html"
-        },
         ".json": {
           "relative_path": "articles/toc.json"
+        },
+        ".html": {
+          "relative_path": "articles/toc.html"
         }
       },
       "version": ""
@@ -320,11 +416,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""
