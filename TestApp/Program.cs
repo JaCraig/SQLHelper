@@ -13,7 +13,7 @@ namespace TestApp
     {
         private static async Task Main(string[] args)
         {
-            using (var listener = new SqlClientListener())
+            using (var Listener = new SqlClientListener())
             {
                 var Services = new ServiceCollection();
                 _ = Services.AddCanisterModules(x => x.AddAssembly(typeof(Program).Assembly).RegisterSQLHelper());
@@ -150,15 +150,14 @@ ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC")
                 Console.WriteLine(Results[3].ToString(x => x.ToString()));
             }
 
-            using (var listener = new SqlClientListener())
-            {
-                var connectionString = "Data Source=localhost;Initial Catalog=SereneCMS;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+            using var listener = new SqlClientListener();
+            const string connectionString = "Data Source=localhost;Initial Catalog=SereneCMS;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
 
-                // Open a connection to the AdventureWorks database.
-                using var connection = new SqlConnection(connectionString);
-                connection.Open();
+            // Open a connection to the AdventureWorks database.
+            await using var connection = new SqlConnection(connectionString);
+            connection.Open();
 
-                var sql = @"SELECT TOP 25
+            const string sql = @"SELECT TOP 25
 o.name AS ObjectName
 , i.name AS IndexName
 , i.index_id AS IndexID
@@ -185,20 +184,19 @@ AND i.is_primary_key = 0
 AND i.is_unique_constraint = 0
 AND(dm_ius.user_scans + dm_ius.user_lookups) > dm_ius.user_seeks
 ORDER BY(dm_ius.user_scans + dm_ius.user_lookups) DESC";
-                var command = new SqlCommand(sql, connection);
+            var command = new SqlCommand(sql, connection);
 
-                // Perform a data operation on the server.
-                SqlDataReader reader = command.ExecuteReader();
-                try
+            // Perform a data operation on the server.
+            SqlDataReader reader = command.ExecuteReader();
+            try
+            {
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        // Read the data.
-                    }
+                    // Read the data.
                 }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-                reader.Close();
             }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            reader.Close();
         }
     }
 }

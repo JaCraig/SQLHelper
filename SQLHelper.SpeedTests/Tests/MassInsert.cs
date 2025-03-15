@@ -60,7 +60,7 @@ namespace SQLHelperDB.SpeedTests.Tests
         public async Task RunChanges()
         {
             _ = Helper2.CreateBatch();
-            for (var x = 0; x < Count; ++x)
+            for (var X = 0; X < Count; ++X)
             {
                 _ = Helper2.AddQuery(CommandType.Text,
                     "INSERT INTO [SpeedTestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -84,7 +84,7 @@ namespace SQLHelperDB.SpeedTests.Tests
         public async Task RunCurrent()
         {
             _ = Helper.CreateBatch();
-            for (var x = 0; x < Count; ++x)
+            for (var X = 0; X < Count; ++X)
             {
                 _ = Helper.AddQuery(CommandType.Text,
                     "INSERT INTO [SpeedTestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",

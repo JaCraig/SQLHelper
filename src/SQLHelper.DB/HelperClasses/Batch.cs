@@ -139,8 +139,8 @@ namespace SQLHelperDB.HelperClasses
         /// <returns>This</returns>
         public IBatch RemoveDuplicateCommands()
         {
-            Commands = Commands.Distinct().ToList();
-            Headers = Headers.Distinct().ToList();
+            Commands = [.. Commands.Distinct()];
+            Headers = [.. Headers.Distinct()];
             return this;
         }
 
