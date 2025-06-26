@@ -120,7 +120,7 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(1, Result);
             Instance.CreateBatch();
             for (var x = 0; x < 50; ++x)
@@ -137,7 +137,7 @@ namespace SQLHelperDB.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
         }
 
@@ -161,7 +161,7 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
@@ -177,7 +177,7 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.True(Result1 < Result2);
         }
 
@@ -204,12 +204,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(50, ListResult);
         }
 
@@ -236,12 +236,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (var x = 0; x < 50; ++x)
@@ -276,7 +276,7 @@ namespace SQLHelperDB.Tests
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 string.Format("SELECT {0} FROM [TestDatabase].[dbo].[TestTable]", Builder.ToString()),
                 new object[200])
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
         }
 
@@ -292,7 +292,7 @@ namespace SQLHelperDB.Tests
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0", x);
             }
-            var ListResult = await Instance.ExecuteAsync().ConfigureAwait(false);
+            var ListResult = await Instance.ExecuteAsync();
             Assert.Equal(4000, ListResult.Count);
         }
 
@@ -310,7 +310,7 @@ namespace SQLHelperDB.Tests
             {
                 Instance.AddQuery(CommandType.Text, "SELECT * FROM [TestDatabase].[dbo].[TestTable] WHERE [TestDatabase].[dbo].[TestTable].[ID]=@0 AND @A='BLAH'", x);
             }
-            var ListResult = await Instance.ExecuteAsync().ConfigureAwait(false);
+            var ListResult = await Instance.ExecuteAsync();
             Assert.Equal(4000, ListResult.Count);
         }
 
@@ -337,12 +337,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             var ConvertedResult = ListResult[0].ConvertAll(x => (TestTableClass)x);
@@ -383,12 +383,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (var x = 0; x < 50; ++x)
@@ -414,7 +414,7 @@ namespace SQLHelperDB.Tests
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result = (await Instance.AddQuery(CommandType.StoredProcedure, "TestSP @Value = @0", "Test String")
-                                 .ExecuteAsync().ConfigureAwait(false))
+                                 .ExecuteAsync())
                         .FirstOrDefault()[0];
             Assert.NotNull(Result);
             Assert.Equal("Test String", Result.Value);
@@ -442,13 +442,13 @@ namespace SQLHelperDB.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             Result = await Instance.AddQuery(CommandType.Text,
                 "UPDATE [TestDatabase].[dbo].[TestTable] SET StringValue1=@0",
                 "C")
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
         }
 
@@ -474,12 +474,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             for (var x = 0; x < 50; ++x)
@@ -508,13 +508,13 @@ namespace SQLHelperDB.Tests
             var Result = await Instance.CreateBatch().AddQuery(CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
                 0)
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(1, Result);
             Result = await Instance.CreateBatch().AddQuery(
                 CommandType.Text,
                 "INSERT INTO [TestDatabase].[dbo].[TestTableNotNull](UShortValue_) VALUES(@0)",
                 new Parameter<object>("0", SqlDbType.SmallInt, 0, ParameterDirection.Input))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(1, Result);
         }
 

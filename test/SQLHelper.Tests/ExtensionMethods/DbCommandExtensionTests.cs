@@ -7,7 +7,7 @@ namespace SQLHelperDB.Tests.ExtensionMethods
 {
     public class DbCommandExtensionTests
     {
-        public static readonly TheoryData<object> ParameterTypes = new TheoryData<object>()
+        public static readonly TheoryData<object> ParameterTypes = new()
         {
             { (sbyte)123 },
             { (byte)123 },

@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB.Tests.BaseClasses;
 using SQLHelperDB.Tests.DataClasses;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -34,7 +34,7 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.True(Result1 > 0);
             Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
@@ -50,7 +50,7 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.True(Result1 < Result2);
         }
 
@@ -73,10 +73,10 @@ namespace SQLHelperDB.Tests
                 new DateTime(2010, 1, 1),
                 Guid.NewGuid(),
                 new TimeSpan(1, 0, 0))
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(1, Result);
             Instance.CreateBatch();
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -90,7 +90,7 @@ namespace SQLHelperDB.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
         }
 
@@ -103,7 +103,7 @@ namespace SQLHelperDB.Tests
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -117,12 +117,12 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT COUNT(*) FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(50, ListResult);
         }
 
@@ -135,7 +135,7 @@ namespace SQLHelperDB.Tests
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -149,25 +149,25 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
-                Assert.Equal("A", ListResult[0][x].StringValue1);
-                Assert.Equal("B", ListResult[0][x].StringValue2);
-                Assert.Equal(10, ListResult[0][x].BigIntValue);
-                Assert.Equal(true, ListResult[0][x].BitValue);
-                Assert.Equal(75.12m, ListResult[0][x].DecimalValue);
-                Assert.Equal(4.53f, ListResult[0][x].FloatValue);
-                Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][x].DateTimeValue);
-                Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
-                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
+                Assert.Equal("A", ListResult[0][X].StringValue1);
+                Assert.Equal("B", ListResult[0][X].StringValue2);
+                Assert.Equal(10, ListResult[0][X].BigIntValue);
+                Assert.Equal(true, ListResult[0][X].BitValue);
+                Assert.Equal(75.12m, ListResult[0][X].DecimalValue);
+                Assert.Equal(4.53f, ListResult[0][X].FloatValue);
+                Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][X].DateTimeValue);
+                Assert.Equal(TempGuid, ListResult[0][X].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][X].TimeSpanValue);
             }
         }
 
@@ -181,15 +181,15 @@ namespace SQLHelperDB.Tests
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Builder = new StringBuilder();
             var Splitter = "";
-            for (var x = 0; x < 200; ++x)
+            for (var X = 0; X < 200; ++X)
             {
-                Builder.AppendFormat("{1}@{0}", x, Splitter);
+                Builder.AppendFormat("{1}@{0}", X, Splitter);
                 Splitter = ",";
             }
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 string.Format("SELECT {0} FROM [TestDatabase].[dbo].[TestTable]", Builder.ToString()),
                 new object[200])
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
         }
 
@@ -202,7 +202,7 @@ namespace SQLHelperDB.Tests
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -216,26 +216,26 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
             var ConvertedResult = ListResult[0].ConvertAll(x => (TestTableClass)x);
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
-                Assert.Equal("A", ConvertedResult[x].StringValue1);
-                Assert.Equal("B", ConvertedResult[x].StringValue2);
-                Assert.Equal(10, ConvertedResult[x].BigIntValue);
-                Assert.True(ConvertedResult[x].BitValue);
-                Assert.Equal(75.12m, ConvertedResult[x].DecimalValue);
-                Assert.Equal(4.53f, ConvertedResult[x].FloatValue);
-                Assert.Equal(new DateTime(2010, 1, 1), ConvertedResult[x].DateTimeValue);
-                Assert.Equal(TempGuid, ConvertedResult[x].GUIDValue);
-                Assert.Equal(new TimeSpan(1, 0, 0), ConvertedResult[x].TimeSpanValue);
+                Assert.Equal("A", ConvertedResult[X].StringValue1);
+                Assert.Equal("B", ConvertedResult[X].StringValue2);
+                Assert.Equal(10, ConvertedResult[X].BigIntValue);
+                Assert.True(ConvertedResult[X].BitValue);
+                Assert.Equal(75.12m, ConvertedResult[X].DecimalValue);
+                Assert.Equal(4.53f, ConvertedResult[X].FloatValue);
+                Assert.Equal(new DateTime(2010, 1, 1), ConvertedResult[X].DateTimeValue);
+                Assert.Equal(TempGuid, ConvertedResult[X].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ConvertedResult[X].TimeSpanValue);
             }
         }
 
@@ -247,7 +247,7 @@ namespace SQLHelperDB.Tests
                 .Build();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)",
@@ -261,13 +261,13 @@ namespace SQLHelperDB.Tests
                     Guid.NewGuid(),
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             Result = await Instance.AddQuery(CommandType.Text,
                 "UPDATE [TestDatabase].[dbo].[TestTable] SET StringValue1=@0",
                 "C")
-                .ExecuteScalarAsync<int>().ConfigureAwait(false);
+                .ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
         }
 
@@ -280,7 +280,7 @@ namespace SQLHelperDB.Tests
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
                 Instance.AddQuery(CommandType.Text,
                     "INSERT INTO [TestDatabase].[dbo].[TestTable](StringValue1,StringValue2,BigIntValue,BitValue,DecimalValue,FloatValue,DateTimeValue,GUIDValue,TimeSpanValue) VALUES('email@address.com',@0,@1,@2,@3,@4,@5,@6,@7)",
@@ -293,25 +293,25 @@ namespace SQLHelperDB.Tests
                     TempGuid,
                     new TimeSpan(1, 0, 0));
             }
-            var Result = await Instance.ExecuteScalarAsync<int>().ConfigureAwait(false);
+            var Result = await Instance.ExecuteScalarAsync<int>();
             Assert.Equal(50, Result);
             Instance.CreateBatch();
             var ListResult = await Instance.AddQuery(CommandType.Text,
                 "SELECT * FROM [TestDatabase].[dbo].[TestTable]")
-                .ExecuteAsync().ConfigureAwait(false);
+                .ExecuteAsync();
             Assert.Single(ListResult);
             Assert.Equal(50, ListResult[0].Count);
-            for (var x = 0; x < 50; ++x)
+            for (var X = 0; X < 50; ++X)
             {
-                Assert.Equal("email@address.com", ListResult[0][x].StringValue1);
-                Assert.Equal("email@address.com", ListResult[0][x].StringValue2);
-                Assert.Equal(10, ListResult[0][x].BigIntValue);
-                Assert.Equal(true, ListResult[0][x].BitValue);
-                Assert.Equal(75.12m, ListResult[0][x].DecimalValue);
-                Assert.Equal(4.53f, ListResult[0][x].FloatValue);
-                Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][x].DateTimeValue);
-                Assert.Equal(TempGuid, ListResult[0][x].GUIDValue);
-                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][x].TimeSpanValue);
+                Assert.Equal("email@address.com", ListResult[0][X].StringValue1);
+                Assert.Equal("email@address.com", ListResult[0][X].StringValue2);
+                Assert.Equal(10, ListResult[0][X].BigIntValue);
+                Assert.Equal(true, ListResult[0][X].BitValue);
+                Assert.Equal(75.12m, ListResult[0][X].DecimalValue);
+                Assert.Equal(4.53f, ListResult[0][X].FloatValue);
+                Assert.Equal(new DateTime(2010, 1, 1), ListResult[0][X].DateTimeValue);
+                Assert.Equal(TempGuid, ListResult[0][X].GUIDValue);
+                Assert.Equal(new TimeSpan(1, 0, 0), ListResult[0][X].TimeSpanValue);
             }
         }
     }
