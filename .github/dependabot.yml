@@ -6,14 +6,14 @@
 version: 2
 updates:
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/SQLHelper.DB" # Location of package manifests
+    directory: "/src/SQLHelper.DB/" # Location of package manifests
     schedule:
       interval: "daily"
     commit-message:
       prefix: "fix"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
 
   - package-ecosystem: "nuget" # See documentation for possible values
@@ -24,7 +24,7 @@ updates:
       prefix: "chore"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
 
   - package-ecosystem: "nuget" # See documentation for possible values
@@ -35,7 +35,7 @@ updates:
       prefix: "chore"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
 
   - package-ecosystem: "nuget" # See documentation for possible values
@@ -46,7 +46,7 @@ updates:
       prefix: "chore"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
 
   - package-ecosystem: "nuget" # See documentation for possible values
@@ -57,7 +57,7 @@ updates:
       prefix: "chore"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
 
   - package-ecosystem: "github-actions"
@@ -68,5 +68,5 @@ updates:
       prefix: "chore"
     groups:
       dependencies:
-        patterns: 
+        patterns:
           - "*"
