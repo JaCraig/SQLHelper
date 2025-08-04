@@ -1683,38 +1683,6 @@ references:
   fullName.vb: SQLHelperDB.HelperClasses.Parameter(Of TDataType).CreateCopy
   nameWithType: Parameter<TDataType>.CreateCopy
   nameWithType.vb: Parameter(Of TDataType).CreateCopy
-- uid: SQLHelperDB.HelperClasses.SelectFinder
-  name: SelectFinder
-  href: api/SQLHelperDB.HelperClasses.SelectFinder.html
-  commentId: T:SQLHelperDB.HelperClasses.SelectFinder
-  fullName: SQLHelperDB.HelperClasses.SelectFinder
-  nameWithType: SelectFinder
-- uid: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
-  name: EnterDml_clause(Dml_clauseContext)
-  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_EnterDml_clause_SQLParser_Parsers_TSql_TSqlParser_Dml_clauseContext_
-  commentId: M:SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
-  fullName: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause(SQLParser.Parsers.TSql.TSqlParser.Dml_clauseContext)
-  nameWithType: SelectFinder.EnterDml_clause(TSqlParser.Dml_clauseContext)
-- uid: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause*
-  name: EnterDml_clause
-  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_EnterDml_clause_
-  commentId: Overload:SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause
-  isSpec: "True"
-  fullName: SQLHelperDB.HelperClasses.SelectFinder.EnterDml_clause
-  nameWithType: SelectFinder.EnterDml_clause
-- uid: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
-  name: StatementFound
-  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_StatementFound
-  commentId: P:SQLHelperDB.HelperClasses.SelectFinder.StatementFound
-  fullName: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
-  nameWithType: SelectFinder.StatementFound
-- uid: SQLHelperDB.HelperClasses.SelectFinder.StatementFound*
-  name: StatementFound
-  href: api/SQLHelperDB.HelperClasses.SelectFinder.html#SQLHelperDB_HelperClasses_SelectFinder_StatementFound_
-  commentId: Overload:SQLHelperDB.HelperClasses.SelectFinder.StatementFound
-  isSpec: "True"
-  fullName: SQLHelperDB.HelperClasses.SelectFinder.StatementFound
-  nameWithType: SelectFinder.StatementFound
 - uid: SQLHelperDB.HelperClasses.StringParameter
   name: StringParameter
   href: api/SQLHelperDB.HelperClasses.StringParameter.html

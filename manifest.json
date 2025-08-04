@@ -278,20 +278,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/SQLHelperDB.HelperClasses.SelectFinder.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/SQLHelperDB.HelperClasses.SelectFinder.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "SQLHelperDB.HelperClasses.SelectFinder",
-      "Summary": "<p sourcefile=\"api/SQLHelperDB.HelperClasses.SelectFinder.yml\" sourcestartlinenumber=\"1\">Finds selects within SQL code.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/SQLHelperDB.HelperClasses.StringParameter.yml",
       "output": {
         ".html": {
