@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using BigBook;
+using Microsoft.SqlServer.Management.SqlParser.Parser;
 using SQLHelperDBTests.HelperClasses.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,11 @@ namespace SQLHelperDBTests.HelperClasses
         }
 
         /// <summary>
+        /// The simple select regex
+        /// </summary>
+        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        /// <summary>
         /// Call back
         /// </summary>
         public Action<ICommand, List<dynamic>, TCallbackData> CallBack { get; }
@@ -134,11 +140,6 @@ namespace SQLHelperDBTests.HelperClasses
         /// </summary>
         /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
         public bool TransactionNeeded { get; set; }
-
-        /// <summary>
-        /// The simple select regex
-        /// </summary>
-        private static readonly Regex SimpleSelectRegex = new Regex(@"^SELECT\s|\sSELECT\s", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Determines if the objects are equal
@@ -239,8 +240,9 @@ namespace SQLHelperDBTests.HelperClasses
 
             if (parameterStarter == "@" && ComparisonSpan.Contains("SELECT ", StringComparison.Ordinal) && ComparisonSpan.Contains("IF ", StringComparison.Ordinal))
             {
-                var TempParser = new SelectFinder();
-                SQLParser.Parser.Parse(SQLCommand, TempParser, SQLParser.Enums.SQLType.TSql);
+                var TempParser = new SimpleSelectFinder();
+                ParseResult Results = Parser.Parse(SQLCommand);
+                Results.Script.Accept(TempParser);
                 Finalizable = TempParser.StatementFound;
             }
             else
