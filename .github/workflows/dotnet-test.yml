@@ -80,16 +80,6 @@ jobs:
           echo "SQL Server did not become reachable in time."
           exit 1
 
-      - name: Create test databases
-        shell: bash
-        run: |
-          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
-            -S localhost \
-            -U sa \
-            -P "$SQLHELPER_SQL_PASSWORD" \
-            -C \
-            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
-
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
@@ -103,6 +93,16 @@ jobs:
 
       - name: Build
         run: dotnet build "$SOLUTION_FILE" --no-restore --configuration $BUILD_CONFIG
+
+      - name: Create test databases
+        shell: bash
+        run: |
+          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
+            -S localhost \
+            -U sa \
+            -P "$SQLHELPER_SQL_PASSWORD" \
+            -C \
+            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
 
       - name: Test
         run: dotnet test "$SOLUTION_FILE" /p:Configuration=$BUILD_CONFIG --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" $TEST_FILTER
