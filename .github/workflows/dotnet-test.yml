@@ -29,8 +29,7 @@ jobs:
   build:
     timeout-minutes: 30
     permissions:
-      actions: read
-      contents: read
+      contents: write
     env:
       BUILD_CONFIG: "Debug"
       SOLUTION_FILE: "${{ inputs.solution || 'SQLHelper.sln' }}"
