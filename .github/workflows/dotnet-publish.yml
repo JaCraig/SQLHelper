@@ -15,7 +15,7 @@ on:
       solution:
         description: "Solution or project path to build/test"
         required: false
-        default: "Inflatable.sln"
+        default: "SQLHelper.sln"
       test-filter:
         description: "Optional dotnet test filter"
         required: false
