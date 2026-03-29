@@ -38,7 +38,7 @@ jobs:
       SQL_HOST: "127.0.0.1"
       SQL_PORT: "1433"
       SQLHELPER_SQL_SERVER: "127.0.0.1,1433"
-      SQLHELPER_SQL_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+      SQLHELPER_SQL_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD || 'YourStrong!Passw0rd' }}"
 
     runs-on: ubuntu-latest
     services:
@@ -47,7 +47,7 @@ jobs:
         env:
           ACCEPT_EULA: "Y"
           MSSQL_PID: "Developer"
-          SA_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+          SA_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD || 'YourStrong!Passw0rd' }}"
         ports:
           - 1433:1433
         options: --pull always
