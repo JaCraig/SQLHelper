@@ -19,7 +19,7 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "/test/SQLHelper.Tests/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "chore"
     groups:
@@ -30,7 +30,7 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "/TestApp/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "chore"
     groups:
@@ -41,7 +41,7 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "/SQLHelper.SpeedTests/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "chore"
     groups:
@@ -52,7 +52,7 @@ updates:
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "/SQLHelper.Example/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "chore"
     groups:
@@ -63,7 +63,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     commit-message:
       prefix: "chore"
     groups:

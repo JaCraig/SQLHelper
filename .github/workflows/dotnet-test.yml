@@ -1,0 +1,115 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET Test Pull Requests
+
+on:
+  pull_request:
+    branches: ["master", "main"]
+  workflow_dispatch:
+    inputs:
+      dotnet-version:
+        description: ".NET SDK version"
+        required: false
+        default: "10.0.x"
+      solution:
+        description: "Solution or project path to build/test"
+        required: false
+        default: "Inflatable.sln"
+      test-filter:
+        description: "Optional dotnet test filter"
+        required: false
+        default: ""
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    timeout-minutes: 30
+    permissions:
+      actions: read
+      contents: read
+    env:
+      BUILD_CONFIG: "Debug"
+      SOLUTION_FILE: "${{ inputs.solution || 'SQLHelper.sln' }}"
+      TEST_FILTER: "${{ inputs.test-filter || '' }}"
+
+      SQL_HOST: "127.0.0.1"
+      SQL_PORT: "1433"
+      SQLHELPER_SQL_SERVER: "127.0.0.1,1433"
+      SQLHELPER_SQL_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_PID: "Developer"
+          SA_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+        ports:
+          - 1433:1433
+
+    strategy:
+      matrix:
+        dotnet-version: ["${{ inputs.dotnet-version || '10.0.x' }}"]
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v5.2.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Wait for SQL Server
+        shell: bash
+        run: |
+          for i in {1..60}; do
+            if timeout 1 bash -c "</dev/tcp/$SQL_HOST/$SQL_PORT" 2>/dev/null; then
+              echo "SQL Server port is reachable."
+              exit 0
+            fi
+            echo "Waiting for SQL Server... attempt $i"
+            sleep 2
+          done
+          echo "SQL Server did not become reachable in time."
+          exit 1
+
+      - name: Create test databases
+        shell: bash
+        run: |
+          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
+            -S localhost \
+            -U sa \
+            -P "$SQLHELPER_SQL_PASSWORD" \
+            -C \
+            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/Directory.Packages.props', '**/packages.lock.json', 'global.json', '**/nuget.config', '**/NuGet.Config') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore dependencies
+        run: dotnet restore "$SOLUTION_FILE"
+
+      - name: Build
+        run: dotnet build "$SOLUTION_FILE" --no-restore --configuration $BUILD_CONFIG
+
+      - name: Test
+        run: dotnet test "$SOLUTION_FILE" /p:Configuration=$BUILD_CONFIG --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" $TEST_FILTER
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v7
+        with:
+          name: dotnet-results-${{ matrix.dotnet-version }}
+          path: TestResults-${{ matrix.dotnet-version }}
+        if: ${{ always() }}

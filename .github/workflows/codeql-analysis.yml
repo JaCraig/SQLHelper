@@ -13,11 +13,11 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
   schedule:
-    - cron: '37 18 * * 3'
+    - cron: "37 18 * * 3"
 
 permissions:
   actions: read
@@ -28,4 +28,4 @@ jobs:
   analyze:
     uses: JaCraig/Centralized-Workflows/.github/workflows/codeql.yml@main
     with:
-      languages: "['csharp']"
+      languages: "[ 'csharp' ]"

@@ -1,0 +1,180 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET Publish
+
+on:
+  push:
+    branches: ["master", "main"]
+  workflow_dispatch:
+    inputs:
+      dotnet-version:
+        description: ".NET SDK version"
+        required: false
+        default: "10.0.x"
+      solution:
+        description: "Solution or project path to build/test"
+        required: false
+        default: "Inflatable.sln"
+      test-filter:
+        description: "Optional dotnet test filter"
+        required: false
+        default: ""
+      coveralls-upload:
+        description: "Optional lcov path for Coveralls"
+        required: false
+        default: ""
+      user-email:
+        description: "Git identity email used for release commit"
+        required: false
+        default: "JaCraig@users.noreply.github.com"
+      user:
+        description: "Git identity name used for release commit"
+        required: false
+        default: "JaCraig"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: "!startsWith(github.event.head_commit.message, 'chore(release):')"
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    env:
+      BUILD_CONFIG: "Release"
+      SOLUTION_FILE: "${{ inputs.solution || 'SQLHelper.sln' }}"
+      TEST_FILTER: "${{ inputs.test-filter || '' }}"
+      COVERALLS_UPLOAD: "${{ inputs.coveralls-upload || '' }}"
+      GIT_USER_EMAIL: "${{ inputs.user-email || 'JaCraig@users.noreply.github.com' }}"
+      GIT_USER_NAME: "${{ inputs.user || 'JaCraig' }}"
+
+      SQL_HOST: "127.0.0.1"
+      SQL_PORT: "1433"
+      SQLHELPER_SQL_SERVER: "127.0.0.1,1433"
+      SQLHELPER_SQL_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_PID: "Developer"
+          SA_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
+        ports:
+          - 1433:1433
+
+    strategy:
+      matrix:
+        dotnet-version: ["${{ inputs.dotnet-version || '10.0.x' }}"]
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v5.2.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Wait for SQL Server
+        shell: bash
+        run: |
+          for i in {1..60}; do
+            if timeout 1 bash -c "</dev/tcp/$SQL_HOST/$SQL_PORT" 2>/dev/null; then
+              echo "SQL Server port is reachable."
+              exit 0
+            fi
+            echo "Waiting for SQL Server... attempt $i"
+            sleep 2
+          done
+          echo "SQL Server did not become reachable in time."
+          exit 1
+
+      - name: Create test databases
+        shell: bash
+        run: |
+          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
+            -S localhost \
+            -U sa \
+            -P "$SQLHELPER_SQL_PASSWORD" \
+            -C \
+            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/Directory.Packages.props', '**/packages.lock.json', 'global.json', '**/nuget.config', '**/NuGet.Config') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Install Versionize
+        run: dotnet tool install --global Versionize
+
+      - name: Setup git
+        run: |
+          git config --local user.email "$GIT_USER_EMAIL"
+          git config --local user.name "$GIT_USER_NAME"
+
+      - name: Versionize Release
+        id: versionize
+        run: versionize --exit-insignificant-commits
+        continue-on-error: true
+
+      - name: Restore dependencies
+        run: dotnet restore "$SOLUTION_FILE"
+
+      - name: Build
+        run: dotnet build "$SOLUTION_FILE" --no-restore --configuration $BUILD_CONFIG
+
+      - name: Test
+        run: dotnet test "$SOLUTION_FILE" /p:CollectCoverage=true /p:CoverletOutput=TestResults-${{ matrix.dotnet-version }}/ /p:CoverletOutputFormat=lcov /p:Configuration=$BUILD_CONFIG --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" $TEST_FILTER
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v7
+        with:
+          name: dotnet-results-${{ matrix.dotnet-version }}
+          path: TestResults-${{ matrix.dotnet-version }}
+        if: ${{ always() }}
+
+      - name: Publish coverage report to coveralls.io
+        uses: coverallsapp/github-action@v2
+        if: ${{ env.COVERALLS_UPLOAD != '' }}
+        with:
+          path-to-lcov: ${{ env.COVERALLS_UPLOAD }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          format: lcov
+          fail-on-error: false
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v7
+        with:
+          name: NugetPackage
+          path: ./**/*.nupkg
+        if: steps.versionize.outcome == 'success'
+
+      - name: Upload Symbol package
+        uses: actions/upload-artifact@v7
+        with:
+          name: SymbolPackage
+          path: ./**/*.snupkg
+        if: steps.versionize.outcome == 'success'
+
+      - name: Push changes to Github
+        if: steps.versionize.outcome == 'success'
+        uses: ad-m/github-push-action@v1.0.0
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+          tags: true
+
+      - name: Upload package to NuGet
+        if: steps.versionize.outcome == 'success'
+        run: dotnet nuget push "**/*.nupkg" -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate

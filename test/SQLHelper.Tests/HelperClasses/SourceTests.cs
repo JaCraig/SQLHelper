@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SQLHelper.Tests.Utils;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
 using Xunit;
@@ -10,9 +11,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void Create()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TestItem = new Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"), "DATABASE NAME");
             Assert.Equal(Configuration.GetConnectionString("Default"), TestItem.ConnectionString);
             Assert.Equal("TestDatabase", TestItem.DatabaseName);

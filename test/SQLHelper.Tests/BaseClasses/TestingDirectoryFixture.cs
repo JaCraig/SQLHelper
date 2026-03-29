@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SQLHelper.Tests.Utils;
 using SQLHelperDB.ExtensionMethods;
 using System;
 using Xunit;
@@ -11,25 +12,12 @@ namespace SQLHelperDB.Tests.BaseClasses
     {
         public TestingDirectoryFixture()
         {
-            Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            Configuration = TestConfigurationFactory.Create();
+            TestDatabaseManager.ResetKnownDatabasesAsync().GetAwaiter().GetResult();
+
             using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
             {
-                TempConnection.ConnectionString = Configuration.GetConnectionString("Master");
-                using var TempCommand = TempConnection.CreateCommand();
-                try
-                {
-                    TempCommand.CommandText = "Create Database TestDatabase";
-                    TempCommand.Open(3);
-                    TempCommand.ExecuteNonQuery();
-                }
-                catch { }
-                finally { TempCommand.Close(); }
-            }
-            using (var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection())
-            {
-                TempConnection.ConnectionString = Configuration.GetConnectionString("Default");
+                TempConnection.ConnectionString = TestConnectionStrings.Default;
                 using var TempCommand = TempConnection.CreateCommand();
                 try
                 {
@@ -65,17 +53,6 @@ END";
 
         public void Dispose()
         {
-            using var TempConnection = Microsoft.Data.SqlClient.SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = Configuration.GetConnectionString("Master");
-            using var TempCommand = TempConnection.CreateCommand();
-            try
-            {
-                TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
-                TempCommand.Open(3);
-                TempCommand.ExecuteNonQuery();
-            }
-            finally { TempCommand.Close(); }
-
             GC.SuppressFinalize(this);
         }
 

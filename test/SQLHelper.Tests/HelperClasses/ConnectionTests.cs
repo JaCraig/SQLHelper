@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SQLHelper.Tests.Utils;
 using Xunit;
 
 namespace SQLHelper.Tests.HelperClasses
@@ -8,9 +9,7 @@ namespace SQLHelper.Tests.HelperClasses
         [Fact]
         public void Initialization()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             Assert.Equal(30, TestConnection.CommandTimeout);
             Assert.Equal(Configuration.GetConnectionString("Default"), TestConnection.ConnectionString);
@@ -23,9 +22,7 @@ namespace SQLHelper.Tests.HelperClasses
         [Fact]
         public void InitializationWithTimeout()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("DefaultWithTimeout"));
             Assert.Equal(100, TestConnection.CommandTimeout);
             Assert.Equal(Configuration.GetConnectionString("DefaultWithTimeout"), TestConnection.ConnectionString);
@@ -38,9 +35,7 @@ namespace SQLHelper.Tests.HelperClasses
         [Fact]
         public void InitializationWithTimeout2()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TestConnection = new SQLHelperDB.HelperClasses.Connection(Configuration, Microsoft.Data.SqlClient.SqlClientFactory.Instance, Configuration.GetConnectionString("DefaultWithTimeout2"));
             Assert.Equal(100, TestConnection.CommandTimeout);
             Assert.Equal(Configuration.GetConnectionString("DefaultWithTimeout2"), TestConnection.ConnectionString);

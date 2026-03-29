@@ -1,7 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
+using SQLHelper.Tests.Utils;
 using SQLHelperDB.Tests.BaseClasses;
 using SQLHelperDB.Tests.DataClasses;
 using System;
@@ -17,9 +18,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteInsertAndGetBackIdAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result1 = await Instance.AddQuery(CommandType.Text,
@@ -57,9 +56,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteInsertAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Result = await Instance.AddQuery(CommandType.Text,
@@ -97,9 +94,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteScalarAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
@@ -129,9 +124,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteSelectAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
@@ -174,9 +167,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteSelectHundredsOfParamtersAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             var Builder = new StringBuilder();
@@ -196,9 +187,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteSelectToObjectTypeAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
@@ -242,9 +231,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task ExecuteUpdateAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));
             for (var X = 0; X < 50; ++X)
@@ -274,9 +261,7 @@ namespace SQLHelperDB.Tests
         [Fact]
         public async Task InsertWithAtSymbolAsync()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json").AddEnvironmentVariables()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var TempGuid = Guid.NewGuid();
             var Instance = new SQLHelper(GetServiceProvider().GetService<ObjectPool<StringBuilder>>(), Configuration, null)
                 .CreateBatch(SqlClientFactory.Instance, Configuration.GetConnectionString("Default"));

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
+using SQLHelper.Tests.Utils;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.Tests.BaseClasses;
 using System.Data;
@@ -14,9 +15,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void AddQuery()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new Batch(new Connection(Configuration,
                     Microsoft.Data.SqlClient.SqlClientFactory.Instance,
                     Configuration.GetConnectionString("Default"),
@@ -32,9 +31,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void AddQuerys()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new Batch(new Connection(Configuration,
                     Microsoft.Data.SqlClient.SqlClientFactory.Instance,
                     Configuration.GetConnectionString("Default"),
@@ -51,9 +48,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void AddQuerysWithParameters()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new Batch(new Connection(Configuration,
                     Microsoft.Data.SqlClient.SqlClientFactory.Instance,
                     Configuration.GetConnectionString("Default"),
@@ -70,9 +65,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void AddQueryWithParameters()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new Batch(new Connection(Configuration,
                     Microsoft.Data.SqlClient.SqlClientFactory.Instance,
                     Configuration.GetConnectionString("Default"),
@@ -88,9 +81,7 @@ namespace SQLHelperDB.Tests.HelperClasses
         [Fact]
         public void Creation()
         {
-            var Configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
+            var Configuration = TestConfigurationFactory.Create();
             var Instance = new Batch(new Connection(Configuration,
                     Microsoft.Data.SqlClient.SqlClientFactory.Instance,
                     Configuration.GetConnectionString("Default"),
