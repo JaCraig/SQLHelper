@@ -107,7 +107,7 @@ jobs:
             -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
 
       - name: Cache NuGet packages
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/Directory.Packages.props', '**/packages.lock.json', 'global.json', '**/nuget.config', '**/NuGet.Config') }}
