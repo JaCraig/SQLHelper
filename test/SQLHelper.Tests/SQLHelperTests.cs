@@ -51,7 +51,7 @@ namespace SQLHelperDB.Tests
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups");
             Assert.NotNull(Instance);
-            Assert.Equal("SELECT * FROM TestUsers\r\nSELECT * FROM TestGroups", Instance.ToString());
+            Assert.Equal(TestConnectionStrings.NormalizeLineEndings("SELECT * FROM TestUsers\r\nSELECT * FROM TestGroups"), TestConnectionStrings.NormalizeLineEndings(Instance.ToString()));
             Assert.Equal(2, Instance.Count);
         }
 
@@ -64,7 +64,7 @@ namespace SQLHelperDB.Tests
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers WHERE UserID=@0", 1)
                 .AddQuery(CommandType.Text, "SELECT * FROM TestGroups WHERE GroupID=@0", 10);
             Assert.NotNull(Instance);
-            Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1\r\nSELECT * FROM TestGroups WHERE GroupID=10", Instance.ToString());
+            Assert.Equal(TestConnectionStrings.NormalizeLineEndings("SELECT * FROM TestUsers WHERE UserID=1\r\nSELECT * FROM TestGroups WHERE GroupID=10"), TestConnectionStrings.NormalizeLineEndings(Instance.ToString()));
             Assert.Equal(2, Instance.Count);
         }
 
@@ -490,7 +490,7 @@ namespace SQLHelperDB.Tests
             Instance.AddQuery(CommandType.Text, "SELECT * FROM TestUsers")
                     .AddQuery(CommandType.Text, "SELECT * FROM TestUsers");
             Assert.NotNull(Instance);
-            Assert.Equal("SELECT * FROM TestUsers\r\nSELECT * FROM TestUsers", Instance.ToString());
+            Assert.Equal(TestConnectionStrings.NormalizeLineEndings("SELECT * FROM TestUsers\r\nSELECT * FROM TestUsers"), TestConnectionStrings.NormalizeLineEndings(Instance.ToString()));
             Assert.Equal(2, Instance.Count);
             Instance.RemoveDuplicateCommands();
             Assert.Equal("SELECT * FROM TestUsers", Instance.ToString());

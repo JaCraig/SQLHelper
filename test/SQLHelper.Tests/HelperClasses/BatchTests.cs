@@ -42,7 +42,7 @@ namespace SQLHelperDB.Tests.HelperClasses
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers", CommandType.Text)
                 .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups", CommandType.Text);
             Assert.NotNull(Instance);
-            Assert.Equal("SELECT * FROM TestUsers\r\nSELECT * FROM TestGroups", Instance.ToString());
+            Assert.Equal(TestConnectionStrings.NormalizeLineEndings("SELECT * FROM TestUsers\r\nSELECT * FROM TestGroups"), TestConnectionStrings.NormalizeLineEndings(Instance.ToString()));
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace SQLHelperDB.Tests.HelperClasses
             Instance.AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE UserID=@0", CommandType.Text, 1)
                 .AddQuery((___, __, _) => { }, 10, false, "SELECT * FROM TestGroups WHERE GroupID=@0", CommandType.Text, 10);
             Assert.NotNull(Instance);
-            Assert.Equal("SELECT * FROM TestUsers WHERE UserID=1\r\nSELECT * FROM TestGroups WHERE GroupID=10", Instance.ToString());
+            Assert.Equal(TestConnectionStrings.NormalizeLineEndings("SELECT * FROM TestUsers WHERE UserID=1\r\nSELECT * FROM TestGroups WHERE GroupID=10"), TestConnectionStrings.NormalizeLineEndings(Instance.ToString()));
         }
 
         [Fact]
