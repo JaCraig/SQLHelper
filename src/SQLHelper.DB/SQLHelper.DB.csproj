@@ -64,9 +64,7 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.201" PrivateAssets="all" />
   </ItemGroup>
   <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
-    <Exec Command="dotnet tool restore" StandardOutputImportance="Low"
-      StandardErrorImportance="High" />
-    <Exec Command="dotnet husky install" StandardOutputImportance="Low"
-      StandardErrorImportance="High" WorkingDirectory="../.." />
+    <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
+    <Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="../.." />
   </Target>
 </Project>
