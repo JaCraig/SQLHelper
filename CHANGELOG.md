@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.139"></a>
+## [5.0.139](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.139) (2026-03-29)
+
+### Bug Fixes
+
+* **workflows:** improve SQL Server readiness check ([bff10e9](https://www.github.com/JaCraig/SQLHelper/commit/bff10e95f37ba272bed7ac133e88d31c78e3d4d4))
+
+### Other
+
+* Merge branch 'master' of https://github.com/JaCraig/SQLHelper ([5b53130](https://www.github.com/JaCraig/SQLHelper/commit/5b53130364fee8a2e49fea4c40267a2bc4b4229d))
+
 <a name="5.0.138"></a>
 ## [5.0.138](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.138) (2026-03-29)
 
