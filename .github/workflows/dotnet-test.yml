@@ -50,6 +50,7 @@ jobs:
           SA_PASSWORD: "${{ secrets.SQLHELPER_SQL_PASSWORD }}"
         ports:
           - 1433:1433
+        options: --pull always
 
     strategy:
       matrix:
@@ -80,13 +81,58 @@ jobs:
           echo "SQL Server did not become reachable in time."
           exit 1
 
-      - name: Debug SA password presence
+      - name: Debug SQL Server service state
+        shell: bash
         run: |
-          if [ -z "${{ secrets.SQLHELPER_SQL_PASSWORD }}" ]; then
-            echo "Password is EMPTY"
+          echo "Service container id: ${{ job.services.sqlserver.id }}"
+          docker ps -a
+          docker inspect "${{ job.services.sqlserver.id }}" --format 'Status={{.State.Status}} Health={{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}} StartedAt={{.State.StartedAt}}'
+          if [ -n "$SQLHELPER_SQL_PASSWORD" ]; then
+            echo "SQLHELPER_SQL_PASSWORD is set (value masked)."
+            echo "Password length: ${#SQLHELPER_SQL_PASSWORD}"
           else
-            echo "Password is PRESENT (value hidden)"
+            echo "SQLHELPER_SQL_PASSWORD is empty."
           fi
+
+      - name: Wait for SQL login readiness
+        shell: bash
+        run: |
+          for i in {1..45}; do
+            if docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
+              -S localhost \
+              -U sa \
+              -P "$SQLHELPER_SQL_PASSWORD" \
+              -C \
+              -Q "SELECT 1" >/dev/null 2>&1; then
+              echo "SQL Server accepted sa login."
+              exit 0
+            fi
+            echo "Waiting for SQL login readiness... attempt $i"
+            if [ "$i" -eq 1 ] || [ $((i % 10)) -eq 0 ]; then
+              docker logs --tail 80 "${{ job.services.sqlserver.id }}" || true
+            fi
+            sleep 2
+          done
+          echo "SQL Server never accepted sa login. Dumping container logs."
+          docker logs "${{ job.services.sqlserver.id }}" || true
+          exit 1
+
+      - name: Create test databases
+        shell: bash
+        run: |
+          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
+            -S localhost \
+            -U sa \
+            -P "$SQLHELPER_SQL_PASSWORD" \
+            -C \
+            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
+
+      - name: Debug SQL logs on failure
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          echo "Dumping SQL Server container logs due to earlier failure."
+          docker logs "${{ job.services.sqlserver.id }}" || true
 
       - name: Cache NuGet packages
         uses: actions/cache@v5
@@ -101,16 +147,6 @@ jobs:
 
       - name: Build
         run: dotnet build "$SOLUTION_FILE" --no-restore --configuration $BUILD_CONFIG
-
-      - name: Create test databases
-        shell: bash
-        run: |
-          docker exec "${{ job.services.sqlserver.id }}" /opt/mssql-tools18/bin/sqlcmd \
-            -S localhost \
-            -U sa \
-            -P "$SQLHELPER_SQL_PASSWORD" \
-            -C \
-            -Q "IF DB_ID(N'TestDatabase') IS NULL CREATE DATABASE [TestDatabase]; IF DB_ID(N'TestDatabase2') IS NULL CREATE DATABASE [TestDatabase2]; IF DB_ID(N'MockDatabase') IS NULL CREATE DATABASE [MockDatabase]; IF DB_ID(N'MockDatabaseForMockMapping') IS NULL CREATE DATABASE [MockDatabaseForMockMapping];"
 
       - name: Test
         run: dotnet test "$SOLUTION_FILE" /p:Configuration=$BUILD_CONFIG --no-build --verbosity normal --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" $TEST_FILTER
