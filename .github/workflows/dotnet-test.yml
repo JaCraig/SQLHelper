@@ -80,6 +80,14 @@ jobs:
           echo "SQL Server did not become reachable in time."
           exit 1
 
+      - name: Debug SA password presence
+        run: |
+          if [ -z "${{ secrets.SQLHELPER_SQL_PASSWORD }}" ]; then
+            echo "Password is EMPTY"
+          else
+            echo "Password is PRESENT (value hidden)"
+          fi
+
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
