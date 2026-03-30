@@ -1,6 +1,6 @@
 # SQLHelper
 
-[![Build status](https://ci.appveyor.com/api/projects/status/h687ovca9m893ww1?svg=true)](https://ci.appveyor.com/project/JaCraig/sqlhelper)
+[![.NET Publish](https://github.com/JaCraig/SQLHelper/actions/workflows/dotnet-publish.yml/badge.svg)](https://github.com/JaCraig/SQLHelper/actions/workflows/dotnet-publish.yml)
 
 SQLHelper is a simple class to help with running queries against a database.
 
