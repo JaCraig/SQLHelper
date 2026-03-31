@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.142"></a>
+## [5.0.142](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.142) (2026-03-31)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([cb1f413](https://www.github.com/JaCraig/SQLHelper/commit/cb1f413b805b208fcf5fd906e6b7b00a30524d6a))
+
+### Other
+
+* Merge pull request #347 from JaCraig/dependabot/github_actions/dependencies-97f38a5d32 ([6adf63d](https://www.github.com/JaCraig/SQLHelper/commit/6adf63dc0d4c917a94d16b8318573e3d0d99ea2e))
+* Merge pull request #348 from JaCraig/TestBranch ([83e1d88](https://www.github.com/JaCraig/SQLHelper/commit/83e1d8884930b4c29a39fe89ceebbec1cb862514))
+* Merge pull request #349 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-b11594b647 ([8548ddb](https://www.github.com/JaCraig/SQLHelper/commit/8548ddb247f548f4cbcf9e5fc2dff3034b81fa7f))
+* bump actions/cache from 4 to 5 in the dependencies group ([46801b1](https://www.github.com/JaCraig/SQLHelper/commit/46801b11af1c5d8ada68ac8b2ed43d5b5858bf8e))
+* Change build status badge in README ([b9524db](https://www.github.com/JaCraig/SQLHelper/commit/b9524dbd7e0c7b7ce77ff1a4f9741454ef0e63fa))
+* Merge branch 'master' of https://github.com/JaCraig/SQLHelper ([1ab9f2d](https://www.github.com/JaCraig/SQLHelper/commit/1ab9f2d526301db0045806f7ea59fb063408c383))
+* Test ([76c1f0a](https://www.github.com/JaCraig/SQLHelper/commit/76c1f0a0d501322724aea4c2660bdad34c70aead))
+* **workflows:** add debug step for SQL Server password presence ([205feb1](https://www.github.com/JaCraig/SQLHelper/commit/205feb16ea1b3a1e14982c3caf78c61385d3f14f))
+* **workflows:** enhance SQL Server debugging and readiness checks ([241c5e1](https://www.github.com/JaCraig/SQLHelper/commit/241c5e15944226676889d96bde9307f3c405d95f))
+* **workflows:** update SQL password handling in CI ([699e798](https://www.github.com/JaCraig/SQLHelper/commit/699e798a3a5499880ef83ab95d3ce96276f98385))
+
 <a name="5.0.141"></a>
 ## [5.0.141](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.141) (2026-03-29)
 
