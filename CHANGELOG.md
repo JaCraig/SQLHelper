@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.146"></a>
+## [5.0.146](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.146) (2026-04-16)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([9028e14](https://www.github.com/JaCraig/SQLHelper/commit/9028e14b1225e59af01d201b0c6e6898cced3832))
+
+### Other
+
+* Merge pull request #359 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-aa7e87bc25 ([adb8ad7](https://www.github.com/JaCraig/SQLHelper/commit/adb8ad790ade7e9cad1810ff3b432749c2be395a))
+* Merge pull request #360 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-87686a126d ([709cd80](https://www.github.com/JaCraig/SQLHelper/commit/709cd808980fab4d85f1f900490fb6aa862ceb87))
+* Bump the dependencies group with 6 updates ([dc6313a](https://www.github.com/JaCraig/SQLHelper/commit/dc6313a6ef50a49a12fccf14b566a619bdd49561))
+
 <a name="5.0.145"></a>
 ## [5.0.145](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.145) (2026-04-15)
 
