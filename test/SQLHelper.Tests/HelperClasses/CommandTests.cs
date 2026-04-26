@@ -115,6 +115,16 @@ IF NOT EXISTS (SELECT * FROM [dbo].[AllReferencesAndID_ManyToManyPropertiesWithC
         }
 
         [Fact]
+        public void GetHashCodeIsStableForEquivalentCommands()
+        {
+            var Left = new Command<int>((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE ID=@0", CommandType.Text, "@", new object[] { 1 });
+            var Right = new Command<int>((___, __, _) => { }, 10, false, "SELECT * FROM TestUsers WHERE ID=@0", CommandType.Text, "@", new object[] { 1 });
+
+            Assert.Equal(Left.GetHashCode(), Right.GetHashCode());
+            Assert.Equal(Left, Right);
+        }
+
+        [Fact]
         public void TransactionNeededAlterDatabase()
         {
             var Builder = new StringBuilder();

@@ -217,21 +217,29 @@ namespace SQLHelperDB.HelperClasses
                 return [];
             var ReturnValue = new List<dynamic>();
             var FieldNames = ArrayPool<string>.Shared.Rent(tempReader.FieldCount);
-            for (var X = 0; X < tempReader.FieldCount; ++X)
+            try
             {
-                var FieldName = tempReader.GetName(X);
-                FieldNames[X] = !string.IsNullOrWhiteSpace(FieldName) ? FieldName : $"(No column name #{X})";
-            }
-            while (tempReader.Read())
-            {
-                var Value = new Dynamo(false);
                 for (var X = 0; X < tempReader.FieldCount; ++X)
                 {
-                    Value.Add(FieldNames[X], tempReader[X]);
+                    var FieldName = tempReader.GetName(X);
+                    FieldNames[X] = !string.IsNullOrWhiteSpace(FieldName) ? FieldName : $"(No column name #{X})";
                 }
-                ReturnValue.Add(Value);
+
+                while (tempReader.Read())
+                {
+                    var Value = new Dynamo(false);
+                    for (var X = 0; X < tempReader.FieldCount; ++X)
+                    {
+                        Value.Add(FieldNames[X], tempReader[X]);
+                    }
+                    ReturnValue.Add(Value);
+                }
             }
-            ArrayPool<string>.Shared.Return(FieldNames);
+            finally
+            {
+                Array.Clear(FieldNames, 0, tempReader.FieldCount);
+                ArrayPool<string>.Shared.Return(FieldNames);
+            }
             return ReturnValue;
         }
 

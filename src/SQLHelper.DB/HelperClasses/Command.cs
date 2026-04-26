@@ -106,7 +106,7 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// Command type
         /// </summary>
-        public CommandType CommandType { get; set; }
+        public CommandType CommandType { get; }
 
         /// <summary>
         /// Used to determine if Finalize should be called.
@@ -128,13 +128,13 @@ namespace SQLHelperDB.HelperClasses
         /// <summary>
         /// SQL command
         /// </summary>
-        public string SQLCommand { get; set; }
+        public string SQLCommand { get; }
 
         /// <summary>
         /// Gets a value indicating whether [transaction needed].
         /// </summary>
         /// <value><c>true</c> if [transaction needed]; otherwise, <c>false</c>.</value>
-        public bool TransactionNeeded { get; set; }
+        public bool TransactionNeeded { get; private set; }
 
         /// <summary>
         /// The simple select regex
@@ -208,14 +208,18 @@ namespace SQLHelperDB.HelperClasses
                 unchecked
                 {
                     var ParameterTotal = 0;
+                    var ParameterXor = 0;
                     for (int X = 0, ParametersLength = Parameters.Length; X < ParametersLength; ++X)
                     {
-                        ParameterTotal += Parameters[X].GetHashCode();
+                        var CurrentHash = Parameters[X].GetHashCode();
+                        ParameterTotal += CurrentHash;
+                        ParameterXor ^= CurrentHash;
                     }
 
                     if (ParameterTotal > 0)
-                        _InternalHashCode = (((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + ParameterTotal;
-                    _InternalHashCode = (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
+                        _InternalHashCode = ((((SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode()) * 23) + Parameters.Length) ^ ((ParameterTotal * 397) + ParameterXor);
+                    else
+                        _InternalHashCode = (SQLCommand.GetHashCode(StringComparison.InvariantCultureIgnoreCase) * 23) + CommandType.GetHashCode();
                 }
             }
             return _InternalHashCode;

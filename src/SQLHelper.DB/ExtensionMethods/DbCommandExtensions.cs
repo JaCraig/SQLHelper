@@ -16,12 +16,16 @@ limitations under the License.
 
 using BigBook;
 using BigBook.Comparison;
+using Microsoft.Data.SqlClient;
 using ObjectCartographer;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SQLHelperDB.ExtensionMethods
@@ -40,6 +44,24 @@ namespace SQLHelperDB.ExtensionMethods
             DbType.UInt16,
             DbType.UInt32,
             DbType.UInt64
+        ];
+
+        /// <summary>
+        /// Common SQL Server transient error codes.
+        /// </summary>
+        private static readonly HashSet<int> _TransientSqlErrorNumbers =
+        [
+            -2, // Timeout
+            233,
+            4060,
+            10928,
+            10929,
+            40197,
+            40501,
+            40613,
+            49918,
+            49919,
+            49920
         ];
 
         /// <summary>
@@ -295,12 +317,16 @@ namespace SQLHelperDB.ExtensionMethods
         /// <returns>The DBCommand object</returns>
         public static DbCommand? Open(this DbCommand command, int retries = 0)
         {
+            if (command is null)
+                return null;
+
             Exception? Holder = null;
-            while (retries >= 0)
+            var AttemptCount = Math.Max(0, retries) + 1;
+            for (var Attempt = 1; Attempt <= AttemptCount; ++Attempt)
             {
                 try
                 {
-                    if (command?.Connection is not null
+                    if (command.Connection is not null
                         && command.Connection.State != ConnectionState.Open)
                     {
                         command.Connection.Open();
@@ -308,15 +334,51 @@ namespace SQLHelperDB.ExtensionMethods
 
                     return command;
                 }
-                catch (Exception E)
+                catch (TimeoutException Ex) when (Attempt < AttemptCount)
                 {
-                    Holder = E;
+                    Holder = Ex;
+                    Thread.Sleep(GetRetryDelay(Attempt));
                 }
-                --retries;
+                catch (DbException Ex) when (Attempt < AttemptCount && IsTransient(Ex))
+                {
+                    Holder = Ex;
+                    Thread.Sleep(GetRetryDelay(Attempt));
+                }
             }
+
             if (Holder is not null)
-                throw Holder;
+            {
+                ExceptionDispatchInfo.Capture(Holder).Throw();
+            }
+
             return command;
+        }
+
+        /// <summary>
+        /// Gets a simple backoff delay for retries.
+        /// </summary>
+        /// <param name="attempt">The attempt number starting at 1.</param>
+        /// <returns>The delay duration.</returns>
+        private static TimeSpan GetRetryDelay(int attempt)
+        {
+            var Exponent = Math.Min(4, Math.Max(0, attempt - 1));
+            var DelayMs = Math.Min(1000, 50 * (1 << Exponent));
+            return TimeSpan.FromMilliseconds(DelayMs);
+        }
+
+        /// <summary>
+        /// Determines if a DB exception is transient.
+        /// </summary>
+        /// <param name="exception">The exception to inspect.</param>
+        /// <returns>True if the exception is likely transient; otherwise false.</returns>
+        private static bool IsTransient(DbException exception)
+        {
+            if (exception is SqlException SqlException)
+            {
+                return SqlException.Errors.Cast<SqlError>().Any(error => _TransientSqlErrorNumbers.Contains(error.Number));
+            }
+
+            return true;
         }
 
         /// <summary>
