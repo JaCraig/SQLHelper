@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.0"></a>
+## [5.1.0](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.0) (2026-04-26)
+
+### Features
+
+* **SQLHelper:** update SQLHelper functionality and improve setup process ([4c4d0fe](https://www.github.com/JaCraig/SQLHelper/commit/4c4d0feb26515308a2ef50779004e071f68b5d09))
+
 <a name="5.0.151"></a>
 ## [5.0.151](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.0.151) (2026-04-24)
 
