@@ -78,24 +78,25 @@
 <h2 id="basic-usage">Basic Usage</h2>
 <p>In order to use the system, you do need register it with your ServiceCollection:</p>
 <pre><code>serviceCollection.AddCanisterModules();
-				
 </code></pre>
 <p>This is required prior to using the SQLHelper class for the first time. Once Canister is set up, you can use the SQLHelper class:</p>
 <pre><code>var Configuration = new ConfigurationBuilder()
             .AddInMemoryCollection()
             .Build();
-var Instance = new SQLHelper(Configuration, SqlClientFactory.Instance, &quot;ConnectionString&quot;);
+var StringBuilderPool = serviceCollection
+    .BuildServiceProvider()
+    .GetService&lt;ObjectPool&lt;StringBuilder&gt;&gt;();
+var Instance = new SQLHelper(StringBuilderPool, Configuration);
 </code></pre>
 <p>Or simply ask for an instance using dependency injection:</p>
 <pre><code>public MyClass(SQLHelper helper) { ... }
 </code></pre>
-<p>The SQLHelper class takes in a IConfiguration class, a DbProviderFactory class, and the connection string. The connection string can just be the name of a connection string in your configuration object. Once an instance is set up, you can create a batch, add queries, and then execute them.</p>
-<pre><code>var Results = Instance.CreateBatch()
+<p>The SQLHelper class takes in an <code>ObjectPool&lt;StringBuilder&gt;</code>, an <code>IConfiguration</code>, and an optional logger. Once an instance is set up, you can create a batch, add queries, and then execute them.</p>
+<pre><code>var Results = await Instance.CreateBatch()
             		   .AddQuery(CommandType.Text,&quot;SELECT * FROM [TestDatabase].[dbo].[TestTable]&quot;)
             		   .AddQuery(CommandType.Text,&quot;SELECT * FROM [TestDatabase].[dbo].[TestTable2]&quot;)
             		   .AddQuery(CommandType.Text,&quot;SELECT * FROM [TestDatabase].[dbo].[TestTable3]&quot;)
-            		   .Execute();
-					   
+             		   .ExecuteAsync();
 </code></pre>
 <p>The Results object then holds the results for all 3 queries and is returned as IList&lt;IList<dynamic>&gt;. So in order to get the results from the queries:</dynamic></p>
 <pre><code>var FirstQueryResults = Results[0];
@@ -105,8 +106,8 @@ var ThirdQueryResults = Results[2];
 <p>It is also possible to convert the results from the dynamic type to a class type that you specify:</p>
 <pre><code>var TestTableClasses = FirstQueryResults.Select(x =&gt; (TestTableClass)x).ToList();
 </code></pre>
-<p>The type will be converted automatically for you with no special type conversion required.  SQLHelper also has an ExecuteScalar function:</p>
-<pre><code>var Result = Instance.ExecuteScalar&lt;int&gt;();
+<p>The type will be converted automatically for you with no special type conversion required. SQLHelper also has an ExecuteScalarAsync function:</p>
+<pre><code>var Result = await Instance.ExecuteScalarAsync&lt;int&gt;();
 </code></pre>
 <p>This will either return the first value of the first set of results OR it will return the number of rows that were effected depending on whether or not the query was a select or not.</p>
 <h2 id="installation">Installation</h2>
