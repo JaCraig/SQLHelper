@@ -58,7 +58,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="10.0.8" />
-    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="173.8.0" />
+    <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="180.0.0" />
     <PackageReference Include="BigBook" Version="6.2.16" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.8" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.300" PrivateAssets="all" />
