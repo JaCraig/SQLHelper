@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.9"></a>
+## [5.1.9](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.9) (2026-06-03)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([ad3e0d3](https://www.github.com/JaCraig/SQLHelper/commit/ad3e0d3ea7e7f4b48cefa9aeb8f55032d2180adc))
+* Bump the dependencies group with 1 update ([a158966](https://www.github.com/JaCraig/SQLHelper/commit/a1589665376abd5baaf98ad587355edba2435177))
+
+### Other
+
+* Merge pull request #388 from JaCraig/dependabot/nuget/test/SQLHelper.Tests/dependencies-041891a2d4 ([031c13a](https://www.github.com/JaCraig/SQLHelper/commit/031c13aaad4b147aadb2ef664cc556d789ea363b))
+* Merge pull request #389 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-e1bae83de4 ([9f9b3df](https://www.github.com/JaCraig/SQLHelper/commit/9f9b3df7186a9d0cc065201b5db3425a3c638fd9))
+* Merge pull request #390 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-b92f72d551 ([0d32b44](https://www.github.com/JaCraig/SQLHelper/commit/0d32b44c718a8dd8b77671938471c3650ce71b01))
+* Bump Microsoft.NET.Test.Sdk from 18.5.1 to 18.6.0 ([7c2a324](https://www.github.com/JaCraig/SQLHelper/commit/7c2a324edf43a48c9e9a312ebf1ec05a6828f1e5))
+
 <a name="5.1.8"></a>
 ## [5.1.8](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.8) (2026-05-28)
 
