@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.12"></a>
+## [5.1.12](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.12) (2026-08-19)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([38951ad](https://www.github.com/JaCraig/SQLHelper/commit/38951adfd3293c7765cbc98aa353e2a75295c1cd))
+* Bump the dependencies group with 1 update ([f042966](https://www.github.com/JaCraig/SQLHelper/commit/f0429668a05b439aeb4fbf26383d6ea5dfdbce5b))
+
+### Other
+
+* Merge pull request #406 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([5b76575](https://www.github.com/JaCraig/SQLHelper/commit/5b76575046056f3ea8d46e5f9c151fed6d3d35d3))
+* Merge pull request #407 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-83cad83fb7 ([9633188](https://www.github.com/JaCraig/SQLHelper/commit/9633188a9394cec01c6f4e79de1e9a784de89d3a))
+* Merge pull request #408 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-83cad83fb7 ([3577fcc](https://www.github.com/JaCraig/SQLHelper/commit/3577fccfbdc46d8aedfa58b3d86d77ac66af59b5))
+* Merge pull request #409 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-5c75b0cce7 ([7ea678b](https://www.github.com/JaCraig/SQLHelper/commit/7ea678b2ecb235b62c237ce0dfb92fb06cb9c05d))
+* Merge pull request #410 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-ac7ea48fa1 ([a88d6ba](https://www.github.com/JaCraig/SQLHelper/commit/a88d6ba87516438120ff0d41a599bddd211591e0))
+* Merge pull request #411 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-5269f17bd1 ([6a2f265](https://www.github.com/JaCraig/SQLHelper/commit/6a2f2656a09cd7766d78a5c5c2083c04ccd5b5b2))
+* Merge pull request #412 from JaCraig/dependabot/nuget/test/SQLHelper.Tests/dependencies-c2041c667c ([52e9ac3](https://www.github.com/JaCraig/SQLHelper/commit/52e9ac3fc97b0d878e0329b232f73b851277ca51))
+* Bump the dependencies group with 3 updates ([2661e35](https://www.github.com/JaCraig/SQLHelper/commit/2661e352c65765ba63c69a20eb3d1828ccd7dd15))
+* Bump the dependencies group with 4 updates ([d89c178](https://www.github.com/JaCraig/SQLHelper/commit/d89c1785d619b3d24d7caa6d6ad14d5f3792e349))
+* Bump the dependencies group with 4 updates ([989954e](https://www.github.com/JaCraig/SQLHelper/commit/989954e0e48172d5e499e47ed5112387ba3ee2f6))
+* Bump the dependencies group with 5 updates ([80c9f06](https://www.github.com/JaCraig/SQLHelper/commit/80c9f06567a2645cd2777b8c96b14b9fff5892c7))
+* Bump the dependencies group with 6 updates ([ea80662](https://www.github.com/JaCraig/SQLHelper/commit/ea806625ac0186986d923e7c3c898ffa81fe9e5e))
+
 <a name="5.1.11"></a>
 ## [5.1.11](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.11) (2026-07-22)
 
