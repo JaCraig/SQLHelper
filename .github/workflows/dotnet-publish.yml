@@ -37,6 +37,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   build:
     if: "!startsWith(github.event.head_commit.message, 'chore(release):')"
@@ -175,6 +179,13 @@ jobs:
           force: true
           tags: true
 
+      - name: NuGet login (OIDC)
+        if: steps.versionize.outcome == 'success'
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
       - name: Upload package to NuGet
         if: steps.versionize.outcome == 'success'
-        run: dotnet nuget push "**/*.nupkg" -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "**/*.nupkg" --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
