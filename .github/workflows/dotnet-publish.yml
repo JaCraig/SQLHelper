@@ -47,6 +47,7 @@ jobs:
     timeout-minutes: 45
     permissions:
       contents: write
+      id-token: write
     env:
       BUILD_CONFIG: "Release"
       SOLUTION_FILE: "${{ inputs.solution || 'SQLHelper.sln' }}"
