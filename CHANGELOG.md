@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.1.14"></a>
+## [5.1.14](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.14) (2026-11-08)
+
+### Bug Fixes
+
+* Merge branch 'master' of https://github.com/JaCraig/SQLHelper ([73e4d0c](https://www.github.com/JaCraig/SQLHelper/commit/73e4d0c2d38bd167d98f29ed49e6a903d4d218d2))
+* **workflow:** add id-token permission for build job ([b73bb01](https://www.github.com/JaCraig/SQLHelper/commit/b73bb01b56c5c0736bd7bda8189bc60489542ae1))
+
 <a name="5.1.13"></a>
 ## [5.1.13](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.13) (2026-11-08)
 
