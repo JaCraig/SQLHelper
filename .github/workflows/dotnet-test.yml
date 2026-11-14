@@ -11,7 +11,7 @@ on:
       dotnet-version:
         description: ".NET SDK version"
         required: false
-        default: "10.0.x"
+        default: "11.0.x"
       solution:
         description: "Solution or project path to build/test"
         required: false
@@ -54,7 +54,7 @@ jobs:
 
     strategy:
       matrix:
-        dotnet-version: ["${{ inputs.dotnet-version || '10.0.x' }}"]
+        dotnet-version: ["${{ inputs.dotnet-version || '11.0.x' }}"]
 
     steps:
       - uses: actions/checkout@v7
