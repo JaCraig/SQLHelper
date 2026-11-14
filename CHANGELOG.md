@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.0"></a>
+## [6.0.0](https://www.github.com/JaCraig/SQLHelper/releases/tag/v6.0.0) (2026-11-14)
+
+### Features
+
+* **dotnet:** upgrade projects to .NET 10 and 11 ([b29e1ce](https://www.github.com/JaCraig/SQLHelper/commit/b29e1ce13146f569c78392f663020cb54c8321d6))
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([12e8dee](https://www.github.com/JaCraig/SQLHelper/commit/12e8dee2018b515030fae97cfa9c22ff241d7a66))
+
+### Breaking Changes
+
+* **dotnet:** upgrade projects to .NET 10 and 11 ([b29e1ce](https://www.github.com/JaCraig/SQLHelper/commit/b29e1ce13146f569c78392f663020cb54c8321d6))
+
+### Other
+
+* Merge pull request #430 from JaCraig/dependabot/nuget/src/SQLHelper.DB/dependencies-2186410a91 ([7d48896](https://www.github.com/JaCraig/SQLHelper/commit/7d488960af3981d5ab0c6c45cb193df9b801d8da))
+* Merge pull request #431 from JaCraig/dependabot/github_actions/dependencies-39799580c0 ([2ee33a3](https://www.github.com/JaCraig/SQLHelper/commit/2ee33a386845ea8d923caebfe4fa6d1183df8f7c))
+* Bump actions/setup-dotnet ([cad7c6f](https://www.github.com/JaCraig/SQLHelper/commit/cad7c6fb433580fe15f376c80345b8cac6e2c8e6))
+
 <a name="5.1.14"></a>
 ## [5.1.14](https://www.github.com/JaCraig/SQLHelper/releases/tag/v5.1.14) (2026-11-08)
 
